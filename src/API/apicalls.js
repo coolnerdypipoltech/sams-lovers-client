@@ -1,0 +1,251 @@
+const ENDPOINT = "https://<...>/api/v1/";
+
+async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+    try{
+        const response = await fetch(ENDPOINT + "auth/signin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: _name,
+            email: _email,
+            password: _password,
+            facebook_url: _facebook_url,
+            instagram_url: _instagram_url,
+            tiktok_url: _tiktok_url,
+            x_url: _x_url,
+            youtube_url: _youtube_url,
+        }),
+        });
+
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function LogIn(_email, _password) {
+    try{
+        const response = await fetch(ENDPOINT + "auth/loginin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email: _email,
+            _password: _password,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function LogInWithToken(_token) {
+    try{
+        const response = await fetch(ENDPOINT + "auth/login/token", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        }
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function ResetPassword(_email) {
+    try{
+        const response = await fetch(ENDPOINT + "auth/passwords/reset", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email: _email,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function CreateSubmission(_token, _challenge_id) {
+    try{
+        const response = await fetch(ENDPOINT + "challenge/submission/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        },
+        body: JSON.stringify({
+            challenge_id: _challenge_id,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function PurchaseReward(_token, _reward_id) {
+    try{
+        const response = await fetch(ENDPOINT + "rewards/purchase/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        },
+        body: JSON.stringify({
+            reward_id: _reward_id,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function ExchangeCode(_token, _code) {
+    try{
+        const response = await fetch(ENDPOINT + "codes/exchange/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        },
+        body: JSON.stringify({
+            code: _code,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function GetUserInfo(_token) {
+    try{
+        const response = await fetch(ENDPOINT + "user", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        }
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function GetArticles (_token, _page, _count) {
+    try{
+        const response = await fetch(ENDPOINT + `articles/${_page}/${_count}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        }
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function GetChallengesByUser (_token, _page, _count) {
+    try{
+        const response = await fetch(ENDPOINT + `challenges/${_page}/${_count}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        }
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function GetPurchasedRewards (_token, _page, _count) {
+    try {
+        const response = await fetch(ENDPOINT + `rewards/purchased/${_page}/${_count}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + _token,
+            }
+          });
+          const data = await response.json();
+          return data;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+    try {
+        const response = await fetch(ENDPOINT + "user/update", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + _token,
+        },
+        body: JSON.stringify({
+            name: _name,
+            facebook_url: _facebook_url,
+            instagram_url: _instagram_url,
+            tiktok_url: _tiktok_url,
+            x_url: _x_url,
+            youtube_url: _youtube_url,
+        }),
+        });
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+async function UpdateUserAvatar (_token, _file) {
+    if(_file){
+        const formData = new FormData();
+        formData.append('image', _file);
+
+        try {
+            const response = await fetch(ENDPOINT + "user/update/avatar", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + _token,
+            },
+            body: formData,
+            });
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('API Call error:', error);
+        }
+    }
+}
+
+async function DeleteUser (_token) {
+    try {
+        const response = await fetch(ENDPOINT + "user/delete", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + _token,
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error('API Call error:', error);
+    }
+}
