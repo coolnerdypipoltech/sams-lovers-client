@@ -1,0 +1,34 @@
+.MainContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    padding-top: 50px;
+}
+
+.ArticlePage{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding-top: 50px
+}
+
+.ArticlePageContainer{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    max-height: 100%;
+    padding-top: 20px;
+}
+
+.articlePageNextArticle{
+    position: absolute;
+    bottom:  0px;
+    right: 20px;
+}

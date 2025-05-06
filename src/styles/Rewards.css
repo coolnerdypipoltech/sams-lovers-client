@@ -1,0 +1,7 @@
+.RewardsContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    padding-top: 50px;
+}

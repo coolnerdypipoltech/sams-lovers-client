@@ -1,0 +1,93 @@
+.LoginContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.LoginLogo{
+    width: 100px;
+}
+
+.logoContainer{
+    padding-top: 100px;
+}
+
+
+.createUserContainer{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    align-items: center;
+    align-content: center;
+}
+
+.inputCreateUser{
+    width: 100%;
+}
+
+
+.LoginMenuContainer{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    align-items: center;
+    align-content: center;
+
+}
+
+.LoginMenuBottomContainer{
+    height: 100%;
+    padding-bottom: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.inputLoginMenu{
+    width: 100%;
+}
+
+.passwordContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.PasswordTextLogin{
+    margin: 0px;
+    margin-top: 10px;
+    text-align: end;
+    width: 100%;
+}
+
+
+.forgetPasswordContainer{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    align-items: center;
+    align-content: center;
+}
+
+.forgetPasswordSend{
+    padding-top: 50%;
+}
+
+.textForgetPassword{
+    margin: 0px;
+    text-align: start;
+    margin-bottom: 10px;
+}

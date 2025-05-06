@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { ElementContextRoute } from "./context/RouteContext";
+import { ElementContextPopUp } from "./context/PopUpContext";
+import React, { useContext } from "react";
+import Login from "./pages/Login";
+import Rewards from "./pages/Rewards";
+import Retos from "./pages/Retos"
+import Profile from "./pages/Profile"
+import "./styles/App.css";
+import Header from "./components/Header";
+import Main from "./pages/Main";
 
 function App() {
+  const { route } = useContext(ElementContextRoute);
+  const { popUpText, closePopUp } = useContext(ElementContextPopUp);
+  let currentPage;
+  // eslint-disable-next-line default-case
+  switch (route) {
+    case "":
+      currentPage = <Login></Login>;
+      break;
+    case "Login":
+      currentPage = <Login></Login>;
+      break;
+      case "Main":
+      currentPage = <><Header></Header><Main></Main></>;
+      break;
+    case "Rewards":
+      currentPage = <><Header></Header><Rewards></Rewards></>;
+      break;
+    case "Retos":
+      currentPage = <><Header></Header><Retos></Retos></>;
+      break;
+    case "Profile":
+      currentPage = <><Header></Header><Profile></Profile></>;
+      break;
+      default:
+      currentPage = <Login></Login>;
+      break;
+
+  }
+
+  const handleClosePopUp = () => {
+    closePopUp()
+  }
+
   return (
+
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {popUpText !== "" ? (
+        <div className="PopUp">
+          <div className="PopUpDialog">
+            <p className="PopUpText">{popUpText}</p>
+            <button className="PopUpButton" onClick={handleClosePopUp}>Close</button> 
+          </div>
+
+      </div>
+      ) : (
+        <></>
+      )}
+      <>{currentPage}</>
+      
     </div>
   );
 }
