@@ -1,5 +1,3 @@
-import ArticleItem from "../components/ArticleItem";
-import "../styles/Main.css";
 function ArticlePage() {
   return (
     <>

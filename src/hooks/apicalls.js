@@ -1,6 +1,6 @@
 const ENDPOINT = "https://<...>/api/v1/";
 
-async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try{
         const response = await fetch(ENDPOINT + "auth/signin", {
         method: "POST",
@@ -25,7 +25,7 @@ async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _
     }
 }
 
-async function LogIn(_email, _password) {
+export async function LogIn(_email, _password) {
     try{
         const response = await fetch(ENDPOINT + "auth/loginin", {
         method: "POST",
@@ -43,7 +43,7 @@ async function LogIn(_email, _password) {
     }
 }
 
-async function LogInWithToken(_token) {
+export async function LogInWithToken(_token) {
     try{
         const response = await fetch(ENDPOINT + "auth/login/token", {
         method: "POST",
@@ -58,7 +58,7 @@ async function LogInWithToken(_token) {
     }
 }
 
-async function ResetPassword(_email) {
+export async function ResetPassword(_email) {
     try{
         const response = await fetch(ENDPOINT + "auth/passwords/reset", {
         method: "POST",
@@ -75,7 +75,7 @@ async function ResetPassword(_email) {
     }
 }
 
-async function CreateSubmission(_token, _challenge_id) {
+export async function CreateSubmission(_token, _challenge_id) {
     try{
         const response = await fetch(ENDPOINT + "challenge/submission/", {
         method: "POST",
@@ -93,7 +93,7 @@ async function CreateSubmission(_token, _challenge_id) {
     }
 }
 
-async function PurchaseReward(_token, _reward_id) {
+export async function PurchaseReward(_token, _reward_id) {
     try{
         const response = await fetch(ENDPOINT + "rewards/purchase/", {
         method: "POST",
@@ -111,7 +111,7 @@ async function PurchaseReward(_token, _reward_id) {
     }
 }
 
-async function ExchangeCode(_token, _code) {
+export async function ExchangeCode(_token, _code) {
     try{
         const response = await fetch(ENDPOINT + "codes/exchange/", {
         method: "POST",
@@ -129,7 +129,7 @@ async function ExchangeCode(_token, _code) {
     }
 }
 
-async function GetUserInfo(_token) {
+export async function GetUserInfo(_token) {
     try{
         const response = await fetch(ENDPOINT + "user", {
         method: "GET",
@@ -144,7 +144,7 @@ async function GetUserInfo(_token) {
     }
 }
 
-async function GetArticles (_token, _page, _count) {
+export async function GetArticles (_token, _page, _count) {
     try{
         const response = await fetch(ENDPOINT + `articles/${_page}/${_count}`, {
         method: "GET",
@@ -159,7 +159,7 @@ async function GetArticles (_token, _page, _count) {
     }
 }
 
-async function GetChallengesByUser (_token, _page, _count) {
+export async function GetChallengesByUser (_token, _page, _count) {
     try{
         const response = await fetch(ENDPOINT + `challenges/${_page}/${_count}`, {
         method: "GET",
@@ -174,7 +174,7 @@ async function GetChallengesByUser (_token, _page, _count) {
     }
 }
 
-async function GetPurchasedRewards (_token, _page, _count) {
+export async function GetPurchasedRewards (_token, _page, _count) {
     try {
         const response = await fetch(ENDPOINT + `rewards/purchased/${_page}/${_count}`, {
             method: "GET",
@@ -190,7 +190,7 @@ async function GetPurchasedRewards (_token, _page, _count) {
     }
 }
 
-async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
         const response = await fetch(ENDPOINT + "user/update", {
         method: "PUT",
@@ -213,7 +213,7 @@ async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _ti
     }
 }
 
-async function UpdateUserAvatar (_token, _file) {
+export async function UpdateUserAvatar (_token, _file) {
     if(_file){
         const formData = new FormData();
         formData.append('image', _file);
@@ -235,7 +235,7 @@ async function UpdateUserAvatar (_token, _file) {
     }
 }
 
-async function DeleteUser (_token) {
+export async function DeleteUser (_token) {
     try {
         const response = await fetch(ENDPOINT + "user/delete", {
             method: "DELETE",
