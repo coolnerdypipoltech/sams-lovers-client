@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
-  const [route, setRoute] = useState("Login");
+  const [route, setRoute] = useState("Challenges");
 
   const changeRoute = (newValue) => {
     console.log( newValue);

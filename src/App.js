@@ -3,7 +3,7 @@ import { ElementContextPopUp } from "./context/PopUpContext";
 import React, { useContext } from "react";
 import Login from "./pages/Login";
 import Rewards from "./pages/Rewards";
-import Retos from "./pages/Retos"
+import Challenges from "./pages/Challenges"
 import Profile from "./pages/Profile"
 import "./styles/App.css";
 import Header from "./components/Header";
@@ -27,8 +27,8 @@ function App() {
     case "Rewards":
       currentPage = <><Header></Header><Rewards></Rewards></>;
       break;
-    case "Retos":
-      currentPage = <><Header></Header><Retos></Retos></>;
+    case "Challenges":
+      currentPage = <><Header></Header><Challenges></Challenges></>;
       break;
     case "Profile":
       currentPage = <><Header></Header><Profile></Profile></>;
@@ -36,7 +36,6 @@ function App() {
       default:
       currentPage = <Login></Login>;
       break;
-
   }
 
   const handleClosePopUp = () => {

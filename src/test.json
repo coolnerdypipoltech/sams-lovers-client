@@ -1,0 +1,136 @@
+{
+    "challenges": [
+        {
+            "id": 0,
+            "name":"Reto 1",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 537,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 1,
+            "name":"Reto 2",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 5,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 2,
+            "name":"Reto 3",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 101,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 3,
+            "name":"Reto 4",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 800,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 4,
+            "name":"Reto 5",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 58,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 5,
+            "name":"Reto 6",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 20,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 6,
+            "name":"Reto 7",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 10,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 7,
+            "name":"Reto 8",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 50,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 8,
+            "name":"Reto 9",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 440,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 9,
+            "name":"Reto 10",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 30,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        },
+        {
+            "id": 10,
+            "name":"Reto 11",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "image_url": "https://i.imgflip.com/1adrqc.jpg",
+            "diamonds": 310,
+            "start_date": "2025-05-10T18:25:43-05:00",
+            "end_date": "2025-05-31T18:25:43-05:00",
+            "conditions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum.",
+            "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut neque ac odio rutrum tempus. In quis leo id nisl sodales bibendum. Pellentesque rhoncus, nibh nec condimentum sagittis, tortor odio pellentesque magna, in commodo metus sapien nec arcu. Quisque sit amet tellus a leo dapibus lacinia suscipit ut nisi.",
+            "priority": 1
+        }
+    ]
+}

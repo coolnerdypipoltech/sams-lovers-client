@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import List from "../components/List";
-import "../styles/Rewards.css"
+import ChallengeList from "../components/ChallengeList";
+import "../styles/Challenges.css"
 import  ChallengePage  from "../subPages/ChallengePage";
-function Retos() {
+
+function Challenges() {
   const [subPage, setSubPage] = useState("");
   let subPageContent = null;
 
@@ -14,17 +15,12 @@ function Retos() {
   return (
     <>
       <>{subPageContent}</>
-
-      <div className="RewardsContainer">
+      <div className="ChallengesContainer">
         <p className="Title">Retos</p>
-
-        <List></List>
-
-        
-
+        <ChallengeList></ChallengeList>
       </div>
     </>
   );
 }
 
-export default Retos;
+export default Challenges;
