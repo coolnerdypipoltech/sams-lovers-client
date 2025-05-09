@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ElementProviderRoute } from "./context/RouteContext";
 import { ElementProviderPopUp } from "./context/PopUpContext";
+import { ElementProviderData } from "./context/DataContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ElementProviderPopUp>
-    <ElementProviderRoute>
-      <App />
-    </ElementProviderRoute>
+    <ElementProviderData>
+      <ElementProviderRoute>
+        <App />
+      </ElementProviderRoute>
+    </ElementProviderData>
   </ElementProviderPopUp>
 );
 

@@ -1,7 +1,12 @@
 import logo from "../assets/samsLogo.webp";
 
 
-function PasswordPage() {
+function PasswordPage({onReturn}) {
+
+  const handleSend = async () => {
+    onReturn()
+  };
+
   return (
     <div className="subPageContainer">
       <div className="LoginContainer">
@@ -17,7 +22,7 @@ function PasswordPage() {
           <input placeholder="Correo" className="inputCreateUser"></input>
         </div>
 
-        <p className="forgetPasswordSend">Enviar</p>
+        <p onClick={handleSend} className="forgetPasswordSend">Enviar</p>
       </div>
     </div>
     </div>
