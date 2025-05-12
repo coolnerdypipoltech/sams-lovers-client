@@ -120,6 +120,13 @@ function Login() {
           <div className="LoginMenuBottomContainer">
             <p onClick={onClickLogin}>Acceder</p>
             <p onClick={onClickCreate}>¿NO TIENES CUENTA? CREA UNA</p>
+            <p
+          >
+            Al hacer click en continuar usted acepta los,
+            <a style={{ paddingLeft: "5px" }} href="https://www.google.com">
+              términos y condiciones
+            </a>
+            </p>
           </div>
         </div>
       </div>
