@@ -1,7 +1,32 @@
-.ChallengesContainer {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  align-content: center;
-  padding-top: 50px;
+.ChallengesContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+}
+
+.ParticipateText{
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.challengesSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.ChallengeButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.confirmationSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

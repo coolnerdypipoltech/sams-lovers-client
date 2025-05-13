@@ -1,28 +1,43 @@
-function ChallengeParticipationPage({ data, setSubPage }) {
-  const participateOnChallenge = (e) => {};
+function ChallengeParticipationPage({ returnPage, participation, challenge }) {
 
-  return (
+  const handleReturn =  () =>{
+    returnPage()
+  }
+
+  const handleParticipation = () =>{
+    participation();
+  }
+
+return (
     <div className="subPageContainer">
-      <button className="listItemTitle" onClick={() => setSubPage("")}>
-        Volver
-      </button>
-      <img className="challengeImageContainer" src={data.image_url} />
-      <div>
-        <p className="challengeTitle">{data.instructions}</p>
-        <input placeholder="URL"></input>
-        <p className="challengeDiamonds">Diamantes: {data.diamonds}</p>
-        <p>
-          Tu video será revisado, si es aprobado obtendrás los diamantes y
-          aparecerá como completado en la sección de retos.
-        </p>
-        <p classNAme="challengeStatus">
-          STATUS: {data.transaction?.status || "pending"}
-        </p>
-        <p>Feedback: {data.transaction?.feedback}</p>
-        <button className="listItemTitle" onClick={participateOnChallenge}>
-          Participar
-        </button>
-      </div>
+      <div className="confirmationSubpageContainer">
+
+          <div className="ArticleItem">
+            <p className="articleTitle">{challenge.name}]</p>
+            <img className="challengeImageContainer" src={challenge.image_url} alt="challenge illustrative reference"/>
+          </div>
+
+
+          <p className="arrticleText">{challenge.instructions}</p>
+          <input placeholder="URL"></input>
+          <p className="arrticleText">{challenge.diamonds}</p>
+          <br />
+          <p>
+            Tu video será revisado, si es aprobado obtendrás los diamantes y <br/>
+            aparecerá como completado en la sección de retos.
+          </p>
+          <br />
+          <p classNAme="challengeStatus">{challenge.transaction?.status}</p>
+          <br />
+          <p>Feedback:</p>
+
+
+          <div className="RewardButtonsContainer">
+            <p onClick={handleReturn} className="ParticipateText">CANCELAR</p>
+            <p onClick={handleParticipation} className="ParticipateText">PARTICIPAR</p>
+          </div>
+
+        </div>
     </div>
   );
 }

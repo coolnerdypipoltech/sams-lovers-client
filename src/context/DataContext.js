@@ -1,5 +1,6 @@
 import React, { createContext, useRef, useState } from "react";
 import {GetArticles, GetChallengesByUser} from  "../hooks/apicalls"
+import challenges from "../test.json";
 const ElementContextData = createContext();
 
 const ElementProviderData= ({ children }) => {
@@ -23,6 +24,7 @@ const ElementProviderData= ({ children }) => {
         setRewardsData([1, 2, 3, 4, 5, 6, 7, 8 , 9, 10])
         return
     }
+
     const initRequestArticles = async () => {
         const response = await GetArticles()
         sertArticleData(response.data)
@@ -30,9 +32,11 @@ const ElementProviderData= ({ children }) => {
         return
     }
     const initRequestChallenges = async () => {
-        const response = await GetChallengesByUser()
-        sertArticleData(response.data)
-        nextArticles.current = response.nextLink
+        //const response = await GetChallengesByUser()
+        //sertArticleData(response.data)
+        //nextArticles.current = response.nextLink
+        setChallengesData([challenges[0], challenges[1], challenges[2], challenges[3], challenges[4], challenges[5], challenges[6], challenges[7],challenges[8], challenges[9]]);
+        //setChallengesData([1, 2, 3, 4, 5, 6, 7, 8 , 9, 10])
         return
     }
 
@@ -44,22 +48,28 @@ const ElementProviderData= ({ children }) => {
     nextRewards.current = ""
     //setRewardsData(tempArray);
     ///Tests
-    const newRewards = Array.from({ length: 5 }, (_, i) => 
+    const newRewards = Array.from({ length: 5 }, (_, i) =>
         rewardsData.length + i + 1
       );
       setRewardsData(prev => [...prev, ...newRewards]);
     ///Tests
     return
   };
+
   const requestMoreChallenges = async () => {
     if(nextChallenges === null){
         return
     }
     let tempArray = [...challengesData]
     nextChallenges.current = ""
-    setChallengesData(tempArray);
+    //setChallengesData(tempArray);
+    ///Tests
+    const newChallenges = Array.from(tempArray);
+      setChallengesData(prev => [...prev, ...newChallenges]);
+    ///Tests
     return
   };
+
   const requestMoreArticles = async () => {
     if(nextArticles === null){
         return
