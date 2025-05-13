@@ -3,5 +3,30 @@
     flex-flow: column;
     align-items: center;
     align-content: center;
-    padding-top: 50px;
+}
+
+.ParticipateText{
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.rewardsSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.RewardButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.confirmationSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

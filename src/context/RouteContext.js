@@ -4,7 +4,7 @@ import useIndexedDB from "../hooks/useIndexedDB";
 const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
-  const [route, setRoute] = useState("Challenges");
+  const [route, setRoute] = useState("Rewards");
   const loginToken = useRef(null);
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 

@@ -1,5 +1,9 @@
 import logo from "../assets/samsLogo.webp";
-function CreatePage() {
+function CreatePage({ onReturn }) {
+  const handleReturn = async () => {
+    onReturn()
+  };
+
   return (
     <div className="subPageContainer">
       <div className="LoginContainer">
@@ -33,7 +37,7 @@ function CreatePage() {
           ></input>
 
           <p>Registrarme</p>
-          <p>¿YA TIENES CUENTA? INICIA SESIÓN.</p>
+          <p onClick={handleReturn}>¿YA TIENES CUENTA? INICIA SESIÓN.</p>
           <p>Términos y condiciones</p>
         </div>
       </div>
