@@ -7,6 +7,7 @@ const ElementProviderData= ({ children }) => {
     const [rewardsData, setRewardsData] = useState(null);
     const [articleData, sertArticleData] = useState(null);
     const [challengesData, setChallengesData] = useState(null)
+
     const currentChallenge = useRef(null)
     const currentReward = useRef(null)
     const currentArticle = useRef(null)
@@ -17,8 +18,9 @@ const ElementProviderData= ({ children }) => {
 
     const initRequestRewards = async () => {
         const response = await GetChallengesByUser()
-        setRewardsData(response.data)
-        nextRewards.current = response.nextLink
+        //setRewardsData(response.data)
+        //nextRewards.current = response.nextLink
+        setRewardsData([1, 2, 3, 4, 5, 6, 7, 8 , 9, 10])
         return
     }
     const initRequestArticles = async () => {
@@ -40,7 +42,13 @@ const ElementProviderData= ({ children }) => {
     }
     let tempArray = [...rewardsData]
     nextRewards.current = ""
-    setRewardsData(tempArray);
+    //setRewardsData(tempArray);
+    ///Tests
+    const newRewards = Array.from({ length: 5 }, (_, i) => 
+        rewardsData.length + i + 1
+      );
+      setRewardsData(prev => [...prev, ...newRewards]);
+    ///Tests
     return
   };
   const requestMoreChallenges = async () => {
