@@ -1,8 +1,10 @@
-function ChallengeListItem({key, challenge}){
+function ChallengeListItem({challenge}){
   return (
     <>
       <div className="listItem">
-          <div className="imageContainer"></div>
+          <div className="imageContainer">
+            <img className="imageContainer" src={challenge.image_url} alt="Challenge illustrative reference"></img>
+          </div>
           <div>
             <p className="listItemTitle">{challenge.name}</p>
             <p className="listItemSubtitle">{challenge.diamonds}</p>

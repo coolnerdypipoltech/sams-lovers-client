@@ -16,15 +16,16 @@ function ChallengePage({returnPage, challengeParticipationPage, challenge}) {
 
           <div className="ArticleItem">
             <p className="articleTitle">{challenge.name}</p>
-            <img className="challengeImageContainer" src={challenge.image_url} alt="challenge illustrative reference"/>
           </div>
 
-          <div className="articleImageContainer"></div>
+          <div className="articleImageContainer">
+            <img className="articleImageContainer" src={challenge.image_url} alt="Challenge illustrative reference"></img>
+          </div>
           <p className="arrticleText">{challenge.description}</p>
           <p className="arrticleText">{challenge.diamonds}</p>
           <p className="arrticleText">{challenge.end_date}</p>
           <p className="arrticleText">{challenge.conditions}</p>
-          <p classNAme="challengeStatus">{challenge.transaction?.status}</p>
+          <p className="challengeStatus">{challenge.transaction?.status}</p>
 
           <p onClick={handleParticipation} className="ParticipateText">PARTICIPAR</p>
         </div>

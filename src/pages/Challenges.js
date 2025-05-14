@@ -30,11 +30,12 @@ const { currentChallenge } = useContext(ElementContextData);
   }
 
   if (subPage === "ChallengePage") {
-    subPageContent = <ChallengePage returnPage={handleReturn} challengeParticipationPage={handleSelectParticipation} challenge={currentChallenge}></ChallengePage>;
+    console.log(currentChallenge.current);
+    subPageContent = <ChallengePage returnPage={handleReturn} challengeParticipationPage={handleSelectParticipation} challenge={currentChallenge.current}></ChallengePage>;
   }
 
   if (subPage === "ChallengeParticipationPage") {
-    subPageContent = <ChallengeParticipationPage returnPage={handleReturn} participation={handleParticipation} challenge={currentChallenge}></ChallengeParticipationPage>;
+    subPageContent = <ChallengeParticipationPage returnPage={handleReturn} participation={handleParticipation} challenge={currentChallenge.current}></ChallengeParticipationPage>;
   }
 
   return (

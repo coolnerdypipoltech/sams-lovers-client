@@ -7,11 +7,10 @@ function ChallengesList({changeToSubPage}) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestChallenges, currentChallenge, challengeData, requestMoreChallenges } = useContext(ElementContextData);
+  const { initRequestChallenges, currentChallenge, challengesData, requestMoreChallenges } = useContext(ElementContextData);
 
   useEffect(() => {
     initRequestChallenges();
-    console.log(challengeData);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -42,17 +41,19 @@ function ChallengesList({changeToSubPage}) {
 
   return (
     <>
-      {challengeData != null ? (
+      {challengesData != null ? (
         <div
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh" }}
         >
-          {challengeData.map((challenge, index) => (
-            <div onClick={handleSelectChallenge}>
+          {challengesData.map((challenge, index) => (
+            <div onClick={() => handleSelectChallenge(challenge)}
+            key={index}
+            >
               {" "}
-              <ChallengeListItem key={index} challenge={challenge} />
+              <ChallengeListItem challenge={challenge} />
             </div>
           ))}
 
