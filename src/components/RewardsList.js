@@ -7,11 +7,12 @@ function RewardsList({ changeToSubPage }) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } = useContext(ElementContextData);
+  const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } =
+    useContext(ElementContextData);
 
   useEffect(() => {
     initRequestRewards();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMoreRewards = () => {
@@ -35,7 +36,7 @@ function RewardsList({ changeToSubPage }) {
     }
   };
 
-    console.log("aca")
+  console.log("aca");
   const handleSelectReward = (itemData) => {
     currentReward.current = itemData;
     changeToSubPage();
@@ -51,7 +52,7 @@ function RewardsList({ changeToSubPage }) {
           style={{ overflowY: "auto", height: "84vh" }}
         >
           {rewardsData.map((reward, index) => (
-            <div onClick={handleSelectReward}>
+            <div onClick={() => handleSelectReward(reward)}>
               {" "}
               <RewardsListItem key={index} reward={reward} />
             </div>
