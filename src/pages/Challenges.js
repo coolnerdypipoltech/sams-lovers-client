@@ -1,41 +1,56 @@
-
 import { useState, useContext } from "react";
 import ChallengeList from "../components/ChallengeList";
-import "../styles/Challenges.css"
-import  ChallengePage  from "../subPages/ChallengePage";
-import  ChallengeParticipationPage  from "../subPages/ChallengeParticipationPage";
+import "../styles/Challenges.css";
+import ChallengePage from "../subPages/ChallengePage";
+import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
+import { Picker } from "@react-native-picker/picker";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-const { currentChallenge } = useContext(ElementContextData);
+  const [listType, setListType] = useState("");
+
+  const { currentChallenge } = useContext(ElementContextData);
+
   let subPageContent = null;
 
-  const handleSelectChallenge =  () =>{
-    console.log("I clicked")
-    setSubPage("ChallengePage")
-  }
+  const handleSelectChallenge = () => {
+    console.log("I clicked");
+    setSubPage("ChallengePage");
+  };
 
-  const handleReturn =  () =>{
-    console.log("I clicked")
-    setSubPage("")
-  }
+  const handleReturn = () => {
+    console.log("I clicked");
+    setSubPage("");
+  };
 
-  const handleSelectParticipation =  () =>{
-    setSubPage("ChallengeParticipationPage")
-  }
+  const handleSelectParticipation = () => {
+    setSubPage("ChallengeParticipationPage");
+  };
 
-  const handleParticipation =  () =>{
+  const handleParticipation = () => {
     console.log("Participation");
-  }
+  };
 
   if (subPage === "ChallengePage") {
     console.log(currentChallenge.current);
-    subPageContent = <ChallengePage returnPage={handleReturn} challengeParticipationPage={handleSelectParticipation} challenge={currentChallenge.current}></ChallengePage>;
+    subPageContent = (
+      <ChallengePage
+        returnPage={handleReturn}
+        challengeParticipationPage={handleSelectParticipation}
+        challenge={currentChallenge.current}
+      ></ChallengePage>
+    );
   }
 
   if (subPage === "ChallengeParticipationPage") {
-    subPageContent = <ChallengeParticipationPage returnPage={handleReturn} participation={handleParticipation} challenge={currentChallenge.current}></ChallengeParticipationPage>;
+    subPageContent = (
+      <ChallengeParticipationPage
+        returnPage={handleReturn}
+        participation={handleParticipation}
+        challenge={currentChallenge.current}
+      ></ChallengeParticipationPage>
+    );
   }
 
   return (
@@ -43,8 +58,11 @@ const { currentChallenge } = useContext(ElementContextData);
       <>{subPageContent}</>
 
       <div className="ChallengesContainer">
-        <div style={{width: "100%", height: "50px"}}></div>
-        <p className="Title">Desafíos</p>
+        <div style={{ width: "100%", height: "50px" }}></div>
+        <div className="ChallengeHeader">
+          <Picker></Picker>
+          <p className="Title">Desafíos</p>
+        </div>
 
         <ChallengeList changeToSubPage={handleSelectChallenge}></ChallengeList>
       </div>
