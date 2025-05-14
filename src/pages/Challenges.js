@@ -8,7 +8,7 @@ import { Picker } from "@react-native-picker/picker";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [listType, setListType] = useState("");
+  const [selectedListType, setSelectedListType] = useState("none");
 
   const { currentChallenge } = useContext(ElementContextData);
 
@@ -30,6 +30,10 @@ function Challenges() {
 
   const handleParticipation = () => {
     console.log("Participation");
+  };
+
+  const refreshList = (itemValue) => {
+    console.log(itemValue);
   };
 
   if (subPage === "ChallengePage") {
@@ -60,7 +64,18 @@ function Challenges() {
       <div className="ChallengesContainer">
         <div style={{ width: "100%", height: "50px" }}></div>
         <div className="ChallengeHeader">
-          <Picker></Picker>
+            <Picker
+              selectedValue={selectedListType}
+              onValueChange={(itemValue, itemIndex) =>{ 
+                setSelectedListType(itemValue);
+                refreshList(itemValue);
+              }
+            }>
+              <Picker.Item label="-" value="none" />
+              <Picker.Item label="Recomendados" value="recommended" />
+              <Picker.Item label="No completados" value="no_completed" />
+              <Picker.Item label="Por vencer" value="soon_to_expire" />
+            </Picker>
           <p className="Title">Desafíos</p>
         </div>
 

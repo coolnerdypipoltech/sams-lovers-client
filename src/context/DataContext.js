@@ -37,7 +37,6 @@ const ElementProviderData= ({ children }) => {
         //sertArticleData(response.data)
         //nextArticles.current = response.nextLink
         setChallengesData([data.challenges[0], data.challenges[1], data.challenges[2], data.challenges[3], data.challenges[4], data.challenges[5], data.challenges[6], data.challenges[7],data.challenges[8], data.challenges[9]]);;
-        console.log(challengesData);
         //setChallengesData([1, 2, 3, 4, 5, 6, 7, 8 , 9, 10])
         return
     }
