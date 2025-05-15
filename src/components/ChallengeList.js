@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import ChallengeListItem from "./ChallengeListItem";
 import { ElementContextData } from "../context/DataContext";
 
-function ChallengesList({changeToSubPage}) {
+function ChallengesList({changeToSubPage, selectedType}) {
   const [isLoading, setIsLoading] = useState(false);
 
   const listContainerRef = useRef(null);
@@ -10,7 +10,7 @@ function ChallengesList({changeToSubPage}) {
   const { initRequestChallenges, currentChallenge, challengesData, requestMoreChallenges } = useContext(ElementContextData);
 
   useEffect(() => {
-    initRequestChallenges();
+    initRequestChallenges(selectedType);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

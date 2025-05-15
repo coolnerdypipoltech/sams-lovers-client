@@ -10,7 +10,7 @@ function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [selectedListType, setSelectedListType] = useState("none");
 
-  const { currentChallenge } = useContext(ElementContextData);
+  const { initRequestChallenges, currentChallenge } = useContext(ElementContextData);
 
   let subPageContent = null;
 
@@ -34,6 +34,7 @@ function Challenges() {
 
   const refreshList = (itemValue) => {
     console.log(itemValue);
+    initRequestChallenges(selectedListType);
   };
 
   if (subPage === "ChallengePage") {
@@ -60,26 +61,25 @@ function Challenges() {
   return (
     <>
       <>{subPageContent}</>
-
-      <div className="ChallengesContainer">
+      <div className="challenges-container">
         <div style={{ width: "100%", height: "50px" }}></div>
-        <div className="ChallengeHeader">
-            <Picker
-              selectedValue={selectedListType}
-              onValueChange={(itemValue, itemIndex) =>{ 
-                setSelectedListType(itemValue);
-                refreshList(itemValue);
-              }
-            }>
-              <Picker.Item label="-" value="none" />
-              <Picker.Item label="Recomendados" value="recommended" />
-              <Picker.Item label="No completados" value="no_completed" />
-              <Picker.Item label="Por vencer" value="soon_to_expire" />
-            </Picker>
+        <div className="challenge-header">
           <p className="Title">Desafíos</p>
+          <Picker style={{ width: "50%", height: "25%", marginTop: "35px"}}
+            selectedValue={selectedListType}
+            onValueChange={(itemValue, itemIndex) => {
+              setSelectedListType(itemValue);
+              refreshList(selectedListType);
+            }}
+          >
+            <Picker.Item label="-" value="none" />
+            <Picker.Item label="Recomendados" value="recommended" />
+            <Picker.Item label="No completados" value="no_completed" />
+            <Picker.Item label="Por vencer" value="soon_to_expire" />
+          </Picker>
         </div>
 
-        <ChallengeList changeToSubPage={handleSelectChallenge}></ChallengeList>
+        <ChallengeList changeToSubPage={handleSelectChallenge} selectedType={selectedListType}></ChallengeList>
       </div>
     </>
   );
