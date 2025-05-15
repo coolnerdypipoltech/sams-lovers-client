@@ -86,5 +86,19 @@
     position: relative;
     right: -70px;
     top: -35px;
-    z-index: 100;
+    z-index: 3;
+}
+
+.EditProfileHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80vw;
+    justify-content: space-between;
+}
+
+.EditProfileBackButton{
+    position: absolute;
+    left: 10vw;
+    padding-top: 15px;
 }

@@ -49,9 +49,9 @@ function Login() {
     }
   };
 
-  const ValidatePassword = async () => {
+  const ValidatePassword = () => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-    if (passwordRegex.test(LoginText.current.value)) {
+    if (passwordRegex.test(LoginPassword.current.value)) {
       if (errorPassword === true) {
         setErrorPassword(false);
       }
@@ -62,7 +62,7 @@ function Login() {
     }
   };
 
-  const ValidateEmail = async () => {
+  const ValidateEmail = () => {
     const strictEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (strictEmailRegex.test(LoginText.current.value)) {
       if (errorEmail === true) {
