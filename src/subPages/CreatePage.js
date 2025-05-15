@@ -3,6 +3,7 @@ import logo from "../assets/samsLogo.webp";
 import {SignIn, LogIn} from "../hooks/apicalls"
 import Login from "../pages/Login";
 import { ElementContextRoute } from "../context/RouteContext";
+import { ElementContextData } from "../context/DataContext";
 function CreatePage({ onReturn }) {
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
@@ -13,6 +14,7 @@ function CreatePage({ onReturn }) {
   const [errorInputMail, SetErrorInputMail] = useState(true);
   const [errorInputPassword1, SetErrorInputPassword1] = useState(true);
   const { setLoginToken } = useContext(ElementContextRoute);
+  const { SetUserData } = useContext(ElementContextData);
   const InputName = useRef("");
   const InputMail = useRef("");
   const InputFacebook = useRef("");
@@ -30,10 +32,14 @@ function CreatePage({ onReturn }) {
   const handleCreateUser = async () => {
     if(inputValidation()){
       const response = await SignIn(InputName.current.value, InputMail.current.value, InputPassword1.current.value, InputFacebook.current.value, InputInstagram.current.value, InputTiktok.current.value, InputX.current.value, InputYoutube.current.value);
+      console.log(response);
       if(response.ok){
-        const responseLogin = await Login(InputMail.current.value, InputPassword1.current.value)
+        const responseLogin = await LogIn(InputMail.current.value, InputPassword1.current.value)
+        const data = await responseLogin.json()
+        console.log(data)
         if(responseLogin.ok){
-          setLoginToken(responseLogin.data.token);
+          SetUserData(data);
+          setLoginToken(data.access_token);
         }
       }
     }
@@ -49,6 +55,7 @@ function CreatePage({ onReturn }) {
     let flag = true
 
     if(InputPassword1.current.value !== InputPassword2.current.value){
+      console.log("here")
       flag = false
       SetErrorInputPassword1(false)
     }else{
@@ -58,6 +65,7 @@ function CreatePage({ onReturn }) {
     if(InputName.current.value.length > 0){
       SetErrorInputName(true)
     }else{
+      console.log("aa")
       flag = false
       SetErrorInputName(false)  
     }
@@ -68,6 +76,8 @@ function CreatePage({ onReturn }) {
     SetErrorInputX(responseX);
     SetErrorInputYoutube(responseY);
     SetErrorInputMail(responseMail);
+    console.log("val")
+    console.log(flag)
     if (responseY && responseX && responseT && responseI && responseF && responseMail && flag ) {
       return true;
     } else {
@@ -81,11 +91,17 @@ function CreatePage({ onReturn }) {
   }
 
   const validateUser = (_userToTest) => {
+    if(_userToTest.length === 0) {
+      return true
+    }
     const userRegex = /^@.+$/;
     return userRegex.test(_userToTest);
   };
 
   const validateFacebook = (_userToTest) => {
+    if(_userToTest.length === 0) {
+      return true
+    }
     const regexFacebook = /^https:\/\/www\.facebook\.com\/.+$/;
     return regexFacebook.test(_userToTest);
   };
@@ -162,6 +178,7 @@ function CreatePage({ onReturn }) {
             <></>
           )}
           <input
+          ref={InputPassword2}
             placeholder="Repetir Contraseña"
             className="inputCreateUser"
           ></input>

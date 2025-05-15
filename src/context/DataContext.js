@@ -9,6 +9,7 @@ const ElementProviderData= ({ children }) => {
     const [articleData, sertArticleData] = useState(null);
     const [challengesData, setChallengesData] = useState(null)
 
+    const UserData = useRef(null);
     const currentChallenge = useRef(null)
     const currentReward = useRef(null)
     const currentArticle = useRef(null)
@@ -71,6 +72,11 @@ const ElementProviderData= ({ children }) => {
     return
   };
 
+  const SetUserData = (_Data) => {
+    UserData.current = _Data
+    console.log(UserData.current)
+  }
+
   const requestMoreArticles = async () => {
     if(nextArticles === null){
         return
@@ -97,7 +103,7 @@ const ElementProviderData= ({ children }) => {
   };
 
   return (
-    <ElementContextData.Provider value={{ rewardsData, challengesData, currentChallenge, currentReward, currentArticle, articlePosition, articleData, requestMoreRewards, requestMoreChallenges, requestMoreArticles, requestNextArticle, initRequestRewards, initRequestArticles, initRequestChallenges }}>
+    <ElementContextData.Provider value={{ UserData, rewardsData, challengesData, currentChallenge, currentReward, currentArticle, articlePosition, articleData, SetUserData, requestMoreRewards, requestMoreChallenges, requestMoreArticles, requestNextArticle, initRequestRewards, initRequestArticles, initRequestChallenges }}>
       {children}
     </ElementContextData.Provider>
   );

@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import logo from "../assets/samsLogo.webp";
 import ImagePicker from "../components/ImagePicker";
+import { ElementContextData } from "../context/DataContext";
 function EditProfilePage({ onReturn }) {
+  const { UserData } = useContext(ElementContextData);
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
   const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
@@ -9,9 +11,22 @@ function EditProfilePage({ onReturn }) {
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
   const InputFacebook = useRef("");
   const InputInstagram = useRef("");
-    const InputTiktok = useRef("");
+  const InputTiktok = useRef("");
   const InputX = useRef("");
-    const InputYoutube = useRef("");
+  const InputYoutube = useRef("");
+
+  useEffect(() => {
+    console.log(UserData.current.user)
+    if(UserData.current.user.related !== undefined){
+      if (UserData.current.user.related.facebook_url !== null) InputFacebook.current.vaue = UserData.current.user.related.facebook_url;
+      if (UserData.current.user.related.instagram_url !== null) InputInstagram.current.vaue = UserData.current.user.related.instagram_url;
+      if (UserData.current.user.related.tiktok_url !== null) InputTiktok.current.vaue = UserData.current.user.related.tiktok_url;
+      if (UserData.current.user.related.x_url !== null) InputX.current.vaue = UserData.current.user.related.x_url;
+      if (UserData.current.user.related.youtube_url !== null) InputYoutube.current.vaue = UserData.current.user.related.youtube_url;
+    }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleReturn = async () => {
     onReturn();

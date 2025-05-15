@@ -3,7 +3,7 @@ import ArticleList from "../components/ArticleList";
 import "../styles/Main.css";
 import ArticlePage from "../subPages/ArticlePage";
 function Main() {
-  const [openArticlePage, setOpenArticlePage] = useState(true);
+  const [openArticlePage, setOpenArticlePage] = useState(false);
 
   return (
     <>

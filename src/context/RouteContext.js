@@ -4,13 +4,13 @@ import useIndexedDB from "../hooks/useIndexedDB";
 const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
-  const [route, setRoute] = useState("Profile");
-  const loginToken = useRef(null);
+  const [route, setRoute] = useState("Login");
+  const loginToken = useRef("token");
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 
 
   useEffect(() => {
-    persistLogin()
+    //persistLogin()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInitialize])
 
@@ -30,10 +30,11 @@ const ElementProviderRoute= ({ children }) => {
     if(savedItems !== undefined){
       if(savedItems.length > 0){
         for (let index = 0; index < savedItems.length; index++) {
-          await deleteItem(savedItems[index]);
+          await deleteItem(savedItems[index].id);
         }
       }
     }
+    loginToken.current = newValue;
     saveItem({loginToken: newValue})
     changeRoute("Main")
   }

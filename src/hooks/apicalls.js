@@ -1,40 +1,46 @@
-const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net//";
+const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net//api/v1/";
 
 export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
-    try{
-        const response = await fetch(ENDPOINT + "auth/signin", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    try {
+        console.log(ENDPOINT + "auth/signin");
+        const bodyData = {
             name: _name,
             email: _email,
             password: _password,
-            facebook_url: _facebook_url,
-            instagram_url: _instagram_url,
-            tiktok_url: _tiktok_url,
-            x_url: _x_url,
-            youtube_url: _youtube_url,
-        }),
+            diamonds: 0
+        };
+        if (_facebook_url !== "") bodyData.facebook_url = _facebook_url;
+        if (_instagram_url !== "") bodyData.instagram_url = _instagram_url;
+        if (_tiktok_url !== "") bodyData.tiktok_url = _tiktok_url;
+        if (_x_url !== "") bodyData.x_url = _x_url;
+        if (_youtube_url !== "") bodyData.youtube_url = _youtube_url;
+
+        const response = await fetch(ENDPOINT + "auth/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyData),
         });
 
         return response;
-    }catch (error) {
+    } catch (error) {
         console.error('API Call error:', error);
     }
 }
 
 export async function LogIn(_email, _password) {
+    console.log(_email, _password)
+    console.log(ENDPOINT + "auth/login")
     try{
-        const response = await fetch(ENDPOINT + "auth/loginin", {
+        const response = await fetch(ENDPOINT + "auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
             email: _email,
-            _password: _password,
+            password: _password,
         }),
         });
         return response;

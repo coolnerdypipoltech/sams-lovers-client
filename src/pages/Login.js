@@ -5,8 +5,10 @@ import CreatePage from "../subPages/CreatePage";
 import PasswordPage from "../subPages/PasswordPage";
 import { ElementContextRoute } from "../context/RouteContext";
 import { LogIn } from "../hooks/apicalls";
+import { ElementContextData } from "../context/DataContext";
 function Login() {
   const { setLoginToken } = useContext(ElementContextRoute);
+  const { SetUserData } = useContext(ElementContextData);
   const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
@@ -32,8 +34,10 @@ function Login() {
         LoginText.current.value,
         LoginPassword.current.value
       );
-      if (response) {
-        await setLoginToken(response.token);
+      const data = await response.json();
+      if (response.ok) {
+        SetUserData(data);
+        setLoginToken(data.access_token);
       }
     }
   };
@@ -120,12 +124,11 @@ function Login() {
           <div className="LoginMenuBottomContainer">
             <p onClick={onClickLogin}>Acceder</p>
             <p onClick={onClickCreate}>¿NO TIENES CUENTA? CREA UNA</p>
-            <p
-          >
-            Al hacer click en continuar usted acepta los,
-            <a style={{ paddingLeft: "5px" }} href="https://www.google.com">
-              términos y condiciones
-            </a>
+            <p>
+              Al hacer click en continuar usted acepta los,
+              <a style={{ paddingLeft: "5px" }} href="https://www.google.com">
+                términos y condiciones
+              </a>
             </p>
           </div>
         </div>
