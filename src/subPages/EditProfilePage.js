@@ -2,11 +2,17 @@ import { useRef, useState } from "react";
 import logo from "../assets/samsLogo.webp";
 import ImagePicker from "../components/ImagePicker";
 function EditProfilePage({ onReturn }) {
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const LoginText = useRef("");
-  const LoginPassword = useRef("");
-  const LoginPassword2 = useRef("");
+  const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
+  const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
+  const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
+  const [errorInputX, SetErrorInputX] = useState(true);
+  const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
+  const InputFacebook = useRef("");
+  const InputInstagram = useRef("");
+    const InputTiktok = useRef("");
+  const InputX = useRef("");
+    const InputYoutube = useRef("");
+
   const handleReturn = async () => {
     onReturn();
   };
@@ -18,47 +24,35 @@ function EditProfilePage({ onReturn }) {
   };
 
   const inputValidation = () => {
-    const response1 = ValidateEmail();
-    const response2 = ValidatePassword();
-    console.log("", response2);
-    console.log("", response1);
-    if (LoginPassword.current.value === LoginPassword2.current.value) {
-      if (response1 === true && response2 === true) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
+    const responseF = validateFacebook(InputFacebook.current.value)
+    const responseI = validateUser(InputInstagram.current.value)
+    const responseT = validateUser(InputTiktok.current.value)
+    const responseX = validateUser(InputX.current.value)
+    const responseY = validateUser(InputYoutube.current.value)
+
+    SetErrorInputFacebook(responseF)
+    SetErrorInputInstagram(responseI)
+    SetErrorInputTiktok(responseT)
+    SetErrorInputX(responseX)
+    SetErrorInputYoutube(responseY)
+
+    if(responseY && responseX && responseT && responseI && responseF){
+      return true
+    }else{
+      return false
     }
+
   };
 
-  const ValidatePassword = () => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-    if (passwordRegex.test(LoginPassword.current.value)) {
-      if (errorPassword === true) {
-        setErrorPassword(false);
-      }
-      return true;
-    } else {
-      setErrorPassword(true);
-      return false;
-    }
-  };
+  const validateUser = (_userToTest) => {
+    const userRegex = /^@.+$/;
+    return userRegex.test(_userToTest)
+  }
 
-  const ValidateEmail = () => {
-    const strictEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (strictEmailRegex.test(LoginText.current.value)) {
-      if (errorEmail === true) {
-        setErrorEmail(false);
-      }
-      return true;
-    } else {
-      setErrorEmail(true);
-      return false;
-    }
-  };
-
+  const validateFacebook = (_userToTest) => {
+    const regexFacebook = /^https:\/\/www\.facebook\.com\/.+$/;
+    return regexFacebook.test(_userToTest)
+  }
   return (
     <div className="subPageContainer">
       <div className="ProfileContainer">
@@ -69,51 +63,49 @@ function EditProfilePage({ onReturn }) {
 
         <ImagePicker></ImagePicker>
         <div className="createUserContainer">
-          <input placeholder="Nombre" className="inputCreateUser"></input>
-          <input
-            placeholder="Correo"
-            ref={LoginText}
-            className="inputCreateUser"
-          ></input>
-          {errorEmail === true ? (
-            <span>Porfavor verique su correo electronico</span>
-          ) : (
-            <></>
-          )}
           <input
             placeholder="Facebook (opcional)"
             className="inputCreateUser"
+            ref={InputFacebook}
           ></input>
-          <input
-            placeholder="Instagram (opcional)"
-            className="inputCreateUser"
-          ></input>
-          <input
-            placeholder="Tiktok (opcional)"
-            className="inputCreateUser"
-          ></input>
-          <input placeholder="X (opcional)" className="inputCreateUser"></input>
-          <input
-            placeholder="Youtube (opcional)"
-            className="inputCreateUser"
-          ></input>
-          <input
-            placeholder="Contraseña"
-            ref={LoginPassword}
-            className="inputCreateUser"
-          ></input>
-          {errorPassword === true ? (
-            <span>Porfavor verique su contraseña</span>
+          {errorInputFacebook === false ? (
+            <span>Porfavor verique su usuario</span>
           ) : (
             <></>
           )}
           <input
-            placeholder="Repetir Contraseña"
-            ref={LoginPassword2}
+            placeholder="Instagram (opcional)"
             className="inputCreateUser"
+            ref={InputInstagram}
           ></input>
-          {errorPassword === true ? (
-            <span>Porfavor verique su contraseña</span>
+          {errorInputInstagram === false ? (
+            <span>Porfavor verique su usuario</span>
+          ) : (
+            <></>
+          )}
+          <input
+            placeholder="Tiktok (opcional)"
+            className="inputCreateUser"
+            ref={InputTiktok}
+          ></input>
+          {errorInputTiktok === false ? (
+            <span>Porfavor verique su usuario</span>
+          ) : (
+            <></>
+          )}
+          <input placeholder="X (opcional)" ref={InputX} className="inputCreateUser"></input>
+          {errorInputX === false ? (
+            <span>Porfavor verique su usuario</span>
+          ) : (
+            <></>
+          )}
+          <input
+            placeholder="Youtube (opcional)"
+            className="inputCreateUser"
+            ref={InputYoutube}
+          ></input>
+          {errorInputYoutube === false ? (
+            <span>Porfavor verique su usuario</span>
           ) : (
             <></>
           )}
