@@ -102,3 +102,32 @@
   width: 100%;
   height: auto;
 }
+
+.header-menu-container{
+  position: absolute;
+  z-index: 999;
+  padding-top: 80px;
+}
+
+.header-menu{
+  display: block;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+}
+
+.header-menu-element{
+  text-align: right;
+  padding-right: 5px;
+  margin-left: 0;
+  border: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  margin-bottom: 5px;
+}
+
+.header-menu-element:hover{
+  background-color: aquamarine;
+}

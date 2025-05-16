@@ -15,12 +15,10 @@ function Challenges() {
   let subPageContent = null;
 
   const handleSelectChallenge = () => {
-    console.log("I clicked");
     setSubPage("ChallengePage");
   };
 
   const handleReturn = () => {
-    console.log("I clicked");
     setSubPage("");
   };
 
@@ -38,7 +36,6 @@ function Challenges() {
   };
 
   if (subPage === "ChallengePage") {
-    console.log(currentChallenge.current);
     subPageContent = (
       <ChallengePage
         returnPage={handleReturn}

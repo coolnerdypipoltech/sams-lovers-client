@@ -1,5 +1,5 @@
 import ArticleItem from "./ArticleItem";
-function Header() {
+function ArticleList() {
   return (
     <>
       <div className="articleListContainer">
@@ -11,4 +11,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default ArticleList;

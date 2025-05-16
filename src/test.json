@@ -17,7 +17,6 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "completed",
-                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -52,7 +51,6 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "in_review",
-                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -73,8 +71,7 @@
                 "app_user_id": 0,
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
-                "status": "need_info",
-                "feedback": "Needs to attach hashtag #samslovers to the post",
+                "status": "rejected",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -95,8 +92,7 @@
                 "app_user_id": 0,
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
-                "status": "rejected",
-                "feedback": "The post is not suitable for all ages",
+                "status": "completed",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -118,7 +114,6 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "completed",
-                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }

@@ -36,7 +36,7 @@ function ChallengePage({returnPage, challengeParticipationPage, challenge}) {
             <p className="challenge-text-title">Estatus</p>
             <p className="challenge-text">{challenge.transaction?.status}</p>
           </div>
-          <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>
+          {((challenge.transaction === null) || challenge.transaction?.status === "in_review" ) && <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>}
         </div>
       </div>
     </>

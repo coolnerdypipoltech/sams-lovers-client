@@ -33,11 +33,7 @@ function ChallengeParticipationPage({ returnPage, participation, challenge }) {
           <p className="challenge-text-title">Estatus</p>
           <p className="challenge-text">{challenge.transaction?.status}</p>
         </div>
-        <div>
-          <p className="challenge-text-title">Feedback</p>
-          <p className="challenge-text">{challenge.transaction?.feedback}</p>
-        </div>
-        <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>
+        {((challenge.transaction === null) || challenge.transaction?.status === "in_review" ) && <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>}
         <p className="challenge-text">
           Recuerda que tu cuenta debe estar pública para que se pueda ver tu video.
         </p>
