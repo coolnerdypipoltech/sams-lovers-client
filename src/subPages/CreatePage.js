@@ -30,16 +30,30 @@ function CreatePage({ onReturn }) {
   };
 
   const handleCreateUser = async () => {
-    if(inputValidation()){
+    
+    if(true){
       const response = await SignIn(InputName.current.value, InputMail.current.value, InputPassword1.current.value, InputFacebook.current.value, InputInstagram.current.value, InputTiktok.current.value, InputX.current.value, InputYoutube.current.value);
-      console.log(response);
       if(response.ok){
         const responseLogin = await LogIn(InputMail.current.value, InputPassword1.current.value)
         const data = await responseLogin.json()
-        console.log(data)
         if(responseLogin.ok){
           SetUserData(data);
           setLoginToken(data.access_token);
+        }
+      }else{
+        const data = await response.json()
+        if(data.message){
+          if(data.message.email){
+              SetErrorInputMail(false)
+            }
+            
+            if(data.message.name){
+              SetErrorInputName(false)
+            }
+
+            if(data.message.password){
+              SetErrorInputPassword1(false)
+            }
         }
       }
     }
@@ -53,6 +67,13 @@ function CreatePage({ onReturn }) {
     const responseY = validateUser(InputYoutube.current.value);
     const responseMail = validateMail(InputMail.current.value)
     let flag = true
+
+    if(InputPassword1.current.value.length === 0){
+      flag = false
+      SetErrorInputPassword1(false)
+    }else{
+      SetErrorInputPassword1(true)
+    }
 
     if(InputPassword1.current.value !== InputPassword2.current.value){
       console.log("here")
@@ -115,13 +136,13 @@ function CreatePage({ onReturn }) {
         <div className="createUserContainer">
           <input placeholder="Nombre" ref={InputName} className="inputCreateUser"></input>
           {errorInputName === false ? (
-            <span>Porfavor verique su nombre</span>
+            <span>Porfavor verifique su nombre</span>
           ) : (
             <></>
           )}
           <input placeholder="Correo" ref={InputMail} className="inputCreateUser"></input>
           {errorInputMail === false ? (
-            <span>Porfavor verique su Email</span>
+            <span>Porfavor verifique su Email</span>
           ) : (
             <></>
           )}
@@ -131,7 +152,7 @@ function CreatePage({ onReturn }) {
             ref={InputFacebook}
           ></input>
           {errorInputFacebook === false ? (
-            <span>Porfavor verique su usuario</span>
+            <span>Porfavor verifique su usuario</span>
           ) : (
             <></>
           )}
@@ -141,7 +162,7 @@ function CreatePage({ onReturn }) {
             ref={InputInstagram}
           ></input>
           {errorInputInstagram === false ? (
-            <span>Porfavor verique su usuario</span>
+            <span>Porfavor verifique su usuario</span>
           ) : (
             <></>
           )}
@@ -151,13 +172,13 @@ function CreatePage({ onReturn }) {
             ref={InputTiktok}
           ></input>
           {errorInputTiktok === false ? (
-            <span>Porfavor verique su usuario</span>
+            <span>Porfavor verifique su usuario</span>
           ) : (
             <></>
           )}
           <input placeholder="X (opcional)" ref={InputX} className="inputCreateUser"></input>
           {errorInputX === false ? (
-            <span>Porfavor verique su usuario</span>
+            <span>Porfavor verifique su usuario</span>
           ) : (
             <></>
           )}
@@ -167,13 +188,13 @@ function CreatePage({ onReturn }) {
             ref={InputYoutube}
           ></input>
           {errorInputYoutube === false ? (
-            <span>Porfavor verique su usuario</span>
+            <span>Porfavor verifique su usuario</span>
           ) : (
             <></>
           )}
           <input placeholder="Contraseña" ref={InputPassword1} className="inputCreateUser"></input>
           {errorInputPassword1 === false ? (
-            <span>Porfavor verique su contraseña</span>
+            <span>Porfavor verifique su contraseña</span>
           ) : (
             <></>
           )}
