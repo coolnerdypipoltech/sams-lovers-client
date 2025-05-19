@@ -17,6 +17,7 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "completed",
+                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -51,6 +52,7 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "in_review",
+                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -72,6 +74,7 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "rejected",
+                "feedback": "There was no required hastag on the post",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -93,6 +96,7 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "completed",
+                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }
@@ -114,6 +118,7 @@
                 "transactionable_id": 0,
                 "transactionable_type": "challenge",
                 "status": "completed",
+                "feedback": "",
                 "user_submission_url": "https://www.tiktok.com/@khucxuanhoa2611/video/7475655143065767176",
                 "created_date": "2025-05-11T18:25:43-05:00"
             }

@@ -1,13 +1,16 @@
 import "../styles/Components.css";
 import logo from "../assets/samsLogo.webp";
-import {useState} from "react";
+import { useContext, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
+import { ElementContextRoute } from "../context/RouteContext";
 
 function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
+  const { changeRoute } = useContext(ElementContextRoute);
 
   const handleMenuRoute = (pageToTravelTo) => {
     console.log(pageToTravelTo);
+    changeRoute(pageToTravelTo);
   };
 
   const handleLogOut = () => {

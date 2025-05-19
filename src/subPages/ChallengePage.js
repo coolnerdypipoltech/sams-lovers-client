@@ -32,10 +32,14 @@ function ChallengePage({returnPage, challengeParticipationPage, challenge}) {
             <p className="challenge-text-title">Condiciones</p>
             <p className="challenge-text">{challenge.conditions}</p>
           </div>
-          <div>
+          {(challenge.transaction !== null) && <div>
             <p className="challenge-text-title">Estatus</p>
             <p className="challenge-text">{challenge.transaction?.status}</p>
-          </div>
+          </div>}
+          {(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
+            <p className="challenge-text-title">Feedback</p>
+            <p className="challenge-text">{challenge.transaction?.feedback}</p>
+          </div>}
           {((challenge.transaction === null) || challenge.transaction?.status === "in_review" ) && <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>}
         </div>
       </div>
