@@ -33,7 +33,7 @@ const ElementProviderData= ({ children }) => {
         return
     }
 
-    const initRequestChallenges = async () => {
+    const initRequestChallenges = async (type) => {
         //const response = await GetChallengesByUser()
         //sertArticleData(response.data)
         //nextArticles.current = response.nextLink

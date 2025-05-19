@@ -2,32 +2,45 @@ function ChallengePage({returnPage, challengeParticipationPage, challenge}) {
 
   const handleReturn =  () =>{
     returnPage()
-  } 
+  }
 
   const handleParticipation =  () =>{
     challengeParticipationPage()
-  } 
+  }
 
     return (
     <>
       <div className="subPageContainer">
-        <div className="rewardsSubpageContainer">
+        <div className="challenges-subpage-container">
           <p onClick={handleReturn} className="articleText">Volver</p>
-
-          <div className="ArticleItem">
-            <p className="articleTitle">{challenge.name}</p>
+          <div className="row">
+            <p className="challenge-title">{challenge.name}</p>
           </div>
-
-          <div className="articleImageContainer">
-            <img className="articleImageContainer" src={challenge.image_url} alt="Challenge illustrative reference"></img>
+          <div className="challenge-image-container">
+            <img className="challenge-image-container" src={challenge.image_url} alt="Challenge illustrative reference"></img>
           </div>
-          <p className="arrticleText">{challenge.description}</p>
-          <p className="arrticleText">{challenge.diamonds}</p>
-          <p className="arrticleText">{challenge.end_date}</p>
-          <p className="arrticleText">{challenge.conditions}</p>
-          <p className="challengeStatus">{challenge.transaction?.status}</p>
-
-          <p onClick={handleParticipation} className="ParticipateText">PARTICIPAR</p>
+          <p className="challenge-text">Descripción. {challenge.description}</p>
+          <div>
+            <p className="challenge-text-title">Diamantes por particpar</p>
+            <p className="challenge-text">{challenge.diamonds}</p>
+          </div>
+          <div>
+            <p className="challenge-text-title">Vigencia</p>
+            <p className="challenge-text">{challenge.end_date}</p>
+          </div>
+          <div>
+            <p className="challenge-text-title">Condiciones</p>
+            <p className="challenge-text">{challenge.conditions}</p>
+          </div>
+          {(challenge.transaction !== null) && <div>
+            <p className="challenge-text-title">Estatus</p>
+            <p className="challenge-text">{challenge.transaction?.status}</p>
+          </div>}
+          {(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
+            <p className="challenge-text-title">Feedback</p>
+            <p className="challenge-text">{challenge.transaction?.feedback}</p>
+          </div>}
+          {((challenge.transaction === null) || challenge.transaction?.status === "in_review" ) && <p className="participate-button" onClick={handleParticipation}>PARTICIPAR</p>}
         </div>
       </div>
     </>

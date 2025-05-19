@@ -1,24 +1,31 @@
 import "../styles/Components.css";
 import logo from "../assets/samsLogo.webp";
+import { useContext, useState } from "react";
+import HeaderMenu from "./HeaderMenu";
 import { ElementContextRoute } from "../context/RouteContext";
-import { useContext } from "react";
+
 function Header() {
+  const [menuVisible, setMenuVisible] = useState(false);
   const { changeRoute } = useContext(ElementContextRoute);
 
-  const onClickProfile = async () => {
-    changeRoute("Profile");
+  const handleMenuRoute = (pageToTravelTo) => {
+    console.log(pageToTravelTo);
+    changeRoute(pageToTravelTo);
   };
 
-  const onClickMain = async () => {
-    changeRoute("Main");
+  const handleLogOut = () => {
+    console.log("Log Out");
   };
 
   return (
     <>
       <div className="headerContainer">
-        <img src={logo} onClick={onClickProfile} className="headerLogo" alt="logo"></img>
-        <p onClick={onClickMain}>Diamantes</p>
-        <p>Menú</p>
+        <img src={logo} className="headerLogo" alt="logo"></img>
+        <p>Diamantes</p>
+        <button onClick={e => setMenuVisible(!menuVisible)}>Menú</button>
+      </div>
+      <div className="header-menu-container">
+        {menuVisible && (<HeaderMenu handleMenuRoute={handleMenuRoute} handleLogOut={handleLogOut}> </HeaderMenu>)}
       </div>
     </>
   );
