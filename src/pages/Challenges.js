@@ -10,8 +10,10 @@ function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [selectedListType, setSelectedListType] = useState("none");
   const [toggled, setToggled] = useState(false);
+  const [challengeFilter, setChallengeFilter] = useState(false);
 
-  const { initRequestChallenges, currentChallenge } = useContext(ElementContextData);
+  const { initRequestChallenges, currentChallenge } =
+    useContext(ElementContextData);
 
   let subPageContent = null;
 
@@ -38,11 +40,11 @@ function Challenges() {
 
   const handleSelectedListType = (selectedListTypeValue) => {
     setSelectedListType(selectedListTypeValue);
-  }
+  };
 
   const handleRecommendedToggle = () => {
     setToggled(!toggled);
-  }
+  };
 
   if (subPage === "ChallengePage") {
     subPageContent = (
@@ -64,6 +66,12 @@ function Challenges() {
     );
   }
 
+  function handleSetChallengeFilter(event, value) {
+    if (event.target.className === "challenges-filter-container") {
+      setChallengeFilter(value);
+    }
+  }
+
   return (
     <>
       <>{subPageContent}</>
@@ -71,10 +79,37 @@ function Challenges() {
         <div style={{ width: "100%", height: "50px" }}></div>
         <div className="challenge-header">
           <p className="Title">Desafíos</p>
-          <ChallengeFilter selectedListType={selectedListType} toggled={toggled} handleSelectedListType={handleSelectedListType} handleRefreshList={handleRefreshList} handleRecommendedToggle={handleRecommendedToggle}></ChallengeFilter>
+          <div
+            className="challenge-filter"
+            onClick={() => setChallengeFilter(true)}
+          >
+            <p>Filtrar</p>
+            <img></img>
+          </div>
         </div>
-        <ChallengeList changeToSubPage={handleSelectChallenge} selectedType={selectedListType}></ChallengeList>
+        <ChallengeList
+          changeToSubPage={handleSelectChallenge}
+          selectedType={selectedListType}
+        ></ChallengeList>
       </div>
+      {challengeFilter && (
+        <div>
+          <div
+            className="challenges-filter-container"
+            onClick={(e) => {
+              handleSetChallengeFilter(e, false);
+            }}
+          >
+            <ChallengeFilter
+              selectedListType={selectedListType}
+              toggled={toggled}
+              handleSelectedListType={handleSelectedListType}
+              handleRefreshList={handleRefreshList}
+              handleRecommendedToggle={handleRecommendedToggle}
+            ></ChallengeFilter>
+          </div>
+        </div>
+      )}
     </>
   );
 }
