@@ -8,8 +8,8 @@ import ChallengeFilter from "../components/ChallengeFilter";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [selectedListType, setSelectedListType] = useState("none");
-  const [toggled, setToggled] = useState(false);
+  const [endDateFilterType, setEndDateFilterType] = useState("all");
+  const [statusFilterType, setStatusFilterType] = useState("all");
   const [challengeFilter, setChallengeFilter] = useState(false);
 
   const { initRequestChallenges, currentChallenge } =
@@ -33,17 +33,16 @@ function Challenges() {
     console.log("Participation");
   };
 
-  const handleRefreshList = (itemValue) => {
-    console.log(itemValue);
-    initRequestChallenges(selectedListType);
+  const handleRefreshList = () => {
+    initRequestChallenges(endDateFilterType, statusFilterType);
   };
 
-  const handleSelectedListType = (selectedListTypeValue) => {
-    setSelectedListType(selectedListTypeValue);
+  const handleEndDateFilterType = (endDateFilterType) => {
+    setEndDateFilterType(endDateFilterType);
   };
 
-  const handleRecommendedToggle = () => {
-    setToggled(!toggled);
+  const handleStatusFilterType = (statusFilterType) => {
+    setStatusFilterType(statusFilterType);
   };
 
   if (subPage === "ChallengePage") {
@@ -89,7 +88,8 @@ function Challenges() {
         </div>
         <ChallengeList
           changeToSubPage={handleSelectChallenge}
-          selectedType={selectedListType}
+          endDateFilterType={endDateFilterType}
+          statusFilterType={statusFilterType}
         ></ChallengeList>
       </div>
       {challengeFilter && (
@@ -98,14 +98,14 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
+              handleRefreshList();
             }}
           >
             <ChallengeFilter
-              selectedListType={selectedListType}
-              toggled={toggled}
-              handleSelectedListType={handleSelectedListType}
-              handleRefreshList={handleRefreshList}
-              handleRecommendedToggle={handleRecommendedToggle}
+              endDateFilterType={endDateFilterType}
+              statusFilterType={statusFilterType}
+              handleEndDateFilterType={handleEndDateFilterType}
+              handleStatusFilterType={handleStatusFilterType}
             ></ChallengeFilter>
           </div>
         </div>
