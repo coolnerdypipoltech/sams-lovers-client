@@ -4,11 +4,12 @@ import "../styles/Challenges.css";
 import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
-import { Picker } from "@react-native-picker/picker";
+import ChallengeFilter from "../components/ChallengeFilter";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [selectedListType, setSelectedListType] = useState("none");
+  const [toggled, setToggled] = useState(false);
 
   const { initRequestChallenges, currentChallenge } = useContext(ElementContextData);
 
@@ -30,10 +31,18 @@ function Challenges() {
     console.log("Participation");
   };
 
-  const refreshList = (itemValue) => {
+  const handleRefreshList = (itemValue) => {
     console.log(itemValue);
     initRequestChallenges(selectedListType);
   };
+
+  const handleSelectedListType = (selectedListTypeValue) => {
+    setSelectedListType(selectedListTypeValue);
+  }
+
+  const handleRecommendedToggle = () => {
+    setToggled(!toggled);
+  }
 
   if (subPage === "ChallengePage") {
     subPageContent = (
@@ -62,20 +71,8 @@ function Challenges() {
         <div style={{ width: "100%", height: "50px" }}></div>
         <div className="challenge-header">
           <p className="Title">Desafíos</p>
-          <Picker style={{ width: "50%", height: "25%", marginTop: "35px"}}
-            selectedValue={selectedListType}
-            onValueChange={(itemValue, itemIndex) => {
-              setSelectedListType(itemValue);
-              refreshList(selectedListType);
-            }}
-          >
-            <Picker.Item label="-" value="none" />
-            <Picker.Item label="Recomendados" value="recommended" />
-            <Picker.Item label="No completados" value="no_completed" />
-            <Picker.Item label="Por vencer" value="soon_to_expire" />
-          </Picker>
+          <ChallengeFilter selectedListType={selectedListType} toggled={toggled} handleSelectedListType={handleSelectedListType} handleRefreshList={handleRefreshList} handleRecommendedToggle={handleRecommendedToggle}></ChallengeFilter>
         </div>
-
         <ChallengeList changeToSubPage={handleSelectChallenge} selectedType={selectedListType}></ChallengeList>
       </div>
     </>
