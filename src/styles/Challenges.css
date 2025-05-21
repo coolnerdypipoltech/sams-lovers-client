@@ -3,6 +3,9 @@
   flex-flow: column;
   align-items: center;
   align-content: center;
+  background: #0C5AB1;
+    background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1) 100%);
+    overflow-y: scroll;
 }
 
 .participateText {
@@ -142,7 +145,7 @@
 .challenges-filter-container {
   width: 100%;
   height: 100%;
-  padding-top: 80px;
+  padding-top: 60px;
   background-color: rgba(136, 136, 136, 0.5);
   position: absolute;
   top: 0;
@@ -150,23 +153,43 @@
 }
 
 .challenges-filter {
-  width: 800px;
-  max-width: 80%;
+  width: 50%;
+  margin-left: 40%;
+  margin-top: 30px;
+  padding-bottom: 10%;
   background-color: white;
   border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 0 10px 2px;
-  top: 20%;
   position: absolute;
   z-index: 12;
 }
 
 .challenge-filter-title{
-  color: #20628d;
+  color: black;
+  font-weight: 500;
+  font-size: small;
   text-align: left;
+  padding-left: 10px;
 }
 
 .challenge-filter-picker{
-  width: 50%;
+  background-color: white;
+  color: #20628d;
+  width: 75%;
   height: 25%;
+  font-size: small;
+  text-align: left;
+  border: #20628d solid 2px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.challenges-text{
+  margin: 0;
+  color: white;
+  padding-left: 35px;
+  text-align: left;
+  font-size: 10px;
 }

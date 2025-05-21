@@ -1,5 +1,6 @@
 import "../styles/Components.css";
-import logo from "../assets/samsLogo.webp";
+import hamburguerIcon from "../assets/hamburger_icon_white.png"
+import diamond from "../assets/diamond.png"
 import { useContext, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 import { ElementContextRoute } from "../context/RouteContext";
@@ -20,13 +21,16 @@ function Header() {
   return (
     <>
       <div className="header-container">
-        <img src={logo} className="header-logo" alt="logo"></img>
-        <p>Diamantes</p>
-        <button onClick={e => setMenuVisible(!menuVisible)}>Menú</button>
+        <img className="header-logo" alt="logo" src="/sams-lovers-client/static/media/Brand_SamsLovers.cd3316c5163e4c0b96992c9a0dd68168.svg"></img>
+        <div className="header-diamonds-container">
+          <img className="header-diamonds-image" src={diamond} alt="diamond"></img>
+          <p className="header-diamonds-text">10</p>
+        </div>
+        <img className="header-hambuerguer-icon" alt="options-menu" src={hamburguerIcon} onClick={e => setMenuVisible(!menuVisible)}></img>
       </div>
-      <div className="header-menu-container">
-        {menuVisible && (<HeaderMenu handleMenuRoute={handleMenuRoute} handleLogOut={handleLogOut}> </HeaderMenu>)}
-      </div>
+      {menuVisible && (<div className="header-menu-container" onClick={e => setMenuVisible(!menuVisible)}>
+        <HeaderMenu handleMenuRoute={handleMenuRoute} handleLogOut={handleLogOut}> </HeaderMenu>
+      </div>)}
     </>
   );
 }

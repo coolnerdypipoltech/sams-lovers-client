@@ -77,7 +77,7 @@ function Challenges() {
       <div className="challenges-container">
         <div style={{ width: "100%", height: "50px" }}></div>
         <div className="challenge-header">
-          <p className="Title">Desafíos</p>
+          <p className="Title">Retos</p>
           <div
             className="challenge-filter"
             onClick={() => setChallengeFilter(true)}
@@ -86,6 +86,8 @@ function Challenges() {
             <img></img>
           </div>
         </div>
+        <p className="challenges-text">¡No te lo pierdas!</p>
+        <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
         <ChallengeList
           changeToSubPage={handleSelectChallenge}
           endDateFilterType={endDateFilterType}
