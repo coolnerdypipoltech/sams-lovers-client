@@ -7,9 +7,9 @@ import { SignIn, LogIn } from "../hooks/apicalls";
 import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";
 function CreatePage({ onReturn, onNext }) {
-  const [errorInputName, SetErrorInputName] = useState(true);
-  const [errorInputMail, SetErrorInputMail] = useState(true);
-  const [errorInputPassword1, SetErrorInputPassword1] = useState(true);
+  const [errorInputName, SetErrorInputName] = useState(null);
+  const [errorInputMail, SetErrorInputMail] = useState(null);
+  const [errorInputPassword1, SetErrorInputPassword1] = useState(null);
   const { setLoginToken } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
   const InputName = useRef("");
@@ -41,17 +41,22 @@ function CreatePage({ onReturn, onNext }) {
         }
       } else {
         const data = await response.json();
+        console.log(data)
         if (data.message) {
           if (data.message.email) {
-            SetErrorInputMail(false);
+            SetErrorInputMail(data.message.email);
           }
 
           if (data.message.name) {
-            SetErrorInputName(false);
+            SetErrorInputName(data.message.name);
           }
 
           if (data.message.password) {
-            SetErrorInputPassword1(false);
+            SetErrorInputPassword1(data.message.password);
+          }
+
+          if(data.message === "api.error.already_exists"){
+            SetErrorInputMail("Este correo ya está registrado, por favor intenta con otro correo o si prefieres, inicia sesión")
           }
         }
       }
@@ -60,30 +65,41 @@ function CreatePage({ onReturn, onNext }) {
 
   const inputValidation = () => {
     const responseMail = validateMail(InputMail.current.value);
+    const responsePassword = ValidatePassword(InputPassword1.current.value)
     let flag = true;
 
     if (InputPassword1.current.value.length === 0) {
       flag = false;
-      SetErrorInputPassword1(false);
+      SetErrorInputPassword1("Por favor revisar que la información esté completa, todos los campos son obligatorios");
     } else {
-      SetErrorInputPassword1(true);
+      SetErrorInputPassword1(null);
     }
 
     if (InputPassword1.current.value !== InputPassword2.current.value) {
       console.log("here");
       flag = false;
-      SetErrorInputPassword1(false);
+      SetErrorInputPassword1("Las contraseñas no coinciden");
     } else {
-      SetErrorInputPassword1(true);
+      SetErrorInputPassword1(null);
     }
 
     if (InputName.current.value.length > 0) {
-      SetErrorInputName(true);
+      SetErrorInputName(null);
     } else {
       flag = false;
-      SetErrorInputName(false);
+      SetErrorInputName("Por favor revisar que la información esté completa, todos los campos son obligatorios");
     }
-    SetErrorInputMail(responseMail);
+    if(responsePassword){
+      SetErrorInputPassword1(null);
+    }else{
+      SetErrorInputPassword1(`La contraseña debe incluir al menos un caracter especial “+.-!"#$%&/(==?¡’¿” y una mayúscula`)
+    }
+    if(responseMail){
+      SetErrorInputMail(null);
+    }else{
+      SetErrorInputMail("El correo debe tener un formato válido. Ej: Anita@gmail.com")
+    }
+    
     if (
       responseMail &&
       flag && checkboxValue.current
@@ -92,6 +108,11 @@ function CreatePage({ onReturn, onNext }) {
     } else {
       return false;
     }
+  };
+
+  const ValidatePassword = (_mailToTest) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(_mailToTest);
   };
 
   const validateMail = (_mailToTest) => {
@@ -122,8 +143,8 @@ function CreatePage({ onReturn, onNext }) {
               className="GeneralInput"
             ></input>
             </div>
-            {errorInputName === false ? (
-              <span className="errorText">Porfavor verifique su nombre</span>
+            {errorInputName !== null ? (
+              <span className="errorText">{errorInputName} </span>
             ) : (
               <></>
             )}
@@ -137,8 +158,8 @@ function CreatePage({ onReturn, onNext }) {
               className="GeneralInput"
             ></input>
             </div>
-            {errorInputMail === false ? (
-              <span className="errorText">Porfavor verifique su Email</span>
+            {errorInputMail !== null ? (
+              <span className="errorText">{errorInputMail} </span>
             ) : (
               <></>
             )}
@@ -164,8 +185,8 @@ function CreatePage({ onReturn, onNext }) {
               }} alt="eye" className="eyePassword" src={eye}></img>
           </div>
 
-          {errorInputPassword1 === false ? (
-            <span className="errorText">Porfavor verifique su contraseña</span>
+          {errorInputPassword1 !== null ? (
+            <span className="errorText">{errorInputPassword1} </span>
           ) : (
             <></>
           )}

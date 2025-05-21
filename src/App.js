@@ -3,8 +3,8 @@ import { ElementContextPopUp } from "./context/PopUpContext";
 import React, { useContext } from "react";
 import Login from "./pages/Login";
 import Rewards from "./pages/Rewards";
-import Challenges from "./pages/Challenges"
-import Profile from "./pages/Profile"
+import Challenges from "./pages/Challenges";
+import Profile from "./pages/Profile";
 import "./styles/App.css";
 import Header from "./components/Header";
 import Main from "./pages/Main";
@@ -21,45 +21,65 @@ function App() {
     case "Login":
       currentPage = <Login></Login>;
       break;
-      case "Main":
-      currentPage = <><Header></Header><Main></Main></>;
+    case "Main":
+      currentPage = (
+        <>
+          <Header></Header>
+          <Main></Main>
+        </>
+      );
       break;
     case "Rewards":
-      currentPage = <><Header></Header><Rewards></Rewards></>;
+      currentPage = (
+        <>
+          <Header></Header>
+          <Rewards></Rewards>
+        </>
+      );
       break;
     case "Challenges":
-      currentPage = <><Header></Header><Challenges></Challenges></>;
+      currentPage = (
+        <>
+          <Header></Header>
+          <Challenges></Challenges>
+        </>
+      );
       break;
     case "Profile":
-      currentPage = <><Header></Header><Profile></Profile></>;
+      currentPage = (
+        <>
+          <Header></Header>
+          <Profile></Profile>
+        </>
+      );
       break;
-      default:
+    default:
       currentPage = <Login></Login>;
       break;
   }
 
   const handleClosePopUp = () => {
-    closePopUp()
-  }
+    closePopUp();
+  };
 
   return (
-
-
     <div className="App">
       {popUpText !== "" ? (
         <div className="PopUp">
           <div className="PopUpDialog">
-          <p className="PopUpText">{popUpTitle}</p>
-            <p className="PopUpText">{popUpText}</p>
-            <button className="PopUpButton" onClick={handleClosePopUp}>Close</button> 
+            <div className="GeneralButtonContainer">
+              <p className="PopUpTitle">{popUpTitle}</p>
+              <p className="PopUpText">{popUpText}</p>
+              <button className="GeneralButton3" onClick={handleClosePopUp}>
+                Aceptar
+              </button>
+            </div>
           </div>
-
-      </div>
+        </div>
       ) : (
         <></>
       )}
       <>{currentPage}</>
-      
     </div>
   );
 }

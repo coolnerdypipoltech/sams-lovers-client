@@ -46,6 +46,9 @@ function Login() {
         SetUserData(data);
         setLoginToken(data.access_token);
         changeRoute("Main")
+      }else{
+        setErrorPassword("usuario o contraseña incorrectos")
+        setErrorEmail("usuario o contraseña incorrectos")
       }
     }
   };
@@ -62,27 +65,35 @@ function Login() {
   };
 
   const ValidatePassword = () => {
+    if(LoginPassword.current.value.length === 0){
+      setErrorPassword("Por favor revisar que la información esté completa, todos los campos son obligatorios")
+      return false
+    }
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (passwordRegex.test(LoginPassword.current.value)) {
-      if (errorPassword === true) {
-        setErrorPassword(false);
+      if (errorPassword) {
+        setErrorPassword(null);
       }
       return true;
     } else {
-      setErrorPassword(true);
+      setErrorPassword("verifica tu contraseña")
       return false;
     }
   };
 
   const ValidateEmail = () => {
+    if(LoginText.current.value.length === 0) {
+      setErrorEmail("Por favor revisar que la información esté completa, todos los campos son obligatorios")
+      return false
+    } 
     const strictEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (strictEmailRegex.test(LoginText.current.value)) {
-      if (errorEmail === true) {
-        setErrorEmail(false);
+      if (errorEmail) {
+        setErrorEmail(null);
       }
       return true;
     } else {
-      setErrorEmail(true);
+      setErrorEmail("El correo debe tener un formato válido. Ej: Anita@gmail.com")
       return false;
     }
   };
@@ -94,7 +105,7 @@ function Login() {
     subPageContent = <CreatePage onReturn={onClickReturn} onNext={onClickSocialMedia}></CreatePage>;
   }
   if(subPage === "Social Media") {
-    subPageContent = <SocialMediaPage></SocialMediaPage>
+    subPageContent = <SocialMediaPage onReturn={onClickReturn}></SocialMediaPage>
   }
 
   return (
@@ -125,8 +136,8 @@ function Login() {
               type="email"
             ></input>
             </div>
-            {errorEmail === true ? (
-              <span>Porfavor verique su correo electronico</span>
+            {errorEmail !== null ? (
+              <span className="errorText" >{errorEmail} </span>
             ) : (
               <></>
             )}
@@ -151,8 +162,8 @@ function Login() {
               }} alt="eye" className="eyePassword" src={eye}></img>
             </div>
 
-            {errorPassword === true ? (
-              <span>Porfavor verique su contraseña</span>
+            {errorPassword !== null ? (
+              <span className="errorText" >{errorPassword} </span>
             ) : (
               <></>
             )}

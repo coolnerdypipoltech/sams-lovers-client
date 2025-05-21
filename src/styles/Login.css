@@ -92,18 +92,6 @@ background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1
     margin-bottom: 8px;
 }
 
-
-
-.errorText{
-    font-size: 14px;
-    margin: 0px;
-    color: white;
-    text-align: start;
-    width: 100%;
-    font-family: "Poppins", sans-serif;
-    margin-top: 5px;
-}
-
 .loginTitle{
     font-family: "Poppins", sans-serif;
     margin: 0px;

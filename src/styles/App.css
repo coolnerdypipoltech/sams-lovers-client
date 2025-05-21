@@ -100,6 +100,20 @@
   text-decoration: underline;
 }
 
+.GeneralButtonContainer{
+  width: 80%;
+}
+
+.errorText{
+      font-size: 14px;
+    font-weight: 100;
+    font-family: helvetica;
+    color:white;
+    text-align: start;
+    margin: 0px;
+    padding-top: 5px;
+}
+
 .GeneralButton{
   background-color: white;
   width: 100%;
@@ -107,6 +121,23 @@
   border-color: white;
   border-width: 0px;
   color: #0066A1;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 23px;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+}
+
+.GeneralButton3{
+  background-color: #0066A1;
+  width: 100%;
+  height: 45px;
+  border-color: #0066A1;
+  border-width: 0px;
+  color: #ffffff;
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -159,6 +190,7 @@
   justify-content: center;
   align-content: center;
   width: 100vw;
+  
   height: 100vh;
   position: absolute;
   z-index: 100;
@@ -172,11 +204,13 @@
   align-items: center;
   justify-content: center;
   align-content: center;
-  width: 200px;
-  height: 150px;
+  width: 80%;
+  max-width: 500px;
+  height: 200px;
   box-shadow: 10px;
   flex-flow: column;
-  background-color: rgb(155, 155, 155);
+  background-color: rgb(255, 255, 255);
+
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -185,9 +219,15 @@
 }
 
 .PopUpText{
-
+  font-size: 14px;
+  
+  font-family: "Poppins", sans-serif;
 }
 
-.PopUpButton{
-
+.PopUpTitle{
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
 }
+
+

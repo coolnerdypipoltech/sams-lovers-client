@@ -10,7 +10,7 @@ import InfoTooltip from "../components/InfoTooltip";
 
 
 import { ElementContextRoute } from "../context/RouteContext";
-
+import { ElementContextPopUp } from "../context/PopUpContext";
 function SocialMedia({ onReturn }) {
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
@@ -18,6 +18,7 @@ function SocialMedia({ onReturn }) {
   const [errorInputX, SetErrorInputX] = useState(true);
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
   const { changeRoute } = useContext(ElementContextRoute);
+  const {changePopUpTitle , changePopUpText } = useContext(ElementContextPopUp);
  const InputFacebook = useRef("");
   const InputInstagram = useRef("");
   const InputTiktok = useRef("");
@@ -25,12 +26,18 @@ function SocialMedia({ onReturn }) {
   const InputYoutube = useRef("");
 
   const handleSkip = async () => {
-    changeRoute("Main")
+    onReturn()
+    changePopUpTitle("Confirmación")
+    changePopUpText("Por favor, confirma tu cuenta. Te enviamos un correo de verificación al correo registrado")
+    
   };
 
   const handleContine = async () => {
     if (inputValidation()) {
-      changeRoute("Main")
+      onReturn()
+      changePopUpTitle("Confirmación")
+      changePopUpText("Por favor, confirma tu cuenta. Te enviamos un correo de verificación al correo registrado")
+      
     }
   };
 
@@ -93,13 +100,13 @@ function SocialMedia({ onReturn }) {
           </p>
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
-              <img src={tiktok} className="socialMediaIcon"></img>
+              <img src={tiktok} alt="tiktokLogo" className="socialMediaIcon"></img>
               <input
                 placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
-              <InfoTooltip text={"hola"}></InfoTooltip>
+              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -119,7 +126,7 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
-              <InfoTooltip text={"hola"}></InfoTooltip>
+              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
             </div>
             
             {errorInputInstagram === false ? (
@@ -140,7 +147,7 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
-              <InfoTooltip text={"hola"}></InfoTooltip>
+              <InfoTooltip text={"Pon el link de tu perfil de facebook"}></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -156,7 +163,7 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
-              <InfoTooltip text={"hola"}></InfoTooltip>
+              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -172,7 +179,7 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputX}
               ></input>
-              <InfoTooltip text={"hola"}></InfoTooltip>
+              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
             </div>
             {errorInputX === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>

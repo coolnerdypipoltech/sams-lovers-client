@@ -5,7 +5,7 @@ function InfoTooltip({text}) {
         <div className="tooltip-container">
             <img src={trazado767} alt="tooltip"></img>
         <div role="tooltip" id="help-tooltip" className="tooltip">
-          <p>{text} </p>
+          <pre>{text} </pre>
         </div>
       </div>
       </>
