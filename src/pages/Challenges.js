@@ -4,13 +4,16 @@ import "../styles/Challenges.css";
 import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
-import { Picker } from "@react-native-picker/picker";
+import ChallengeFilter from "../components/ChallengeFilter";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [selectedListType, setSelectedListType] = useState("none");
+  const [endDateFilterType, setEndDateFilterType] = useState("all");
+  const [statusFilterType, setStatusFilterType] = useState("all");
+  const [challengeFilter, setChallengeFilter] = useState(false);
 
-  const { initRequestChallenges, currentChallenge } = useContext(ElementContextData);
+  const { initRequestChallenges, currentChallenge } =
+    useContext(ElementContextData);
 
   let subPageContent = null;
 
@@ -30,9 +33,16 @@ function Challenges() {
     console.log("Participation");
   };
 
-  const refreshList = (itemValue) => {
-    console.log(itemValue);
-    initRequestChallenges(selectedListType);
+  const handleRefreshList = () => {
+    initRequestChallenges(endDateFilterType, statusFilterType);
+  };
+
+  const handleEndDateFilterType = (endDateFilterType) => {
+    setEndDateFilterType(endDateFilterType);
+  };
+
+  const handleStatusFilterType = (statusFilterType) => {
+    setStatusFilterType(statusFilterType);
   };
 
   if (subPage === "ChallengePage") {
@@ -55,6 +65,12 @@ function Challenges() {
     );
   }
 
+  function handleSetChallengeFilter(event, value) {
+    if (event.target.className === "challenges-filter-container") {
+      setChallengeFilter(value);
+    }
+  }
+
   return (
     <>
       <>{subPageContent}</>
@@ -62,22 +78,38 @@ function Challenges() {
         <div style={{ width: "100%", height: "50px" }}></div>
         <div className="challenge-header">
           <p className="Title">Desafíos</p>
-          <Picker style={{ width: "50%", height: "25%", marginTop: "35px"}}
-            selectedValue={selectedListType}
-            onValueChange={(itemValue, itemIndex) => {
-              setSelectedListType(itemValue);
-              refreshList(selectedListType);
+          <div
+            className="challenge-filter"
+            onClick={() => setChallengeFilter(true)}
+          >
+            <p>Filtrar</p>
+            <img></img>
+          </div>
+        </div>
+        <ChallengeList
+          changeToSubPage={handleSelectChallenge}
+          endDateFilterType={endDateFilterType}
+          statusFilterType={statusFilterType}
+        ></ChallengeList>
+      </div>
+      {challengeFilter && (
+        <div>
+          <div
+            className="challenges-filter-container"
+            onClick={(e) => {
+              handleSetChallengeFilter(e, false);
+              handleRefreshList();
             }}
           >
-            <Picker.Item label="-" value="none" />
-            <Picker.Item label="Recomendados" value="recommended" />
-            <Picker.Item label="No completados" value="no_completed" />
-            <Picker.Item label="Por vencer" value="soon_to_expire" />
-          </Picker>
+            <ChallengeFilter
+              endDateFilterType={endDateFilterType}
+              statusFilterType={statusFilterType}
+              handleEndDateFilterType={handleEndDateFilterType}
+              handleStatusFilterType={handleStatusFilterType}
+            ></ChallengeFilter>
+          </div>
         </div>
-
-        <ChallengeList changeToSubPage={handleSelectChallenge} selectedType={selectedListType}></ChallengeList>
-      </div>
+      )}
     </>
   );
 }
