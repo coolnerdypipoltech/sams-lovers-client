@@ -4,14 +4,20 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    background: #0C5AB1;
+background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1) 100%);
+    overflow-y: scroll;
 }
 
 .LoginLogo{
-    width: 100px;
+    width: 180px;
 }
 
 .logoContainer{
     padding-top: 100px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
 }
 
 
@@ -24,6 +30,7 @@
     padding-top: 20px;
     align-items: center;
     align-content: center;
+
 }
 
 .inputCreateUser{
@@ -43,16 +50,88 @@
 
 }
 
-.LoginMenuBottomContainer{
-    height: 100%;
-    padding-bottom: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+
+.loginBottomText{
+    font-size: 14px;
+    font-weight: 100;
+    font-family: helvetica;
+    color:white;
+    text-align: start;
+    margin: 0px;
 }
 
-.inputLoginMenu{
+.checkBoxContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.checkBoxLogin{
+    background-color: rgba(255, 255, 255, 0);
+    border-color: white;
+}
+
+.LoginMenuBottomContainer{
+    height: 100%;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.loginSubtitle{
+    font-family: "Poppins", sans-serif;
+    margin: 0px;
+    text-align: start;
     width: 100%;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+
+
+.errorText{
+    font-size: 14px;
+    margin: 0px;
+    color: white;
+    text-align: start;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    margin-top: 5px;
+}
+
+.loginTitle{
+    font-family: "Poppins", sans-serif;
+    margin: 0px;
+    text-align: start;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.loginHeaderContainer{
+    display: flex;
+    flex-flow: row;
+    width: 80%;
+    justify-content: space-between;
+    height: 22px;
+    padding-top: 32px;
+}
+
+.loginHeaderText{
+    font-size: 16px;
+    color: white;
+    margin: 0px;
+}
+
+.LoginLogoHeader{
+    width: 132px;
+    height: 22px;
 }
 
 .passwordContainer{
@@ -61,6 +140,15 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    
+}
+
+.loginContainer{
+       width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center; 
 }
 
 .PasswordTextLogin{
@@ -68,16 +156,20 @@
     margin-top: 10px;
     text-align: end;
     width: 100%;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    size: 14px;
+    text-decoration: underline;
 }
 
 
 .forgetPasswordContainer{
     height: 100%;
     width: 80%;
+    padding-top: 32px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
+    gap: 15px;
     align-items: center;
     align-content: center;
 }
@@ -88,6 +180,37 @@
 
 .textForgetPassword{
     margin: 0px;
-    text-align: start;
     margin-bottom: 10px;
+    text-align: end;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    size: 14px;
+    text-align: start;
+}
+
+.passwordInput{
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.loginHeader{
+        margin: 0px;
+    margin-top: 10px;
+    text-align: end;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    size: 16px;
+    text-align: start;
+    
+}
+
+.socialMediaIcon{
+    width: 33px;
+    height: 33px;
+    padding-top: 3px;
 }

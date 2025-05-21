@@ -36,7 +36,7 @@ const ElementProviderRoute= ({ children }) => {
     }
     loginToken.current = newValue;
     saveItem({loginToken: newValue})
-    changeRoute("Main")
+    
   }
   
   const persistLogin = async () => {
