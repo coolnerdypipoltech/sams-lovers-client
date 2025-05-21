@@ -19,8 +19,8 @@ function Header() {
 
   return (
     <>
-      <div className="headerContainer">
-        <img src={logo} className="headerLogo" alt="logo"></img>
+      <div className="header-container">
+        <img src={logo} className="header-logo" alt="logo"></img>
         <p>Diamantes</p>
         <button onClick={e => setMenuVisible(!menuVisible)}>Menú</button>
       </div>
