@@ -16,7 +16,7 @@ function CreatePage({ onReturn, onNext }) {
   const InputMail = useRef("");
   const InputPassword1 = useRef("");
   const InputPassword2 = useRef("");
-
+  const checkboxValue = useRef(false);
   const handleReturn = async () => {
     onReturn();
   };
@@ -80,14 +80,13 @@ function CreatePage({ onReturn, onNext }) {
     if (InputName.current.value.length > 0) {
       SetErrorInputName(true);
     } else {
-      console.log("aa");
       flag = false;
       SetErrorInputName(false);
     }
     SetErrorInputMail(responseMail);
     if (
       responseMail &&
-      flag
+      flag && checkboxValue.current
     ) {
       return true;
     } else {
@@ -116,11 +115,13 @@ function CreatePage({ onReturn, onNext }) {
           <p className="loginTitle">Registro</p>
           <div className="GeneralInputContainer">
             <p className="loginHeader">Nombre*</p>
+            < div className="passwordInput">
             <input
               placeholder="Tu nombre de usuario"
               ref={InputName}
               className="GeneralInput"
             ></input>
+            </div>
             {errorInputName === false ? (
               <span className="errorText">Porfavor verifique su nombre</span>
             ) : (
@@ -129,11 +130,13 @@ function CreatePage({ onReturn, onNext }) {
           </div>
           <div className="GeneralInputContainer">
             <p className="loginHeader">Email*</p>
+            <div  className="passwordInput">
             <input
               placeholder="Tu email"
               ref={InputMail}
               className="GeneralInput"
             ></input>
+            </div>
             {errorInputMail === false ? (
               <span className="errorText">Porfavor verifique su Email</span>
             ) : (
@@ -143,7 +146,7 @@ function CreatePage({ onReturn, onNext }) {
           
           <div className="GeneralInputContainer">
             <p className="loginHeader">Contraseña*</p>
-          <div className="passwordInput">
+          <div  className="passwordInput">
             
               <input
                 placeholder="Escribe una contraseña"
@@ -152,7 +155,13 @@ function CreatePage({ onReturn, onNext }) {
                 type="password"
               ></input>
 
-              <img className="eyePassword" alt="show" src={eye}></img>
+              <img onClick={() => {
+                if(InputPassword1.current.getAttribute("type") === "password"){
+                  InputPassword1.current.setAttribute("type", "text")
+                }else{
+                  InputPassword1.current.setAttribute("type", "password")
+                }
+              }} alt="eye" className="eyePassword" src={eye}></img>
           </div>
 
           {errorInputPassword1 === false ? (
@@ -173,13 +182,21 @@ function CreatePage({ onReturn, onNext }) {
               ></input>
               
 
-              <img className="eyePassword" alt="show" src={eye}></img>
+              <img onClick={() => {
+                if(InputPassword2.current.getAttribute("type") === "password"){
+                  InputPassword2.current.setAttribute("type", "text")
+                }else{
+                  InputPassword2.current.setAttribute("type", "password")
+                }
+              }} alt="eye" className="eyePassword" src={eye}></img>
           </div>
           <p className="loginBottomText">Tu contraseña ha de tener al menos 8 caracteres, con números, letras y un símbolo.</p>
           </div>
            <div className="checkBoxContainer">
             <label className="checkbox-container">
-                <input className="custom-checkbox" defaultChecked type="checkbox"/>
+                <input onClick={() => {
+                 checkboxValue.current = !checkboxValue.current
+              }}className="custom-checkbox" type="checkbox"/>
                 <span className="checkmark"></span>
             </label>
             <p className="loginBottomText"> Tengo consciencia y estoy de acuerdo con los Términos de Uso y con las Políticas de Sam’s Lover</p>

@@ -134,7 +134,7 @@ function Login() {
 
           <div className="passwordContainer">
             <p className="loginSubtitle">Contraseña</p>
-            <div className="passwordInput">
+            <div  className="passwordInput">
               <input
                 placeholder="Contraseña"
                 ref={LoginPassword}
@@ -142,7 +142,13 @@ function Login() {
                 type="password"
               ></input>
 
-              <img className="eyePassword" src={eye}></img>
+              <img onClick={() => {
+                if(LoginPassword.current.getAttribute("type") === "password"){
+                  LoginPassword.current.setAttribute("type", "text")
+                }else{
+                  LoginPassword.current.setAttribute("type", "password")
+                }
+              }} alt="eye" className="eyePassword" src={eye}></img>
             </div>
 
             {errorPassword === true ? (
