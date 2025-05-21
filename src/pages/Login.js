@@ -1,13 +1,16 @@
 import "../styles/Login.css";
-import logo from "../assets/samsLogo.webp";
+import logo from "../assets/Brand_SamsLovers.svg";
+import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
+import eye from "../assets/Visibility.svg";
 import { useState, useContext, useRef } from "react";
 import CreatePage from "../subPages/CreatePage";
 import PasswordPage from "../subPages/PasswordPage";
+import SocialMediaPage from "../subPages/SocialMediaPage"
 import { ElementContextRoute } from "../context/RouteContext";
 import { LogIn } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 function Login() {
-  const { setLoginToken } = useContext(ElementContextRoute);
+  const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
   const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
@@ -24,6 +27,10 @@ function Login() {
     setSubPage("Create");
   };
 
+  const onClickSocialMedia = async () => {
+    setSubPage("Social Media");
+  };
+
   const onClickReturn = async () => {
     setSubPage("");
   };
@@ -38,6 +45,7 @@ function Login() {
       if (response.ok) {
         SetUserData(data);
         setLoginToken(data.access_token);
+        changeRoute("Main")
       }
     }
   };
@@ -83,7 +91,10 @@ function Login() {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;
   }
   if (subPage === "Create") {
-    subPageContent = <CreatePage onReturn={onClickReturn}></CreatePage>;
+    subPageContent = <CreatePage onReturn={onClickReturn} onNext={onClickSocialMedia}></CreatePage>;
+  }
+  if(subPage === "Social Media") {
+    subPageContent = <SocialMediaPage></SocialMediaPage>
   }
 
   return (
@@ -91,45 +102,76 @@ function Login() {
       <>{subPageContent}</>
 
       <div className="LoginContainer">
+        <div className="loginHeaderContainer">
+          <p className="loginHeaderText">Volver</p>
+          <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
+        </div>
+
         <div className="logoContainer">
           <img src={logo} alt="Logo" className="LoginLogo"></img>
+          
         </div>
 
         <div className="LoginMenuContainer">
-          <input
-            placeholder="Correo"
-            ref={LoginText}
-            className="inputLoginMenu"
-          ></input>
-          {errorEmail === true ? (
-            <span>Porfavor verique su correo electronico</span>
-          ) : (
-            <></>
-          )}
-          <div className="passwordContainer">
+          <p className="loginTitle">Log in</p>
+          <div className="loginContainer">
+            <p className="loginSubtitle">Email</p>
+            <div className="passwordInput">
+            
             <input
-              placeholder="Contraseña"
-              ref={LoginPassword}
-              className="inputLoginMenu"
+              placeholder="Correo"
+              ref={LoginText}
+              className="GeneralInput"
+              type="email"
             ></input>
+            </div>
+            {errorEmail === true ? (
+              <span>Porfavor verique su correo electronico</span>
+            ) : (
+              <></>
+            )}
+          </div>
+
+          <div className="passwordContainer">
+            <p className="loginSubtitle">Contraseña</p>
+            <div  className="passwordInput">
+              <input
+                placeholder="Contraseña"
+                ref={LoginPassword}
+                className="GeneralInput"
+                type="password"
+              ></input>
+
+              <img onClick={() => {
+                if(LoginPassword.current.getAttribute("type") === "password"){
+                  LoginPassword.current.setAttribute("type", "text")
+                }else{
+                  LoginPassword.current.setAttribute("type", "password")
+                }
+              }} alt="eye" className="eyePassword" src={eye}></img>
+            </div>
+
             {errorPassword === true ? (
               <span>Porfavor verique su contraseña</span>
             ) : (
               <></>
             )}
             <p onClick={onClickPassword} className="PasswordTextLogin">
-              Olvidé mi contraseña
+              ¿Olvidaste tu contraseña?
             </p>
           </div>
           <div className="LoginMenuBottomContainer">
-            <p onClick={onClickLogin}>Acceder</p>
-            <p onClick={onClickCreate}>¿NO TIENES CUENTA? CREA UNA</p>
-            <p>
-              Al hacer click en continuar usted acepta los,
-              <a style={{ paddingLeft: "5px" }} href="https://www.google.com">
-                términos y condiciones
-              </a>
-            </p>
+            <button className="GeneralButton" onClick={onClickLogin}>
+              Iniciar sesión
+            </button>
+            <div>
+              <p className="loginBottomText">
+                ¿Todavía no tienes una cuenta?{" "}
+                <span onClick={onClickCreate} className="underlineText">
+                  Créala aquí
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net//api/v1/";
 
-export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+export async function SignIn(_name, _email, _password) {
     try {
         console.log(ENDPOINT + "auth/signin");
         const bodyData = {
@@ -9,12 +9,6 @@ export async function SignIn(_name, _email, _password, _facebook_url, _instagram
             password: _password,
             diamonds: 0
         };
-        if (_facebook_url !== "") bodyData.facebook_url = _facebook_url;
-        if (_instagram_url !== "") bodyData.instagram_url = _instagram_url;
-        if (_tiktok_url !== "") bodyData.tiktok_url = _tiktok_url;
-        if (_x_url !== "") bodyData.x_url = _x_url;
-        if (_youtube_url !== "") bodyData.youtube_url = _youtube_url;
-
         const response = await fetch(ENDPOINT + "auth/signin", {
             method: "POST",
             headers: {
