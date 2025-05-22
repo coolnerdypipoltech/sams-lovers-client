@@ -5,7 +5,7 @@ import eye from "../assets/Visibility.svg";
 import { useState, useContext, useRef } from "react";
 import CreatePage from "../subPages/CreatePage";
 import PasswordPage from "../subPages/PasswordPage";
-import SocialMediaPage from "../subPages/SocialMediaPage"
+import SocialMediaPage from "../subPages/SocialMediaPage";
 import { ElementContextRoute } from "../context/RouteContext";
 import { LogIn } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
@@ -15,25 +15,31 @@ function Login() {
   const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
+
+  const [loginMessage, setLoginMessage] = useState(false);
   const LoginText = useRef("");
   const LoginPassword = useRef("");
   let subPageContent = null;
 
-  const onClickPassword = async () => {
+  const onClickPassword = () => {
     setSubPage("Password");
   };
 
-  const onClickCreate = async () => {
+  const onClickCreate = () => {
     setSubPage("Create");
   };
 
-  const onClickSocialMedia = async () => {
+  const onClickSocialMedia = () => {
     setSubPage("Social Media");
   };
 
-  const onClickReturn = async () => {
+  const onClickReturn = () => {
     setSubPage("");
   };
+
+  const onClickShowLoginMessage = () => {
+    setLoginMessage(true)
+  }
 
   const onClickLogin = async () => {
     if (inputValidation()) {
@@ -45,10 +51,10 @@ function Login() {
       if (response.ok) {
         SetUserData(data);
         setLoginToken(data.access_token);
-        changeRoute("Main")
-      }else{
-        setErrorPassword("usuario o contraseña incorrectos")
-        setErrorEmail("usuario o contraseña incorrectos")
+        changeRoute("Main");
+      } else {
+        setErrorPassword("usuario o contraseña incorrectos");
+        setErrorEmail("usuario o contraseña incorrectos");
       }
     }
   };
@@ -65,9 +71,11 @@ function Login() {
   };
 
   const ValidatePassword = () => {
-    if(LoginPassword.current.value.length === 0){
-      setErrorPassword("Por favor revisar que la información esté completa, todos los campos son obligatorios")
-      return false
+    if (LoginPassword.current.value.length === 0) {
+      setErrorPassword(
+        "Por favor revisar que la información esté completa, todos los campos son obligatorios"
+      );
+      return false;
     }
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (passwordRegex.test(LoginPassword.current.value)) {
@@ -76,16 +84,18 @@ function Login() {
       }
       return true;
     } else {
-      setErrorPassword("verifica tu contraseña")
+      setErrorPassword("verifica tu contraseña");
       return false;
     }
   };
 
   const ValidateEmail = () => {
-    if(LoginText.current.value.length === 0) {
-      setErrorEmail("Por favor revisar que la información esté completa, todos los campos son obligatorios")
-      return false
-    } 
+    if (LoginText.current.value.length === 0) {
+      setErrorEmail(
+        "Por favor revisar que la información esté completa, todos los campos son obligatorios"
+      );
+      return false;
+    }
     const strictEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (strictEmailRegex.test(LoginText.current.value)) {
       if (errorEmail) {
@@ -93,7 +103,9 @@ function Login() {
       }
       return true;
     } else {
-      setErrorEmail("El correo debe tener un formato válido. Ej: Anita@gmail.com")
+      setErrorEmail(
+        "El correo debe tener un formato válido. Ej: Anita@gmail.com"
+      );
       return false;
     }
   };
@@ -102,10 +114,17 @@ function Login() {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;
   }
   if (subPage === "Create") {
-    subPageContent = <CreatePage onReturn={onClickReturn} onNext={onClickSocialMedia}></CreatePage>;
+    subPageContent = (
+      <CreatePage
+        onReturn={onClickReturn}
+        onNext={onClickSocialMedia}
+      ></CreatePage>
+    );
   }
-  if(subPage === "Social Media") {
-    subPageContent = <SocialMediaPage onReturn={onClickReturn}></SocialMediaPage>
+  if (subPage === "Social Media") {
+    subPageContent = (
+      <SocialMediaPage onReturn={onClickReturn} onShowMessage={onClickShowLoginMessage} ></SocialMediaPage>
+    );
   }
 
   return (
@@ -120,7 +139,6 @@ function Login() {
 
         <div className="logoContainer">
           <img src={logo} alt="Logo" className="LoginLogo"></img>
-          
         </div>
 
         <div className="LoginMenuContainer">
@@ -128,16 +146,15 @@ function Login() {
           <div className="loginContainer">
             <p className="loginSubtitle">Email</p>
             <div className="passwordInput">
-            
-            <input
-              placeholder="Correo"
-              ref={LoginText}
-              className="GeneralInput"
-              type="email"
-            ></input>
+              <input
+                placeholder="Correo"
+                ref={LoginText}
+                className="GeneralInput"
+                type="email"
+              ></input>
             </div>
             {errorEmail !== null ? (
-              <span className="errorText" >{errorEmail} </span>
+              <span className="errorText">{errorEmail} </span>
             ) : (
               <></>
             )}
@@ -145,7 +162,7 @@ function Login() {
 
           <div className="passwordContainer">
             <p className="loginSubtitle">Contraseña</p>
-            <div  className="passwordInput">
+            <div className="passwordInput">
               <input
                 placeholder="Contraseña"
                 ref={LoginPassword}
@@ -153,17 +170,24 @@ function Login() {
                 type="password"
               ></input>
 
-              <img onClick={() => {
-                if(LoginPassword.current.getAttribute("type") === "password"){
-                  LoginPassword.current.setAttribute("type", "text")
-                }else{
-                  LoginPassword.current.setAttribute("type", "password")
-                }
-              }} alt="eye" className="eyePassword" src={eye}></img>
+              <img
+                onClick={() => {
+                  if (
+                    LoginPassword.current.getAttribute("type") === "password"
+                  ) {
+                    LoginPassword.current.setAttribute("type", "text");
+                  } else {
+                    LoginPassword.current.setAttribute("type", "password");
+                  }
+                }}
+                alt="eye"
+                className="eyePassword"
+                src={eye}
+              ></img>
             </div>
 
             {errorPassword !== null ? (
-              <span className="errorText" >{errorPassword} </span>
+              <span className="errorText">{errorPassword} </span>
             ) : (
               <></>
             )}
@@ -172,9 +196,20 @@ function Login() {
             </p>
           </div>
           <div className="LoginMenuBottomContainer">
-            <button className="GeneralButton" onClick={onClickLogin}>
-              Iniciar sesión
-            </button>
+            <div style={{display: "flex", gap: "10px", flexFlow: "column"}} >
+              <button className="GeneralButton" onClick={onClickLogin}>
+                Iniciar sesión
+              </button>
+              {loginMessage !== false ? (
+                <span className="errorText">
+                  Por favor, confirma tu cuenta. Te enviamos un correo de
+                  verificación en tu Email registrado.{" "}
+                </span>
+              ) : (
+                <></>
+              )}
+            </div>
+
             <div>
               <p className="loginBottomText">
                 ¿Todavía no tienes una cuenta?{" "}
