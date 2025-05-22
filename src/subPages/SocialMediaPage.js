@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
 import facebook from "../assets/Icon_Facebook.svg";
 import instagram from "../assets/Icon_Instagram.svg";
@@ -8,36 +8,28 @@ import youtube from "../assets/Icon_Youtube.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import InfoTooltip from "../components/InfoTooltip";
 
-
-import { ElementContextRoute } from "../context/RouteContext";
-import { ElementContextPopUp } from "../context/PopUpContext";
-function SocialMedia({ onReturn }) {
+function SocialMedia({ onReturn, onShowMessage }) {
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
   const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
   const [errorInputX, SetErrorInputX] = useState(true);
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
-  const { changeRoute } = useContext(ElementContextRoute);
-  const {changePopUpTitle , changePopUpText } = useContext(ElementContextPopUp);
- const InputFacebook = useRef("");
+
+  const InputFacebook = useRef("");
   const InputInstagram = useRef("");
   const InputTiktok = useRef("");
   const InputX = useRef("");
   const InputYoutube = useRef("");
 
   const handleSkip = async () => {
-    onReturn()
-    changePopUpTitle("Confirmación")
-    changePopUpText("Por favor, confirma tu cuenta. Te enviamos un correo de verificación al correo registrado")
-    
+    onReturn();
+    onShowMessage()
   };
 
   const handleContine = async () => {
     if (inputValidation()) {
-      onReturn()
-      changePopUpTitle("Confirmación")
-      changePopUpText("Por favor, confirma tu cuenta. Te enviamos un correo de verificación al correo registrado")
-      
+      onReturn();
+      onShowMessage()
     }
   };
 
@@ -53,19 +45,12 @@ function SocialMedia({ onReturn }) {
     SetErrorInputTiktok(responseT);
     SetErrorInputX(responseX);
     SetErrorInputYoutube(responseY);
-    if (
-      responseY &&
-      responseX &&
-      responseT &&
-      responseI &&
-      responseF
-    ) {
+    if (responseY && responseX && responseT && responseI && responseF) {
       return true;
     } else {
       return false;
     }
   };
-
 
   const validateUser = (_userToTest) => {
     if (_userToTest.length === 0) {
@@ -100,13 +85,19 @@ function SocialMedia({ onReturn }) {
           </p>
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
-              <img src={tiktok} alt="tiktokLogo" className="socialMediaIcon"></img>
+              <img
+                src={tiktok}
+                alt="tiktokLogo"
+                className="socialMediaIcon"
+              ></img>
               <input
                 placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
-              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
+              <InfoTooltip
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+              ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -126,9 +117,11 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
-              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
+              <InfoTooltip
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+              ></InfoTooltip>
             </div>
-            
+
             {errorInputInstagram === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
             ) : (
@@ -143,11 +136,13 @@ function SocialMedia({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="@usuario"
+                placeholder="https://www.facebook.com/cashi"
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
-              <InfoTooltip text={"Pon el link de tu perfil de facebook"}></InfoTooltip>
+              <InfoTooltip
+                text={"Pon el link de tu perfil de facebook"}
+              ></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -163,7 +158,9 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
-              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
+              <InfoTooltip
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+              ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>
@@ -179,7 +176,9 @@ function SocialMedia({ onReturn }) {
                 className="GeneralInput"
                 ref={InputX}
               ></input>
-              <InfoTooltip text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}></InfoTooltip>
+              <InfoTooltip
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+              ></InfoTooltip>
             </div>
             {errorInputX === false ? (
               <span className="errorText">Porfavor verifique su usuario</span>

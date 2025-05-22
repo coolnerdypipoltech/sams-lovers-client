@@ -3,7 +3,10 @@ function InfoTooltip({text}) {
     return (
       <>
         <div className="tooltip-container">
-            <img src={trazado767} alt="tooltip"></img>
+          <div className= "tooltipImage">
+            <img className src={trazado767} alt="tooltip"></img>
+          </div>
+            
         <div role="tooltip" id="help-tooltip" className="tooltip">
           <pre>{text} </pre>
         </div>

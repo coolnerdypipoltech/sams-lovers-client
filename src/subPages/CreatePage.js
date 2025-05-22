@@ -1,7 +1,7 @@
-import "../styles/checkbox.css"
+import "../styles/checkbox.css";
 import { useRef, useState, useContext } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
-import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
+import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
 import { SignIn, LogIn } from "../hooks/apicalls";
 import { ElementContextRoute } from "../context/RouteContext";
@@ -28,7 +28,7 @@ function CreatePage({ onReturn, onNext }) {
       const response = await SignIn(
         InputName.current.value,
         InputMail.current.value,
-        InputPassword1.current.value,
+        InputPassword1.current.value
       );
       if (response.ok) {
         const responseLogin = await LogIn(
@@ -39,11 +39,11 @@ function CreatePage({ onReturn, onNext }) {
         if (responseLogin.ok) {
           SetUserData(data);
           setLoginToken(data.access_token);
-          onNext()
+          onNext();
         }
       } else {
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         if (data.message) {
           if (data.message.email) {
             SetErrorInputMail(data.message.email);
@@ -57,8 +57,10 @@ function CreatePage({ onReturn, onNext }) {
             SetErrorInputPassword1(data.message.password);
           }
 
-          if(data.message === "api.error.already_exists"){
-            SetErrorInputMail("Este correo ya está registrado, por favor intenta con otro correo o si prefieres, inicia sesión")
+          if (data.message === "api.error.already_exists") {
+            SetErrorInputMail(
+              "Este correo ya está registrado, por favor intenta con otro correo o si prefieres, inicia sesión"
+            );
           }
         }
       }
@@ -67,52 +69,74 @@ function CreatePage({ onReturn, onNext }) {
 
   const inputValidation = () => {
     const responseMail = validateMail(InputMail.current.value);
-    const responsePassword = ValidatePassword(InputPassword1.current.value)
+    const responsePassword = ValidatePassword(InputPassword1.current.value);
     let flag = true;
-    if(checkboxValue.current){
-      SetErrorCheckbox(false)
-    }else{
-      SetErrorCheckbox(true)
-    }
-
-    if (InputPassword1.current.value.length === 0) {
-      flag = false;
-      SetErrorInputPassword1("Por favor revisar que la información esté completa, todos los campos son obligatorios");
+    if (checkboxValue.current) {
+      SetErrorCheckbox(false);
     } else {
-      SetErrorInputPassword1(null);
+      SetErrorCheckbox(true);
     }
-
+    console.log(InputPassword1.current.value.length);
     if (InputPassword1.current.value !== InputPassword2.current.value) {
       console.log("here");
       flag = false;
+      console.log(flag)
       SetErrorInputPassword1("Las contraseñas no coinciden");
     } else {
       SetErrorInputPassword1(null);
+    }
+
+    
+    if (responsePassword) {
+      console.log("aa");
+      if(flag){
+        SetErrorInputPassword1(null);
+      }
+      
+    } else {
+      if (InputPassword1.current.value.length === 0) {
+        flag = false;
+        console.log(flag)
+        SetErrorInputPassword1(
+          "Por favor revisar que la información esté completa, todos los campos son obligatorios"
+        );
+      } else {
+        SetErrorInputPassword1(
+          `La contraseña debe incluir al menos un caracter especial “+.-!"#$%&/(==?¡’¿” y una mayúscula`
+        );
+      }
     }
 
     if (InputName.current.value.length > 0) {
       SetErrorInputName(null);
     } else {
       flag = false;
-      SetErrorInputName("Por favor revisar que la información esté completa, todos los campos son obligatorios");
+      console.log(flag)
+      SetErrorInputName(
+        "Por favor revisar que la información esté completa, todos los campos son obligatorios"
+      );
     }
-    if(responsePassword){
-      SetErrorInputPassword1(null);
-    }else{
-      SetErrorInputPassword1(`La contraseña debe incluir al menos un caracter especial “+.-!"#$%&/(==?¡’¿” y una mayúscula`)
-    }
-    if(responseMail){
+
+    if (responseMail) {
       SetErrorInputMail(null);
-    }else{
-      SetErrorInputMail("El correo debe tener un formato válido. Ej: Anita@gmail.com")
+    } else {
+      console.log(InputMail.current.value.length);
+      if (InputMail.current.value.length === 0) {
+        SetErrorInputMail(
+          "Por favor revisar que la información esté completa, todos los campos son obligatorios"
+        );
+      } else {
+        SetErrorInputMail(
+          "El correo debe tener un formato válido. Ej: Anita@gmail.com"
+        );
+      }
     }
-    
-    if (
-      responseMail &&
-      flag && checkboxValue.current
-    ) {
+
+    if (responseMail && flag && checkboxValue.current) {
+      console.log("si")
       return true;
     } else {
+      console.log(responseMail, flag, checkboxValue.current)
       return false;
     }
   };
@@ -127,12 +151,13 @@ function CreatePage({ onReturn, onNext }) {
     return strictEmailRegex.test(_mailToTest);
   };
 
-
   return (
     <div className="subPageContainer">
       <div className="LoginContainer">
         <div className="loginHeaderContainer">
-          <p onClick={handleReturn} className="loginHeaderText">Volver</p>
+          <p onClick={handleReturn} className="loginHeaderText">
+            Volver
+          </p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
         </div>
         <div className="logoContainer">
@@ -143,12 +168,12 @@ function CreatePage({ onReturn, onNext }) {
           <p className="loginTitle">Registro</p>
           <div className="GeneralInputContainer">
             <p className="loginHeader">Nombre*</p>
-            < div className="passwordInput">
-            <input
-              placeholder="Tu nombre de usuario"
-              ref={InputName}
-              className="GeneralInput"
-            ></input>
+            <div className="passwordInput">
+              <input
+                placeholder="Tu nombre de usuario"
+                ref={InputName}
+                className="GeneralInput"
+              ></input>
             </div>
             {errorInputName !== null ? (
               <span className="errorText">{errorInputName} </span>
@@ -158,12 +183,12 @@ function CreatePage({ onReturn, onNext }) {
           </div>
           <div className="GeneralInputContainer">
             <p className="loginHeader">Email*</p>
-            <div  className="passwordInput">
-            <input
-              placeholder="Tu email"
-              ref={InputMail}
-              className="GeneralInput"
-            ></input>
+            <div className="passwordInput">
+              <input
+                placeholder="Tu email"
+                ref={InputMail}
+                className="GeneralInput"
+              ></input>
             </div>
             {errorInputMail !== null ? (
               <span className="errorText">{errorInputMail} </span>
@@ -171,11 +196,10 @@ function CreatePage({ onReturn, onNext }) {
               <></>
             )}
           </div>
-          
+
           <div className="GeneralInputContainer">
             <p className="loginHeader">Contraseña*</p>
-          <div  className="passwordInput">
-            
+            <div className="passwordInput">
               <input
                 placeholder="Escribe una contraseña"
                 ref={InputPassword1}
@@ -183,68 +207,101 @@ function CreatePage({ onReturn, onNext }) {
                 type="password"
               ></input>
 
-              <img onClick={() => {
-                if(InputPassword1.current.getAttribute("type") === "password"){
-                  InputPassword1.current.setAttribute("type", "text")
-                }else{
-                  InputPassword1.current.setAttribute("type", "password")
-                }
-              }} alt="eye" className="eyePassword" src={eye}></img>
-          </div>
+              <img
+                onClick={() => {
+                  if (
+                    InputPassword1.current.getAttribute("type") === "password"
+                  ) {
+                    InputPassword1.current.setAttribute("type", "text");
+                  } else {
+                    InputPassword1.current.setAttribute("type", "password");
+                  }
+                }}
+                alt="eye"
+                className="eyePassword"
+                src={eye}
+              ></img>
+            </div>
 
-          {errorInputPassword1 !== null ? (
-            <span className="errorText">{errorInputPassword1} </span>
-          ) : (
-            <></>
-          )}
+            {errorInputPassword1 !== null ? (
+              <span className="errorText">{errorInputPassword1} </span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="GeneralInputContainer">
             <p className="loginHeader">Confirmar Contraseña*</p>
-          <div className="passwordInput">
-            
+            <div className="passwordInput">
               <input
                 placeholder="Escribe tu contraseña de nuevo"
                 ref={InputPassword2}
                 className="GeneralInput"
                 type="password"
               ></input>
-              
 
-              <img onClick={() => {
-                if(InputPassword2.current.getAttribute("type") === "password"){
-                  InputPassword2.current.setAttribute("type", "text")
-                }else{
-                  InputPassword2.current.setAttribute("type", "password")
-                }
-              }} alt="eye" className="eyePassword" src={eye}></img>
+              <img
+                onClick={() => {
+                  if (
+                    InputPassword2.current.getAttribute("type") === "password"
+                  ) {
+                    InputPassword2.current.setAttribute("type", "text");
+                  } else {
+                    InputPassword2.current.setAttribute("type", "password");
+                  }
+                }}
+                alt="eye"
+                className="eyePassword"
+                src={eye}
+              ></img>
+            </div>
+            <p className="loginBottomText">
+              Tu contraseña ha de tener al menos 8 caracteres, con números,
+              letras y un símbolo.
+            </p>
           </div>
-          <p className="loginBottomText">Tu contraseña ha de tener al menos 8 caracteres, con números, letras y un símbolo.</p>
-          </div>
-           <div className="checkBoxContainer">
+          <div className="checkBoxContainer">
             <label className="checkbox-container">
-                <input onClick={() => {
-                 checkboxValue.current = !checkboxValue.current
-              }}className="custom-checkbox" type="checkbox"/>
-                <span className="checkmark"></span>
+              <input
+                onClick={() => {
+                  checkboxValue.current = !checkboxValue.current;
+                }}
+                className="custom-checkbox"
+                type="checkbox"
+              />
+              <span className="checkmark"></span>
             </label>
-            <p className="loginBottomText"> Tengo consciencia y estoy de acuerdo con los Términos de Uso y con las Políticas de Sam’s Lover</p>
+            <p className="loginBottomText">
+              {" "}
+              Tengo consciencia y estoy de acuerdo con los Términos de Uso y con
+              las Políticas de Sam’s Lover
+            </p>
           </div>
-          {errorCheckbox !== null ? (
-            <span className="errorText">Acepta los términos y políticas de Sam's Lover para continuar </span>
+          {errorCheckbox === true ? (
+            <span className="errorText">
+              Acepta los términos y políticas de Sam's Lover para continuar{" "}
+            </span>
           ) : (
             <></>
           )}
           <button className="GeneralButton" onClick={handleCreateUser}>
             Crear cuenta
           </button>
-         
-          <div>
-              <p className="loginBottomText" >¿Ya tienes una cuenta? <span onClick={handleReturn} className="underlineText">Accede aquí</span></p>
-              <a className="loginBottomText" style={{ paddingLeft: "5px" }} href="https://www.google.com">
-                Términos de uso y Políticas
-              </a>
 
-            </div>
+          <div>
+            <p className="loginBottomText">
+              ¿Ya tienes una cuenta?{" "}
+              <span onClick={handleReturn} className="underlineText">
+                Accede aquí
+              </span>
+            </p>
+            <a
+              className="loginBottomText"
+              style={{ paddingLeft: "5px" }}
+              href="https://www.google.com"
+            >
+              Términos de uso y Políticas
+            </a>
+          </div>
         </div>
       </div>
     </div>
