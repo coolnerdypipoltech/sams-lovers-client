@@ -4,8 +4,8 @@ function ChallengeFilter({endDateFilterType, statusFilterType, handleEndDateFilt
     return (
     <>
         <div className="challenges-filter">
-            <p className="challenge-filter-title">Vigencia</p>
-            <Picker className="challenge-filter-picker"
+            <p className="challenges-filter-title">Vigencia</p>
+            <Picker className="challenges-filter-picker"
                 selectedValue={endDateFilterType}
                 onValueChange={(itemValue, itemIndex) => {
                     handleEndDateFilterType(itemValue);
@@ -16,8 +16,8 @@ function ChallengeFilter({endDateFilterType, statusFilterType, handleEndDateFilt
                 <Picker.Item label="Retos por vencer" value="soon_to_expire" />
             </Picker>
             <br/>
-            <p className="challenge-filter-title">Estado</p>
-            <Picker className="challenge-filter-picker"
+            <p className="challenges-filter-title">Estado</p>
+            <Picker className="challenges-filter-picker"
                 selectedValue={statusFilterType}
                 onValueChange={(itemValue, itemIndex) => {
                     handleStatusFilterType(itemValue);

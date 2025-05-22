@@ -5,6 +5,7 @@ import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
+import filter from "../assets/filter.png"
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
@@ -75,19 +76,21 @@ function Challenges() {
     <>
       <>{subPageContent}</>
       <div className="challenges-container">
-        <div style={{ width: "100%", height: "50px" }}></div>
+        <div style={{ width: "100%", height: "60px" }}></div>
         <div className="challenge-header">
-          <p className="Title">Retos</p>
+          <p className="challenge-header-title">Retos</p>
           <div
-            className="challenge-filter"
+            className="challenge-filter-button-container"
             onClick={() => setChallengeFilter(true)}
           >
-            <p>Filtrar</p>
-            <img></img>
+            <p className="challenge-filter-title">Filtrar</p>
+            <img className="challenge-filter-icon" src={filter} alt="filter icon"/>
           </div>
         </div>
-        <p className="challenges-text">¡No te lo pierdas!</p>
-        <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        <div className="challenge-instructions-container">
+          <p className="challenges-text">¡No te lo pierdas!</p>
+          <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        </div>
         <ChallengeList
           changeToSubPage={handleSelectChallenge}
           endDateFilterType={endDateFilterType}

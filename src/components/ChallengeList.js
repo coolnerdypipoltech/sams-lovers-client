@@ -58,7 +58,7 @@ function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) 
           ))}
 
           {isLoading && (
-            <div className="loading">Cargando más retos...</div>
+            <div className="loading">Cargando...</div>
           )}
         </div>
       ) : (
