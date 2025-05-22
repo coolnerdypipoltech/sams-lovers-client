@@ -2,13 +2,18 @@ import "../styles/Profile.css";
 import MisRewards from "../subPages/MisRewards";
 import SelectedMiReward from "../subPages/SelectedMiReward";
 import chevronRight from "../assets/chevronRight.svg";
+import facebook from "../assets/Icon_Facebook.svg";
+import instagram from "../assets/Icon_Instagram.svg";
+import tiktok from "../assets/Icon_Tiktok.svg";
+import X from "../assets/Icon_X.svg";
+import youtube from "../assets/Icon_Youtube.svg";
 import ImagePicker from "../components/ImagePicker";
 import EditProfilePage from "../subPages/EditProfilePage";
 import { useState } from "react";
 import logo from "../assets/profilePic.jpg";
 function Profile() {
   const [subPage, setSubPage] = useState("ConfirmationPage");
-  const [socialMedia, setSocialMedia] = useState(["https://www.google.com", "https://www.youtube.com", "https://www.amazon.com.mx" ]);
+  const [socialMedia, setSocialMedia] = useState([{link: "https://www.google.com", icon: facebook}, {link: "https://www.google.com", icon: instagram}, {link: "https://www.google.com", icon:tiktok }, {link: "https://www.google.com", icon: youtube}, {link: "https://www.google.com", icon: X} ]);
   const [imageSrc, setImageSrc] = useState(null);
   let subPageContent = null;
 
@@ -57,7 +62,9 @@ function Profile() {
       <>{subPageContent} </>
 
       <div className="ProfileContainer">
-        <p className="Title">Mi Perfil</p>
+        <div className="headerSpacer"></div>
+        <div className="headerSpacer"></div>
+        <p className="ProfileTitle">Mi Perfil</p>
         <div className="containerProfilePic">
         {imageSrc ? (
           <img
@@ -71,26 +78,35 @@ function Profile() {
             className="imageProfilePic"
           />
         }
-        <p onClick={handleEditProfile} className="EditProfile">
+        <p  className="EditProfile">
           Editar
         </p>
         </div>
-        <div className="ProfileContainer">
+        <div className="ProfileContainerItems">
           
           <p className="userNameProfile">Usuario SamsLovers</p>
+          <p className="socialMediaTitle">Redes sociales</p>
 
-          {socialMedia != null ? (
+          <div className="editSocialMediaButtonContainer">
+            <p onClick={handleEditProfile}   className="editSocialMediaButton">Editar</p>
+          </div>
+        
+          {socialMedia != null ? (<>
           <div className="socialMediaContainer">
           {socialMedia.map((item, index) => (
-             <div key={index} onClick={() => handleOpenSocialMedia(item)} className="socialMediaItem"></div>
+             <img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item)} ></img>
           ))}
         </div>
+        <div style={{backgroundColor: "white"}} className="Divider"></div>
+        </>
+        
       ) : (
         <></>
       )}
 
+
           <div onClick={handleSelectReward} className="ProfileItem">
-            <p>Mis Rewards</p>
+            <p className="profileRewardsText">Ver mis canjes</p>
             <img src={chevronRight} alt="openImg"></img>
           </div>
         </div>

@@ -1,0 +1,47 @@
+.CodePageContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    background-color: #f2f4ff;
+    height: 100%;
+    gap: 20px;
+}
+
+.CodeTitle{
+    font-size: 20px;
+    text-align: start;
+    width: 80%;
+    font-weight: 500;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.CodeText{
+    font-size: 13px;
+    text-align: start;
+    width: 80%;
+    margin: 0px;
+}
+
+
+
+.CodeInputContainer{
+    width: 70%;
+    display: flex;
+    flex-flow: column;
+    gap: 0px;
+}
+
+.CodeInputText{
+    font-size: 12px;
+    text-align: start;
+    width: 80%;
+    margin: 0px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.CodeButtonContainer{
+    width: 80%;
+}
