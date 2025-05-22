@@ -12,7 +12,7 @@ import { ElementContextData } from "../context/DataContext";
 function Login() {
   const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("Social Media");
+  const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
 
