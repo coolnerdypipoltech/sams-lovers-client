@@ -141,7 +141,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 ref={InputFacebook}
               ></input>
               <InfoTooltip
-                text={"Pon el link de tu perfil de facebook"}
+                text={"Pon el link de tu \n perfil de facebook"}
               ></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
