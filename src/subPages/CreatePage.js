@@ -6,10 +6,12 @@ import eye from "../assets/Visibility.svg";
 import { SignIn, LogIn } from "../hooks/apicalls";
 import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";
+import { CheckBox } from "react-native-web";
 function CreatePage({ onReturn, onNext }) {
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
   const [errorInputPassword1, SetErrorInputPassword1] = useState(null);
+  const [errorCheckbox, SetErrorCheckbox] = useState(false);
   const { setLoginToken } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
   const InputName = useRef("");
@@ -67,6 +69,11 @@ function CreatePage({ onReturn, onNext }) {
     const responseMail = validateMail(InputMail.current.value);
     const responsePassword = ValidatePassword(InputPassword1.current.value)
     let flag = true;
+    if(checkboxValue.current){
+      SetErrorCheckbox(false)
+    }else{
+      SetErrorCheckbox(true)
+    }
 
     if (InputPassword1.current.value.length === 0) {
       flag = false;
@@ -222,6 +229,11 @@ function CreatePage({ onReturn, onNext }) {
             </label>
             <p className="loginBottomText"> Tengo consciencia y estoy de acuerdo con los Términos de Uso y con las Políticas de Sam’s Lover</p>
           </div>
+          {errorCheckbox !== null ? (
+            <span className="errorText">Acepta los términos y políticas de Sam's Lover para continuar </span>
+          ) : (
+            <></>
+          )}
           <button className="GeneralButton" onClick={handleCreateUser}>
             Crear cuenta
           </button>

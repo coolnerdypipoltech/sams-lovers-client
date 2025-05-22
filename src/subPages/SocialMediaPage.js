@@ -69,7 +69,7 @@ function SocialMedia({ onReturn }) {
 
   const validateUser = (_userToTest) => {
     if (_userToTest.length === 0) {
-      return false;
+      return true;
     }
     const userRegex = /^@.+$/;
     return userRegex.test(_userToTest);
@@ -77,7 +77,7 @@ function SocialMedia({ onReturn }) {
 
   const validateFacebook = (_userToTest) => {
     if (_userToTest.length === 0) {
-      return false;
+      return true;
     }
     const regexFacebook = /^https:\/\/www\.facebook\.com\/.+$/;
     return regexFacebook.test(_userToTest);

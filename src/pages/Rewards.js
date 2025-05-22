@@ -4,15 +4,13 @@ import "../styles/Rewards.css";
 import  RewardPage  from "../subPages/RewardPage";
 import  ConfirmationPage  from "../subPages/ConfirmationPage";
 function Rewards() {
-  const [subPage, setSubPage] = useState("ConfirmationPage");
+  const [subPage, setSubPage] = useState("");
   let subPageContent = null;
   const handleSelectReward =  () =>{
-    console.log("I clicked")
     setSubPage("RewardPage")
   } 
 
   const handleReturn =  () =>{
-    console.log("I clicked")
     setSubPage("")
   }
 
