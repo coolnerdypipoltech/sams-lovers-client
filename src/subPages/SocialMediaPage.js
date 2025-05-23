@@ -181,7 +181,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
           <div>
             <a
               className="loginBottomText"
-              style={{ paddingLeft: "5px" }}
+              style={{ paddingBottom: "10px" }}
               href="https://www.google.com"
             >
               Términos de uso y Políticas
