@@ -31,16 +31,7 @@ function CreatePage({ onReturn, onNext }) {
         InputPassword1.current.value
       );
       if (response.ok) {
-        const responseLogin = await LogIn(
-          InputMail.current.value,
-          InputPassword1.current.value
-        );
-        const data = await responseLogin.json();
-        if (responseLogin.ok) {
-          SetUserData(data);
-          setLoginToken(data.access_token);
-          onNext();
-        }
+        onNext();
       } else {
         const data = await response.json();
         console.log(data);
@@ -199,6 +190,10 @@ function CreatePage({ onReturn, onNext }) {
 
           <div className="GeneralInputContainer">
             <p className="loginHeader">Contraseña*</p>
+                        <p className="loginBottomText">
+              Tu contraseña ha de tener al menos 8 caracteres, con números,
+              letras y un símbolo.
+            </p>
             <div className="passwordInput">
               <input
                 placeholder="Escribe una contraseña"
@@ -254,10 +249,7 @@ function CreatePage({ onReturn, onNext }) {
                 src={eye}
               ></img>
             </div>
-            <p className="loginBottomText">
-              Tu contraseña ha de tener al menos 8 caracteres, con números,
-              letras y un símbolo.
-            </p>
+
           </div>
           <div className="checkBoxContainer">
             <label className="checkbox-container">

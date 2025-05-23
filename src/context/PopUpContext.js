@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const ElementContextPopUp = createContext();
 
 const ElementProviderPopUp= ({ children }) => {
-  const [popUpText, setPopUpText] = useState("asdf");
+  const [popUpText, setPopUpText] = useState("");
   const [popUpTitle, setPopUpTitle] = useState("")
 
   const changePopUpText = (newValue) => {
