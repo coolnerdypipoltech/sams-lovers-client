@@ -12,7 +12,7 @@ import Codes from "./pages/Codes";
 
 function App() {
   const { route } = useContext(ElementContextRoute);
-  const { popUpText, closePopUp, popUpTitle } = useContext(ElementContextPopUp);
+  const { popUpText, closePopUp, popUpTitle, popUpLoading } = useContext(ElementContextPopUp);
   let currentPage;
   // eslint-disable-next-line default-case
   switch (route) {
@@ -82,6 +82,18 @@ function App() {
               <button className="GeneralButton3" onClick={handleClosePopUp}>
                 Aceptar
               </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      {popUpLoading ? (
+        <div className="PopUp">
+          <div className="PopUpDialog">
+            <div className="GeneralButtonContainer">
+              <p className="PopUpText">cargando...</p>
+
             </div>
           </div>
         </div>

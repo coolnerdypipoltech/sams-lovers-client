@@ -254,7 +254,7 @@
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 15px);
+  bottom: calc(100% + 5px);
   
   transform: translateX(-50%) translateY(10px);
   padding: 12px 20px;
@@ -268,20 +268,30 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+
+.tooltip-tip{
+  background-color: rgb(255, 255, 255);
+  height: 10px;
+  width: 10px;
+  position: relative;
+  bottom: 0px;
+  top: 15px;
+  left: 12px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
 
 /* Tooltip arrow */
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: 99%;
-  right: -2%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-}
+
 
 .tooltip-container:hover .tooltip,
 .help-button:focus + .tooltip {

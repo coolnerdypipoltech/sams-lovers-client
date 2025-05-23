@@ -56,7 +56,7 @@ background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1
     font-weight: 100;
     font-family: helvetica;
     color:white;
-    text-align: start;
+    text-align: center;
     margin: 0px;
 }
 
@@ -79,6 +79,9 @@ background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    align-content: center;
+
     
 }
 
@@ -202,4 +205,8 @@ background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1
     width: 33px;
     height: 33px;
     padding-top: 3px;
+}
+
+.createPageButtomContainer{
+    padding-bottom: 20px;
 }

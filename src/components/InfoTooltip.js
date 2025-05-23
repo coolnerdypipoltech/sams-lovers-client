@@ -15,7 +15,9 @@ function InfoTooltip({text, dark}) {
           </div>
             
         <div role="tooltip" id="help-tooltip" className="tooltip">
+          
           <pre>{text} </pre>
+          <div className="tooltip-tip"></div>
         </div>
       </div>
       </>

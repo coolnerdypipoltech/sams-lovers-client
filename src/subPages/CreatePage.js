@@ -3,10 +3,12 @@ import { useRef, useState, useContext } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
+import eyeclosed from "../assets/Visibility2.svg";
 import { SignIn, LogIn } from "../hooks/apicalls";
 import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";
 import { CheckBox } from "react-native-web";
+import { ElementContextPopUp } from "../context/PopUpContext";
 function CreatePage({ onReturn, onNext }) {
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
@@ -14,6 +16,12 @@ function CreatePage({ onReturn, onNext }) {
   const [errorCheckbox, SetErrorCheckbox] = useState(false);
   const { setLoginToken } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
+   const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
+
+    const [eyeHelper1, setEyeHelper1] = useState(false);
+  const [typeHelper1, setTypeHelper1] = useState("password");
+    const [eyeHelper2, setEyeHelper2] = useState(false);
+  const [typeHelper2, setTypeHelper2] = useState("password");
   const InputName = useRef("");
   const InputMail = useRef("");
   const InputPassword1 = useRef("");
@@ -25,16 +33,19 @@ function CreatePage({ onReturn, onNext }) {
 
   const handleCreateUser = async () => {
     if (inputValidation()) {
+      changePopUpLoading(true)
       const response = await SignIn(
         InputName.current.value,
         InputMail.current.value,
         InputPassword1.current.value
       );
       if (response.ok) {
+        changePopUpLoading(false)
         onNext();
       } else {
         const data = await response.json();
         console.log(data);
+        changePopUpLoading(false)
         if (data.message) {
           if (data.message.email) {
             SetErrorInputMail(data.message.email);
@@ -190,32 +201,45 @@ function CreatePage({ onReturn, onNext }) {
 
           <div className="GeneralInputContainer">
             <p className="loginHeader">Contraseña*</p>
-                        <p className="loginBottomText">
+                        <p style={{textAlign: "start"}} className="loginBottomText">
               Tu contraseña ha de tener al menos 8 caracteres, con números,
               letras y un símbolo.
             </p>
             <div className="passwordInput">
-              <input
-                placeholder="Escribe una contraseña"
+                            <input
+                placeholder="Contraseña"
                 ref={InputPassword1}
                 className="GeneralInput"
-                type="password"
+                type={typeHelper1}
               ></input>
 
-              <img
-                onClick={() => {
-                  if (
-                    InputPassword1.current.getAttribute("type") === "password"
-                  ) {
-                    InputPassword1.current.setAttribute("type", "text");
-                  } else {
-                    InputPassword1.current.setAttribute("type", "password");
+              <div onClick={() => {
+                  if(eyeHelper1){
+                    setTypeHelper1("password")
+                    setEyeHelper1(false);
+                  }else{
+                    setTypeHelper1("text")
+                    setEyeHelper1(true);
                   }
-                }}
-                alt="eye"
-                className="eyePassword"
-                src={eye}
-              ></img>
+                    
+                    }}>
+                {eyeHelper1 === true ? (
+                  <img
+                    alt="eye"
+                    className="eyePassword"
+                    src={eyeclosed}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => {
+                      setEyeHelper1(true);
+                    }}
+                    alt="eye"
+                    className="eyePassword"
+                    src={eye}
+                  ></img>
+                )}
+              </div>
             </div>
 
             {errorInputPassword1 !== null ? (
@@ -227,27 +251,40 @@ function CreatePage({ onReturn, onNext }) {
           <div className="GeneralInputContainer">
             <p className="loginHeader">Confirmar Contraseña*</p>
             <div className="passwordInput">
-              <input
-                placeholder="Escribe tu contraseña de nuevo"
+                            <input
+                placeholder="Contraseña"
                 ref={InputPassword2}
                 className="GeneralInput"
-                type="password"
+                type={typeHelper2}
               ></input>
 
-              <img
-                onClick={() => {
-                  if (
-                    InputPassword2.current.getAttribute("type") === "password"
-                  ) {
-                    InputPassword2.current.setAttribute("type", "text");
-                  } else {
-                    InputPassword2.current.setAttribute("type", "password");
+              <div onClick={() => {
+                  if(eyeHelper2){
+                    setTypeHelper2("password")
+                    setEyeHelper2(false);
+                  }else{
+                    setTypeHelper2("text")
+                    setEyeHelper2(true);
                   }
-                }}
-                alt="eye"
-                className="eyePassword"
-                src={eye}
-              ></img>
+                    
+                    }}>
+                {eyeHelper2 === true ? (
+                  <img
+                    alt="eye"
+                    className="eyePassword"
+                    src={eyeclosed}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => {
+                      setEyeHelper2(true);
+                    }}
+                    alt="eye"
+                    className="eyePassword"
+                    src={eye}
+                  ></img>
+                )}
+              </div>
             </div>
 
           </div>
@@ -262,7 +299,7 @@ function CreatePage({ onReturn, onNext }) {
               />
               <span className="checkmark"></span>
             </label>
-            <p className="loginBottomText">
+            <p style={{textAlign: "start"}} className="loginBottomText">
               {" "}
               Tengo consciencia y estoy de acuerdo con los Términos de Uso y con
               las Políticas de Sam’s Lover
@@ -275,11 +312,11 @@ function CreatePage({ onReturn, onNext }) {
           ) : (
             <></>
           )}
-          <button className="GeneralButton" onClick={handleCreateUser}>
+          <button disabled={popUpLoading} className="GeneralButton" onClick={handleCreateUser}>
             Crear cuenta
           </button>
 
-          <div>
+          <div className="createPageButtomContainer">
             <p className="loginBottomText">
               ¿Ya tienes una cuenta?{" "}
               <span onClick={handleReturn} className="underlineText">
