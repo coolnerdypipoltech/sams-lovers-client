@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import "./styles/App.css";
 import Header from "./components/Header";
 import Main from "./pages/Main";
+import Codes from "./pages/Codes";
 
 function App() {
   const { route } = useContext(ElementContextRoute);
@@ -26,6 +27,14 @@ function App() {
         <>
           <Header></Header>
           <Main></Main>
+        </>
+      );
+      break;
+      case "Codes":
+      currentPage = (
+        <>
+          <Header></Header>
+          <Codes></Codes>
         </>
       );
       break;

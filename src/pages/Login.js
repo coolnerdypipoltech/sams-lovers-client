@@ -38,7 +38,12 @@ function Login() {
   };
 
   const onClickShowLoginMessage = () => {
+    LoginText.current.value = ""
+    LoginPassword.current.value = ""
+    setErrorPassword(false)
+    setErrorEmail(false)
     setLoginMessage(true)
+
   }
 
   const onClickLogin = async () => {

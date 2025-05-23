@@ -35,29 +35,12 @@ function SocialMedia({ onReturn, onShowMessage }) {
 
   const inputValidation = () => {
     const responseF = validateFacebook(InputFacebook.current.value);
-    const responseI = validateUser(InputInstagram.current.value);
-    const responseT = validateUser(InputTiktok.current.value);
-    const responseX = validateUser(InputX.current.value);
-    const responseY = validateUser(InputYoutube.current.value);
-
     SetErrorInputFacebook(responseF);
-    SetErrorInputInstagram(responseI);
-    SetErrorInputTiktok(responseT);
-    SetErrorInputX(responseX);
-    SetErrorInputYoutube(responseY);
-    if (responseY && responseX && responseT && responseI && responseF) {
+    if ( responseF) {
       return true;
     } else {
       return false;
     }
-  };
-
-  const validateUser = (_userToTest) => {
-    if (_userToTest.length === 0) {
-      return true;
-    }
-    const userRegex = /^@.+$/;
-    return userRegex.test(_userToTest);
   };
 
   const validateFacebook = (_userToTest) => {
@@ -91,12 +74,12 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
               <InfoTooltip
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n cashi o Walmart.245`}
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
@@ -113,12 +96,12 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
               <InfoTooltip
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
               ></InfoTooltip>
             </div>
 
@@ -154,12 +137,12 @@ function SocialMedia({ onReturn, onShowMessage }) {
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
               <InfoTooltip
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
@@ -172,12 +155,12 @@ function SocialMedia({ onReturn, onShowMessage }) {
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputX}
               ></input>
               <InfoTooltip
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (
