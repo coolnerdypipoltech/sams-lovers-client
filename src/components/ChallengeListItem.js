@@ -33,12 +33,9 @@ const getStatusBackgroundColor = (status) => {
 function ChallengeListItem({challenge}){
   return (
     <>
-      {(getStatusIcon(challenge.transaction?.status) !== null) && (
-          <div className="list-item-status-container" style={{backgroundColor: getStatusBackgroundColor(challenge.transaction?.status)}}>
-            {<img className="status-icon" src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>}
-          </div>
-        )}
+      
       <div className="listItem">
+        
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
         ) : (
@@ -48,6 +45,11 @@ function ChallengeListItem({challenge}){
           <p className="listItemTitle">{challenge.name}</p>
           <p className="listItemSubtitle">{challenge.diamonds}</p>
         </div>
+        {(getStatusIcon(challenge.transaction?.status) !== null) && (
+          <div className="list-item-status-container" style={{backgroundColor: getStatusBackgroundColor(challenge.transaction?.status)}}>
+            {<img className="status-icon" src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>}
+          </div>
+        )}
       </div>
     </>
   );

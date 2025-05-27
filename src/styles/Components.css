@@ -10,6 +10,7 @@
   position: fixed;
   background: transparent linear-gradient(90deg, #3E74F2 0%, #0074FF 100%) 0% 0% no-repeat padding-box;
   opacity: 1;
+  justify-content: space-between;
 }
 
 .header-logo {
@@ -48,6 +49,7 @@
 }
 
 .header-diamonds-text{
+  margin: 0px;
   width: 18px;
   height: 16px;
   font: var(--unnamed-font-style-normal) normal bold var(--unnamed-font-size-16)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-gibson);
@@ -72,7 +74,7 @@
   height: 100%;
   padding-top: 60px;
   position: absolute;
-  z-index: 11;
+  z-index: 101;
 }
 
 .header-menu{
@@ -80,7 +82,7 @@
   max-width: 100%;
   background-color: white;
   position: absolute;
-  z-index: 12;
+  z-index: 102;
 }
 
 .header-menu-element{
@@ -119,8 +121,8 @@
 
 .list-item-status-container{
   position: relative;
-  margin-left: 90%;
-  width: 15px;
+  top: -30px;
+  width: 20px;
   height: 15px;
   background-color: grey;
   border-radius: 15px;
@@ -134,6 +136,7 @@
   width: 10px;
   height: 10px;
   margin-bottom: 5px;
+  margin-left: 2px;
 }
 
 .listContainer {
