@@ -1,6 +1,6 @@
-import completedStatusLogo from "../assets/hamburger_icon_white.png"
-import inReviewStatusLogo from "../assets/hamburger_icon_white.png"
-import rejectedStatusLogo from "../assets/hamburger_icon_white.png"
+import completedStatusLogo from "../assets/Icon_menu.svg"
+import inReviewStatusLogo from "../assets/Icon_menu.svg"
+import rejectedStatusLogo from "../assets/Icon_menu.svg"
 
 const getStatusIcon = (status) => {
   switch(status) {
