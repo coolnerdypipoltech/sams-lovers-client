@@ -44,17 +44,13 @@ function Header() {
         </div>
       </div>
       {menuVisible && (
-        <div
-          className="header-menu-container"
-          onClick={(e) => setMenuVisible(!menuVisible)}
+        <HeaderMenu
+          handleBack={(e) => setMenuVisible(!menuVisible)}
+          handleMenuRoute={handleMenuRoute}
+          handleLogOut={handleLogOut}
         >
-          <HeaderMenu
-            handleMenuRoute={handleMenuRoute}
-            handleLogOut={handleLogOut}
-          >
-            {" "}
-          </HeaderMenu>
-        </div>
+          {" "}
+        </HeaderMenu>
       )}
     </>
   );
