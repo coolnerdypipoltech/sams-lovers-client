@@ -65,23 +65,7 @@ function Profile() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <p className="ProfileTitle">Mi Perfil</p>
-        <div className="containerProfilePic">
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt="Imagen seleccionada"
-            className="imageProfilePic"
-          />
-        ) : <img
-            src={logo}
-            alt="Imagen por defecto"
-            className="imageProfilePic"
-          />
-        }
-        <p  className="EditProfile">
-          Editar
-        </p>
-        </div>
+        <ImagePicker></ImagePicker>
         <div className="ProfileContainerItems">
           
           <p className="userNameProfile">Usuario SamsLovers</p>

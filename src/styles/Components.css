@@ -332,3 +332,33 @@
     font-size: 14px;
   }
 }
+
+.place-image{
+  height: 14px;
+}
+
+.ReactImagePickerEditor .curtain button .material-icons{
+  font-size: 0px;
+  height: 0px;
+  width: 0px;
+}
+
+.ReactImagePickerEditor .place-image .image-holder{
+  opacity: 0;
+}
+
+.ReactImagePickerEditor .caption{
+  font-size: 0px !important;
+}
+
+.ReactImagePickerEditor .curtain{
+  opacity: 0;
+}
+
+.ReactImagePickerEditor{
+  width: 80px;
+  height: 14px;
+  position: absolute;
+  z-index: 10;
+  padding-left: 20px;
+}
