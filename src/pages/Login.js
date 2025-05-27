@@ -39,6 +39,10 @@ function Login() {
     setSubPage("");
   };
 
+  const onClickReturnLandingPage = () => {
+   changeRoute("Landing")
+  };
+
   const onClickShowLoginMessage = () => {
     LoginText.current.value = "";
     LoginPassword.current.value = "";
@@ -149,7 +153,7 @@ function Login() {
 
       <div className="LoginContainer">
         <div className="loginHeaderContainer">
-          <p className="loginHeaderText">Volver</p>
+          <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
         </div>
 

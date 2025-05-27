@@ -9,6 +9,7 @@ import "./styles/App.css";
 import Header from "./components/Header";
 import Main from "./pages/Main";
 import Codes from "./pages/Codes";
+import Landing from "./pages/Landing";
 
 function App() {
   const { route } = useContext(ElementContextRoute);
@@ -17,7 +18,10 @@ function App() {
   // eslint-disable-next-line default-case
   switch (route) {
     case "":
-      currentPage = <Login></Login>;
+      currentPage = <Landing></Landing>;
+      break;
+      case "Landing":
+      currentPage = <Landing></Landing>;
       break;
     case "Login":
       currentPage = <Login></Login>;
