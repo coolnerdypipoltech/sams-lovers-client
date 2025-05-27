@@ -4,7 +4,7 @@ import useIndexedDB from "../hooks/useIndexedDB";
 const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
-  const [route, setRoute] = useState("Profile");
+  const [route, setRoute] = useState("");
   const loginToken = useRef("token");
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 

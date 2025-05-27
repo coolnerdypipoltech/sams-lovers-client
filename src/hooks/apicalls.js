@@ -1,4 +1,4 @@
-const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net//api/v1/";
+const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api/v1/";
 
 export async function SignIn(_name, _email, _password) {
     try {
