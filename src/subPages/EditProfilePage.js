@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import logo from "../assets/Brand_SamsLovers.svg";
-import facebook from "../assets/Icon_Facebook.svg";
-import instagram from "../assets/Icon_Instagram.svg";
-import tiktok from "../assets/Icon_Tiktok.svg";
-import X from "../assets/Icon_X.svg";
-import youtube from "../assets/Icon_Youtube.svg";
+
+import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
+import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
+import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
+import X from "../assets/iconsBlue/Icon_X.svg";
+import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import InfoTooltip from "../components/InfoTooltip";
 
 function EditProfilePage({ onReturn }) {
@@ -87,7 +87,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
@@ -109,7 +109,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
@@ -150,7 +150,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
@@ -168,7 +168,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="@usuario"
+                placeholder="usuario"
                 className="GeneralInput"
                 ref={InputX}
               ></input>

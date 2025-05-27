@@ -46,6 +46,8 @@
   background: transparent url('../assets/diamond.svg') 0% 0% no-repeat padding-box;
   border-radius: 3px;
   opacity: 1;
+  margin-left: 8px;
+  margin-top: 2px;
 }
 
 .header-diamonds-text{
@@ -60,6 +62,8 @@
   letter-spacing: 0px;
   color: #003087;
   opacity: 1;
+  margin-top: 5px;
+  margin-left: 2px;
 }
 
 .header-menu-icon{

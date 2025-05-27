@@ -1,4 +1,5 @@
 import "../styles/Components.css";
+import logo from "../assets/Brand_SamsLovers.svg";
 import iconMenu from "../assets/Icon_menu.svg";
 import diamond from "../assets/diamond.svg";
 import { useContext, useState } from "react";
@@ -24,7 +25,7 @@ function Header() {
         <img
           className="header-logo"
           alt="logo"
-          src="/sams-lovers-client/static/media/Brand_SamsLovers.cd3316c5163e4c0b96992c9a0dd68168.svg"
+          src={logo}
         ></img>
         <div className="rowAlign">
           <div className="header-diamonds-container">
