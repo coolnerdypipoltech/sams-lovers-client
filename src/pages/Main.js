@@ -5,15 +5,23 @@ import ArticlePage from "../subPages/ArticlePage";
 function Main() {
   const [openArticlePage, setOpenArticlePage] = useState(false);
 
+  const onClickOpenArticle = () => {
+    setOpenArticlePage(true);
+  }
+
+  const onReturn = () => {
+    setOpenArticlePage(false);
+  }
+
   return (
     <>
       {openArticlePage ? (
-        <ArticlePage></ArticlePage>
+        <ArticlePage onReturn={onReturn}></ArticlePage>
       ) : (
         <div className="MainContainer">
           <p className="Title">Tutoriales, Tips y noticias</p>
 
-          <ArticleList></ArticleList>
+          <ArticleList onClickOpenArticle={onClickOpenArticle} ></ArticleList>
         </div>
       )}
     </>

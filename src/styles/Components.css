@@ -77,6 +77,20 @@
   background: transparent url('../assets/Icon_menu.svg') 0% 0% no-repeat padding-box;
 }
 
+.playerWrapperThumbnail{
+  position: relative;
+  display: flex;
+  contain: content;
+  background-position: 50%;
+  background-size: cover;
+  cursor: pointer;
+  height: 190px;
+}
+
+.playerBtnThumbnail{
+  opacity: 0;
+}
+
 .header-menu-container{
   width: 100%;
   height: 100%;
