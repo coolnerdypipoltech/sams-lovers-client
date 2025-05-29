@@ -22,6 +22,10 @@ function Challenges() {
   };
 
   const handleReturn = () => {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "84vh";
+    }
     setSubPage("");
   };
 
@@ -46,6 +50,10 @@ function Challenges() {
   };
 
   if (subPage === "ChallengePage") {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "100px";
+    }
     subPageContent = (
       <ChallengePage
         returnPage={handleReturn}
@@ -75,15 +83,24 @@ function Challenges() {
     <>
       <>{subPageContent}</>
       <div className="challenges-container">
+<<<<<<< Updated upstream
         <div style={{ width: "100%", height: "50px" }}></div>
+=======
+        <div className="headerSpacer"></div>
+        <div className="headerSpacer"></div>
+>>>>>>> Stashed changes
         <div className="challenge-header">
           <p className="Title">Retos</p>
           <div
             className="challenge-filter"
             onClick={() => setChallengeFilter(true)}
           >
+<<<<<<< Updated upstream
             <p>Filtrar</p>
             <img></img>
+=======
+            <img className="challenge-filter-icon" src={filter} alt="filter icon"/>
+>>>>>>> Stashed changes
           </div>
         </div>
         <p className="challenges-text">¡No te lo pierdas!</p>

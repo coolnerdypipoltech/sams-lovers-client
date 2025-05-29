@@ -46,7 +46,7 @@ function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) 
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" }}
+          style={{ overflowY: "auto", height: "84vh", paddingTop: "10px" }}
         >
           {challengesData.map((challenge, index) => (
             <div onClick={() => handleSelectChallenge(challenge)}
