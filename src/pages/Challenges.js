@@ -1,17 +1,25 @@
 import { useState, useContext } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
-import filter from "../assets/"
+import filter from "../assets/filter.png"
 import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
+import { ElementContextRoute } from "../context/RouteContext";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [endDateFilterType, setEndDateFilterType] = useState("all");
-  const [statusFilterType, setStatusFilterType] = useState("all");
+  const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
+  const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
+
+  const [offset, setOffset] = useState(0);
+
+  const { getLogInToken } = useContext(ElementContextRoute);
+
+  const refresh_limit = 5;
+  const refresh_offset = 0;
 
   const { initRequestChallenges, currentChallenge } =
     useContext(ElementContextData);
@@ -39,16 +47,18 @@ function Challenges() {
   };
 
   const handleRefreshList = () => {
-    initRequestChallenges(endDateFilterType, statusFilterType);
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
-  const handleEndDateFilterType = (endDateFilterType) => {
-    setEndDateFilterType(endDateFilterType);
+   const handleChallengeStatusFilter = (challengeStatus) => {
+    setChallengeStatusFilter(challengeStatus);
   };
 
-  const handleStatusFilterType = (statusFilterType) => {
-    setStatusFilterType(statusFilterType);
+   const handleTransactionStatusFilter = (transactionStatus) => {
+    setTransactionStatusFilter(transactionStatus);
   };
+
+  const handleSetOffset = (_limit) => {setOffset(offset + _limit); };
 
   if (subPage === "ChallengePage") {
     const div = document.querySelector(".listContainer");
@@ -98,10 +108,12 @@ function Challenges() {
         </div>
         <p className="challenges-text">¡No te lo pierdas!</p>
         <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
-        <ChallengeList
+         <ChallengeList
+          offset = {offset}
+          handleSetOffset = {handleSetOffset}
           changeToSubPage={handleSelectChallenge}
-          endDateFilterType={endDateFilterType}
-          statusFilterType={statusFilterType}
+          challengeStatusFilter={challengeStatusFilter}
+          transactionStatusFilter={transactionStatusFilter}
         ></ChallengeList>
       </div>
       {challengeFilter && (
@@ -114,10 +126,10 @@ function Challenges() {
             }}
           >
             <ChallengeFilter
-              endDateFilterType={endDateFilterType}
-              statusFilterType={statusFilterType}
-              handleEndDateFilterType={handleEndDateFilterType}
-              handleStatusFilterType={handleStatusFilterType}
+               challengeStatusFilter={challengeStatusFilter}
+              transactionStatusFilter={transactionStatusFilter}
+              handleChallengeStatusFilter={handleChallengeStatusFilter}
+              handleTransactionStatusFilter={handleTransactionStatusFilter}
             ></ChallengeFilter>
           </div>
         </div>
