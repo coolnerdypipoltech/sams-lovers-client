@@ -11,13 +11,14 @@ function Header() {
   const { changeRoute } = useContext(ElementContextRoute);
 
   const handleMenuRoute = (pageToTravelTo) => {
-    console.log(pageToTravelTo);
     changeRoute(pageToTravelTo);
+    setMenuVisible(false);
   };
 
   const handleLogOut = () => {
     console.log("Log Out");
   };
+
 
   return (
     <>
