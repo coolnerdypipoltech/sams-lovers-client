@@ -159,9 +159,9 @@ export async function GetArticles (_token, _page, _count) {
     }
 }
 
-export async function GetChallengesByUser (_token, _page, _count) {
+export async function GetChallengesByUser (_token, _challenge_status, _transaction_status, _limit, _offset) {
     try{
-        const response = await fetch(ENDPOINT + `challenges/${_page}/${_count}`, {
+        const response = await fetch(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

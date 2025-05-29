@@ -6,12 +6,19 @@ import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import filter from "../assets/filter.png"
+import { ElementContextRoute } from "../context/RouteContext";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [endDateFilterType, setEndDateFilterType] = useState("all");
-  const [statusFilterType, setStatusFilterType] = useState("all");
+  const [challengeStatusFilter, setChallengeStatusFilter] = useState("all");
+  const [transactionStatusFilter, setTransactionStatusFilter] = useState("all");
   const [challengeFilter, setChallengeFilter] = useState(false);
+  const [offset, setOffset] = useState(0);
+
+  const { getLogInToken } = useContext(ElementContextRoute);
+
+  const refresh_limit = 5;
+  const refresh_offset = 0;
 
   const { initRequestChallenges, currentChallenge } =
     useContext(ElementContextData);
@@ -35,16 +42,18 @@ function Challenges() {
   };
 
   const handleRefreshList = () => {
-    initRequestChallenges(endDateFilterType, statusFilterType);
+    initRequestChallenges(getLogInToken, challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
-  const handleEndDateFilterType = (endDateFilterType) => {
-    setEndDateFilterType(endDateFilterType);
+  const handleChallengeStatusFilter = (challengeStatus) => {
+    setChallengeStatusFilter(challengeStatus);
   };
 
-  const handleStatusFilterType = (statusFilterType) => {
-    setStatusFilterType(statusFilterType);
+  const handleTransactionStatusFilter = (transactionStatus) => {
+    setTransactionStatusFilter(transactionStatus);
   };
+
+  const handleSetOffset = (_limit) => {setOffset(offset + _limit); };
 
   if (subPage === "ChallengePage") {
     subPageContent = (
@@ -92,9 +101,11 @@ function Challenges() {
           <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
         </div>
         <ChallengeList
+          offset = {offset}
+          handleSetOffset = {handleSetOffset}
           changeToSubPage={handleSelectChallenge}
-          endDateFilterType={endDateFilterType}
-          statusFilterType={statusFilterType}
+          challengeStatusFilter={challengeStatusFilter}
+          transactionStatusFilter={transactionStatusFilter}
         ></ChallengeList>
       </div>
       {challengeFilter && (
@@ -103,14 +114,15 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
+              setOffset(0);
               handleRefreshList();
             }}
           >
             <ChallengeFilter
-              endDateFilterType={endDateFilterType}
-              statusFilterType={statusFilterType}
-              handleEndDateFilterType={handleEndDateFilterType}
-              handleStatusFilterType={handleStatusFilterType}
+              challengeStatusFilter={challengeStatusFilter}
+              transactionStatusFilter={transactionStatusFilter}
+              handleChallengeStatusFilter={handleChallengeStatusFilter}
+              handleTransactionStatusFilter={handleTransactionStatusFilter}
             ></ChallengeFilter>
           </div>
         </div>

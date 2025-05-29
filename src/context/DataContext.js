@@ -1,12 +1,11 @@
 import React, { createContext, useRef, useState } from "react";
 import {GetArticles, GetChallengesByUser} from  "../hooks/apicalls"
-import data from "../test.json";
 const ElementContextData = createContext();
 
 const ElementProviderData= ({ children }) => {
 
     const [rewardsData, setRewardsData] = useState(null);
-    const [articleData, sertArticleData] = useState(null);
+    const [articleData, setArticleData] = useState(null);
     const [challengesData, setChallengesData] = useState(null)
 
     const UserData = useRef(null);
@@ -28,18 +27,24 @@ const ElementProviderData= ({ children }) => {
 
     const initRequestArticles = async () => {
         const response = await GetArticles()
-        sertArticleData(response.data)
+        setArticleData(response.data)
         articleData.current = response.nextLink
         return
     }
 
-    const initRequestChallenges = async (type) => {
-        //const response = await GetChallengesByUser()
-        //sertArticleData(response.data)
-        //nextArticles.current = response.nextLink
-        setChallengesData([data.challenges[0], data.challenges[1], data.challenges[2], data.challenges[3], data.challenges[4], data.challenges[5], data.challenges[6], data.challenges[7],data.challenges[8], data.challenges[9]]);;
-        //setChallengesData([1, 2, 3, 4, 5, 6, 7, 8 , 9, 10])
+    const initRequestChallenges = async (_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
+        const response = await GetChallengesByUser(_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
+        if (response.ok) {
+          setChallengesData(response.data);
+          nextChallenges.current = response.nextLink;
+        } else {
+          if(response.data.message){
+            if(response.status === 403){
+              //todo send user to log in page
+            }
+          }
         return
+      }
     }
 
   const requestMoreRewards = async () => {
@@ -58,18 +63,24 @@ const ElementProviderData= ({ children }) => {
     return
   };
 
-  const requestMoreChallenges = async () => {
+  const requestMoreChallenges = async (_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
     if(nextChallenges === null){
         return
     }
-    let tempArray = [...challengesData]
+
     nextChallenges.current = ""
-    //setChallengesData(tempArray);
-    ///Tests
-    const newChallenges = Array.from(tempArray);
-      setChallengesData(prev => [...prev, ...newChallenges]);
-    ///Tests
-    return
+    const response = await GetChallengesByUser(_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
+        if (response.ok) {
+          setChallengesData(prev => [...prev, ...response.data]);
+          nextChallenges.current = response.nextLink;
+        } else {
+          if(response.data.message){
+            if(response.status === 403){
+              //todo send user to log in page
+            }
+          }
+        return
+      }
   };
 
   const SetUserData = (_Data) => {
@@ -83,9 +94,10 @@ const ElementProviderData= ({ children }) => {
     }
     let tempArray = [...articleData]
     nextArticles.current = ""
-    sertArticleData(tempArray);
+    setArticleData(tempArray);
     return
   };
+
   const requestNextArticle = async () => {
     if(articleData.length - 1 <= articlePosition.current + 1){
         currentArticle.current = articleData[articlePosition + 1]
