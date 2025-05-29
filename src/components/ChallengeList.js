@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import ChallengeListItem from "./ChallengeListItem";
 import { ElementContextData } from "../context/DataContext";
-import { ElementContextRoute } from "../context/RouteContext";
 
 function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStatusFilter, transactionStatusFilter}) {
-  const { getLogInToken } = useContext(ElementContextRoute);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +21,7 @@ function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStat
     if(isLoading) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreChallenges(getLogInToken, challengeStatusFilter, transactionStatusFilter, limit, offset);
+      await requestMoreChallenges(challengeStatusFilter, transactionStatusFilter, limit, offset);
       setIsLoading(false);
     }, 1000);
   };

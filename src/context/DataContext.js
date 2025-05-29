@@ -32,18 +32,19 @@ const ElementProviderData= ({ children }) => {
         return
     }
 
-    const initRequestChallenges = async (_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
-        const response = await GetChallengesByUser(_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
-        if (response.ok) {
-          setChallengesData(response.data);
-          nextChallenges.current = response.nextLink;
-        } else {
-          if(response.data.message){
-            if(response.status === 403){
-              //todo send user to log in page
-            }
+    const initRequestChallenges = async (_challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
+      const response = await GetChallengesByUser((`${UserData.current.token_type} ${UserData.current.access_token}`), _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
+      if (response.ok) {
+        console.log(response.data);
+        setChallengesData(response.data);
+        nextChallenges.current = response.nextLink;
+      } else {
+        if(response.data.message){
+          if(response.status === 403){
+            //todo send user to log in page
           }
-        return
+        }
+        return;
       }
     }
 
@@ -63,13 +64,13 @@ const ElementProviderData= ({ children }) => {
     return
   };
 
-  const requestMoreChallenges = async (_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
+  const requestMoreChallenges = async (_challengeStatusFilter, _transactionStatusFilter, _limit, _offset) => {
     if(nextChallenges === null){
         return
     }
 
     nextChallenges.current = ""
-    const response = await GetChallengesByUser(_token, _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
+    const response = await GetChallengesByUser((`${UserData.current.token_type} ${UserData.current.access_token}`), _challengeStatusFilter, _transactionStatusFilter, _limit, _offset);
         if (response.ok) {
           setChallengesData(prev => [...prev, ...response.data]);
           nextChallenges.current = response.nextLink;

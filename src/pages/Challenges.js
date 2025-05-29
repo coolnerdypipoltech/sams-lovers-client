@@ -6,16 +6,13 @@ import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import filter from "../assets/filter.png"
-import { ElementContextRoute } from "../context/RouteContext";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [challengeStatusFilter, setChallengeStatusFilter] = useState("all");
-  const [transactionStatusFilter, setTransactionStatusFilter] = useState("all");
+  const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
+  const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
   const [offset, setOffset] = useState(0);
-
-  const { getLogInToken } = useContext(ElementContextRoute);
 
   const refresh_limit = 5;
   const refresh_offset = 0;
@@ -42,7 +39,7 @@ function Challenges() {
   };
 
   const handleRefreshList = () => {
-    initRequestChallenges(getLogInToken, challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
   const handleChallengeStatusFilter = (challengeStatus) => {

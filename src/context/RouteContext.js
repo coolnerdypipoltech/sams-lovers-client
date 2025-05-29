@@ -21,7 +21,6 @@ const ElementProviderRoute= ({ children }) => {
     }else{
       setRoute(newValue);
     }
-    
   };
 
   const setLoginToken = async (newValue) => {
@@ -36,11 +35,8 @@ const ElementProviderRoute= ({ children }) => {
     }
     loginToken.current = newValue;
     saveItem({loginToken: newValue})
-    
   }
 
-  const getLogInToken = () => {return loginToken.current;}
-  
   const persistLogin = async () => {
     const savedItems = await getItems()
     if(savedItems !== undefined){
@@ -55,7 +51,7 @@ const ElementProviderRoute= ({ children }) => {
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, changeRoute, setLoginToken, getLogInToken}}>
+    <ElementContextRoute.Provider value={{ route, changeRoute, setLoginToken}}>
       {children}
     </ElementContextRoute.Provider>
   );

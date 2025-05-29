@@ -49,7 +49,7 @@ export async function LogInWithToken(_token) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         }
         });
         return response;
@@ -81,7 +81,7 @@ export async function CreateSubmission(_token, _challenge_id) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         },
         body: JSON.stringify({
             challenge_id: _challenge_id,
@@ -99,7 +99,7 @@ export async function PurchaseReward(_token, _reward_id) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         },
         body: JSON.stringify({
             reward_id: _reward_id,
@@ -117,7 +117,7 @@ export async function ExchangeCode(_token, _code) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         },
         body: JSON.stringify({
             code: _code,
@@ -135,7 +135,7 @@ export async function GetUserInfo(_token) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         }
         });
         return response;
@@ -150,7 +150,7 @@ export async function GetArticles (_token, _page, _count) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         }
         });
         return response;
@@ -160,14 +160,16 @@ export async function GetArticles (_token, _page, _count) {
 }
 
 export async function GetChallengesByUser (_token, _challenge_status, _transaction_status, _limit, _offset) {
+    console.log(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`)
     try{
         const response = await fetch(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         }
         });
+        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -180,7 +182,7 @@ export async function GetPurchasedRewards (_token, _page, _count) {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer " + _token,
+              "Authorization": _token,
             }
           });
           const data = await response.json();
@@ -196,7 +198,7 @@ export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_u
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + _token,
+            "Authorization": _token,
         },
         body: JSON.stringify({
             name: _name,
@@ -223,7 +225,7 @@ export async function UpdateUserAvatar (_token, _file) {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + _token,
+                "Authorization": _token,
             },
             body: formData,
             });
@@ -241,7 +243,7 @@ export async function DeleteUser (_token) {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + _token,
+                "Authorization": _token,
             }
         });
         return response;
