@@ -13,16 +13,9 @@
 }
 
 .challenges-subpage-container {
-<<<<<<< Updated upstream
-  background-color: white;
-  width: 80%;
-  height: 100%;
-  padding-top: 80px;
-=======
   background-color: #f2f4f7;
   width: 90%;
   height:calc(100%);
->>>>>>> Stashed changes
   position: absolute;
   display: flex;
   margin: 0px;
@@ -48,26 +41,18 @@
 
 .challenge-header {
   padding-top: 0px;
-<<<<<<< Updated upstream
-  width: 80%;
-  height: 100%;
-=======
   width: 90%;
->>>>>>> Stashed changes
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-<<<<<<< Updated upstream
-=======
 .challenge-header-title{
   font-size: 24px;
   font-weight: 700;
   color: #003087;
 }
 
->>>>>>> Stashed changes
 .row {
   display: flex;
   gap: 10px;
@@ -75,11 +60,7 @@
 
 .challenge-image-container {
   width: 100%;
-<<<<<<< Updated upstream
-  height: 100px;
-=======
   height: 260px;
->>>>>>> Stashed changes
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -89,13 +70,6 @@
 }
 
 .challenge-title {
-<<<<<<< Updated upstream
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #2c3e50;
-=======
   font-size: 24px;
   text-align: start;
   margin: 0px;
@@ -106,7 +80,6 @@
   text-align: justify;
   font-weight: 600;
   
->>>>>>> Stashed changes
 }
 
 .url-title {
@@ -127,21 +100,12 @@
   color: grey;
 }
 
-<<<<<<< Updated upstream
-.challenge-text-title {
-  font-size: 12px;
-  font-weight: bold;
-=======
 .challenge-information-text-title {
   font-size: 14px;
   font-weight: 500;
->>>>>>> Stashed changes
   text-align: start;
   margin: 0px;
   margin-bottom: 5px;
-<<<<<<< Updated upstream
-  color: black;
-=======
   color: #0b1432;
 }
 
@@ -163,7 +127,6 @@
   color: #868787;
   padding: 0 15px 15px 15px;
   text-align: justify;
->>>>>>> Stashed changes
 }
 
 .diamondsContainer{
@@ -221,11 +184,7 @@
   -o-border-radius: 5px;
 }
 
-<<<<<<< Updated upstream
-.url-input:hover {
-  background-color: rgb(232, 232, 232);
-  border-color: #2980b9;
-=======
+
 .url-input::placeholder{
   color:#0b1432;
   font-weight: 400;
@@ -265,7 +224,7 @@
   color: white;
   font-size: small;
   margin-right: 10px;
->>>>>>> Stashed changes
+
 }
 
 .challenges-filter-container {
@@ -320,14 +279,7 @@
   -o-border-radius: 25px;
 }
 
-<<<<<<< Updated upstream
-.challenges-text{
-  margin: 0;
-  color: white;
-  padding-left: 35px;
-  text-align: left;
-  font-size: 10px;
-=======
+
 .challenge-filter-icon{
   width: 10px;
   height: 10px;
@@ -380,5 +332,5 @@
   align-items: flex-start;
   align-content: center;
   justify-content: center;
->>>>>>> Stashed changes
 }
+  

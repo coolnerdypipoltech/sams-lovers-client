@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg"
 import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg"
 import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg"
@@ -32,23 +30,12 @@ const getStatusBackgroundColor = (status) => {
 
 }
 
->>>>>>> Stashed changes
+
 function ChallengeListItem({challenge}){
   return (
     <>
       <div className="listItem">
-<<<<<<< Updated upstream
-          <div className="imageContainer">
-            <img className="imageContainer" src={challenge.image_url} alt="Challenge illustrative reference"></img>
-          </div>
-          <div>
-            <p className="listItemTitle">{challenge.name}</p>
-            <p className="listItemSubtitle">{challenge.diamonds}</p>
-            <p className="listItemSubtitle">{challenge.transaction?.status}</p>
-          </div>
-        </div>
-=======
-        
+
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
         ) : (
@@ -71,7 +58,6 @@ function ChallengeListItem({challenge}){
 
         )}
       </div>
->>>>>>> Stashed changes
     </>
   );
 }

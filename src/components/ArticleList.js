@@ -1,7 +1,5 @@
 import ArticleItem from "./ArticleItem";
-<<<<<<< Updated upstream
-function ArticleList() {
-=======
+
 function ArticleList({onClickOpenArticle}) {
 
   const handleOnClickOpenArticle = (itemData) => {
@@ -9,7 +7,6 @@ function ArticleList({onClickOpenArticle}) {
     onClickOpenArticle();
   };
 
->>>>>>> Stashed changes
   return (
     <>
       <div className="articleListContainer">

@@ -89,16 +89,11 @@
 }
 
 .imageContainer {
-<<<<<<< Updated upstream
-  width: 60px;
-  height: 60px;
-=======
   min-width: 62px;
   width: 62px;
   height: 62px;
   margin-left: 1em;
   background-color: grey;
->>>>>>> Stashed changes
   border-radius: 10px;
   background-color: grey;
   -webkit-border-radius: 10px;
@@ -107,8 +102,6 @@
   -o-border-radius: 10px;
 }
 
-<<<<<<< Updated upstream
-=======
 .list-item-status-container{
   position: relative;
   top: -30px;
@@ -131,7 +124,6 @@
 
 }
 
->>>>>>> Stashed changes
 .listContainer {
   width: 80%;
   gap: 20px;
@@ -145,11 +137,8 @@
   flex-flow: row;
   align-items: center;
   justify-content: flex-start;
-<<<<<<< Updated upstream
-=======
   margin-left: 5%;
   margin-right: 5%;
->>>>>>> Stashed changes
   gap: 20px;
   text-align: start;
   background-color: white;
@@ -161,8 +150,6 @@
   box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.452);
 }
 
-<<<<<<< Updated upstream
-=======
 .listItemTextContainer{
   display: flex;
   width: 100%;
@@ -172,7 +159,6 @@
   gap: 15px;
 }
 
->>>>>>> Stashed changes
 .listItemTitle {
   font-size: 18px;
   font-weight: 600;
