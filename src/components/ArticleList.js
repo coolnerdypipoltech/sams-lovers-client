@@ -1,14 +1,15 @@
 import ArticleItem from "./ArticleItem";
+
 function ArticleList({onClickOpenArticle}) {
 
   const handleOnClickOpenArticle = (itemData) => {
+    console.log("aqui")
     onClickOpenArticle();
   };
 
   return (
-
     <>
-      <div onClick={handleOnClickOpenArticle} className="articleListContainer">
+      <div className="articleListContainer">
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>

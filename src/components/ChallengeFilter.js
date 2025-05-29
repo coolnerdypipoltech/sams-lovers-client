@@ -1,31 +1,35 @@
 import { Picker } from "@react-native-picker/picker";
 
-function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handleChallengeStatusFilter, handleTransactionStatusFitler}) {
+function ChallengeFilter({endDateFilterType, statusFilterType, handleEndDateFilterType, handleStatusFilterType}) {
     return (
     <>
         <div className="challenges-filter">
-            <p className="challenges-filter-title">Vigencia</p>
+
+            <p className="challenges-filter-title">Filtrar por vigencia</p>
             <Picker className="challenges-filter-picker"
-                selectedValue={challengeStatusFilter}
+
+                selectedValue={endDateFilterType}
                 onValueChange={(itemValue, itemIndex) => {
-                    handleChallengeStatusFilter(itemValue);
+                    handleEndDateFilterType(itemValue);
                 }}
             >
-                <Picker.Item label="Todos los retos" value="TODO" />
-                <Picker.Item label="Nuevos retos" value="NUEVO" />
-                <Picker.Item label="Retos por vencer" value="POR_TERMINAR" />
+                <Picker.Item label="Todos los retos" value="all" />
+                <Picker.Item label="Nuevos retos" value="new" />
+                <Picker.Item label="Retos por vencer" value="soon_to_expire" />
             </Picker>
-            <br/>
-            <p className="challenges-filter-title">Estado</p>
+
+                <div style={{width: "100%"}} className="Divider"></div>
+            <p className="challenges-filter-title">Filtrar por estado del reto</p>
             <Picker className="challenges-filter-picker"
-                selectedValue={transactionStatusFilter}
+
+                selectedValue={statusFilterType}
                 onValueChange={(itemValue, itemIndex) => {
-                    handleTransactionStatusFitler(itemValue);
+                    handleStatusFilterType(itemValue);
                 }}
             >
-                <Picker.Item label="Todos los retos" value="TODO" />
-                <Picker.Item label="Completados" value="COMPLETADO" />
-                <Picker.Item label="No completados" value="NO_COMPLETADO" />
+                <Picker.Item label="Todos los retos" value="all" />
+                <Picker.Item label="No completados" value="no_completed" />
+                <Picker.Item label="Completados" value="completed" />
             </Picker>
         </div>
     </>
