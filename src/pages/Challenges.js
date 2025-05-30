@@ -6,7 +6,7 @@ import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
-import filter from "../assets/filter.png"
+
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
