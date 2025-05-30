@@ -1,5 +1,5 @@
 import React, { createContext, useRef, useState } from "react";
-import { GetArticles, GetChallengesByUser } from "../hooks/apicalls";
+import { GetArticles, GetChallengesByUser, GetChallengesByUserWithURL } from "../hooks/apicalls";
 const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
@@ -49,6 +49,8 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData(data.challenges);
       nextChallenges.current = data.next;
+      console.log(data.next);
+      console.log(nextChallenges.current);
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -87,7 +89,6 @@ const ElementProviderData = ({ children }) => {
       return;
     }
 
-    nextChallenges.current = "";
     const response = await GetChallengesByUser(
       `${UserData.current.token_type} ${UserData.current.access_token}`,
       _challengeStatusFilter,
@@ -100,6 +101,34 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData((prev) => [...prev, ...data.challenges]);
       nextChallenges.current = data.next;
+      console.log("POST get info " + nextChallenges.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const requestMoreChallengesByURL = async () => {
+
+    if (nextChallenges === null || nextChallenges.current === null || nextChallenges.current === "") {
+      return;
+    }
+
+    const response = await GetChallengesByUserWithURL(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      nextChallenges.current
+    );
+    console.log(nextChallenges.current);
+    const data = await response.json();
+    console.log(data.challenges);
+    if (response.ok) {
+      setChallengesData((prev) => [...prev, ...data.challenges]);
+      nextChallenges.current = data.next;
+      console.log("POST get info " + nextChallenges.current);
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -152,9 +181,11 @@ const ElementProviderData = ({ children }) => {
         currentArticle,
         articlePosition,
         articleData,
+        nextChallenges,
         SetUserData,
         requestMoreRewards,
         requestMoreChallenges,
+        requestMoreChallengesByURL,
         requestMoreArticles,
         requestNextArticle,
         initRequestRewards,

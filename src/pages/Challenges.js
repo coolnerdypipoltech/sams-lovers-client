@@ -6,18 +6,18 @@ import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import filter from "../assets/filter.png"
+import { CreateSubmission } from "../hooks/apicalls";
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
-  const [offset, setOffset] = useState(0);
 
-  const refresh_limit = 5;
+  const refresh_limit = 10;
   const refresh_offset = 0;
 
-  const { initRequestChallenges, currentChallenge } =
+  const { UserData, initRequestChallenges, currentChallenge } =
     useContext(ElementContextData);
 
   let subPageContent = null;
@@ -34,8 +34,16 @@ function Challenges() {
     setSubPage("ChallengeParticipationPage");
   };
 
-  const handleParticipation = () => {
-    console.log("Participation");
+  const handleParticipation = async () => {
+    const response = await CreateSubmission(
+            `${UserData.current.token_type} ${UserData.current.access_token}`,
+            currentChallenge.current.id
+    );
+    const data = await response.json();
+    console.log(data.challenges);
+    if (response.ok) {
+      //pop up and update the challenges use state with the new info of the current challenge
+    }
   };
 
   const handleRefreshList = () => {
@@ -49,8 +57,6 @@ function Challenges() {
   const handleTransactionStatusFilter = (transactionStatus) => {
     setTransactionStatusFilter(transactionStatus);
   };
-
-  const handleSetOffset = (_limit) => {setOffset(offset + _limit); };
 
   if (subPage === "ChallengePage") {
     subPageContent = (
@@ -98,8 +104,6 @@ function Challenges() {
           <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
         </div>
         <ChallengeList
-          offset = {offset}
-          handleSetOffset = {handleSetOffset}
           changeToSubPage={handleSelectChallenge}
           challengeStatusFilter={challengeStatusFilter}
           transactionStatusFilter={transactionStatusFilter}
@@ -111,7 +115,6 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
-              setOffset(0);
               handleRefreshList();
             }}
           >

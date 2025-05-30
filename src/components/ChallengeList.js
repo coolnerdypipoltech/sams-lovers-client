@@ -2,26 +2,27 @@ import { useState, useEffect, useRef, useContext } from "react";
 import ChallengeListItem from "./ChallengeListItem";
 import { ElementContextData } from "../context/DataContext";
 
-function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStatusFilter, transactionStatusFilter}) {
+function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStatusFilter}) {
 
   const [isLoading, setIsLoading] = useState(false);
 
   const listContainerRef = useRef(null);
 
-  const { initRequestChallenges, currentChallenge, challengesData, requestMoreChallenges } = useContext(ElementContextData);
+  const { currentChallenge, nextChallenges, initRequestChallenges, challengesData, requestMoreChallengesByURL } = useContext(ElementContextData);
 
-  const limit = 5;
+  const limit = 10;
 
   useEffect(() => {
-    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, limit, offset);
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, limit, 0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMoreChallenges = () => {
     if(isLoading) return;
+    if(nextChallenges.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreChallenges(challengeStatusFilter, transactionStatusFilter, limit, offset);
+      await requestMoreChallengesByURL();
       setIsLoading(false);
     }, 1000);
   };
@@ -33,7 +34,6 @@ function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStat
       listContainerRef.current.scrollHeight - 20 &&
       !isLoading
     ) {
-      handleSetOffset(limit);
       loadMoreChallenges();
     }
   };
