@@ -30,12 +30,11 @@ const getStatusBackgroundColor = (status) => {
 
 }
 
-
 function ChallengeListItem({challenge}){
   return (
     <>
+      
       <div className="listItem">
-
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
         ) : (

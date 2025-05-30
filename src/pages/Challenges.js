@@ -6,17 +6,14 @@ import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
-import { ElementContextRoute } from "../context/RouteContext";
+
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
-
   const [offset, setOffset] = useState(0);
-
-  const { getLogInToken } = useContext(ElementContextRoute);
 
   const refresh_limit = 5;
   const refresh_offset = 0;
@@ -50,11 +47,11 @@ function Challenges() {
     initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
-   const handleChallengeStatusFilter = (challengeStatus) => {
+  const handleChallengeStatusFilter = (challengeStatus) => {
     setChallengeStatusFilter(challengeStatus);
   };
 
-   const handleTransactionStatusFilter = (transactionStatus) => {
+  const handleTransactionStatusFilter = (transactionStatus) => {
     setTransactionStatusFilter(transactionStatus);
   };
 
@@ -97,18 +94,17 @@ function Challenges() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <div className="challenge-header">
-          <p className="Title">Retos</p>
+          <p className="challenges-Title">Retos</p>
           <div
-            className="challenge-filter"
+            className="challenge-filter-button-container"
             onClick={() => setChallengeFilter(true)}
           >
 
             <img className="challenge-filter-icon" src={filter} alt="filter icon"/>
           </div>
         </div>
-        <p className="challenges-text">¡No te lo pierdas!</p>
-        <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
-         <ChallengeList
+        <p  className="challenges-text"> ¡No te lo pierdas! Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        <ChallengeList
           offset = {offset}
           handleSetOffset = {handleSetOffset}
           changeToSubPage={handleSelectChallenge}
@@ -122,11 +118,12 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
+              setOffset(0);
               handleRefreshList();
             }}
           >
             <ChallengeFilter
-               challengeStatusFilter={challengeStatusFilter}
+              challengeStatusFilter={challengeStatusFilter}
               transactionStatusFilter={transactionStatusFilter}
               handleChallengeStatusFilter={handleChallengeStatusFilter}
               handleTransactionStatusFilter={handleTransactionStatusFilter}

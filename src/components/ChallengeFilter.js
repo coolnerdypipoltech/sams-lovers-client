@@ -4,10 +4,8 @@ function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handle
     return (
     <>
         <div className="challenges-filter">
-
-            <p className="challenges-filter-title">Filtrar por vigencia</p>
+            <p className="challenges-filter-title">Vigencia</p>
             <Picker className="challenges-filter-picker"
-
                 selectedValue={challengeStatusFilter}
                 onValueChange={(itemValue, itemIndex) => {
                     handleChallengeStatusFilter(itemValue);
@@ -17,19 +15,17 @@ function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handle
                 <Picker.Item label="Nuevos retos" value="NUEVO" />
                 <Picker.Item label="Retos por vencer" value="POR_TERMINAR" />
             </Picker>
-
-                <div style={{width: "100%"}} className="Divider"></div>
-            <p className="challenges-filter-title">Filtrar por estado del reto</p>
+            <br/>
+            <p className="challenges-filter-title">Estado</p>
             <Picker className="challenges-filter-picker"
-
                 selectedValue={transactionStatusFilter}
                 onValueChange={(itemValue, itemIndex) => {
                     handleTransactionStatusFitler(itemValue);
                 }}
             >
                 <Picker.Item label="Todos los retos" value="TODO" />
-                <Picker.Item label="No completados" value="NUEVO" />
-                <Picker.Item label="Completados" value="POR_TERMINAR" />
+                <Picker.Item label="Completados" value="COMPLETADO" />
+                <Picker.Item label="No completados" value="NO_COMPLETADO" />
             </Picker>
         </div>
     </>

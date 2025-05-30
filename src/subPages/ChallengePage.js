@@ -13,6 +13,7 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
     <>
       <div className="subPageContainer">
         <div className="challenges-subpage-container">
+
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <p className="challenge-back-button-text" onClick={handleReturn}>
@@ -30,6 +31,7 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
               />
             )}
           </div>
+          <p className="challengesPage-Title">Retos</p>
           <p className="challenge-text">Descripción. {challenge.description}</p>
 
           <div className="challenge-information-container">
@@ -46,8 +48,11 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
             </div>
           </div>
           <div>
-            <p className="challenge-text-title">Vigencia</p>
-            <p className="challenge-text">{challenge.end_date}</p>
+            <div className="challenge-information-container">
+              <p className="challenge-text-title">Vigencia</p>
+              <p style={{paddingLeft: "0px"}} className="challenge-text">{challenge.end_date}</p>
+            </div>
+
           </div>
           <div style={{ justifyContent: "space-between" }} className="rowAlign">
             <p className="challenge-information-text-conditions">Condiciones</p>
@@ -57,8 +62,8 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
           {/*(challenge.transaction !== null) && <div>
             <p className="challenge-text-title">Estatus</p>
             <p className="challenge-text">{challenge.transaction?.status}</p>
-          </div>}
-          {(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
+          </div>*/}
+          {/*(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
             <p className="challenge-text-title">Feedback</p>
             <p className="challenge-text">{challenge.transaction?.feedback}</p>
           </div>*/}
