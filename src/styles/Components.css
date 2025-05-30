@@ -125,10 +125,11 @@
 }
 
 .listContainer {
-  width: 80%;
+  width: 90%;
   gap: 20px;
   display: flex;
   flex-flow: column;
+  
 }
 
 .listItem {

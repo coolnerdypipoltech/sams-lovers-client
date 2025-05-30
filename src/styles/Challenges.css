@@ -14,7 +14,8 @@
 
 .challenges-subpage-container {
   background-color: #f2f4f7;
-  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
   height:calc(100%);
   position: absolute;
   display: flex;
@@ -41,7 +42,7 @@
 
 .challenge-header {
   padding-top: 0px;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,6 +99,16 @@
   margin-top: 10px;
   margin-bottom: 10px;
   color: grey;
+  padding-left: 5%;
+}
+
+.challenge-text-title{
+  font-size: 14px;
+  font-weight: 500;
+  text-align: start;
+  margin: 0px;
+  margin-bottom: 5px;
+  color: #0b1432;
 }
 
 .challenge-information-text-title {
@@ -131,7 +142,7 @@
 
 .diamondsContainer{
   width: 100%;
-  padding-left: 15px;
+  padding-left: 5px;
   padding-bottom: 5px;
 }
 
@@ -296,7 +307,31 @@
   color: #868787;
   text-align: left;
   font-size: 14px;
+  width: 80%;
   font-family: "Poppins", sans-serif;
+  padding-bottom: 10px;
+  
+}
+
+.challenges-Title{
+  margin: 0;
+  color: #003087;
+  text-align: left;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.challengesPage-Title{
+  margin: 0;
+  color: #003087;
+  text-align: left;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-left: 5%;
 }
 
 .challenge-back-button-text{
@@ -307,7 +342,7 @@
     text-align: left;
     position: absolute;
     top: 90px;
-    left: 5%;
+    left: 10%;
 }
 
 .challenge-information-container{
@@ -319,6 +354,8 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   margin-bottom: 15px;
+  padding: 5px;
+  padding-left: 15px;
 }
 
 .participationContainer{

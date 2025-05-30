@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
-import filter from "../assets/"
+import filter from "../assets/filter.png"
 import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
@@ -87,7 +87,7 @@ function Challenges() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <div className="challenge-header">
-          <p className="Title">Retos</p>
+          <p className="challenges-Title">Retos</p>
           <div
             className="challenge-filter"
             onClick={() => setChallengeFilter(true)}
@@ -96,8 +96,7 @@ function Challenges() {
             <img className="challenge-filter-icon" src={filter} alt="filter icon"/>
           </div>
         </div>
-        <p className="challenges-text">¡No te lo pierdas!</p>
-        <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        <p  className="challenges-text"> ¡No te lo pierdas! Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
         <ChallengeList
           changeToSubPage={handleSelectChallenge}
           endDateFilterType={endDateFilterType}
