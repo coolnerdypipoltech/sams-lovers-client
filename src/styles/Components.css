@@ -1,87 +1,210 @@
 .header-container {
-  height: 50px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 80px;
   z-index: 100;
-  width: 100vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  align-content: center;
   align-items: center;
-  background-color: #2474f8;
   position: fixed;
+  background: transparent linear-gradient(90deg, #3E74F2 0%, #0074FF 100%) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  justify-content: space-between;
 }
 
 .header-logo {
-  width: 60px;
-  height: 50px;
-  padding-left: 20px;
+  /* Layout Properties */
+  margin-left: 32px;
+  width: 82px;
+  height: 34px;
+  /* UI Properties */
+  opacity: 1;
 }
 
 .header-diamonds-container{
-  width: 75px;
-  height: 25px;
-  background-color: white;
+  /*LayoutProperties*/
+  margin-right: 10px;
+  width: 112px;
+  height: 28px;
+  /*UIProperties*/
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-content: center;
+  row-gap: 25px;
   align-items: center;
-  margin-left: 30%;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  -o-border-radius: 25px;
+  align-content: center;
+  justify-content: flex-start;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 1;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
 }
 
 .header-diamonds-image{
-  width: 10px;
-  height: 10px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  background: transparent url('../assets/diamond.svg') 0% 0% no-repeat padding-box;
+  border-radius: 3px;
+  opacity: 1;
 }
 
 .header-diamonds-text{
-  font-size: medium;
+  margin: 0px;
+  width: 18px;
+  height: 16px;
+  font: var(--unnamed-font-style-normal) normal bold var(--unnamed-font-size-16)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-gibson);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-003087);
+  text-align: center;
+  font: normal normal bold 16px/19px Gibson;
+  letter-spacing: 0px;
+  color: #003087;
+  opacity: 1;
+  flex-grow: 1;
+  padding-right: 15px;
+  font-weight: bold;
 }
 
-.header-hambuerguer-icon{
-  width: 25px;
-  height: 25px;
-  padding-right: 20px;
+.header-menu-icon{
+  margin-right: 33px;
+  width: 33px;
+  height: 33px;
+  background: transparent url('../assets/Icon_menu.svg') 0% 0% no-repeat padding-box;
+}
+
+.playerWrapperThumbnail{
+  position: relative;
+  display: flex;
+  contain: content;
+  background-position: 50%;
+  background-size: cover;
+  cursor: pointer;
+  height: 190px;
+}
+
+.playerBtnThumbnail{
+  opacity: 0;
 }
 
 .header-menu-container{
   width: 100%;
   height: 100%;
   padding-top: 60px;
-  background-color: rgba(136, 136, 136, 0.5);
   position: absolute;
-  z-index: 11;
+  z-index: 101;
 }
 
 .header-menu{
   width: 100%;
-  max-width: 100%;
+  height: 100vh;
   background-color: white;
-  position: absolute;
-  z-index: 12;
+  position: fixed;
+  z-index: 102;
+  animation:fadeIn 0.3s ease-in;
+  -webkit-animation:fadeIn 0.3s ease-in;
+}
+
+.header-menu.fade{
+  animation:fadeOut 0.3s ease-out;
+  -webkit-animation:fadeOut 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.header-menu-top-container{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.header-menu-back-text-container{
+  width: 33.3%;
+  display: flex;
+  flex-grow: 1;
+}
+
+.header-menu-back-text-empty{
+  width: 33.3%;
+  display: flex;
+  flex-grow: 1;
+}
+
+.header-menu-back-text{
+  margin: 0 0 0 35px;
+  width: 46px;
+  height: 16px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-gibson);
+  font-size: 16px;
+  text-align: left;
+  text-align: center;
+  color: var(--unnamed-color-3c74f3);
+  font: normal normal medium 16px/19px Gibson;
+  letter-spacing: 0px;
+  color: #3C74F3;
+  opacity: 1;
+}
+
+.header-menu-logo{
+  background-color: #3C74F3;
+  width: 82px;
+  height: 33.66px;
+}
+
+.header-menu-column{
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 30px
 }
 
 .header-menu-element{
-  text-align: right;
-  padding-right: 20px;
-  margin: 5px;
-  color: #3c87ff;
-  font-weight: 400;
+  margin: 0px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-600) var(--unnamed-font-size-26)/39px var(--unnamed-font-family-poppins);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-3c74f3);
+  text-align: center;
+  font: normal normal 600 26px/39px Poppins;
+  letter-spacing: 0px;
+  color: #3C74F3;
+  opacity: 1;
 }
 
 .header-menu-element-logout{
-  text-align: right;
-  padding-right: 20px;
-  margin: 10px;
-  color: #868686;
-  font-weight: 400;
+  margin: 30px 0 0 0;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-26)/var(--unnamed-line-spacing-31) var(--unnamed-font-family-gibson);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: center;
+  font: normal normal normal 26px/31px Gibson;
+  letter-spacing: 0px;
+  color: #8C8C8C;
+  opacity: 1;
 }
 
 .header-menu-element:hover{
@@ -89,26 +212,19 @@
 }
 
 .imageContainer {
-<<<<<<< Updated upstream
-  width: 60px;
-  height: 60px;
-=======
-  min-width: 62px;
-  width: 62px;
-  height: 62px;
-  margin-left: 1em;
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
   background-color: grey;
->>>>>>> Stashed changes
   border-radius: 10px;
-  background-color: grey;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
 
-<<<<<<< Updated upstream
-=======
 .list-item-status-container{
   position: relative;
   top: -30px;
@@ -123,33 +239,28 @@
 }
 
 .status-icon{
-  position: relative;
-  top: -44px;
-  padding-left: 10px;
-  width: 30px;
-  height: 30px;
-
+  width: 10px;
+  height: 10px;
+  margin-bottom: 5px;
+  margin-left: 2px;
 }
 
->>>>>>> Stashed changes
 .listContainer {
-  width: 80%;
+  width: 100%;
   gap: 20px;
   display: flex;
   flex-flow: column;
 }
 
 .listItem {
-  height: 90px;
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: flex-start;
-<<<<<<< Updated upstream
-=======
-  margin-left: 5%;
-  margin-right: 5%;
->>>>>>> Stashed changes
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   gap: 20px;
   text-align: start;
   background-color: white;
@@ -158,32 +269,25 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.452);
 }
 
-<<<<<<< Updated upstream
-=======
 .listItemTextContainer{
   display: flex;
   width: 100%;
   flex-flow: column;
   align-items: right;
   align-content: space-evenly;
-  gap: 15px;
 }
 
->>>>>>> Stashed changes
 .listItemTitle {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
   margin: 0px;
 }
 
 .listItemSubtitle {
-  font-size: 14px;
+  font-size: 10px;
   margin: 0px;
-  margin-left: 5px;
-  color: #3C74F3;
 }
 
 .listItemDiamonds {
@@ -246,11 +350,6 @@
 
 }
 
-.diamondLogo{
-  width: 15px;
-  height: 15px;
-}
-
 .help-button {
   background: linear-gradient(135deg, #6366f1, #4f46e5);
   color: white;
@@ -279,7 +378,7 @@
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 15px);
+  bottom: calc(100% + 5px);
   
   transform: translateX(-50%) translateY(10px);
   padding: 12px 20px;
@@ -293,20 +392,30 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+
+.tooltip-tip{
+  background-color: rgb(255, 255, 255);
+  height: 10px;
+  width: 10px;
+  position: relative;
+  bottom: 0px;
+  top: 15px;
+  left: 12px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
 
 /* Tooltip arrow */
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: 99%;
-  right: -2%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-}
+
 
 .tooltip-container:hover .tooltip,
 .help-button:focus + .tooltip {
@@ -347,4 +456,34 @@
     padding: 10px 20px;
     font-size: 14px;
   }
+}
+
+.place-image{
+  height: 14px;
+}
+
+.ReactImagePickerEditor .curtain button .material-icons{
+  font-size: 0px;
+  height: 0px;
+  width: 0px;
+}
+
+.ReactImagePickerEditor .place-image .image-holder{
+  opacity: 0;
+}
+
+.ReactImagePickerEditor .caption{
+  font-size: 0px !important;
+}
+
+.ReactImagePickerEditor .curtain{
+  opacity: 0;
+}
+
+.ReactImagePickerEditor{
+  width: 80px;
+  height: 14px;
+  position: absolute;
+  z-index: 10;
+  padding-left: 20px;
 }

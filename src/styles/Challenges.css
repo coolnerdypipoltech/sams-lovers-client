@@ -3,8 +3,9 @@
   flex-flow: column;
   align-items: center;
   align-content: center;
-  background: #F2F4FF;
-    overflow-y: hidden;
+  background: #0C5AB1;
+    background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1) 100%);
+    overflow-y: scroll;
 }
 
 .participateText {
@@ -13,31 +14,23 @@
 }
 
 .challenges-subpage-container {
-<<<<<<< Updated upstream
-  background-color: white;
-  width: 80%;
-  height: 100%;
-  padding-top: 80px;
-=======
   background-color: #f2f4f7;
   width: 90%;
-  height:calc(100%);
->>>>>>> Stashed changes
+  height: 100%;
+  padding-top: 60px;
   position: absolute;
   display: flex;
   margin: 0px;
   top: 0px;
   flex-direction: column;
   z-index: 10;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .confirmation-subpage-container {
-  background-color: white;
-  width: 80%;
+  background-color: #f2f4f7;
+  width: 90%;
   height: 100%;
-  padding-top: 80px;
+  padding-top: 60px;
   position: absolute;
   display: flex;
   margin: 0px;
@@ -48,26 +41,20 @@
 
 .challenge-header {
   padding-top: 0px;
-<<<<<<< Updated upstream
   width: 80%;
-  height: 100%;
-=======
-  width: 90%;
->>>>>>> Stashed changes
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-<<<<<<< Updated upstream
-=======
 .challenge-header-title{
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 700;
-  color: #003087;
+  color: white;
+  font-size: larger;
+  font-weight: 400;
 }
 
->>>>>>> Stashed changes
 .row {
   display: flex;
   gap: 10px;
@@ -75,124 +62,62 @@
 
 .challenge-image-container {
   width: 100%;
-<<<<<<< Updated upstream
-  height: 100px;
-=======
-  height: 260px;
->>>>>>> Stashed changes
+  height: 150px;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  background-color: grey;
+  background-color: #e0e9ed;
 }
 
 .challenge-title {
-<<<<<<< Updated upstream
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 10px;
   margin-top: 10px;
   color: #2c3e50;
-=======
-  font-size: 24px;
-  text-align: start;
-  margin: 0px;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  color: #0B204F;
-  padding: 0 20px 0 20px;
-  text-align: justify;
-  font-weight: 600;
-  
->>>>>>> Stashed changes
-}
-
-.url-title {
-  font-size: 10px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #296bae;
 }
 
 .challenge-text {
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
+  font-size: 10px;
   text-align: start;
   margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: grey;
+  padding: 0 20px 0 20px;
+  text-align: justify;
 }
 
-<<<<<<< Updated upstream
-.challenge-text-title {
-  font-size: 12px;
-  font-weight: bold;
-=======
 .challenge-information-text-title {
-  font-size: 14px;
-  font-weight: 500;
->>>>>>> Stashed changes
-  text-align: start;
-  margin: 0px;
-  margin-bottom: 5px;
-<<<<<<< Updated upstream
-  color: black;
-=======
-  color: #0b1432;
-}
-
-.challenge-information-text-conditions{
-    font-size: 14px;
+  font-size: 10px;
   font-weight: 500;
   text-align: start;
   margin: 0px;
+  padding: 15px 15px 0 15px;
   margin-bottom: 5px;
   color: #0b1432;
 }
-
 
 .challenge-text-information{
-  font-size: 14px;
+  font-size: 10px;
   text-align: start;
-  font-family: "Poppins", sans-serif;
   margin: 0px;
-  color: #868787;
+  color: #465679;
   padding: 0 15px 15px 15px;
   text-align: justify;
->>>>>>> Stashed changes
-}
-
-.diamondsContainer{
-  width: 100%;
-  padding-left: 15px;
-  padding-bottom: 5px;
-}
-
-.challenge-text-information-diamonds{
-  font-size: 24px;
-  text-align: start;
-  margin: 0px;
-  margin-left: 10px;
-  color: #465679;
-  text-align: justify;
-  font-weight: 800;
 }
 
 .participate-button {
-  width: 95%;
   padding: 10px;
-  background-color: #20628d;
+  margin: 25px 20px 0 20px;
+  background-color: #008eff;
   color: white;
-  border: none;
-  border-radius: 50px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   -ms-border-radius: 50px;
@@ -204,28 +129,25 @@
 }
 
 .url-input {
-  width: 95%;
-  height: 25%;
-  padding: 10px;
+  height: 25px;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 0 15px 0;
+  padding: 0 15px 0 15px;
   background-color: white;
+  color:#0b1432;
+  font-size: 10px;
+  font-weight: 500;
   border: solid;
   border-color: rgb(175, 175, 175);
-  border-radius: 5px;
   border-width: 1px;
-  font-size: 12px;
-  font-weight: 400;
-  transition: background-color 0.3s;
+  border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
 
-<<<<<<< Updated upstream
-.url-input:hover {
-  background-color: rgb(232, 232, 232);
-  border-color: #2980b9;
-=======
 .url-input::placeholder{
   color:#0b1432;
   font-weight: 400;
@@ -247,57 +169,39 @@
 }
 
 .challenge-filter-button-container{
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(180deg,#0063ff 0%, #0095ff 100%);;
   display: flex;
-  justify-content: center;
+  flex-flow: row;
   align-items: center;
-  align-content: center;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
+  align-content: space-evenly;
 }
 
 .challenge-filter-title{
   color: white;
   font-size: small;
   margin-right: 10px;
->>>>>>> Stashed changes
 }
 
 .challenges-filter-container {
   width: 100%;
   height: 100%;
   padding-top: 60px;
-  background-color: rgba(136, 136, 136, 0.5);
   position: absolute;
   top: 0;
   z-index: 11;
 }
 
 .challenges-filter {
-  position: absolute;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: auto;
-  padding: 20px;
+  width: 50%;
+  margin-left: 40%;
+  margin-top: 30px;
+  padding-bottom: 10%;
   background-color: white;
-  right: 5%;
-  top: 135px;
-  box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.452);
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 12;
 }
 
-.challenge-filter-title{
+.challenges-filter-title{
   color: black;
   font-weight: 500;
   font-size: small;
@@ -305,10 +209,10 @@
   padding-left: 10px;
 }
 
-.challenge-filter-picker{
+.challenges-filter-picker{
   background-color: white;
   color: #20628d;
-  width: 100%;
+  width: 75%;
   height: 25%;
   font-size: small;
   text-align: left;
@@ -320,14 +224,6 @@
   -o-border-radius: 25px;
 }
 
-<<<<<<< Updated upstream
-.challenges-text{
-  margin: 0;
-  color: white;
-  padding-left: 35px;
-  text-align: left;
-  font-size: 10px;
-=======
 .challenge-filter-icon{
   width: 10px;
   height: 10px;
@@ -335,27 +231,23 @@
 }
 
 .challenge-instructions-container{
-  width: 90%;
-  padding-bottom: 25px;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 .challenges-text{
   margin: 0;
-  color: #868787;
+  color: white;
   text-align: left;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
+  font-size: 10px;
 }
 
 .challenge-back-button-text{
     font-size: 12px;
     font-weight:500;
-    color: rgb(255, 255, 255);
+    color: black;
     margin: 30px 0 10px 0;
     text-align: left;
-    position: absolute;
-    top: 90px;
-    left: 5%;
 }
 
 .challenge-information-container{
@@ -366,19 +258,4 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.participationContainer{
-  background-color: white;
-  width: calc(100%);
-  position: absolute;
-  z-index: 10;
-  bottom: 0px;
-  height: 80px;
-  display: flex;
-  align-items: flex-start;
-  align-content: center;
-  justify-content: center;
->>>>>>> Stashed changes
 }

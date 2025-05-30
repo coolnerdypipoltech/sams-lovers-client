@@ -5,10 +5,7 @@ import ArticlePage from "../subPages/ArticlePage";
 function Main() {
   const [openArticlePage, setOpenArticlePage] = useState(false);
 
-<<<<<<< Updated upstream
-=======
   const onClickOpenArticle = () => {
-    console.log("aqui")
     setOpenArticlePage(true);
   }
 
@@ -16,16 +13,15 @@ function Main() {
     setOpenArticlePage(false);
   }
 
->>>>>>> Stashed changes
   return (
     <>
       {openArticlePage ? (
-        <ArticlePage></ArticlePage>
+        <ArticlePage onReturn={onReturn}></ArticlePage>
       ) : (
         <div className="MainContainer">
           <p className="Title">Tutoriales, Tips y noticias</p>
 
-          <ArticleList></ArticleList>
+          <ArticleList onClickOpenArticle={onClickOpenArticle} ></ArticleList>
         </div>
       )}
     </>

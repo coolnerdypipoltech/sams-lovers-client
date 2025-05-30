@@ -5,12 +5,17 @@ import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
+import filter from "../assets/filter.png"
 
 function Challenges() {
   const [subPage, setSubPage] = useState("");
-  const [endDateFilterType, setEndDateFilterType] = useState("all");
-  const [statusFilterType, setStatusFilterType] = useState("all");
+  const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
+  const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
+  const [offset, setOffset] = useState(0);
+
+  const refresh_limit = 5;
+  const refresh_offset = 0;
 
   const { initRequestChallenges, currentChallenge } =
     useContext(ElementContextData);
@@ -22,10 +27,6 @@ function Challenges() {
   };
 
   const handleReturn = () => {
-    const div = document.querySelector(".listContainer");
-    if (div) {
-      div.style.height = "84vh";
-    }
     setSubPage("");
   };
 
@@ -38,22 +39,20 @@ function Challenges() {
   };
 
   const handleRefreshList = () => {
-    initRequestChallenges(endDateFilterType, statusFilterType);
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
-  const handleEndDateFilterType = (endDateFilterType) => {
-    setEndDateFilterType(endDateFilterType);
+  const handleChallengeStatusFilter = (challengeStatus) => {
+    setChallengeStatusFilter(challengeStatus);
   };
 
-  const handleStatusFilterType = (statusFilterType) => {
-    setStatusFilterType(statusFilterType);
+  const handleTransactionStatusFilter = (transactionStatus) => {
+    setTransactionStatusFilter(transactionStatus);
   };
+
+  const handleSetOffset = (_limit) => {setOffset(offset + _limit); };
 
   if (subPage === "ChallengePage") {
-    const div = document.querySelector(".listContainer");
-    if (div) {
-      div.style.height = "100px";
-    }
     subPageContent = (
       <ChallengePage
         returnPage={handleReturn}
@@ -83,32 +82,27 @@ function Challenges() {
     <>
       <>{subPageContent}</>
       <div className="challenges-container">
-<<<<<<< Updated upstream
-        <div style={{ width: "100%", height: "50px" }}></div>
-=======
-        <div className="headerSpacer"></div>
-        <div className="headerSpacer"></div>
->>>>>>> Stashed changes
+        <div style={{ width: "100%", height: "60px" }}></div>
         <div className="challenge-header">
-          <p className="Title">Retos</p>
+          <p className="challenge-header-title">Retos</p>
           <div
-            className="challenge-filter"
+            className="challenge-filter-button-container"
             onClick={() => setChallengeFilter(true)}
           >
-<<<<<<< Updated upstream
-            <p>Filtrar</p>
-            <img></img>
-=======
+            <p className="challenge-filter-title">Filtrar</p>
             <img className="challenge-filter-icon" src={filter} alt="filter icon"/>
->>>>>>> Stashed changes
           </div>
         </div>
-        <p className="challenges-text">¡No te lo pierdas!</p>
-        <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        <div className="challenge-instructions-container">
+          <p className="challenges-text">¡No te lo pierdas!</p>
+          <p className="challenges-text">Sumáte a los retos, se auténtic@ y gana muchos premios, que tu creatividad brille como nunca.</p>
+        </div>
         <ChallengeList
+          offset = {offset}
+          handleSetOffset = {handleSetOffset}
           changeToSubPage={handleSelectChallenge}
-          endDateFilterType={endDateFilterType}
-          statusFilterType={statusFilterType}
+          challengeStatusFilter={challengeStatusFilter}
+          transactionStatusFilter={transactionStatusFilter}
         ></ChallengeList>
       </div>
       {challengeFilter && (
@@ -117,14 +111,15 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
+              setOffset(0);
               handleRefreshList();
             }}
           >
             <ChallengeFilter
-              endDateFilterType={endDateFilterType}
-              statusFilterType={statusFilterType}
-              handleEndDateFilterType={handleEndDateFilterType}
-              handleStatusFilterType={handleStatusFilterType}
+              challengeStatusFilter={challengeStatusFilter}
+              transactionStatusFilter={transactionStatusFilter}
+              handleChallengeStatusFilter={handleChallengeStatusFilter}
+              handleTransactionStatusFilter={handleTransactionStatusFilter}
             ></ChallengeFilter>
           </div>
         </div>

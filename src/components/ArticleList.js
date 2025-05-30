@@ -1,18 +1,14 @@
 import ArticleItem from "./ArticleItem";
-<<<<<<< Updated upstream
-function ArticleList() {
-=======
 function ArticleList({onClickOpenArticle}) {
 
   const handleOnClickOpenArticle = (itemData) => {
-    console.log("aqui")
     onClickOpenArticle();
   };
 
->>>>>>> Stashed changes
   return (
+
     <>
-      <div className="articleListContainer">
+      <div onClick={handleOnClickOpenArticle} className="articleListContainer">
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>

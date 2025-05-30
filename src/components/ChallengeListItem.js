@@ -1,9 +1,7 @@
-<<<<<<< Updated upstream
-=======
-import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg"
-import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg"
-import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg"
-import diamond from "../assets/diamond.svg";
+import completedStatusLogo from "../assets/Icon_menu.svg"
+import inReviewStatusLogo from "../assets/Icon_menu.svg"
+import rejectedStatusLogo from "../assets/Icon_menu.svg"
+
 const getStatusIcon = (status) => {
   switch(status) {
     default:
@@ -32,22 +30,11 @@ const getStatusBackgroundColor = (status) => {
 
 }
 
->>>>>>> Stashed changes
 function ChallengeListItem({challenge}){
   return (
     <>
+      
       <div className="listItem">
-<<<<<<< Updated upstream
-          <div className="imageContainer">
-            <img className="imageContainer" src={challenge.image_url} alt="Challenge illustrative reference"></img>
-          </div>
-          <div>
-            <p className="listItemTitle">{challenge.name}</p>
-            <p className="listItemSubtitle">{challenge.diamonds}</p>
-            <p className="listItemSubtitle">{challenge.transaction?.status}</p>
-          </div>
-        </div>
-=======
         
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
@@ -56,22 +43,14 @@ function ChallengeListItem({challenge}){
         )}
         <div className="listItemTextContainer">
           <p className="listItemTitle">{challenge.name}</p>
-          <div className="rowAlign">
-            <img src={diamond} className="diamondLogo" alt="diamonds"></img>
-            <p className="listItemSubtitle">{challenge.diamonds}</p>
-          </div>
-          
+          <p className="listItemSubtitle">{challenge.diamonds}</p>
         </div>
         {(getStatusIcon(challenge.transaction?.status) !== null) && (
-          
-          <div className="status-icon">
-          <img  src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>
+          <div className="list-item-status-container" style={{backgroundColor: getStatusBackgroundColor(challenge.transaction?.status)}}>
+            {<img className="status-icon" src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>}
           </div>
-
-
         )}
       </div>
->>>>>>> Stashed changes
     </>
   );
 }

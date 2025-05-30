@@ -50,7 +50,7 @@ function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStat
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh", paddingTop: "10px" }}
+          style={{ overflowY: "auto", height: "84vh" }}
         >
           {challengesData.map((challenge, index) => (
             <div onClick={() => handleSelectChallenge(challenge)}
