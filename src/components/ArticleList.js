@@ -8,8 +8,9 @@ function ArticleList({onClickOpenArticle}) {
   };
 
   return (
+
     <>
-      <div className="articleListContainer">
+      <div onClick={handleOnClickOpenArticle} className="articleListContainer">
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>
         <ArticleItem></ArticleItem>

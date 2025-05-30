@@ -1,5 +1,5 @@
 import "../styles/Profile.css";
-import MisRewards from "../subPages/MisRewards";
+import MyRewards from "../subPages/MyRewards";
 import SelectedMiReward from "../subPages/SelectedMiReward";
 import chevronRight from "../assets/chevronRight.svg";
 import facebook from "../assets/Icon_Facebook.svg";
@@ -40,10 +40,10 @@ function Profile() {
 
   if (subPage === "RewardPage") {
     subPageContent = (
-      <MisRewards
+      <MyRewards
         selectPage={handleSelectItem}
         returnPage={handleReturn}
-      ></MisRewards>
+      ></MyRewards>
     );
   }
 
@@ -65,29 +65,14 @@ function Profile() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <p className="ProfileTitle">Mi Perfil</p>
-        <div className="containerProfilePic">
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt="Imagen seleccionada"
-            className="imageProfilePic"
-          />
-        ) : <img
-            src={logo}
-            alt="Imagen por defecto"
-            className="imageProfilePic"
-          />
-        }
-        <p  className="EditProfile">
-          Editar
-        </p>
-        </div>
+        <ImagePicker></ImagePicker>
         <div className="ProfileContainerItems">
           
           <p className="userNameProfile">Usuario SamsLovers</p>
-          <p className="socialMediaTitle">Redes sociales</p>
+          
 
           <div className="editSocialMediaButtonContainer">
+            <p className="socialMediaTitle">Redes sociales</p>
             <p onClick={handleEditProfile}   className="editSocialMediaButton">Editar</p>
           </div>
         

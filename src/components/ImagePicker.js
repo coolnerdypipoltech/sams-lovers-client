@@ -1,23 +1,27 @@
 import React, { useRef, useState } from "react";
 import logo from "../assets/profilePic.jpg";
+import ReactImagePickerEditor, { ImagePickerConf } from 'react-image-picker-editor';
+import 'react-image-picker-editor/dist/index.css'
 const ImagePicker = () => {
-  const fileInputRef = useRef(null);
   const [imageSrc, setImageSrc] = useState(null);
-
+  const config2 = {
+    borderRadius: '8px',
+    language: 'es',
+    width: '0px',
+    height: '0px',
+    objectFit: 'contain',
+    compressInitial: null,
+    hideEditBtn: true, 
+    hideAddBtn: true,
+    hideDeleteBtn: true,
+    hideDownloadBtn: true,
+    darkMode: false,
+    rtl: false
+  };
   const handleButtonClick = () => {
-    fileInputRef.current.click();
+
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSrc(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   return (
     <>
@@ -34,20 +38,16 @@ const ImagePicker = () => {
             className="imageProfilePic"
           />
         }
+        
+
         <p onClick={handleButtonClick} className="EditProfile">
+          < ReactImagePickerEditor
+          className="reactImagePicker"
+            config={config2}
+            imageSrcProp={imageSrc}
+            imageChanged={(newDataUri) => { console.log(newDataUri); setImageSrc(newDataUri) }} />
           Editar
         </p>
-        
-        
-        <input
-          type="file"
-          accept="image/*"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-        />
-
-        
 
       </div>
 

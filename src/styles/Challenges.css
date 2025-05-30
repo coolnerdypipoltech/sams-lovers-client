@@ -28,10 +28,10 @@
 }
 
 .confirmation-subpage-container {
-  background-color: white;
-  width: 80%;
+  background-color: #f2f4f7;
+  width: 90%;
   height: 100%;
-  padding-top: 80px;
+  padding-top: 60px;
   position: absolute;
   display: flex;
   margin: 0px;
@@ -67,7 +67,7 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  background-color: grey;
+  background-color: #e0e9ed;
 }
 
 .challenge-title {
@@ -88,7 +88,7 @@
   font-weight: 500;
   margin-bottom: 10px;
   margin-top: 10px;
-  color: #296bae;
+  color: #2c3e50;
 }
 
 .challenge-text {
@@ -96,8 +96,7 @@
   font-family: "Poppins", sans-serif;
   text-align: start;
   margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: grey;
   padding-left: 5%;
 }
@@ -107,6 +106,7 @@
   font-weight: 500;
   text-align: start;
   margin: 0px;
+  padding: 15px 15px 0 15px;
   margin-bottom: 5px;
   color: #0b1432;
 }
@@ -157,16 +157,15 @@
 }
 
 .participate-button {
-  width: 95%;
   padding: 10px;
-  background-color: #20628d;
+  margin: 25px 20px 0 20px;
+  background-color: #008eff;
   color: white;
-  border: none;
-  border-radius: 50px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   -ms-border-radius: 50px;
@@ -178,23 +177,24 @@
 }
 
 .url-input {
-  width: 95%;
-  height: 25%;
-  padding: 10px;
+  height: 25px;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 0 15px 0;
+  padding: 0 15px 0 15px;
   background-color: white;
+  color:#0b1432;
+  font-size: 10px;
+  font-weight: 500;
   border: solid;
   border-color: rgb(175, 175, 175);
-  border-radius: 5px;
   border-width: 1px;
-  font-size: 12px;
-  font-weight: 400;
-  transition: background-color 0.3s;
+  border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-
 
 .url-input::placeholder{
   color:#0b1432;
@@ -235,14 +235,12 @@
   color: white;
   font-size: small;
   margin-right: 10px;
-
 }
 
 .challenges-filter-container {
   width: 100%;
   height: 100%;
   padding-top: 60px;
-  background-color: rgba(136, 136, 136, 0.5);
   position: absolute;
   top: 0;
   z-index: 11;
@@ -267,7 +265,7 @@
   -o-border-radius: 20px;
 }
 
-.challenge-filter-title{
+.challenges-filter-title{
   color: black;
   font-weight: 500;
   font-size: small;
@@ -275,7 +273,7 @@
   padding-left: 10px;
 }
 
-.challenge-filter-picker{
+.challenges-filter-picker{
   background-color: white;
   color: #20628d;
   width: 100%;
@@ -289,7 +287,6 @@
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
 }
-
 
 .challenge-filter-icon{
   width: 10px;

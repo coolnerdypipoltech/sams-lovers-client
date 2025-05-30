@@ -2,15 +2,18 @@ import { useState, useEffect, useRef, useContext } from "react";
 import ChallengeListItem from "./ChallengeListItem";
 import { ElementContextData } from "../context/DataContext";
 
-function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) {
+function ChallengesList({offset, handleSetOffset, changeToSubPage, challengeStatusFilter, transactionStatusFilter}) {
+
   const [isLoading, setIsLoading] = useState(false);
 
   const listContainerRef = useRef(null);
 
   const { initRequestChallenges, currentChallenge, challengesData, requestMoreChallenges } = useContext(ElementContextData);
 
+  const limit = 5;
+
   useEffect(() => {
-    initRequestChallenges(endDateFilterType, statusFilterType);
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, limit, offset);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -18,7 +21,7 @@ function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) 
     if(isLoading) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreChallenges();
+      await requestMoreChallenges(challengeStatusFilter, transactionStatusFilter, limit, offset);
       setIsLoading(false);
     }, 1000);
   };
@@ -30,6 +33,7 @@ function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) 
       listContainerRef.current.scrollHeight - 20 &&
       !isLoading
     ) {
+      handleSetOffset(limit);
       loadMoreChallenges();
     }
   };
@@ -58,7 +62,7 @@ function ChallengesList({changeToSubPage, endDateFilterType, statusFilterType}) 
           ))}
 
           {isLoading && (
-            <div className="loading">Cargando más retos...</div>
+            <div className="loading">Cargando...</div>
           )}
         </div>
       ) : (

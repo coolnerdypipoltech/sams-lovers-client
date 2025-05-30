@@ -62,8 +62,8 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
           {/*(challenge.transaction !== null) && <div>
             <p className="challenge-text-title">Estatus</p>
             <p className="challenge-text">{challenge.transaction?.status}</p>
-          </div>}
-          {(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
+          </div>*/}
+          {/*(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
             <p className="challenge-text-title">Feedback</p>
             <p className="challenge-text">{challenge.transaction?.feedback}</p>
           </div>*/}

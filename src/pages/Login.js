@@ -2,6 +2,7 @@ import "../styles/Login.css";
 import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
+import eyeclosed from "../assets/Visibility2.svg";
 import { useState, useContext, useRef } from "react";
 import CreatePage from "../subPages/CreatePage";
 import PasswordPage from "../subPages/PasswordPage";
@@ -17,10 +18,11 @@ function Login() {
   const [errorEmail, setErrorEmail] = useState(false);
 
   const [loginMessage, setLoginMessage] = useState(false);
+  const [eyeHelper1, setEyeHelper1] = useState(false);
+  const [typeHelper, setTypeHelper] = useState("password");
   const LoginText = useRef("");
   const LoginPassword = useRef("");
   let subPageContent = null;
-
   const onClickPassword = () => {
     setSubPage("Password");
   };
@@ -37,14 +39,17 @@ function Login() {
     setSubPage("");
   };
 
-  const onClickShowLoginMessage = () => {
-    LoginText.current.value = ""
-    LoginPassword.current.value = ""
-    setErrorPassword(false)
-    setErrorEmail(false)
-    setLoginMessage(true)
+  const onClickReturnLandingPage = () => {
+   changeRoute("Landing")
+  };
 
-  }
+  const onClickShowLoginMessage = () => {
+    LoginText.current.value = "";
+    LoginPassword.current.value = "";
+    setErrorPassword(false);
+    setErrorEmail(false);
+    setLoginMessage(true);
+  };
 
   const onClickLogin = async () => {
     if (inputValidation()) {
@@ -58,8 +63,15 @@ function Login() {
         setLoginToken(data.access_token);
         changeRoute("Main");
       } else {
-        setErrorPassword("usuario o contraseña incorrectos");
-        setErrorEmail("usuario o contraseña incorrectos");
+        if(data.message){
+          if(data.message === "api.error.email_not_verified"){
+            setErrorEmail("falta verificar");
+          }else{
+            setErrorPassword("usuario o contraseña incorrectos");
+            setErrorEmail("usuario o contraseña incorrectos");
+          }
+        }
+
       }
     }
   };
@@ -128,7 +140,10 @@ function Login() {
   }
   if (subPage === "Social Media") {
     subPageContent = (
-      <SocialMediaPage onReturn={onClickReturn} onShowMessage={onClickShowLoginMessage} ></SocialMediaPage>
+      <SocialMediaPage
+        onReturn={onClickReturn}
+        onShowMessage={onClickShowLoginMessage}
+      ></SocialMediaPage>
     );
   }
 
@@ -138,7 +153,7 @@ function Login() {
 
       <div className="LoginContainer">
         <div className="loginHeaderContainer">
-          <p className="loginHeaderText">Volver</p>
+          <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
         </div>
 
@@ -172,23 +187,36 @@ function Login() {
                 placeholder="Contraseña"
                 ref={LoginPassword}
                 className="GeneralInput"
-                type="password"
+                type={typeHelper}
               ></input>
 
-              <img
-                onClick={() => {
-                  if (
-                    LoginPassword.current.getAttribute("type") === "password"
-                  ) {
-                    LoginPassword.current.setAttribute("type", "text");
-                  } else {
-                    LoginPassword.current.setAttribute("type", "password");
+              <div onClick={() => {
+                  if(eyeHelper1){
+                    setTypeHelper("password")
+                    setEyeHelper1(false);
+                  }else{
+                    setTypeHelper("text")
+                    setEyeHelper1(true);
                   }
-                }}
-                alt="eye"
-                className="eyePassword"
-                src={eye}
-              ></img>
+                    
+                    }}>
+                {eyeHelper1 === true ? (
+                  <img
+                    alt="eye"
+                    className="eyePassword"
+                    src={eyeclosed}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => {
+                      setEyeHelper1(true);
+                    }}
+                    alt="eye"
+                    className="eyePassword"
+                    src={eye}
+                  ></img>
+                )}
+              </div>
             </div>
 
             {errorPassword !== null ? (
@@ -201,7 +229,7 @@ function Login() {
             </p>
           </div>
           <div className="LoginMenuBottomContainer">
-            <div style={{display: "flex", gap: "10px", flexFlow: "column"}} >
+            <div style={{ display: "flex", gap: "10px", flexFlow: "column" }}>
               <button className="GeneralButton" onClick={onClickLogin}>
                 Iniciar sesión
               </button>

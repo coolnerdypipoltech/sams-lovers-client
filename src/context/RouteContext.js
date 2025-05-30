@@ -4,7 +4,7 @@ import useIndexedDB from "../hooks/useIndexedDB";
 const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
-  const [route, setRoute] = useState("Login");
+  const [route, setRoute] = useState("");
   const loginToken = useRef("token");
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 
@@ -21,7 +21,6 @@ const ElementProviderRoute= ({ children }) => {
     }else{
       setRoute(newValue);
     }
-    
   };
 
   const setLoginToken = async (newValue) => {
@@ -36,9 +35,8 @@ const ElementProviderRoute= ({ children }) => {
     }
     loginToken.current = newValue;
     saveItem({loginToken: newValue})
-    
   }
-  
+
   const persistLogin = async () => {
     const savedItems = await getItems()
     if(savedItems !== undefined){
