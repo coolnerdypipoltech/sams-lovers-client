@@ -11,6 +11,10 @@ function Rewards() {
   } 
 
   const handleReturn =  () =>{
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "84vh";
+    }
     setSubPage("")
   }
 
@@ -19,10 +23,18 @@ function Rewards() {
   } 
 
   if (subPage === "RewardPage") {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "100px";
+    }
     subPageContent = <RewardPage ConfirmPage={handleConfirm} returnPage={handleReturn}></RewardPage>;
   }
 
   if (subPage === "ConfirmationPage") {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "100px";
+    }
     subPageContent = <ConfirmationPage returnPage={handleReturn} ></ConfirmationPage>;
   }
 
@@ -31,8 +43,13 @@ function Rewards() {
       <>{subPageContent}</>
 
       <div className="RewardsContainer">
-        <div style={{width: "100%", height: "50px"}}></div>
-        <p className="Title">Rewards disponibles</p>
+        <div className="headerSpacer"></div>
+        <div className="headerSpacer"></div>
+        <div className="challenge-header">
+        <p  className="challenges-Title">Rewards disponibles</p>
+        </div>
+        <p  className="challenges-text"> Redime tus diamantes por increibles premios.</p>
+        
 
         <List changeToSubPage={handleSelectReward}></List>
       </div>
