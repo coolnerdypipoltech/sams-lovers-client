@@ -3,9 +3,11 @@ import chevronRight from "../assets/chevronRightBlack.svg";
 import InfoToolTip from "../components/InfoTooltip";
 import { useRef, useState } from "react";
 import testImage from "../assets/Grupo 560@2x.png"
+import RewardsPopUp from "../components/RewardsPopUp";
 
 function RewardPage({ returnPage, ConfirmPage }) {
   const [rotated, setRotated] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(true) ;
   const textRef = useRef(null);
 
   const handleClick = () => {
@@ -15,18 +17,29 @@ function RewardPage({ returnPage, ConfirmPage }) {
     }
   };
 
+  const handleClosePopUp = () => {
+    setShowPopUp(false);
+  }
+  
+
   const handleReturn = () => {
     returnPage();
   };
 
   const handleParticipation = () => {
-    ConfirmPage();
+    setShowPopUp(true);
   };
 
   return (
     <>
+     {showPopUp ? (
+              <RewardsPopUp closePopUp={handleClosePopUp}></RewardsPopUp>
+            ) : (
+              <></>
+            )}
+
       <div className="subPageContainer">
-        <div style={{ width: "90%" }} className="challenges-subpage-container">
+        <div style={{ width: "90%", backgroundColor: "#F2F4FF" }} className="challenges-subpage-container">
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <p style={{color: "#3C74F3"}} className="challenge-back-button-text" onClick={handleReturn}>
@@ -40,7 +53,7 @@ function RewardPage({ returnPage, ConfirmPage }) {
               alt="Challenge illustrative reference"
             />
           </div>
-          <p className="challengesPage-Title">Retos</p>
+          <p className="challengesPage-Title">Nombre de la recompensa</p>
           <p className="challenge-text">
             Descripción. Lorem Ipsum is simply dummy text of the printing and
             typesetting industry. Lorem Ipsum has been the industry's standard
@@ -59,7 +72,7 @@ function RewardPage({ returnPage, ConfirmPage }) {
               >
                 <img src={diamond} alt="diamonds"></img>
                 <div >
-                  <p className="infoText" >Costo en diamantes</p>
+                  <p style={{width: "100%"}} className="infoText" >Costo en diamantes</p>
                   <div className="diamondsContainer">
                     <p className="challenge-text-information-diamonds">450</p>
                   </div>
@@ -67,11 +80,11 @@ function RewardPage({ returnPage, ConfirmPage }) {
               </div>
             </div>
 
-            <div className="challenge-information-container">
-              <p className="challenge-text-title">Vigencia</p>
+            <div  className="challenge-information-container">
+              <p style={{paddingTop: "20px"}} className="challenge-text-title">Vigencia</p>
               <div className="diamondsContainer">
-                <p style={{ paddingLeft: "0px" }} className="challenge-text">
-                  2/06/2025
+                <p style={{color: "#0B204F"}} className="challenge-text">
+                  01. 06 a 01.15 del 2025
                 </p>
               </div>
             </div>
@@ -106,7 +119,7 @@ function RewardPage({ returnPage, ConfirmPage }) {
                   justifyContent: "flex-end",
                 }}
               >
-                <InfoToolTip dark={true}></InfoToolTip>
+                <InfoToolTip text={"El número máximo \n de veces que puedes  \n canjear este artículo"}  dark={true}></InfoToolTip>
               </div>
             </div>
 
@@ -136,12 +149,12 @@ function RewardPage({ returnPage, ConfirmPage }) {
                   justifyContent: "flex-end",
                 }}
               >
-                <InfoToolTip dark={true}></InfoToolTip>
+                <InfoToolTip text={"El número máximo \n de veces que puedes  \n canjear este artículo"}  dark={true}></InfoToolTip>
               </div>
             </div>
           </div>
 
-          <div style={{ justifyContent: "space-between" }} className="rowAlign">
+          <div style={{ justifyContent: "space-between", paddingRight: "3%" }} className="rowAlign">
             <p className="challenge-information-text-conditions">Condiciones</p>
             <img
               src={chevronRight}
@@ -183,16 +196,18 @@ function RewardPage({ returnPage, ConfirmPage }) {
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <div className="participationContainer">
-            <p
-              style={{ width: "60%" }}
-              className="participate-button"
+            <button
+              style={{ width: "80%", fontSize: "15px" }}
+              className="GeneralButton4"
               onClick={handleParticipation}
             >
-              Participar
-            </p>
+              Obtener
+            </button>
           </div>
         </>
       </div>
+
+
     </>
   );
 }

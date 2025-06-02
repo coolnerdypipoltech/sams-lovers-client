@@ -46,7 +46,7 @@ function Rewards() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <div className="challenge-header">
-        <p  className="challenges-Title">Rewards disponibles</p>
+        <p  className="challenges-Title">Recompensas disponibles</p>
         </div>
         <p  className="challenges-text"> Redime tus diamantes por increibles premios.</p>
         

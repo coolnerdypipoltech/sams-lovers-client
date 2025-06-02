@@ -1,0 +1,131 @@
+import React, { useState } from "react";
+import { render } from "react-dom";
+import diamond from "../assets/diamond.svg";
+function RewardsPopUp({ closePopUp }) {
+    const [popUpResponse, setPopUpResponse] = useState(null) ;
+  const handleExchange = () => {
+    setPopUpResponse("Success")
+  };
+
+  const handleCancel = () => {
+    setPopUpResponse("Fail")
+  };
+
+  const handleClose = () => {
+    closePopUp();
+  };
+
+  let content = <></>
+  
+
+  if(popUpResponse === "Success"){
+      content = (      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <img src={diamond} style={{height: "130px", paddingTop: "20px"}}></img>
+
+            <p className="subTitlePopUpReward">Tu premio ha sido canjeado correctamente.</p>
+
+
+            <p style={{fontWeight: "400", margin: "0px", marginBottom:"20px" }} className="subTitlePopUpReward">Disfruta de tus recompensas, no te olvides de revisar la bandeja de entrada de tu correo electrónico registrado.</p>
+
+            <button style={{}} className="GeneralButton4" onClick={handleClose}>
+             Aceptar
+            </button>
+
+
+            <div className="headerSpacer"></div>
+          </div>
+        </div>
+      </div>);
+  }
+
+  if(popUpResponse === "Fail"){
+        content = 
+      (<div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+
+
+            <p style={{marginTop: "30px"}} className="subTitlePopUpReward">Lo sentimos, este premio se encuentra agotado.</p>
+
+
+            <p style={{fontWeight: "400", margin: "0px", marginBottom:"20px" }} className="subTitlePopUpReward">Aun tenemos muchísimos premios para ti.</p>
+
+            <button className="GeneralButton4" onClick={handleClose}>
+             Aceptar
+            </button>
+
+            <div style={{height: "30px"}}></div>
+          </div>
+        </div>
+      </div>)
+  }
+
+  
+
+
+
+
+
+
+
+
+  return (
+    <>
+        {popUpResponse === null ? (      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{padding: "0px", textAlign: "center", marginTop: "20px", marginBottom: "10px", color: "#0B204F" }} className="challengesPage-Title">Nombre del Reward</p>
+            <div className="popUpOutline">
+              <p className="RewardsPopUpText"> Tus diamantes disponibles:</p>
+              <div className="rowAlign">
+                <img src={diamond} alt="diamondLogo"></img>
+                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+              </div>
+            </div>
+
+            <div className="popUpOutline">
+              <p className="RewardsPopUpText"> Costo:</p>
+              <div className="rowAlign">
+                <img src={diamond} alt="diamondLogo"></img>
+                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+              </div>
+            </div>
+
+            <div className="popUpOutline">
+              <p className="RewardsPopUpText"> Diamantes después de la compra:</p>
+              <div className="rowAlign">
+                <img src={diamond} alt="diamondLogo"></img>
+                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+              </div>
+              <p className="RewardsDisclaimerText">
+                Se enviará un comprobante e instrucciones de canje al correo
+                electrónico registrado.
+              </p>
+            </div>
+
+            
+
+            <button style={{}} className="GeneralButton4" onClick={handleExchange}>
+             Canjear
+            </button>
+            <div style={{height: "15px"}}></div>
+            <button className="GeneralButton1" onClick={handleCancel}>
+              Cancelar
+            </button>
+            <div className="headerSpacer"></div>
+          </div>
+        </div>
+      </div>) : (<>{content}</>)}
+      
+
+
+
+
+
+    </>
+  );
+}
+
+export default RewardsPopUp;

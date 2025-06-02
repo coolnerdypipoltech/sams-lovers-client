@@ -140,6 +140,26 @@
 
 }
 
+.GeneralButton1{
+  background-color: white;
+  width: calc(100% + 2px);
+  height: 47px;
+  min-height: 44px;
+  border-color: #0066A1;
+  border-width: 2px;
+  color: #0066A1;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 23px;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  padding: 0px;
+
+}
+
 .GeneralButton3{
   background-color: #0066A1;
   width: calc(100% + 2px);
