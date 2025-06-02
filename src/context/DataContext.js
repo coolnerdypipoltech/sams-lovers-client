@@ -6,9 +6,9 @@ const ElementProviderData = ({ children }) => {
   const [rewardsData, setRewardsData] = useState(null);
   const [articleData, setArticleData] = useState(null);
   const [challengesData, setChallengesData] = useState(null);
+  const [currentChallenge, setCurrentChallenge] = useState(null);
 
   const UserData = useRef(null);
-  const currentChallenge = useRef(null);
   const currentReward = useRef(null);
   const currentArticle = useRef(null);
   const articlePosition = useRef(null);
@@ -168,6 +168,19 @@ const ElementProviderData = ({ children }) => {
     return;
   };
 
+  const setNewTransaction = async (transaction) => {
+    var tempChallenge = currentChallenge;
+    tempChallenge.transaction = transaction;
+    setCurrentChallenge(tempChallenge);
+    let tempArray = challengesData;
+    for (var i = 0; i < tempArray.length; i++) {
+      if(tempArray[i].challenge.id === currentChallenge.id) {
+        tempArray[i].challenge = currentChallenge;
+      }
+    }
+    setCurrentChallenge(tempArray);
+  }
+
   return (
     <ElementContextData.Provider
       value={{
@@ -181,6 +194,8 @@ const ElementProviderData = ({ children }) => {
         articleData,
         nextChallenges,
         SetUserData,
+        setChallengesData,
+        setCurrentChallenge,
         requestMoreRewards,
         requestMoreChallenges,
         requestMoreChallengesByURL,
@@ -189,6 +204,7 @@ const ElementProviderData = ({ children }) => {
         initRequestRewards,
         initRequestArticles,
         initRequestChallenges,
+        setNewTransaction
       }}
     >
       {children}

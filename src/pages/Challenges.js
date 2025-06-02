@@ -9,18 +9,22 @@ import filter from "../assets/filter.png"
 import { CreateSubmission } from "../hooks/apicalls";
 
 function Challenges() {
+  const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
+
   const [subPage, setSubPage] = useState("");
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [prevTransactionStatusFilter, setPrevTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
-  const [submissionURL, setSubmissionURL] = useState("")
+  const [submissionURL, setSubmissionURL] = useState("");
+
+  let filterHasBeenModified = useRef(null);
 
   const refresh_limit = 10;
   const refresh_offset = 0;
 
-  let filterHasBeenModified = useRef(null);
+  let subPageContent = null;
 
   useEffect(() => {
     if(prevChallengeStatusFilter !== challengeStatusFilter){
@@ -36,12 +40,7 @@ function Challenges() {
     }
   }, [transactionStatusFilter, prevTransactionStatusFilter, filterHasBeenModified]);
 
-  const { UserData, initRequestChallenges, currentChallenge } = useContext(ElementContextData);
-
-  let subPageContent = null;
-
   const handleSelectChallenge = () => {
-    console.log("Pressed challenge")
     setSubPage("ChallengePage");
   };
 
@@ -59,19 +58,21 @@ function Challenges() {
 
     const response = await CreateSubmission(
             `${UserData.current.token_type} ${UserData.current.access_token}`,
-            currentChallenge.current.id,
+            currentChallenge.id,
             submissionURL
     );
     const data = await response.json();
     console.log(data.challenges);
     if (response.ok) {
-      currentChallenge.current.transaction = data.transaction;
+      setNewTransaction(data.transaction);
     }else{
       if (data.message) {
         if(response.status === 400) {
           switch(data.message) {
             case "api.error.challenge_expired":
               //todo send user a message of expiration
+              break;
+            default:
               break;
           }
         }
@@ -106,7 +107,7 @@ function Challenges() {
       <ChallengePage
         returnPage={handleReturn}
         challengeParticipationPage={handleSelectParticipation}
-        challenge={currentChallenge.current}
+        challenge={currentChallenge}
       ></ChallengePage>
     );
   }
@@ -116,7 +117,7 @@ function Challenges() {
       <ChallengeParticipationPage
         handleReturn={handleReturn}
         handleParticipation={handleParticipation}
-        challenge={currentChallenge.current}
+        challenge={currentChallenge}
         handleOnChangeInput={handleOnChangeInput}
       ></ChallengeParticipationPage>
     );

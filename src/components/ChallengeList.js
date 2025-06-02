@@ -8,7 +8,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
 
   const listContainerRef = useRef(null);
 
-  const { currentChallenge, nextChallenges, initRequestChallenges, challengesData, requestMoreChallengesByURL } = useContext(ElementContextData);
+  const { setCurrentChallenge, nextChallenges, initRequestChallenges, challengesData, requestMoreChallengesByURL } = useContext(ElementContextData);
 
   const limit = 10;
 
@@ -39,7 +39,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
   };
 
   const handleSelectChallenge = (itemData) => {
-    currentChallenge.current = itemData;
+    setCurrentChallenge(itemData);
     changeToSubPage();
   };
 
