@@ -75,7 +75,7 @@ export async function ResetPassword(_email) {
     }
 }
 
-export async function CreateSubmission(_token, _challenge_id) {
+export async function CreateSubmission(_token, _challenge_id, _url) {
     try{
         const response = await fetch(ENDPOINT + "/v1/challenge/submission/", {
         method: "POST",
@@ -85,6 +85,7 @@ export async function CreateSubmission(_token, _challenge_id) {
         },
         body: JSON.stringify({
             challenge_id: _challenge_id,
+            url: _url
         }),
         });
         return response;

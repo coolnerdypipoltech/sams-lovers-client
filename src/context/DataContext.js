@@ -49,8 +49,6 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData(data.challenges);
       nextChallenges.current = data.next;
-      console.log(data.next);
-      console.log(nextChallenges.current);
     } else {
       if (data.message) {
         if (response.status === 403) {

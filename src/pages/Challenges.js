@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef, use } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
 import ChallengePage from "../subPages/ChallengePage";
@@ -11,23 +11,42 @@ import { CreateSubmission } from "../hooks/apicalls";
 function Challenges() {
   const [subPage, setSubPage] = useState("");
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
+  const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
+  const [prevTransactionStatusFilter, setPrevTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
+  const [submissionURL, setSubmissionURL] = useState("")
 
   const refresh_limit = 10;
   const refresh_offset = 0;
 
-  const { UserData, initRequestChallenges, currentChallenge } =
-    useContext(ElementContextData);
+  let filterHasBeenModified = useRef(null);
+
+  useEffect(() => {
+    if(prevChallengeStatusFilter !== challengeStatusFilter){
+      filterHasBeenModified.current = true;
+      setPrevChallengeStatusFilter(challengeStatusFilter);
+    }
+  }, [challengeStatusFilter, prevChallengeStatusFilter, filterHasBeenModified]);
+
+  useEffect(() => {
+    if(prevTransactionStatusFilter !== transactionStatusFilter){
+      filterHasBeenModified.current = true;
+      setPrevTransactionStatusFilter(transactionStatusFilter);
+    }
+  }, [transactionStatusFilter, prevTransactionStatusFilter, filterHasBeenModified]);
+
+  const { UserData, initRequestChallenges, currentChallenge } = useContext(ElementContextData);
 
   let subPageContent = null;
 
   const handleSelectChallenge = () => {
+    console.log("Pressed challenge")
     setSubPage("ChallengePage");
   };
 
   const handleReturn = () => {
-    setSubPage("");
+    if(subPage === "ChallengeParticipationPage") setSubPage("ChallengePage"); else setSubPage("");
   };
 
   const handleSelectParticipation = () => {
@@ -35,18 +54,38 @@ function Challenges() {
   };
 
   const handleParticipation = async () => {
+
+    if(submissionURL === "") return;
+
     const response = await CreateSubmission(
             `${UserData.current.token_type} ${UserData.current.access_token}`,
-            currentChallenge.current.id
+            currentChallenge.current.id,
+            submissionURL
     );
     const data = await response.json();
     console.log(data.challenges);
     if (response.ok) {
-      //pop up and update the challenges use state with the new info of the current challenge
+      currentChallenge.current.transaction = data.transaction;
+    }else{
+      if (data.message) {
+        if(response.status === 400) {
+          switch(data.message) {
+            case "api.error.challenge_expired":
+              //todo send user a message of expiration
+              break;
+          }
+        }
+
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
     }
   };
 
   const handleRefreshList = () => {
+    filterHasBeenModified.current = false;
     initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
   };
 
@@ -57,6 +96,10 @@ function Challenges() {
   const handleTransactionStatusFilter = (transactionStatus) => {
     setTransactionStatusFilter(transactionStatus);
   };
+
+  const handleOnChangeInput = (input) => {
+    setSubmissionURL(input);
+  }
 
   if (subPage === "ChallengePage") {
     subPageContent = (
@@ -71,9 +114,10 @@ function Challenges() {
   if (subPage === "ChallengeParticipationPage") {
     subPageContent = (
       <ChallengeParticipationPage
-        returnPage={handleReturn}
-        participation={handleParticipation}
+        handleReturn={handleReturn}
+        handleParticipation={handleParticipation}
         challenge={currentChallenge.current}
+        handleOnChangeInput={handleOnChangeInput}
       ></ChallengeParticipationPage>
     );
   }
@@ -81,6 +125,9 @@ function Challenges() {
   function handleSetChallengeFilter(event, value) {
     if (event.target.className === "challenges-filter-container") {
       setChallengeFilter(value);
+      if(!value && filterHasBeenModified.current){
+        handleRefreshList();
+      }
     }
   }
 
@@ -115,7 +162,6 @@ function Challenges() {
             className="challenges-filter-container"
             onClick={(e) => {
               handleSetChallengeFilter(e, false);
-              handleRefreshList();
             }}
           >
             <ChallengeFilter

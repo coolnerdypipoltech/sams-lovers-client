@@ -22,7 +22,7 @@ const getStatusBackgroundColor = (status) => {
       return "";
     case "completed":
       return "green";
-    case "in_review":
+    case "SUBMITTED":
       return "yellow";
     case "rejected":
       return "red";

@@ -1,13 +1,4 @@
-function ChallengeParticipationPage({ returnPage, participation, challenge }) {
-
-  const handleReturn =  () =>{
-    returnPage()
-  }
-
-  const handleParticipation = () =>{
-    participation();
-  }
-
+function ChallengeParticipationPage({ handleReturn, handleParticipation, challenge, handleOnChangeInput }) {
   return (
     <div className="subPageContainer">
       <div className="confirmation-subpage-container">
@@ -23,7 +14,7 @@ function ChallengeParticipationPage({ returnPage, participation, challenge }) {
         <p className="challenge-text">Intrucciones. {challenge.instructions}</p>
         <div className="challenge-information-container">
           <p className="challenge-information-text-title">URL</p>
-          <input className="url-input" placeholder="https://www.facebook/susana.com" type="url"></input>
+          <input className="url-input" placeholder="https://www.facebook/susana.com" type="url" onChange={e => handleOnChangeInput(e.target.value)}>{((challenge.transaction === null) || (challenge.transaction?.url !== "")) && challenge.transaction?.url}</input>
         </div>
         <div className="participation-information-holder">
           <p className="participation-information-text">
