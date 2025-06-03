@@ -145,7 +145,8 @@
   width: calc(100% + 2px);
   height: 47px;
   min-height: 44px;
-  border-color: #0066A1;
+  border-style: solid;
+  border-color: #08a4ff;
   border-width: 2px;
   color: #0066A1;
   font-family: "Poppins", sans-serif;

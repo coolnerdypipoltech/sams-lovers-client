@@ -46,7 +46,7 @@
   font-weight: 500;
   text-align: start;
   margin: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   color: #0b1432;
   width: 80%;
   margin-left: 5px;
@@ -56,6 +56,7 @@
     font-size: 14px;
     text-align: start;
     color: #0B204F;
+    font-weight: 600;
 }
 
 .popUpOutline{
@@ -63,6 +64,8 @@
     border-width: 1px;
     border-color: #F2F4FF;
     border-radius: 9px;
+    padding: 10px;
+    padding-left: 15px;
     -webkit-border-radius: 9px;
     -moz-border-radius: 9px;
     -ms-border-radius: 9px;
@@ -88,6 +91,7 @@
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+    margin-bottom: 0px;
 }
 
 

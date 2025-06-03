@@ -34,7 +34,7 @@ function RewardsPopUp({ closePopUp }) {
             </button>
 
 
-            <div className="headerSpacer"></div>
+            <div style={{height: "30px"}}></div>
           </div>
         </div>
       </div>);
@@ -79,25 +79,25 @@ function RewardsPopUp({ closePopUp }) {
             <p style={{padding: "0px", textAlign: "center", marginTop: "20px", marginBottom: "10px", color: "#0B204F" }} className="challengesPage-Title">Nombre del Reward</p>
             <div className="popUpOutline">
               <p className="RewardsPopUpText"> Tus diamantes disponibles:</p>
-              <div className="rowAlign">
+              <div style={{paddingLeft: "5px"}} className="rowAlign">
                 <img src={diamond} alt="diamondLogo"></img>
-                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+                <p style={{marginBottom: "0px", paddingLeft: "10px"}} className="challengesPage-Title">450 DIAMANTES</p>
               </div>
             </div>
 
             <div className="popUpOutline">
               <p className="RewardsPopUpText"> Costo:</p>
-              <div className="rowAlign">
+<div style={{paddingLeft: "5px"}} className="rowAlign">
                 <img src={diamond} alt="diamondLogo"></img>
-                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+                <p style={{marginBottom: "0px", paddingLeft: "10px"}} className="challengesPage-Title">450 DIAMANTES</p>
               </div>
             </div>
 
             <div className="popUpOutline">
               <p className="RewardsPopUpText"> Diamantes después de la compra:</p>
-              <div className="rowAlign">
+              <div style={{paddingLeft: "5px"}} className="rowAlign">
                 <img src={diamond} alt="diamondLogo"></img>
-                <p style={{marginBottom: "0px"}} className="challengesPage-Title">450 DIAMANTES</p>
+                <p style={{marginBottom: "0px", paddingLeft: "10px"}} className="challengesPage-Title">450 DIAMANTES</p>
               </div>
               <p className="RewardsDisclaimerText">
                 Se enviará un comprobante e instrucciones de canje al correo
@@ -105,7 +105,7 @@ function RewardsPopUp({ closePopUp }) {
               </p>
             </div>
 
-            
+            <div style={{height: "15px"}}></div>
 
             <button style={{}} className="GeneralButton4" onClick={handleExchange}>
              Canjear

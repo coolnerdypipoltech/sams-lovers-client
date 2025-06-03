@@ -356,6 +356,10 @@
   -o-border-radius: 10px;
   width: 100%;
   height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .participationContainer{

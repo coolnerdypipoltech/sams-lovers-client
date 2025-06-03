@@ -52,7 +52,7 @@ function RewardsList({ changeToSubPage }) {
           style={{ overflowY: "auto", height: "84vh" }}
         >
           {rewardsData.map((reward, index) => (
-            <div onClick={() => handleSelectReward(reward)}>
+            <div key={index} onClick={() => handleSelectReward(reward)}>
               {" "}
               <RewardsListItem key={index} reward={reward} />
             </div>
