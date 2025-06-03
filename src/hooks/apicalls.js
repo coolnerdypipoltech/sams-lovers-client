@@ -77,7 +77,7 @@ export async function ResetPassword(_email) {
 
 export async function CreateSubmission(_token, _challenge_id, _url) {
     try{
-        const response = await fetch(ENDPOINT + "/v1/challenge/submission/", {
+        const response = await fetch(ENDPOINT + "/v1/challenges/submission/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

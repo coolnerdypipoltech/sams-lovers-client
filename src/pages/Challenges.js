@@ -62,7 +62,7 @@ function Challenges() {
             submissionURL
     );
     const data = await response.json();
-    console.log(data.challenges);
+    console.log(data.transaction);
     if (response.ok) {
       setNewTransaction(data.transaction);
     }else{

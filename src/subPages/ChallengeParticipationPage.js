@@ -14,7 +14,7 @@ function ChallengeParticipationPage({ handleReturn, handleParticipation, challen
         <p className="challenge-text">Intrucciones. {challenge.instructions}</p>
         <div className="challenge-information-container">
           <p className="challenge-information-text-title">URL</p>
-          <input className="url-input" placeholder="https://www.facebook/susana.com" type="url" onChange={e => handleOnChangeInput(e.target.value)}>{((challenge.transaction === null) || (challenge.transaction?.url !== "")) && challenge.transaction?.url}</input>
+          <input className="url-input" placeholder={((challenge.transaction !== null) && (challenge.transaction?.url !== "")) ? challenge.transaction?.url : "https://www.facebook/susana.com"} type="url" onChange={e => handleOnChangeInput(e.target.value)}></input>
         </div>
         <div className="participation-information-holder">
           <p className="participation-information-text">
@@ -28,7 +28,10 @@ function ChallengeParticipationPage({ handleReturn, handleParticipation, challen
           <p className="challenge-text-title">Estatus</p>
           <p className="challenge-text">{challenge.transaction?.status}</p>
         </div>*/}
-        {((challenge.transaction === null) || challenge.transaction?.status === "in_review" ) && <p className="participate-button" onClick={handleParticipation}>Enviar</p>}
+        {
+          ((challenge.transaction === null && challenge.status_challenge !== "TERMINADO") || (challenge.transaction?.status === "SUBMITTED" && challenge.status_challenge !== "TERMINADO")) &&
+            <p className="participate-button" onClick={handleParticipation}>Participar</p>
+        }
       </div>
     </div>
   );

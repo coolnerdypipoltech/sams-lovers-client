@@ -174,11 +174,11 @@ const ElementProviderData = ({ children }) => {
     setCurrentChallenge(tempChallenge);
     let tempArray = challengesData;
     for (var i = 0; i < tempArray.length; i++) {
-      if(tempArray[i].challenge.id === currentChallenge.id) {
-        tempArray[i].challenge = currentChallenge;
+      if(tempArray[i].id === currentChallenge.id) {
+        tempArray[i] = currentChallenge;
       }
     }
-    setCurrentChallenge(tempArray);
+    setChallengesData(tempArray);
   }
 
   return (
