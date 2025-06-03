@@ -10,8 +10,10 @@ import SocialMediaPage from "../subPages/SocialMediaPage";
 import { ElementContextRoute } from "../context/RouteContext";
 import { LogIn } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
+import { ElementContextPopUp } from "../context/PopUpContext";
 function Login() {
   const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
   const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
@@ -52,7 +54,9 @@ function Login() {
   };
 
   const onClickLogin = async () => {
+
     if (inputValidation()) {
+      changePopUpLoading(true)
       const response = await LogIn(
         LoginText.current.value,
         LoginPassword.current.value
@@ -73,6 +77,7 @@ function Login() {
         }
 
       }
+      changePopUpLoading(false)
     }
   };
 

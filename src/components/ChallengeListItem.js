@@ -1,36 +1,26 @@
 import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg"
 import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg"
 import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg"
+import timeout from "../assets/challenge-rewards-Icons/Icon_Rechazado (1).svg"
 import diamond from "../assets/diamond.svg";
 const getStatusIcon = (status) => {
   switch(status) {
     default:
       return null;
-    case "completed":
+    case "APPROVED":
       return completedStatusLogo;
-    case "in_review":
+    case "SUBMITTED":
       return inReviewStatusLogo;
-    case "rejected":
+    case "REJECTED":
       return rejectedStatusLogo;
   }
 
-}
-
-const getStatusBackgroundColor = (status) => {
-  switch(status) {
-    default:
-      return "";
-    case "completed":
-      return "green";
-    case "in_review":
-      return "yellow";
-    case "rejected":
-      return "red";
-  }
+  
 
 }
 
 function ChallengeListItem({challenge}){
+
   return (
     <>
       
@@ -48,14 +38,20 @@ function ChallengeListItem({challenge}){
           </div>
           
         </div>
-        {(getStatusIcon(challenge.transaction?.status) !== null) && (
-          
-          <div className="status-icon">
-          <img  src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>
-          </div>
+        {(getStatusIcon(challenge.transaction?.status) !== null) ?
+          (
+            <div className="status-icon">
+              <img  src={getStatusIcon(challenge.transaction?.status)} alt="Transaction status icon"/>
+            </div>
+          ) : (challenge.status_challenge === "TERMINADO") &&
+            <div className="status-icon">
+              {<img src={timeout} alt="Transaction status icon"/>}
+            </div>
 
+           
 
-        )}
+            
+        }
       </div>
     </>
   );
