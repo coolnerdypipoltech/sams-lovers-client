@@ -1,15 +1,15 @@
-const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api/v1/";
+const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api";
 
 export async function SignIn(_name, _email, _password) {
     try {
-        console.log(ENDPOINT + "auth/signin");
+        console.log(ENDPOINT + "/v1/auth/signin");
         const bodyData = {
             name: _name,
             email: _email,
             password: _password,
             diamonds: 0
         };
-        const response = await fetch(ENDPOINT + "auth/signin", {
+        const response = await fetch(ENDPOINT + "/v1/auth/signin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,9 +25,9 @@ export async function SignIn(_name, _email, _password) {
 
 export async function LogIn(_email, _password) {
     console.log(_email, _password)
-    console.log(ENDPOINT + "auth/login")
+    console.log(ENDPOINT + "/v1/auth/login")
     try{
-        const response = await fetch(ENDPOINT + "auth/login", {
+        const response = await fetch(ENDPOINT + "/v1/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export async function LogIn(_email, _password) {
 
 export async function LogInWithToken(_token) {
     try{
-        const response = await fetch(ENDPOINT + "auth/login/token", {
+        const response = await fetch(ENDPOINT + "/v1/auth/login/token", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export async function LogInWithToken(_token) {
 
 export async function ResetPassword(_email) {
     try{
-        const response = await fetch(ENDPOINT + "auth/passwords/reset", {
+        const response = await fetch(ENDPOINT + "/v1/auth/passwords/reset", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -75,9 +75,9 @@ export async function ResetPassword(_email) {
     }
 }
 
-export async function CreateSubmission(_token, _challenge_id) {
+export async function CreateSubmission(_token, _challenge_id, _url) {
     try{
-        const response = await fetch(ENDPOINT + "challenge/submission/", {
+        const response = await fetch(ENDPOINT + "/v1/challenges/submission/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -85,6 +85,7 @@ export async function CreateSubmission(_token, _challenge_id) {
         },
         body: JSON.stringify({
             challenge_id: _challenge_id,
+            url: _url
         }),
         });
         return response;
@@ -95,7 +96,7 @@ export async function CreateSubmission(_token, _challenge_id) {
 
 export async function PurchaseReward(_token, _reward_id) {
     try{
-        const response = await fetch(ENDPOINT + "rewards/purchase/", {
+        const response = await fetch(ENDPOINT + "/v1/rewards/purchase/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -113,7 +114,7 @@ export async function PurchaseReward(_token, _reward_id) {
 
 export async function ExchangeCode(_token, _code) {
     try{
-        const response = await fetch(ENDPOINT + "codes/exchange/", {
+        const response = await fetch(ENDPOINT + "/v1/codes/exchange/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -131,7 +132,7 @@ export async function ExchangeCode(_token, _code) {
 
 export async function GetUserInfo(_token) {
     try{
-        const response = await fetch(ENDPOINT + "user", {
+        const response = await fetch(ENDPOINT + "/v1/user", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -146,7 +147,7 @@ export async function GetUserInfo(_token) {
 
 export async function GetArticles (_token, _page, _count) {
     try{
-        const response = await fetch(ENDPOINT + `articles/${_page}/${_count}`, {
+        const response = await fetch(ENDPOINT + `/v1/articles/${_page}/${_count}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -162,7 +163,24 @@ export async function GetArticles (_token, _page, _count) {
 export async function GetChallengesByUser (_token, _challenge_status, _transaction_status, _limit, _offset) {
     console.log(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`)
     try{
-        const response = await fetch(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`, {
+        const response = await fetch(ENDPOINT + `/v1/challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": _token,
+        }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetChallengesByUserWithURL (_token, _next_url) {
+    console.log(ENDPOINT + _next_url);
+    try{
+        const response = await fetch(ENDPOINT + _next_url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -178,7 +196,7 @@ export async function GetChallengesByUser (_token, _challenge_status, _transacti
 
 export async function GetPurchasedRewards (_token, _page, _count) {
     try {
-        const response = await fetch(ENDPOINT + `rewards/purchased/${_page}/${_count}`, {
+        const response = await fetch(ENDPOINT + `/v1/rewards/purchased/${_page}/${_count}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -194,7 +212,7 @@ export async function GetPurchasedRewards (_token, _page, _count) {
 
 export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
-        const response = await fetch(ENDPOINT + "user/update", {
+        const response = await fetch(ENDPOINT + "/v1/user/update", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -221,7 +239,7 @@ export async function UpdateUserAvatar (_token, _file) {
         formData.append('image', _file);
 
         try {
-            const response = await fetch(ENDPOINT + "user/update/avatar", {
+            const response = await fetch(ENDPOINT + "/v1/user/update/avatar", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -239,7 +257,7 @@ export async function UpdateUserAvatar (_token, _file) {
 
 export async function DeleteUser (_token) {
     try {
-        const response = await fetch(ENDPOINT + "user/delete", {
+        const response = await fetch(ENDPOINT + "/v1/user/delete", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

@@ -67,6 +67,10 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
             <p className="challenge-text-title">Feedback</p>
             <p className="challenge-text">{challenge.transaction?.feedback}</p>
           </div>*/}
+          {
+            ((challenge.transaction === null && challenge.status_challenge !== "TERMINADO") || (challenge.transaction?.status === "SUBMITTED" && challenge.status_challenge !== "TERMINADO")) &&
+              <p className="participate-button" onClick={handleParticipation}>Participar</p>
+          }
         </div>
 
         {(challenge.transaction === null ||

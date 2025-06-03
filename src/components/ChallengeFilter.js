@@ -1,6 +1,6 @@
 import { Picker } from "@react-native-picker/picker";
 
-function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handleChallengeStatusFilter, handleTransactionStatusFitler}) {
+function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handleChallengeStatusFilter, handleTransactionStatusFilter}) {
     return (
     <>
         <div className="challenges-filter">
@@ -20,7 +20,7 @@ function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handle
             <Picker className="challenges-filter-picker"
                 selectedValue={transactionStatusFilter}
                 onValueChange={(itemValue, itemIndex) => {
-                    handleTransactionStatusFitler(itemValue);
+                    handleTransactionStatusFilter(itemValue);
                 }}
             >
                 <Picker.Item label="Todos los retos" value="TODO" />
