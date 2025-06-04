@@ -56,7 +56,8 @@
     font-size: 14px;
     text-align: start;
     color: #0B204F;
-    font-weight: 600;
+    font-weight: 500;
+    font-family:"canada-type-gibson"
 }
 
 .popUpOutline{
@@ -81,8 +82,9 @@
 }
 
 .RewardsDisclaimerText{
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
-    color: "#868787";
+    color: #868787;
     text-align: left;
     background-color: #F2F4FF;
     padding: 10px;

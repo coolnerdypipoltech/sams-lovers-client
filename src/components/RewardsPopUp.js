@@ -6,7 +6,7 @@ import { useWindowSize } from "react-use";
 
 function RewardsPopUp({ closePopUp }) {
   const [popUpResponse, setPopUpResponse] = useState(null);
-  
+
   const handleExchange = () => {
     setPopUpResponse("Success");
   };
@@ -24,7 +24,11 @@ function RewardsPopUp({ closePopUp }) {
   if (popUpResponse === "Success") {
     content = (
       <>
-        <Confetti style={{zIndex: "100"}} width={window.innerWidth} height={window.innerHeight} />
+        <Confetti
+          style={{ zIndex: "100" }}
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
         <div className="PopUp">
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">
@@ -95,9 +99,17 @@ function RewardsPopUp({ closePopUp }) {
   return (
     <>
       {popUpResponse === null ? (
-        <div  className="PopUp">
-          <div  style={{ height: "80%" }} className="PopUpDialog">
-            <div style={{ height: "100%", display: "flex", justifyContent: "space-evenly", flexDirection: "column" }} className="GeneralButtonContainer">
+        <div className="PopUp">
+          <div style={{ height: "75%" }} className="PopUpDialog">
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "space-evenly",
+                flexDirection: "column",
+              }}
+              className="GeneralButtonContainer"
+            >
               <p
                 style={{
                   padding: "0px",
@@ -111,71 +123,74 @@ function RewardsPopUp({ closePopUp }) {
                 Nombre del Reward
               </p>
               <div>
-                              <div className="popUpOutline">
-                <p className="RewardsPopUpText"> Tus diamantes disponibles:</p>
-                <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                  <img src={diamond} alt="diamondLogo"></img>
-                  <p
-                    style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                    className="challengesPage-Title"
-                  >
-                    450 DIAMANTES
+                <div className="popUpOutline" style={{borderBottomLeftRadius: "0px", borderBottomRightRadius: "0px"}}>
+                  <p className="RewardsPopUpText">
+                    {" "}
+                    Tus diamantes disponibles:
+                  </p>
+                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                    <img src={diamond} alt="diamondLogo"></img>
+                    <p
+                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                      className="challengesPage-Title"
+                    >
+                      450 DIAMANTES
+                    </p>
+                  </div>
+                </div>
+
+                <div className="popUpOutline" style={{borderTopLeftRadius:" 0px",  borderTopRightRadius: "0px"}}>
+                  <p className="RewardsPopUpText"> Costo:</p>
+                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                    <img src={diamond} alt="diamondLogo"></img>
+                    <p
+                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                      className="challengesPage-Title"
+                    >
+                      450 DIAMANTES
+                    </p>
+                  </div>
+                </div>
+
+                <div className="popUpOutline">
+                  <p className="RewardsPopUpText">
+                    {" "}
+                    Diamantes después de la compra:
+                  </p>
+                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                    <img src={diamond} alt="diamondLogo"></img>
+                    <p
+                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                      className="challengesPage-Title"
+                    >
+                      450 DIAMANTES
+                    </p>
+                  </div>
+                  <p className="RewardsDisclaimerText">
+                    Se enviará un comprobante e instrucciones de canje al correo
+                    electrónico registrado.
                   </p>
                 </div>
               </div>
 
-              <div className="popUpOutline">
-                <p className="RewardsPopUpText"> Costo:</p>
-                <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                  <img src={diamond} alt="diamondLogo"></img>
-                  <p
-                    style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                    className="challengesPage-Title"
-                  >
-                    450 DIAMANTES
-                  </p>
-                </div>
+              <div style={{paddingBottom: "15px"}}>
+                <button
+                  style={{ height: "55px", width:"80%" }}
+                  className="GeneralButton4"
+                  onClick={handleExchange}
+                >
+                  Canjear
+                </button>
+                <div style={{ height: "15px" }}></div>
+
+                <button
+                  style={{ height: "55px", width:"80%" }}
+                  className="GeneralButton1"
+                  onClick={handleCancel}
+                >
+                  Cancelar
+                </button>
               </div>
-
-              <div className="popUpOutline">
-                <p className="RewardsPopUpText">
-                  {" "}
-                  Diamantes después de la compra:
-                </p>
-                <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                  <img src={diamond} alt="diamondLogo"></img>
-                  <p
-                    style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                    className="challengesPage-Title"
-                  >
-                    450 DIAMANTES
-                  </p>
-                </div>
-                <p className="RewardsDisclaimerText">
-                  Se enviará un comprobante e instrucciones de canje al correo
-                  electrónico registrado.
-                </p>
-              </div>
-              </div>
-
-
-             
-
-                <div >
-                              <button 
-                style={{ height: "55px" }}
-                className="GeneralButton4"
-                onClick={handleExchange}
-              >
-                Canjear
-              </button>
-               <div style={{ height: "15px" }}></div>
-
-              <button style={{ height: "55px" }} className="GeneralButton1" onClick={handleCancel}>
-                Cancelar
-              </button>
-                </div>
-
             </div>
           </div>
         </div>

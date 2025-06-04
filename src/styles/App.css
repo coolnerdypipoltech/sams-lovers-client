@@ -131,13 +131,12 @@
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 23px;
-  -webkit-border-radius: 23px;
-  -moz-border-radius: 23px;
-  -ms-border-radius: 23px;
-  -o-border-radius: 23px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
   padding: 0px;
-
 }
 
 .GeneralButton1{
@@ -152,13 +151,12 @@
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 23px;
-  -webkit-border-radius: 23px;
-  -moz-border-radius: 23px;
-  -ms-border-radius: 23px;
-  -o-border-radius: 23px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
   padding: 0px;
-
 }
 
 .GeneralButton3{
@@ -172,11 +170,11 @@
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 23px;
-  -webkit-border-radius: 23px;
-  -moz-border-radius: 23px;
-  -ms-border-radius: 23px;
-  -o-border-radius: 23px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
   padding: 0px;
   padding-left: 1px;
   padding-right: 1px;
@@ -195,7 +193,7 @@
   font-size: 18px;
   font-weight: 600;
   border-radius: 23px;
-  -webkit-border-radius: 23px;
+  -webkit-border-radius: 50px;
   -moz-border-radius: 23px;
   -ms-border-radius: 23px;
   -o-border-radius: 23px;
@@ -272,8 +270,8 @@
   align-items: center;
   justify-content: center;
   align-content: center;
-  width: 80%;
-  max-width: 500px;
+  width: 90%;
+
   height: 200px;
   box-shadow: 10px;
   flex-flow: column;
