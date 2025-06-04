@@ -1,4 +1,4 @@
-function ConfirmationPage({returnPage}) {
+function ConfirmationPage({returnPage, handlePurchase}) {
 
   const handleReturn =  () =>{
     returnPage()

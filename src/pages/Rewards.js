@@ -1,14 +1,19 @@
-import { useState } from "react";
-import List from "../components/RewardsList";
+import { useState, useContext} from "react";
+import RewardsList from "../components/RewardsList";
 import "../styles/Rewards.css";
 import  RewardPage  from "../subPages/RewardPage";
 import  ConfirmationPage  from "../subPages/ConfirmationPage";
+import { PurchaseReward } from "../hooks/apicalls";
+import { ElementContextData } from "../context/DataContext";
+
 function Rewards() {
+  const { UserData, currentReward, setNewRewardTransaction } = useContext(ElementContextData);
+
   const [subPage, setSubPage] = useState("");
   let subPageContent = null;
   const handleSelectReward =  () =>{
     setSubPage("RewardPage")
-  } 
+  }
 
   const handleReturn =  () =>{
     const div = document.querySelector(".listContainer");
@@ -20,7 +25,38 @@ function Rewards() {
 
   const handleConfirm =  () =>{
     setSubPage("ConfirmationPage")
-  } 
+  }
+
+  const handlePurchase = async () => {
+  
+      const response = await PurchaseReward(
+              `${UserData.current.token_type} ${UserData.current.access_token}`,
+              currentReward.id
+      );
+      const data = await response.json();
+      console.log(data.transaction);
+      if (response.ok) {
+        setNewRewardTransaction(data.transaction);
+      }else{
+        if (data.message) {
+          if(response.status === 400) {
+            switch(data.message) {
+              case "api.error.reward_expired":
+                //todo send user a message of expiration
+                break;
+              default:
+                break;
+            }
+          }
+
+          if (response.status === 403) {
+            //todo send user to log in page
+          }
+        }
+        return;
+      }
+    };
+
 
   if (subPage === "RewardPage") {
     const div = document.querySelector(".listContainer");
@@ -35,7 +71,7 @@ function Rewards() {
     if (div) {
       div.style.height = "100px";
     }
-    subPageContent = <ConfirmationPage returnPage={handleReturn} ></ConfirmationPage>;
+    subPageContent = <ConfirmationPage returnPage={handleReturn} handlePurchase={handlePurchase} ></ConfirmationPage>;
   }
 
   return (
@@ -49,9 +85,7 @@ function Rewards() {
         <p  className="challenges-Title">Recompensas disponibles</p>
         </div>
         <p  className="challenges-text"> Redime tus diamantes por increibles premios.</p>
-        
-
-        <List changeToSubPage={handleSelectReward}></List>
+        <RewardsList changeToSubPage={handleSelectReward}></RewardsList>
       </div>
     </>
   );

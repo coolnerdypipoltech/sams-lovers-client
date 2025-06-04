@@ -177,6 +177,40 @@ export async function GetChallengesByUser (_token, _challenge_status, _transacti
     }
 }
 
+export async function GetRewards(_token, _limit, _offset) {
+    console.log(ENDPOINT + `rewards//${_limit}/${_offset}`);
+    try{
+        const response = await fetch(ENDPOINT + `/v1/rewards/${_limit}/${_offset}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": _token,
+        }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetRewardsByUserWithURL (_token, _next_url) {
+    console.log(ENDPOINT + _next_url);
+    try{
+        const response = await fetch(ENDPOINT + _next_url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": _token,
+        }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
 export async function GetChallengesByUserWithURL (_token, _next_url) {
     console.log(ENDPOINT + _next_url);
     try{
@@ -194,9 +228,9 @@ export async function GetChallengesByUserWithURL (_token, _next_url) {
     }
 }
 
-export async function GetPurchasedRewards (_token, _page, _count) {
+export async function GetPurchasedRewards (_token, _limit, _offset) {
     try {
-        const response = await fetch(ENDPOINT + `/v1/rewards/purchased/${_page}/${_count}`, {
+        const response = await fetch(ENDPOINT + `/v1/rewards/purchased/${_limit}/${_offset}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -205,6 +239,23 @@ export async function GetPurchasedRewards (_token, _page, _count) {
           });
           const data = await response.json();
           return data;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetPurchasedRewardsWithURL (_token, _next_url) {
+    console.log(ENDPOINT + _next_url);
+    try{
+        const response = await fetch(ENDPOINT + _next_url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": _token,
+        }
+        });
+        console.log(response);
+        return response;
     }catch (error) {
         console.error('API Call error:', error);
     }

@@ -1,27 +1,62 @@
 import React, { createContext, useRef, useState } from "react";
-import { GetArticles, GetChallengesByUser, GetChallengesByUserWithURL } from "../hooks/apicalls";
+import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL } from "../hooks/apicalls";
 const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
   const [rewardsData, setRewardsData] = useState(null);
+  const [userRewardsData, setUserRewardsData] = useState(null);
   const [articleData, setArticleData] = useState(null);
   const [challengesData, setChallengesData] = useState(null);
   const [currentChallenge, setCurrentChallenge] = useState(null);
+  const [currentReward, setCurrentReward] = useState(null);
 
   const UserData = useRef(null);
-  const currentReward = useRef(null);
+  const currentUserReward = useRef(null);
   const currentArticle = useRef(null);
   const articlePosition = useRef(null);
   const nextRewards = useRef(null);
+  const nextUserReward = useRef(null);
   const nextArticles = useRef(null);
   const nextChallenges = useRef(null);
 
-  const initRequestRewards = async () => {
-    const response = await GetChallengesByUser();
-    //setRewardsData(response.data)
-    //nextRewards.current = response.nextLink
-    setRewardsData([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    return;
+  const initRequestRewards = async (
+    _limit,
+    _offset
+  ) => {
+    const response = await GetRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setRewardsData(data.rewards);
+      nextRewards.current = data.next;
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const initRequestUserRewards = async (
+    _limit,
+    _offset
+  ) => {
+    const response = await GetPurchasedRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setRewardsData(data.rewards);
+      nextRewards.current = data.next;
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
   };
 
   const initRequestArticles = async () => {
@@ -59,22 +94,59 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreRewards = async () => {
-    if (nextRewards === null) {
+  const requestMoreRewards = async (_limit, _offset) => {
+     if (nextRewards === null) {
       return;
     }
-    let tempArray = [...rewardsData];
-    nextRewards.current = "";
-    //setRewardsData(tempArray);
-    ///Tests
-    const newRewards = Array.from(
-      { length: 5 },
-      (_, i) => rewardsData.length + i + 1
+
+    const response = await GetRewards(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      _limit,
+      _offset
     );
-    setRewardsData((prev) => [...prev, ...newRewards]);
-    ///Tests
-    return;
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setRewardsData((prev) => [...prev, ...data.rewards]);
+      nextRewards.current = data.next;
+      console.log("POST get info " + nextRewards.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
   };
+
+  const requestMoreRewardsByURL = async () => {
+
+    if (nextRewards === null || nextRewards.current === null || nextRewards.current === "") {
+      return;
+    }
+
+    const response = await GetRewardsByUserWithURL(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      nextRewards.current
+    );
+    console.log(nextRewards.current);
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setRewardsData((prev) => [...prev, ...data.rewards]);
+      nextRewards.current = data.next;
+      console.log("POST get info " + nextRewards.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
 
   const requestMoreChallenges = async (
     _challengeStatusFilter,
@@ -137,6 +209,59 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
+  const requestMoreUserRewards = async (_limit, _offset) => {
+     if (nextUserReward === null) {
+      return;
+    }
+
+    const response = await GetPurchasedRewards(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      _limit,
+      _offset
+    );
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setUserRewardsData((prev) => [...prev, ...data.rewards]);
+      nextUserReward.current = data.next;
+      console.log("POST get info " + nextUserReward.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const requestMoreUserRewardsByURL = async () => {
+
+    if (nextUserReward === null || nextUserReward.current === null || nextUserReward.current === "") {
+      return;
+    }
+
+    const response = await GetPurchasedRewardsWithURL(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      nextUserReward.current
+    );
+    console.log(nextUserReward.current);
+    const data = await response.json();
+    console.log(data.rewards);
+    if (response.ok) {
+      setUserRewardsData((prev) => [...prev, ...data.rewards]);
+      nextUserReward.current = data.next;
+      console.log("POST get info " + nextUserReward.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
   const SetUserData = (_Data) => {
     UserData.current = _Data;
     console.log(UserData.current);
@@ -168,7 +293,7 @@ const ElementProviderData = ({ children }) => {
     return;
   };
 
-  const setNewTransaction = async (transaction) => {
+  const setNewChallengeTransaction = async (transaction) => {
     var tempChallenge = currentChallenge;
     tempChallenge.transaction = transaction;
     setCurrentChallenge(tempChallenge);
@@ -181,30 +306,55 @@ const ElementProviderData = ({ children }) => {
     setChallengesData(tempArray);
   }
 
+  const setNewRewardTransaction = async (transaction) => {
+    var tempReward = currentReward;
+    tempReward.transaction = transaction;
+    setCurrentReward(tempReward);
+    let tempArray = rewardsData;
+    for (var i = 0; i < tempArray.length; i++) {
+      if(tempArray[i].id === currentReward.id) {
+        tempArray[i] = currentReward;
+      }
+    }
+    setRewardsData(tempArray);
+  }
+
   return (
     <ElementContextData.Provider
       value={{
         UserData,
         rewardsData,
+        userRewardsData,
         challengesData,
         currentChallenge,
         currentReward,
+        currentUserReward,
         currentArticle,
         articlePosition,
         articleData,
         nextChallenges,
+        nextRewards,
+        nextUserReward,
         SetUserData,
+        setRewardsData,
+        setUserRewardsData,
         setChallengesData,
         setCurrentChallenge,
+        setCurrentReward,
         requestMoreRewards,
+        requestMoreRewardsByURL,
+        requestMoreUserRewards,
+        requestMoreUserRewardsByURL,
         requestMoreChallenges,
         requestMoreChallengesByURL,
         requestMoreArticles,
         requestNextArticle,
         initRequestRewards,
+        initRequestUserRewards,
         initRequestArticles,
         initRequestChallenges,
-        setNewTransaction
+        setNewChallengeTransaction,
+        setNewRewardTransaction
       }}
     >
       {children}

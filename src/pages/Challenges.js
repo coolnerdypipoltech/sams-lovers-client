@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef, use } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
 import filter from "../assets/filter.png"
@@ -9,7 +9,7 @@ import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
 
 function Challenges() {
-  const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
+  const { UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
@@ -68,7 +68,7 @@ function Challenges() {
     const data = await response.json();
     console.log(data.transaction);
     if (response.ok) {
-      setNewTransaction(data.transaction);
+      setNewChallengeTransaction(data.transaction);
     }else{
       if (data.message) {
         if(response.status === 400) {

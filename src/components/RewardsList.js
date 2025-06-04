@@ -7,19 +7,22 @@ function RewardsList({ changeToSubPage }) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } =
+  const limit = 10;
+
+  const { initRequestRewards, setCurrentReward, rewardsData, requestMoreChallengesByURL, nextReward } = useContext()
     useContext(ElementContextData);
 
   useEffect(() => {
-    initRequestRewards();
+    initRequestRewards(limit, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMoreRewards = () => {
-    if (isLoading) return;
+    if(isLoading) return;
+    if(nextReward.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreRewards();
+      await requestMoreChallengesByURL();
       setIsLoading(false);
     }, 1000);
   };
@@ -38,7 +41,7 @@ function RewardsList({ changeToSubPage }) {
 
   console.log("aca");
   const handleSelectReward = (itemData) => {
-    currentReward.current = itemData;
+    setCurrentReward(itemData);
     changeToSubPage();
   };
 
