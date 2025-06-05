@@ -306,9 +306,9 @@ const ElementProviderData = ({ children }) => {
     setChallengesData(tempArray);
   }
 
-  const setNewRewardTransaction = async (transaction) => {
+  const setNewReward = async (_updatedReward) => {
     var tempReward = currentReward;
-    tempReward.transaction = transaction;
+    tempReward = _updatedReward;
     setCurrentReward(tempReward);
     let tempArray = rewardsData;
     for (var i = 0; i < tempArray.length; i++) {
@@ -317,6 +317,12 @@ const ElementProviderData = ({ children }) => {
       }
     }
     setRewardsData(tempArray);
+  }
+
+  const setNewUserDiamonds = async (_diamonds) => {
+    var tempUser = UserData.current;
+    tempUser.user.related.diamonds = _diamonds;
+    SetUserData(tempUser);
   }
 
   return (
@@ -354,7 +360,8 @@ const ElementProviderData = ({ children }) => {
         initRequestArticles,
         initRequestChallenges,
         setNewChallengeTransaction,
-        setNewRewardTransaction
+        setNewReward,
+        setNewUserDiamonds
       }}
     >
       {children}

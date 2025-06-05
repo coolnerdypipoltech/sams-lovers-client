@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { render } from "react-dom";
 import diamond from "../assets/diamond.svg";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+import { ElementContextData } from "../context/DataContext";
 
-function RewardsPopUp({ closePopUp }) {
+function RewardsPopUp({ closePopUp, handlePurchase }) {
   const [popUpResponse, setPopUpResponse] = useState(null);
+  const { UserData, currentReward } = useContext(ElementContextData);
 
   const handleExchange = () => {
     setPopUpResponse("Success");
+    handlePurchase();
+    closePopUp();
   };
 
   const handleCancel = () => {
@@ -120,7 +124,7 @@ function RewardsPopUp({ closePopUp }) {
                 }}
                 className="challengesPage-Title"
               >
-                Nombre del Reward
+                {currentReward.name}
               </p>
               <div>
                 <div className="popUpOutline" style={{borderBottomLeftRadius: "0px", borderBottomRightRadius: "0px"}}>
@@ -134,7 +138,7 @@ function RewardsPopUp({ closePopUp }) {
                       style={{ marginBottom: "0px", paddingLeft: "10px" }}
                       className="challengesPage-Title"
                     >
-                      450 DIAMANTES
+                      {`${UserData.current.user.related.diamonds} DIAMANTES`}
                     </p>
                   </div>
                 </div>
@@ -147,7 +151,7 @@ function RewardsPopUp({ closePopUp }) {
                       style={{ marginBottom: "0px", paddingLeft: "10px" }}
                       className="challengesPage-Title"
                     >
-                      450 DIAMANTES
+                      {`${currentReward.price} DIAMANTES`}
                     </p>
                   </div>
                 </div>
@@ -163,7 +167,7 @@ function RewardsPopUp({ closePopUp }) {
                       style={{ marginBottom: "0px", paddingLeft: "10px" }}
                       className="challengesPage-Title"
                     >
-                      450 DIAMANTES
+                      {`${((UserData.current.user.related.diamonds - currentReward.price) <= 0) ? 0 : UserData.current.user.related.diamonds - currentReward.price} DIAMANTES`}
                     </p>
                   </div>
                   <p className="RewardsDisclaimerText">

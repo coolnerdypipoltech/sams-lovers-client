@@ -6,9 +6,9 @@ import testImage from "../assets/Grupo 560@2x.png";
 import RewardsPopUp from "../components/RewardsPopUp";
 import RewardInfoBox from "../components/RewardInfoBox";
 
-function RewardPage({ returnPage, ConfirmPage }) {
+function RewardPage({ returnPage, handlePurchase, reward }) {
   const [rotated, setRotated] = useState(false);
-  const [showPopUp, setShowPopUp] = useState(true);
+  const [showPopUp, setShowPopUp] = useState(false);
   const textRef = useRef(null);
 
   const handleClick = () => {
@@ -30,10 +30,19 @@ function RewardPage({ returnPage, ConfirmPage }) {
     setShowPopUp(true);
   };
 
+  const returnDayAndMonth = (_date) => {
+    const dateArray = _date.split("-");
+    return `${dateArray[2]}.${dateArray[1]}`;
+  }
+  const returnYear = (_date) => {
+    const dateArray = _date.split("-");
+    return dateArray[0];
+  }
+
   return (
     <>
       {showPopUp ? (
-        <RewardsPopUp closePopUp={handleClosePopUp}></RewardsPopUp>
+        <RewardsPopUp closePopUp={handleClosePopUp} handlePurchase={handlePurchase}></RewardsPopUp>
       ) : (
         <></>
       )}
@@ -56,20 +65,18 @@ function RewardPage({ returnPage, ConfirmPage }) {
           <div className="challenge-image-container">
             <img
               className="challenge-image-container"
-              src={testImage}
+              src={reward.image_url !== null || reward.image_url !== "" ? reward.image_url : testImage}
               alt="Challenge illustrative reference"
             />
           </div>
-          <p className="challengesPage-Title">Nombre de la recompensa</p>
+          <p className="challengesPage-Title">{reward.name}</p>
           <p className="challenge-text">
-            Descripción. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's standard
-            dummy text ever since the 1500s
+            {reward.description}
           </p>
           <div className="informationRewardPageContainer">
             <RewardInfoBox
               text={"Costo en diamantes"}
-              ammount={"450"}
+              ammount={reward.price}
               icon={diamond}
             ></RewardInfoBox>
 
@@ -82,7 +89,7 @@ function RewardPage({ returnPage, ConfirmPage }) {
               </p>
               <div className="diamondsContainer">
                 <p style={{ color: "#0B204F" , paddingLeft: "15px" }} className="challenge-text">
-                  01. 06 a 01.15 del 2025
+                  {`Vigencia del ${returnDayAndMonth(reward.starts_on)} al ${returnDayAndMonth(reward.ends_on)} del ${returnYear(reward.ends_on)}`}
                 </p>
               </div>
             </div>
@@ -91,7 +98,7 @@ function RewardPage({ returnPage, ConfirmPage }) {
           <div className="informationRewardPageContainer">
             <RewardInfoBox
               text={"Recompensas \n disponibles"}
-              ammount={"450"}
+              ammount={reward.stock}
               icon={diamond}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
@@ -100,16 +107,13 @@ function RewardPage({ returnPage, ConfirmPage }) {
 
             <RewardInfoBox
               text={"Canjes disponibles"}
-              ammount={"1"}
+              ammount={reward.total_user_transactions_left}
               icon={diamond}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
               }
             ></RewardInfoBox>
           </div>
-
-          
-
           <div
             style={{ justifyContent: "space-between", paddingRight: "3%" }}
             className="rowAlign"
@@ -126,12 +130,9 @@ function RewardPage({ returnPage, ConfirmPage }) {
               }}
             ></img>
           </div>
-
           {rotated ? (
             <span className="descriptionText" ref={textRef}>
-              Descripción. Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since the 1500s
+              {reward.transaction_text}
             </span>
           ) : (
             <></>

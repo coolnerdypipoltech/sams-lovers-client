@@ -71,18 +71,18 @@ function Challenges() {
       setNewChallengeTransaction(data.transaction);
     }else{
       if (data.message) {
-        if(response.status === 400) {
-          switch(data.message) {
-            case "api.error.challenge_expired":
-              //todo send user a message of expiration
-              break;
-            default:
-              break;
-          }
-        }
-
-        if (response.status === 403) {
-          //todo send user to log in page
+        switch(data.message) {
+          case "api.error.unauthorized":
+            //todo send user to log in page
+            break;
+          case "api.error.challenge_expired":
+            break;
+          case "api.error.challenge_not_found":
+            break;
+          case "api.error.challenge_already_completed":
+            break;
+          default:
+            break;
         }
       }
       return;

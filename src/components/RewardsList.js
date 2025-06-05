@@ -9,8 +9,7 @@ function RewardsList({ changeToSubPage }) {
 
   const limit = 10;
 
-  const { initRequestRewards, setCurrentReward, rewardsData, requestMoreChallengesByURL, nextReward } = useContext()
-    useContext(ElementContextData);
+  const { initRequestRewards, setCurrentReward, rewardsData, requestMoreChallengesByURL, nextReward } = useContext(ElementContextData);
 
   useEffect(() => {
     initRequestRewards(limit, 0);

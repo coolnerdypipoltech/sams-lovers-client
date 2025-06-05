@@ -5,10 +5,12 @@ import diamond from "../assets/diamond.svg";
 import { useContext, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 import { ElementContextRoute } from "../context/RouteContext";
+import { ElementContextData } from "../context/DataContext";
 
 function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
   const { changeRoute } = useContext(ElementContextRoute);
+  const { UserData } = useContext(ElementContextData);
 
   const handleMenuRoute = (pageToTravelTo) => {
     changeRoute(pageToTravelTo);
@@ -35,7 +37,7 @@ function Header() {
               src={diamond}
               alt="diamond"
             ></img>
-            <p className="header-diamonds-text">10</p>
+            <p className="header-diamonds-text">{UserData.current.user.related.diamonds}</p>
           </div>
           <img
             className="header-menu-icon"

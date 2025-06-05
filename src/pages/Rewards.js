@@ -7,7 +7,7 @@ import { PurchaseReward } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 
 function Rewards() {
-  const { UserData, currentReward, setNewRewardTransaction } = useContext(ElementContextData);
+  const { UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   let subPageContent = null;
@@ -28,34 +28,28 @@ function Rewards() {
   }
 
   const handlePurchase = async () => {
-  
       const response = await PurchaseReward(
               `${UserData.current.token_type} ${UserData.current.access_token}`,
               currentReward.id
       );
       const data = await response.json();
-      console.log(data.transaction);
+      console.log(data);
       if (response.ok) {
-        setNewRewardTransaction(data.transaction);
+        setNewReward(data.reward);
+        setNewUserDiamonds(data.diamonds_left)
       }else{
-        if (data.message) {
-          if(response.status === 400) {
-            switch(data.message) {
-              case "api.error.reward_expired":
-                //todo send user a message of expiration
-                break;
-              default:
-                break;
-            }
-          }
-
-          if (response.status === 403) {
+      if (data.message) {
+        switch(data.message) {
+          case "api.error.unauthorized":
             //todo send user to log in page
-          }
+            break;
+          default:
+            break;
         }
-        return;
       }
-    };
+      return;
+    }
+  };
 
 
   if (subPage === "RewardPage") {
@@ -63,7 +57,7 @@ function Rewards() {
     if (div) {
       div.style.height = "100px";
     }
-    subPageContent = <RewardPage ConfirmPage={handleConfirm} returnPage={handleReturn}></RewardPage>;
+    subPageContent = <RewardPage returnPage={handleReturn} handlePurchase={handlePurchase} reward={currentReward}></RewardPage>;
   }
 
   if (subPage === "ConfirmationPage") {
@@ -71,7 +65,7 @@ function Rewards() {
     if (div) {
       div.style.height = "100px";
     }
-    subPageContent = <ConfirmationPage returnPage={handleReturn} handlePurchase={handlePurchase} ></ConfirmationPage>;
+    subPageContent = <ConfirmationPage returnPage={handleReturn} handlePurchase={handlePurchase} reward={currentReward}></ConfirmationPage>;
   }
 
   return (
