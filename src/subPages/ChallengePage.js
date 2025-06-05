@@ -1,10 +1,23 @@
 import diamond from "../assets/diamond.svg";
 import chevronRight from "../assets/chevronRightBlack.svg";
 import RewardInfoBox from "../components/RewardInfoBox";
-import { useRef, useState } from "react";
-function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
-    const [rotated, setRotated] = useState(false);
-    const textRef = useRef(null);
+import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg";
+import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg";
+import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg";
+import { useContext, useRef, useState } from "react";
+import InfoTooltip from "../components/InfoTooltip";
+import { formatDate } from "../hooks/dateHandler";
+import { ElementContextData } from "../context/DataContext";
+function ChallengePage({ returnPage, challengeParticipationPage }) {
+
+  const { currentChallenge } = useContext(ElementContextData);
+
+  const challenge = currentChallenge
+
+  console.log("---------", challenge)
+
+  const [rotated, setRotated] = useState(false);
+  const textRef = useRef(null);
   const handleReturn = () => {
     returnPage();
   };
@@ -51,7 +64,145 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
             Descripción: {challenge.description}
           </p>
 
-          <div style={{paddingBottom: "10px"}} className="challenge-information-container">
+            {
+              challenge.transaction != null && (<>
+              
+          {challenge.transaction.status === "SUBMITTED" && (
+            <>
+              <div
+                style={{
+                  width: "99%",
+                  height: "0px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <div style={{ paddingTop: "1px" }}>
+                  <InfoTooltip dark={true}></InfoTooltip>
+                </div>
+              </div>
+              <div
+                style={{ backgroundColor: "#FFEFC3" }}
+                className="challenge-information-container"
+              >
+                <div
+                  style={{ height: "72px", paddingLeft: "20px" }}
+                  className="rowAlign"
+                >
+                  <img
+                    src={inReviewStatusLogo}
+                    style={{ height: "32px" }}
+                    alt="logo"
+                  ></img>
+                  <p
+                    style={{
+                      paddingTop: "0px",
+                      paddingLeft: "10px",
+                      color: "#003087",
+                    }}
+                    className="challenge-text-title"
+                  >
+                    En revisión
+                  </p>
+                </div>
+              </div>
+              <div style={{ height: "15px", minHeight: "15px" }}></div>
+            </>
+          )}
+
+          {challenge.transaction.status === "APPROVED" && (
+            <>
+              <div
+                style={{
+                  width: "99%",
+                  height: "0px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <div style={{ paddingTop: "1px" }}>
+                  <InfoTooltip dark={true}></InfoTooltip>
+                </div>
+              </div>
+              <div
+                style={{ backgroundColor: "##ccffc3" }}
+                className="challenge-information-container"
+              >
+                <div
+                  style={{ height: "72px", paddingLeft: "20px" }}
+                  className="rowAlign"
+                >
+                  <img
+                    src={completedStatusLogo}
+                    style={{ height: "32px" }}
+                    alt="logo"
+                  ></img>
+                  <p
+                    style={{
+                      paddingTop: "0px",
+                      paddingLeft: "10px",
+                      color: "#003087",
+                    }}
+                    className="challenge-text-title"
+                  >
+                    Aprobado
+                  </p>
+                </div>
+              </div>
+              <div style={{ height: "15px", minHeight: "15px" }}></div>
+            </>
+          )}
+
+          {challenge.transaction.status === "REJECTED" && (
+            <>
+              <div
+                style={{
+                  width: "99%",
+                  height: "0px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <div style={{ paddingTop: "1px" }}>
+                  <InfoTooltip dark={true}></InfoTooltip>
+                </div>
+              </div>
+              <div
+                style={{ backgroundColor: "##ffc4c3" }}
+                className="challenge-information-container"
+              >
+                <div
+                  style={{ height: "72px", paddingLeft: "20px" }}
+                  className="rowAlign"
+                >
+                  <img
+                    src={rejectedStatusLogo}
+                    style={{ height: "32px" }}
+                    alt="logo"
+                  ></img>
+                  <p
+                    style={{
+                      paddingTop: "0px",
+                      paddingLeft: "10px",
+                      color: "#003087",
+                    }}
+                    className="challenge-text-title"
+                  >
+                    Rechazado
+                  </p>
+                </div>
+              </div>
+              <div style={{ height: "15px", minHeight: "15px" }}></div>
+            </>
+          )}
+              </>)
+            }
+
+
+          <div
+            style={{ paddingBottom: "10px" }}
+            className="challenge-information-container"
+          >
             <p
               style={{ paddingTop: "20px", paddingLeft: "20px" }}
               className="challenge-text-title"
@@ -59,20 +210,18 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
               Costo en diamantes
             </p>
             <div className="diamondsContainer">
-              
-              
-              <div className="rowAlign" style={{paddingLeft: "15px"}}>
+              <div className="rowAlign" style={{ paddingLeft: "15px" }}>
                 <img src={diamond} alt="diamondLogo"></img>
                 <p
-                style={{  paddingLeft: "15px" }}
-                className="challenge-text-information-diamonds"
-              >
-                {challenge.diamonds}
-              </p>
+                  style={{ paddingLeft: "15px" }}
+                  className="challenge-text-information-diamonds"
+                >
+                  {challenge.diamonds}
+                </p>
               </div>
             </div>
           </div>
-            <div style={{height: "15px", minHeight: "15px"}} ></div>
+          <div style={{ height: "15px", minHeight: "15px" }}></div>
           <div className="challenge-information-container">
             <p
               style={{ paddingTop: "20px", paddingLeft: "20px" }}
@@ -85,14 +234,17 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
                 style={{ color: "#0B204F", paddingLeft: "15px" }}
                 className="challenge-text"
               >
-                {challenge.ends_on}
+                {formatDate(challenge.starts_on, challenge.ends_on)}
               </p>
             </div>
           </div>
 
-          <div style={{ justifyContent: "space-between", paddingTop: "15px" }} className="rowAlign">
+          <div
+            style={{ justifyContent: "space-between", paddingTop: "15px" }}
+            className="rowAlign"
+          >
             <p className="challenge-information-text-conditions">Condiciones</p>
-             <img
+            <img
               src={chevronRight}
               alt="enter"
               onClick={handleClick}
@@ -124,14 +276,27 @@ function ChallengePage({ returnPage, challengeParticipationPage, challenge }) {
           <>
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>
-            <div style={{alignItems: "center"}} className="participationContainer">
-              <p
-                style={{ width: "60%", margin: "0px" }}
-                className="participate-button"
-                onClick={handleParticipation}
-              >
-                Participar
-              </p>
+            <div
+              style={{ alignItems: "center" }}
+              className="participationContainer"
+            >
+              {challenge.transaction?.status === "SUBMITTED" ? (
+                <p
+                  style={{ width: "60%", margin: "0px" }}
+                  className="participate-button"
+                  onClick={handleParticipation}
+                >
+                  Volver a subir URL
+                </p>
+              ) : (
+                <p
+                  style={{ width: "60%", margin: "0px" }}
+                  className="participate-button"
+                  onClick={handleParticipation}
+                >
+                  Participar
+                </p>
+              )}
             </div>
           </>
         )}

@@ -7,11 +7,13 @@ import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
+import ChallengePopUp	 from "../components/ChallengePopUp";
 
 function Challenges() {
   const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
+  const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
@@ -68,7 +70,9 @@ function Challenges() {
     const data = await response.json();
     console.log(data.transaction);
     if (response.ok) {
+      setShowSuccessPopUp(true)
       setNewTransaction(data.transaction);
+      setSubPage("ChallengePage");
     }else{
       if (data.message) {
         if(response.status === 400) {
@@ -115,7 +119,7 @@ function Challenges() {
       <ChallengePage
         returnPage={handleReturn}
         challengeParticipationPage={handleSelectParticipation}
-        challenge={currentChallenge}
+        
       ></ChallengePage>
     );
   }
@@ -142,6 +146,9 @@ function Challenges() {
 
   return (
     <>
+      {showSuccessPopUp && (
+        <ChallengePopUp closePopUp={() => setShowSuccessPopUp(false)}></ChallengePopUp>
+      )}
       <>{subPageContent}</>
       <div className="challenges-container">
         <div className="headerSpacer"></div>

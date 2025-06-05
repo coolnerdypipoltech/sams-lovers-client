@@ -171,6 +171,7 @@ const ElementProviderData = ({ children }) => {
   const setNewTransaction = async (transaction) => {
     var tempChallenge = currentChallenge;
     tempChallenge.transaction = transaction;
+    console.log(tempChallenge);
     setCurrentChallenge(tempChallenge);
     let tempArray = challengesData;
     for (var i = 0; i < tempArray.length; i++) {
