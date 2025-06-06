@@ -9,7 +9,7 @@ function RewardsList({ changeToSubPage }) {
 
   const limit = 10;
 
-  const { initRequestRewards, setCurrentReward, rewardsData, requestMoreChallengesByURL, nextReward } = useContext(ElementContextData);
+  const { initRequestRewards, setCurrentReward, rewardsData, requestMoreRewardsByURL, nextRewards } = useContext(ElementContextData);
 
   useEffect(() => {
     initRequestRewards(limit, 0);
@@ -18,10 +18,10 @@ function RewardsList({ changeToSubPage }) {
 
   const loadMoreRewards = () => {
     if(isLoading) return;
-    if(nextReward.current === null) return;
+    if(nextRewards.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreChallengesByURL();
+      await requestMoreRewardsByURL();
       setIsLoading(false);
     }, 1000);
   };
@@ -38,7 +38,6 @@ function RewardsList({ changeToSubPage }) {
     }
   };
 
-  console.log("aca");
   const handleSelectReward = (itemData) => {
     setCurrentReward(itemData);
     changeToSubPage();
