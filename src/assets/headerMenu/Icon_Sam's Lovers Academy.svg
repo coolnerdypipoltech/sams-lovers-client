@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_269" data-name="Rectángulo 269" width="20.757" height="18.03" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Sam_s_Lovers_Academy" data-name="Icon_Sam&apos;s Lovers Academy" transform="translate(13339 -9306)">
+    <g id="Grupo_820" data-name="Grupo 820" transform="translate(-13337 9309)">
+      <g id="Grupo_819" data-name="Grupo 819" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Trazado_964" data-name="Trazado 964" d="M15.642,10.38,16.9,7.4a3.727,3.727,0,0,0,.061-2.786,3.768,3.768,0,0,0-3.508-2.432,5.08,5.08,0,0,0-1.606.265V1.638A1.641,1.641,0,0,0,10.211,0H9.665a.546.546,0,1,0,0,1.092h.546a.547.547,0,0,1,.546.546v.813a5.08,5.08,0,0,0-1.606-.266A3.768,3.768,0,0,0,5.643,4.617,3.727,3.727,0,0,0,5.7,7.4L6.966,10.38ZM13.455,4.917A1.573,1.573,0,0,1,14.92,5.932a.546.546,0,1,1-1.023.384.475.475,0,0,0-.442-.306.546.546,0,0,1,0-1.093" transform="translate(-0.923 0)" fill="#fff"/>
+        <path id="Trazado_965" data-name="Trazado 965" d="M0,17.115a3.282,3.282,0,0,0,3.278,3.278H4.371V13.837H3.278A3.282,3.282,0,0,0,0,17.115" transform="translate(0 -2.364)" fill="#fff"/>
+        <path id="Trazado_966" data-name="Trazado 966" d="M21.691,19.428a3,3,0,0,1-1.029-1.765H9.321a.546.546,0,0,1,0-1.093H20.662A3,3,0,0,1,21.691,14.8a.551.551,0,0,0-.35-.967H6.589v6.556H21.341a.55.55,0,0,0,.35-.966" transform="translate(-1.126 -2.364)" fill="#fff"/>
+      </g>
+    </g>
+    <rect id="Rectángulo_281" data-name="Rectángulo 281" width="26" height="26" transform="translate(-13339 9306)" fill="none"/>
+  </g>
+</svg>

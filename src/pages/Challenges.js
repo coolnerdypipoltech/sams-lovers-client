@@ -13,7 +13,7 @@ function Challenges() {
   const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
-  const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
+  const [showSuccessPopUp, setShowSuccessPopUp] = useState(true);
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
