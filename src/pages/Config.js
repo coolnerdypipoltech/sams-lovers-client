@@ -2,7 +2,7 @@ import { useState } from "react";
 import ArticleList from "../components/ArticleList";
 import "../styles/Main.css";
 import ArticlePage from "../subPages/ArticlePage";
-function Articles() {
+function Config() {
   const [openArticlePage, setOpenArticlePage] = useState(true);
 
   return (
@@ -20,4 +20,4 @@ function Articles() {
   );
 }
 
-export default Articles;
+export default Config;

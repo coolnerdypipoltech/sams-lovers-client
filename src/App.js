@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import Main from "./pages/Main";
 import Codes from "./pages/Codes";
 import Landing from "./pages/Landing";
+import Academy from "./pages/Academy";
+import Config from "./pages/Config";
 
 function App() {
   const { route } = useContext(ElementContextRoute);
@@ -25,6 +27,24 @@ function App() {
       break;
     case "Login":
       currentPage = <Login></Login>;
+      break;
+
+    case "Config":
+      currentPage = (
+        <>
+          <Header></Header>
+          <Config></Config>
+        </>
+      );
+      break;
+
+    case "Academy":
+      currentPage = (
+        <>
+          <Header></Header>
+          <Academy></Academy>
+        </>
+      );
       break;
     case "Main":
       currentPage = (

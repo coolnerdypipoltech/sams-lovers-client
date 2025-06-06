@@ -11,6 +11,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 import { LogIn } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextPopUp } from "../context/PopUpContext";
+import BackgroundSams from "../components/BackgroundSams";
 function Login() {
   const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
@@ -154,9 +155,11 @@ function Login() {
 
   return (
     <>
+    
       <>{subPageContent}</>
-
-      <div className="LoginContainer">
+       
+      <div  className="LoginContainer">
+        
         <div className="loginHeaderContainer">
           <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
@@ -259,7 +262,9 @@ function Login() {
           </div>
         </div>
       </div>
+      
     </>
+    
   );
 }
 

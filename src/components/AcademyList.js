@@ -1,0 +1,71 @@
+import { useState, useEffect, useRef, useContext } from "react";
+import AcademyListItem from "./AcademyItem";
+import { ElementContextData } from "../context/DataContext";
+
+function AcademyList({ changeToSubPage }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const listContainerRef = useRef(null);
+
+  const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } =
+    useContext(ElementContextData);
+
+  useEffect(() => {
+    initRequestRewards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const loadMoreRewards = () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    setTimeout(async () => {
+      await requestMoreRewards();
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleScroll = () => {
+    if (
+      listContainerRef.current &&
+      listContainerRef.current.scrollTop +
+        listContainerRef.current.clientHeight >=
+        listContainerRef.current.scrollHeight - 20 &&
+      !isLoading
+    ) {
+      loadMoreRewards();
+    }
+  };
+
+  const handleSelectReward = (itemData) => {
+    currentReward.current = itemData;
+    changeToSubPage();
+  };
+
+  return (
+    <>
+      {rewardsData != null ? (
+        <div
+          className="listContainer"
+          ref={listContainerRef}
+          onScroll={handleScroll}
+          style={{ overflowY: "auto", height: "84vh" , width: "95%" }}
+        >
+          {rewardsData.map((reward, index) => (
+            <div key={index} onClick={() => handleSelectReward(reward)}>
+              {" "}
+              <AcademyListItem key={index} reward={reward} />
+            </div>
+          ))}
+
+          {isLoading && (
+            <div className="loading">Cargando más recompensas...</div>
+          )}
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
+  );
+}
+
+export default AcademyList;

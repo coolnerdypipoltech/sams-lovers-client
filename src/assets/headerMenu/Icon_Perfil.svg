@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_264" data-name="Rectángulo 264" width="17.012" height="18.72" fill="#fff" stroke="rgba(0,0,0,0)" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Perfil" transform="translate(13479 -9277)">
+    <g id="Grupo_809" data-name="Grupo 809" transform="translate(-13474.507 9280.119)">
+      <g id="Grupo_808" data-name="Grupo 808" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Trazado_948" data-name="Trazado 948" d="M14.618,5.5A5.495,5.495,0,1,1,9.123,0a5.5,5.5,0,0,1,5.5,5.5" transform="translate(-0.616 0)" fill="#fff" stroke="rgba(0,0,0,0)" stroke-width="1"/>
+        <path id="Trazado_949" data-name="Trazado 949" d="M8.488,15.666c2.716,0,6.921,1.052,8.332,3.629a1.381,1.381,0,0,1-1.027,2.085H1.209C-.334,20.975-.26,19.736.644,18.666c1.8-2.129,5.148-3,7.844-3" transform="translate(0 -2.661)" fill="#fff" stroke="rgba(0,0,0,0)" stroke-width="1"/>
+      </g>
+    </g>
+    <rect id="Rectángulo_274" data-name="Rectángulo 274" width="26" height="26" transform="translate(-13479 9277)" fill="none"/>
+  </g>
+</svg>

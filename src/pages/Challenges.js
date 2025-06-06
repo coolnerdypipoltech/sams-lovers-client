@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef, use } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
 import filter from "../assets/filter.png"
@@ -7,11 +7,13 @@ import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
+import ChallengePopUp	 from "../components/ChallengePopUp";
 
 function Challenges() {
-  const { UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
+  const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
+  const [showSuccessPopUp, setShowSuccessPopUp] = useState(true);
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
@@ -68,21 +70,23 @@ function Challenges() {
     const data = await response.json();
     console.log(data.transaction);
     if (response.ok) {
-      setNewChallengeTransaction(data.transaction);
+      setShowSuccessPopUp(true)
+      setNewTransaction(data.transaction);
+      setSubPage("ChallengePage");
     }else{
       if (data.message) {
-        switch(data.message) {
-          case "api.error.unauthorized":
-            //todo send user to log in page
-            break;
-          case "api.error.challenge_expired":
-            break;
-          case "api.error.challenge_not_found":
-            break;
-          case "api.error.challenge_already_completed":
-            break;
-          default:
-            break;
+        if(response.status === 400) {
+          switch(data.message) {
+            case "api.error.challenge_expired":
+              //todo send user a message of expiration
+              break;
+            default:
+              break;
+          }
+        }
+
+        if (response.status === 403) {
+          //todo send user to log in page
         }
       }
       return;
@@ -115,7 +119,7 @@ function Challenges() {
       <ChallengePage
         returnPage={handleReturn}
         challengeParticipationPage={handleSelectParticipation}
-        challenge={currentChallenge}
+        
       ></ChallengePage>
     );
   }
@@ -142,6 +146,9 @@ function Challenges() {
 
   return (
     <>
+      {showSuccessPopUp && (
+        <ChallengePopUp closePopUp={() => setShowSuccessPopUp(false)}></ChallengePopUp>
+      )}
       <>{subPageContent}</>
       <div className="challenges-container">
         <div className="headerSpacer"></div>

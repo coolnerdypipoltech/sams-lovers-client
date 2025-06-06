@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_265" data-name="Rectángulo 265" width="21.023" height="18.03" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Retos" transform="translate(13479 -9345)">
+    <g id="Grupo_811" data-name="Grupo 811" transform="translate(-13477 9348)">
+      <g id="Grupo_810" data-name="Grupo 810" clip-path="url(#clip-path)">
+        <path id="Trazado_950" data-name="Trazado 950" d="M4.161,9.016l5.828-5.83a1.219,1.219,0,0,0,0-1.724L8.525,0,.345,8.184a1.176,1.176,0,0,0,0,1.664L8.528,18.03l1.461-1.461a1.222,1.222,0,0,0,0-1.726Z" transform="translate(0 0)" fill="#fff"/>
+        <path id="Trazado_951" data-name="Trazado 951" d="M21.224,8.222,13,0,11.531,1.468a1.213,1.213,0,0,0,0,1.713l5.835,5.833L11.48,14.9a1.135,1.135,0,0,0,0,1.605L13,18.03l8.222-8.224a1.122,1.122,0,0,0,0-1.584" transform="translate(-0.529 0)" fill="#fff"/>
+      </g>
+    </g>
+    <rect id="Rectángulo_276" data-name="Rectángulo 276" width="26" height="26" transform="translate(-13479 9345)" fill="none"/>
+  </g>
+</svg>
