@@ -1,21 +1,13 @@
 import { useState } from "react";
-import ArticleList from "../components/ArticleList";
 import "../styles/Main.css";
-import ArticlePage from "../subPages/ArticlePage";
 function Config() {
-  const [openArticlePage, setOpenArticlePage] = useState(true);
 
   return (
     <>
-      {openArticlePage ? (
-        <ArticlePage></ArticlePage>
-      ) : (
-        <div className="MainContainer">
-          <p className="Title">Tutoriales, Tips y noticias</p>
+      <div className="MainContainer">
+        <p className="Title">Configuracion</p>
 
-          <ArticleList></ArticleList>
-        </div>
-      )}
+      </div>
     </>
   );
 }
