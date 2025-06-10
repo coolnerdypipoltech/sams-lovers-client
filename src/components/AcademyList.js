@@ -10,8 +10,10 @@ function AcademyList({ changeToSubPage }) {
   const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } =
     useContext(ElementContextData);
 
+  const limit = 10;
+
   useEffect(() => {
-    initRequestRewards();
+    initRequestRewards(limit, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
