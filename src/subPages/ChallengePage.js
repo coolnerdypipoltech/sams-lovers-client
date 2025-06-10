@@ -12,12 +12,19 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
 
   const { currentChallenge } = useContext(ElementContextData);
 
-  const challenge = currentChallenge
-
-  console.log("---------", challenge)
+  const challenge = currentChallenge;
+  console.log("---------", challenge);
 
   const [rotated, setRotated] = useState(false);
   const textRef = useRef(null);
+
+  let dateTextColor = useRef("");
+  if(challenge.status_challenge !== "TERMINADO") {
+    dateTextColor.current = "#0B204F";
+  }else{
+    dateTextColor.current = "#E81F7D";
+  }
+
   const handleReturn = () => {
     returnPage();
   };
@@ -231,10 +238,10 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
             </p>
             <div className="diamondsContainer">
               <p
-                style={{ color: "#0B204F", paddingLeft: "15px" }}
+                style={{ color: dateTextColor.current, paddingLeft: "15px" }}
                 className="challenge-text"
               >
-                {formatDate(challenge.starts_on, challenge.ends_on)}
+                {(challenge.status_challenge !== "TERMINADO") ? formatDate(challenge.starts_on, challenge.ends_on) : "Terminado"}
               </p>
             </div>
           </div>

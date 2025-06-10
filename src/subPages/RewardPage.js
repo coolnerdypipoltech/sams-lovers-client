@@ -121,7 +121,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
           <div className="informationRewardPageContainer">
             <RewardInfoBox
               text={"Recompensas \n disponibles"}
-              ammount={reward.stock}
+              ammount={(reward.stock > 0) ? reward.stock : "Agotado"}
               icon={diamond}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
@@ -130,7 +130,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
 
             <RewardInfoBox
               text={"Canjes disponibles"}
-              ammount={reward.total_user_transactions_left}
+              ammount={(reward.total_user_transactions_left > 0) ? reward.total_user_transactions_left : "Agotado" }
               icon={diamond}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
