@@ -1,16 +1,26 @@
-import { useState, useContext} from "react";
+import { useState, useContext, useRef} from "react";
 import RewardsList from "../components/RewardsList";
 import "../styles/Rewards.css";
 import  RewardPage  from "../subPages/RewardPage";
 import  ConfirmationPage  from "../subPages/ConfirmationPage";
 import { PurchaseReward } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
+import { ElementContextRoute } from "../context/RouteContext";
+import diamond from "../assets/diamond.svg";
+import Confetti from "react-confetti";
 
 function Rewards() {
+  const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
+  const [popUpResponse, setPopUpResponse] = useState(null);
+
   let subPageContent = null;
+  let rewardErrorPopUpTitle = useRef("");
+  let rewardErrorPopUpContent = useRef("");
+  let rewardPopUpContent = <></>;
+
   const handleSelectReward =  () =>{
     setSubPage("RewardPage")
   }
@@ -27,30 +37,82 @@ function Rewards() {
     setSubPage("ConfirmationPage")
   }
 
+  const openNoDiamondsPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, no tienes los suficientes diamantes.";
+    rewardErrorPopUpContent.current = "Participa en más retos para obtener diamantes.";
+    setPopUpResponse("Error");
+  }
+
+  const openNoStockPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, este premio se encuentra agotado.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
+
+  const openMaxPurchasesReachedPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, haz agotado tus canjes permitidos para este premio.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
+
+  const openGeneralErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
+
+  const handleRewardPopUpClose = () => {
+    setPopUpResponse(null);
+  }
+
   const handlePurchase = async () => {
-      const response = await PurchaseReward(
-              `${UserData.current.token_type} ${UserData.current.access_token}`,
-              currentReward.id
-      );
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        setNewReward(data.reward);
-        setNewUserDiamonds(data.diamonds_left)
-      }else{
+    if(UserData.current.user.related.diamonds < currentReward.price){
+      openNoDiamondsPopUp();
+      return;
+    }
+
+    if(currentReward.stock <= 0){
+      openNoStockPopUp();
+      return;
+    }
+
+    if(currentReward.total_user_transactions_left <= 0){
+      openMaxPurchasesReachedPopUp();
+      return;
+    }
+
+    const response = await PurchaseReward(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      currentReward.id
+    );
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+      setNewReward(data.reward);
+      setNewUserDiamonds(data.diamonds_left);
+      setPopUpResponse("Success");
+    }else{
       if (data.message) {
         switch(data.message) {
           case "api.error.unauthorized":
-            //todo send user to log in page
+            changeRoute("Login");
+            break;
+          case "api.error.max_purchases_reached":
+            openMaxPurchasesReachedPopUp();
+            break;
+          case "api.error.not_enough_diamonds":
+            openNoDiamondsPopUp();
             break;
           default:
+            openGeneralErrorPopUp();
             break;
         }
+      }else{
+        openGeneralErrorPopUp();
       }
       return;
     }
   };
-
 
   if (subPage === "RewardPage") {
     const div = document.querySelector(".listContainer");
@@ -68,8 +130,85 @@ function Rewards() {
     subPageContent = <ConfirmationPage returnPage={handleReturn} handlePurchase={handlePurchase} reward={currentReward}></ConfirmationPage>;
   }
 
+  if(popUpResponse === "Error"){
+    rewardPopUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {rewardErrorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {rewardErrorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleRewardPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if(popUpResponse === "Success"){
+    rewardPopUpContent = (
+      <>
+        <Confetti
+          style={{ zIndex: "100" }}
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
+        <div className="PopUp">
+          <div style={{ height: "auto" }} className="PopUpDialog">
+            <div className="GeneralButtonContainer">
+              <img
+                src={diamond}
+                style={{ height: "130px", paddingTop: "20px" }}
+                alt="An illustration representative of a diamond."
+              ></img>
+
+              <p className="subTitlePopUpReward">
+                Tu premio ha sido canjeado correctamente.
+              </p>
+
+              <p
+                style={{
+                  fontWeight: "400",
+                  margin: "0px",
+                  marginBottom: "20px",
+                }}
+                className="subTitlePopUpReward"
+              >
+                Disfruta de tus recompensas, no te olvides de revisar la bandeja
+                de entrada de tu correo electrónico registrado.
+              </p>
+
+              <button
+                style={{}}
+                className="GeneralButton4"
+                onClick={handleRewardPopUpClose}
+              >
+                Aceptar
+              </button>
+
+              <div style={{ height: "30px" }}></div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
+      <>{rewardPopUpContent}</>
       <>{subPageContent}</>
 
       <div className="RewardsContainer">

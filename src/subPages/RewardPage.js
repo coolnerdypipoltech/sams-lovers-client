@@ -32,7 +32,8 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
 
   const returnDayAndMonth = (_date) => {
     const dateArray = _date.split("-");
-    return `${dateArray[2]}.${dateArray[1]}`;
+    const noTimeDateArray = dateArray[2].split("T");
+    return `${noTimeDateArray[0]}.${dateArray[1]}`;
   }
   const returnYear = (_date) => {
     const dateArray = _date.split("-");
@@ -137,15 +138,6 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
           ) : (
             <></>
           )}
-
-          {/*(challenge.transaction !== null) && <div>
-            <p className="challenge-text-title">Estatus</p>
-            <p className="challenge-text">{challenge.transaction?.status}</p>
-          </div>*/}
-          {/*(challenge.transaction !== null && challenge.transaction?.feedback !== "") && <div>
-            <p className="challenge-text-title">Feedback</p>
-            <p className="challenge-text">{challenge.transaction?.feedback}</p>
-          </div>*/}
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
         </div>

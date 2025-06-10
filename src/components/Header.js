@@ -9,7 +9,7 @@ import { ElementContextData } from "../context/DataContext";
 
 function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const { changeRoute } = useContext(ElementContextRoute);
+  const { route, changeRoute } = useContext(ElementContextRoute);
   const { UserData } = useContext(ElementContextData);
 
   const handleMenuRoute = (pageToTravelTo) => {
@@ -21,6 +21,12 @@ function Header() {
     console.log("Log Out");
   };
 
+  const handleOnClickLogo = () => {
+    if(route !== "Main") {
+      changeRoute("Main");
+    setMenuVisible(false);
+    }
+  }
 
   return (
     <>
@@ -29,6 +35,7 @@ function Header() {
           className="header-logo"
           alt="logo"
           src={logo}
+          onClick={handleOnClickLogo}
         ></img>
         <div className="rowAlign">
           <div className="header-diamonds-container">

@@ -5,12 +5,17 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import { ElementContextData } from "../context/DataContext";
 
-function RewardsPopUp({ closePopUp, handlePurchase }) {
+function RewardsPopUp({ closePopUp, handlePurchase}) {
   const [popUpResponse, setPopUpResponse] = useState(null);
   const { UserData, currentReward } = useContext(ElementContextData);
 
   const handleExchange = () => {
-    setPopUpResponse("Success");
+
+    if ((UserData.current.user.related.diamonds - currentReward.price) <= 0) {
+      return;
+    }
+
+    //setPopUpResponse("Success");
     handlePurchase();
     closePopUp();
   };
@@ -39,6 +44,7 @@ function RewardsPopUp({ closePopUp, handlePurchase }) {
               <img
                 src={diamond}
                 style={{ height: "130px", paddingTop: "20px" }}
+                alt="An illustration representative of a diamond."
               ></img>
 
               <p className="subTitlePopUpReward">
@@ -190,7 +196,7 @@ function RewardsPopUp({ closePopUp, handlePurchase }) {
                 <button
                   style={{ height: "55px", width:"80%" }}
                   className="GeneralButton1"
-                  onClick={handleCancel}
+                  onClick={handleClose}
                 >
                   Cancelar
                 </button>

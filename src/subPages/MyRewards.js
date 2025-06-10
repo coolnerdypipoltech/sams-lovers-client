@@ -9,15 +9,13 @@ function MyRewards({returnPage, selectPage}) {
 
   return (
     <>
-      <div className="subPageContainer">
+    <div className="headerSpacer"></div>
       <div className="MyRewardsContainer">
         <div className="headerSpacer"></div>
-        <div className="headerSpacer"></div>
         <p onClick={handleReturn} className="backButton">Volver</p>
-        <p className="Title">Mis Rewards</p>
-
+        <p className="Title">Mis recompensas</p>
+        <p className="challenges-text">Historial de recompensas canjeadas</p>
         <List changeToSubPage={selectPage}></List>
-      </div>
       </div>
     </>
   );
