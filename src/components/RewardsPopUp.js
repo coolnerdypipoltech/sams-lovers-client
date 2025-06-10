@@ -10,11 +10,6 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
   const { UserData, currentReward } = useContext(ElementContextData);
 
   const handleExchange = () => {
-
-    if ((UserData.current.user.related.diamonds - currentReward.price) <= 0) {
-      return;
-    }
-
     //setPopUpResponse("Success");
     handlePurchase();
     closePopUp();

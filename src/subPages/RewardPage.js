@@ -1,12 +1,15 @@
 import diamond from "../assets/diamond.svg";
 import chevronRight from "../assets/chevronRightBlack.svg";
 import InfoToolTip from "../components/InfoTooltip";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import testImage from "../assets/Grupo 560@2x.png";
 import RewardsPopUp from "../components/RewardsPopUp";
 import RewardInfoBox from "../components/RewardInfoBox";
+import { ElementContextData } from "../context/DataContext";
 
 function RewardPage({ returnPage, handlePurchase, reward }) {
+  const { UserData, currentReward } = useContext(ElementContextData);
+
   const [rotated, setRotated] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const textRef = useRef(null);
@@ -27,6 +30,14 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
   };
 
   const handleParticipation = () => {
+
+    if (((UserData.current.user.related.diamonds - currentReward.price) <= 0) ||
+      (currentReward.stock <= 0) ||
+      (currentReward.total_user_transactions_left <= 0)
+    ) {
+      return;
+    }
+
     setShowPopUp(true);
   };
 
@@ -38,6 +49,17 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
   const returnYear = (_date) => {
     const dateArray = _date.split("-");
     return dateArray[0];
+  }
+
+  const isButtonActive = () => {
+    if (((UserData.current.user.related.diamonds - currentReward.price) <= 0) ||
+      (currentReward.stock <= 0) ||
+      (currentReward.total_user_transactions_left <= 0)
+    ) {
+      return false;
+    }else{
+      return true;
+    }
   }
 
   return (
@@ -148,7 +170,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
           <div className="participationContainer">
             <button
               style={{ width: "80%", fontSize: "15px" }}
-              className="GeneralButton4"
+              className={isButtonActive() ? "GeneralButton4" : "GeneralButton4-Inactive"}
               onClick={handleParticipation}
             >
               Obtener
