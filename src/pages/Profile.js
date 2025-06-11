@@ -27,6 +27,10 @@ function Profile() {
   };
 
   const handleReturn = () => {
+    if(subPage === "SelectRewardPage"){
+      setSubPage("RewardPage");
+      return;
+    }
     setSubPage("");
   };
 

@@ -12,6 +12,7 @@ const ElementProviderData = ({ children }) => {
 
   const UserData = useRef(null);
   const currentUserReward = useRef(null);
+  const currentUserRewardTransaction = useRef(null);
   const currentArticle = useRef(null);
   const articlePosition = useRef(null);
   const nextRewards = useRef(null);
@@ -47,8 +48,8 @@ const ElementProviderData = ({ children }) => {
     const data = await response.json();
     console.log(data.rewards);
     if (response.ok) {
-      setRewardsData(data.rewards);
-      nextRewards.current = data.next;
+      setUserRewardsData(data.rewards);
+      nextUserReward.current = data.next;
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -336,6 +337,7 @@ const ElementProviderData = ({ children }) => {
         currentChallenge,
         currentReward,
         currentUserReward,
+        currentUserRewardTransaction,
         currentArticle,
         articlePosition,
         articleData,

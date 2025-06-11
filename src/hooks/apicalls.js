@@ -233,12 +233,12 @@ export async function GetPurchasedRewards (_token, _limit, _offset) {
         const response = await fetch(ENDPOINT + `/v1/rewards/purchased/${_limit}/${_offset}`, {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
-              "Authorization": _token,
+                "Content-Type": "application/json",
+                "Authorization": _token,
             }
-          });
-          const data = await response.json();
-          return data;
+        });
+        console.log(response);
+        return response;
     }catch (error) {
         console.error('API Call error:', error);
     }

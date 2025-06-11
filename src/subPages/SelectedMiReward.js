@@ -1,27 +1,28 @@
+import { useContext } from "react";
+import { ElementContextData } from "../context/DataContext";
+import { formatOneDate } from "../hooks/dateHandler";
+
 function SelectedMiReward({returnPage}) {
 
- const handleReturn =  () =>{
+  const { currentUserReward, currentUserRewardTransaction } = useContext(ElementContextData);
+
+  const handleReturn =  () =>{
     returnPage()
-  } 
+  }
+
+  console.log(currentUserReward.current);
 
   return (
     <>
       <div className="subPageContainer">
         <div className="rewardsSubpageContainer">
           <p onClick={handleReturn} className="arrticleText">Volver</p>
-
           <div className="ArticleItem">
-            <p className="articleTitle">Titulo</p>
+            <p className="articleTitle">{currentUserReward.current.name}</p>
           </div>
-
-          <div className="articleImageContainer"></div>
-          <p className="arrticleText">Texto</p>
-          <p className="arrticleText">Costo en diamantes</p>
-          <p className="arrticleText">Cantidad disponible</p>
-          <p className="arrticleText">Condiciones</p>
-
+          <p className="arrticleText">{`${formatOneDate(currentUserRewardTransaction.current.created_at)}`}</p>
+          <p className="arrticleText">{currentUserReward.current.transaction_text}</p>
         </div>
-
       </div>
     </>
   );

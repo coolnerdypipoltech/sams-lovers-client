@@ -1,6 +1,3 @@
-
-
-
 export function formatDate(fechaInicio, fechaFin) {
   const meses = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -19,4 +16,17 @@ export function formatDate(fechaInicio, fechaFin) {
   return `${mesInicio} ${diaInicio} a ${mesFin} ${diaFin} del ${año}`;
 }
 
+export function formatOneDate(fecha) {
+  const meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
 
+  const date = new Date(fecha);
+
+  const dia = String(date.getDate()).padStart(2, '0');
+  const mes = meses[date.getMonth()];
+  const año = date.getFullYear();
+
+  return `${mes} ${dia} del ${año}`;
+}
