@@ -145,9 +145,9 @@ export async function GetUserInfo(_token) {
     }
 }
 
-export async function GetArticles (_token, _page, _count) {
+export async function GetArticles (_token, _limit, _offset) {
     try{
-        const response = await fetch(ENDPOINT + `/v1/articles/${_page}/${_count}`, {
+        const response = await fetch(ENDPOINT + `/v1/articles/${_limit}/${_offset}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -306,14 +306,17 @@ export async function UpdateUserAvatar (_token, _file) {
     }
 }
 
-export async function DeleteUser (_token) {
+export async function DeleteUser (_token, _password) {
     try {
         const response = await fetch(ENDPOINT + "/v1/user/delete", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": _token,
-            }
+            },
+            body: JSON.stringify({
+                password0: _password
+            }),
         });
         return response;
     } catch (error) {

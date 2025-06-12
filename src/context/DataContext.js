@@ -294,9 +294,9 @@ const ElementProviderData = ({ children }) => {
     return;
   };
 
-  const setNewChallengeTransaction = async (transaction) => {
+  const setNewChallengeTransaction = async (_transaction) => {
     var tempChallenge = currentChallenge;
-    tempChallenge.transaction = transaction;
+    tempChallenge.transaction = _transaction;
     console.log(tempChallenge);
     setCurrentChallenge(tempChallenge);
     let tempArray = challengesData;

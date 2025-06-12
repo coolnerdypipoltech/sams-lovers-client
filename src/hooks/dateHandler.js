@@ -1,7 +1,7 @@
 export function formatDate(fechaInicio, fechaFin) {
   const meses = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+    "Jul", "Agto", "Sept", "Oct", "Nov", "Dic"
   ];
 
   const inicio = new Date(fechaInicio);
@@ -18,8 +18,8 @@ export function formatDate(fechaInicio, fechaFin) {
 
 export function formatOneDate(fecha) {
   const meses = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+    "Jul", "Agto", "Sept", "Oct", "Nov", "Dic"
   ];
 
   const date = new Date(fecha);

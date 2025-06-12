@@ -44,6 +44,8 @@ function MyRewardsList({ changeToSubPage }) {
     changeToSubPage();
   };
 
+  console.log(userRewardsData)
+
   return (
     <>
       {userRewardsData != null ? (

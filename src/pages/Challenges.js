@@ -10,7 +10,7 @@ import { CreateSubmission } from "../hooks/apicalls";
 import ChallengePopUp	 from "../components/ChallengePopUp";
 
 function Challenges() {
-  const { UserData, initRequestChallenges, currentChallenge, setNewTransaction } = useContext(ElementContextData);
+  const { UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
@@ -71,7 +71,7 @@ function Challenges() {
     console.log(data.transaction);
     if (response.ok) {
       setShowSuccessPopUp(true)
-      setNewTransaction(data.transaction);
+      setNewChallengeTransaction(data.transaction);
       setSubPage("ChallengePage");
     }else{
       if (data.message) {
