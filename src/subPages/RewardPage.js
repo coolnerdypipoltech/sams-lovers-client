@@ -29,11 +29,11 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
     returnPage();
   };
 
-  const handleParticipation = () => {
+  const handleOpenPurchasePopUp = () => {
 
     if (((UserData.current.user.related.diamonds - currentReward.price) <= 0) ||
       (currentReward.stock <= 0) ||
-      (currentReward.total_user_transactions_left <= 0)
+      (currentReward.total_user_transactions_left <= 0 || currentReward.status !== "ACTIVO")
     ) {
       return;
     }
@@ -54,7 +54,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
   const isButtonActive = () => {
     if (((UserData.current.user.related.diamonds - currentReward.price) <= 0) ||
       (currentReward.stock <= 0) ||
-      (currentReward.total_user_transactions_left <= 0)
+      (currentReward.total_user_transactions_left <= 0 || currentReward.status !== "ACTIVO")
     ) {
       return false;
     }else{
@@ -171,7 +171,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
             <button
               style={{ width: "80%", fontSize: "15px" }}
               className={isButtonActive() ? "GeneralButton4" : "GeneralButton4-Inactive"}
-              onClick={handleParticipation}
+              onClick={handleOpenPurchasePopUp}
             >
               Obtener
             </button>

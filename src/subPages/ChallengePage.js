@@ -73,7 +73,6 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
 
             {
               challenge.transaction != null && (<>
-              
           {challenge.transaction.status === "SUBMITTED" && (
             <>
               <div
