@@ -9,19 +9,19 @@ function MyRewardsList({ changeToSubPage }) {
 
   const limit = 10;
 
-  const { initRequestUserRewards, currentUserReward, currentUserRewardTransaction, userRewardsData, requestMoreUserRewardsByURL, nextUserReward } = useContext(ElementContextData);
+  const { initRequestUserRewardsTransactions, currentUserRewardTransaction, userRewardsTransactionData, requestMoreUserRewardsTransactionsByURL, nextUserRewardTransaction } = useContext(ElementContextData);
 
   useEffect(() => {
-    initRequestUserRewards(limit, 0);
+    initRequestUserRewardsTransactions(limit, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadMoreUserRewards = () => {
+  const loadMoreUserRewardsTransactions = () => {
     if(isLoading) return;
-    if(nextUserReward.current === null) return;
+    if(nextUserRewardTransaction.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreUserRewardsByURL();
+      await requestMoreUserRewardsTransactionsByURL();
       setIsLoading(false);
     }, 1000);
   };
@@ -34,37 +34,29 @@ function MyRewardsList({ changeToSubPage }) {
         listContainerRef.current.scrollHeight - 20 &&
       !isLoading
     ) {
-      loadMoreUserRewards();
+      loadMoreUserRewardsTransactions();
     }
   };
 
-  const handleSelectReward = (itemData, transactionData) => {
-    currentUserReward.current = itemData;
+  const handleSelectRewardTransaction = (transactionData) => {
     currentUserRewardTransaction.current = transactionData;
     changeToSubPage();
   };
 
-  console.log(userRewardsData)
-
   return (
     <>
-      {userRewardsData != null ? (
+      {userRewardsTransactionData != null ? (
         <div
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh" }}
         >
-          {userRewardsData.map((reward, index) => (
+          {userRewardsTransactionData.map((transaction, index) => (
             <div key={index}>
                     {" "}
-                    <div>
-                        {reward.user_transactions.map((transaction, transactionKey) => (
-                            <div key={transactionKey} onClick={() => handleSelectReward(reward, transaction)}>
-                                {" "}
-                                <MyRewardsListItem reward={reward} userTransaction={transaction} />
-                            </div>
-                        ))}
+                    <div key={index} onClick={() => handleSelectRewardTransaction(transaction)}>
+                      <MyRewardsListItem reward={transaction.transactionable} userTransaction={transaction} />
                     </div>
                 </div>
           ))}

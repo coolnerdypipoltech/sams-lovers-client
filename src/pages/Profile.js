@@ -57,9 +57,9 @@ function Profile() {
     )
   }
 
-  if (subPage === "SelectRewardPage") {
+  /*if (subPage === "SelectRewardPage") {
     subPageContent = <SelectedMiReward returnPage={handleReturn}></SelectedMiReward>;
-  }
+  }*/
 
   return (
     <>

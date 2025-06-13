@@ -1,11 +1,32 @@
-
+import { useState, useContext } from "react";
 import MyRewardsList from "../components/MyRewardsList";
+import SelectedMiReward from "../subPages/SelectedMiReward";
+import { ElementContextData } from "../context/DataContext";
 
 function MyRewards({returnPage, selectPage}) {
 
-    const handleReturn = () => {
+  const { setUserRewardsTransactionData } = useContext(ElementContextData);
+
+  const [subPage, setSubPage] = useState(null);
+
+  let userRewardTransactionPage = <></>
+
+  const handleReturn = () => {
+    setUserRewardsTransactionData(null);
     returnPage();
   };
+
+  const handleLocalReturn = () => {
+    setSubPage(null);
+  }
+
+  const handleUserRewardTransactionSubPage = () => {
+    setSubPage("SelectRewardPage")
+  }
+
+  if (subPage === "SelectRewardPage") {
+    userRewardTransactionPage = <SelectedMiReward returnPage={handleLocalReturn}></SelectedMiReward>;
+  }
 
   return (
     <>
@@ -25,8 +46,9 @@ function MyRewards({returnPage, selectPage}) {
         </p>
         <p className="challengesPage-Title">Mis Recompensas</p>
         <p className="challenge-text">Historial de recompensas canjeadas</p>
-        <MyRewardsList changeToSubPage={selectPage}></MyRewardsList>
+        <MyRewardsList changeToSubPage={handleUserRewardTransactionSubPage}></MyRewardsList>
       </div>
+      {userRewardTransactionPage}
     </>
   );
 }

@@ -4,7 +4,7 @@ const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
   const [rewardsData, setRewardsData] = useState(null);
-  const [userRewardsData, setUserRewardsData] = useState(null);
+  const [userRewardsTransactionData, setUserRewardsTransactionData] = useState(null);
   const [articleData, setArticleData] = useState(null);
   const [challengesData, setChallengesData] = useState(null);
   const [currentChallenge, setCurrentChallenge] = useState(null);
@@ -12,12 +12,11 @@ const ElementProviderData = ({ children }) => {
   const [userDiamonds, setUserDiamonds] = useState(0);
 
   const UserData = useRef(null);
-  const currentUserReward = useRef(null);
   const currentUserRewardTransaction = useRef(null);
   const currentArticle = useRef(null);
   const articlePosition = useRef(null);
   const nextRewards = useRef(null);
-  const nextUserReward = useRef(null);
+  const nextUserRewardTransaction = useRef(null);
   const nextArticles = useRef(null);
   const nextChallenges = useRef(null);
 
@@ -41,16 +40,16 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const initRequestUserRewards = async (
+  const initRequestUserRewardsTransactions = async (
     _limit,
     _offset
   ) => {
     const response = await GetPurchasedRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data.rewards);
+    console.log(data.transactions);
     if (response.ok) {
-      setUserRewardsData(data.rewards);
-      nextUserReward.current = data.next;
+      setUserRewardsTransactionData(data.transactions);
+      nextUserRewardTransaction.current = data.next;
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -211,8 +210,8 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreUserRewards = async (_limit, _offset) => {
-     if (nextUserReward === null) {
+  const requestMoreUserRewardsTransactions = async (_limit, _offset) => {
+     if (nextUserRewardTransaction === null) {
       return;
     }
 
@@ -222,11 +221,11 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.rewards);
+    console.log(data.transactions);
     if (response.ok) {
-      setUserRewardsData((prev) => [...prev, ...data.rewards]);
-      nextUserReward.current = data.next;
-      console.log("POST get info " + nextUserReward.current);
+      setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
+      nextUserRewardTransaction.current = data.next;
+      console.log("POST get info " + nextUserRewardTransaction.current);
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -237,23 +236,23 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreUserRewardsByURL = async () => {
+  const requestMoreUserRewardsTransactionsByURL = async () => {
 
-    if (nextUserReward === null || nextUserReward.current === null || nextUserReward.current === "") {
+    if (nextUserRewardTransaction === null || nextUserRewardTransaction.current === null || nextUserRewardTransaction.current === "") {
       return;
     }
 
     const response = await GetPurchasedRewardsWithURL(
       `${UserData.current.token_type} ${UserData.current.access_token}`,
-      nextUserReward.current
+      nextUserRewardTransaction.current
     );
-    console.log(nextUserReward.current);
+    console.log(nextUserRewardTransaction.current);
     const data = await response.json();
-    console.log(data.rewards);
+    console.log(data.transactions);
     if (response.ok) {
-      setUserRewardsData((prev) => [...prev, ...data.rewards]);
-      nextUserReward.current = data.next;
-      console.log("POST get info " + nextUserReward.current);
+      setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
+      nextUserRewardTransaction.current = data.next;
+      console.log("POST get info " + nextUserRewardTransaction.current);
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -334,35 +333,34 @@ const ElementProviderData = ({ children }) => {
       value={{
         UserData,
         rewardsData,
-        userRewardsData,
+        userRewardsTransactionData,
         challengesData,
         currentChallenge,
         currentReward,
-        currentUserReward,
         currentUserRewardTransaction,
         currentArticle,
         articlePosition,
         articleData,
         nextChallenges,
         nextRewards,
-        nextUserReward,
+        nextUserRewardTransaction,
         userDiamonds,
         SetUserData,
         setRewardsData,
-        setUserRewardsData,
+        setUserRewardsTransactionData,
         setChallengesData,
         setCurrentChallenge,
         setCurrentReward,
         requestMoreRewards,
         requestMoreRewardsByURL,
-        requestMoreUserRewards,
-        requestMoreUserRewardsByURL,
+        requestMoreUserRewardsTransactions,
+        requestMoreUserRewardsTransactionsByURL,
         requestMoreChallenges,
         requestMoreChallengesByURL,
         requestMoreArticles,
         requestNextArticle,
         initRequestRewards,
-        initRequestUserRewards,
+        initRequestUserRewardsTransactions,
         initRequestArticles,
         initRequestChallenges,
         setNewChallengeTransaction,
