@@ -1,58 +1,197 @@
 import { ExchangeCode } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import "../styles/Codes.css";
+import diamond from "../assets/diamond.svg";
+import Confetti from "react-confetti";
 
 function Codes() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, setNewUserDiamonds } = useContext(ElementContextData);
 
-  let code = useRef("");
+  const [popUpResponse, setPopUpResponse] = useState(null);
+   const [inputValue, setInputValue] = useState('');
+
+  let redeemedDiamonds = useRef(0);
+  let rewardErrorPopUpTitle = useRef("");
+  let rewardErrorPopUpContent = useRef("");
+  let rewardPopUpContent = <></>;
 
   const handleOnChangeInput = (input) => {
-    code.current = input;
+    setInputValue(input);
+  }
+
+  const codeNotFoundPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, no existe el código que escribiste.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos códigos para ti, pendiente en nuestras redes sociales.";
+    setPopUpResponse("Error");
+  }
+
+  const expiredCodePopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, este código ha expirado.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos códigos para ti, pendiente en nuestras redes sociales.";
+    setPopUpResponse("Error");
+  }
+
+  const maxRedemptionsReachedPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, se han agotado los canjes permitidos para este código.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos códigos para ti, pendiente en nuestras redes sociales.";
+    setPopUpResponse("Error");
+  }
+
+  const noStockErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, se han agotado los canjes permitidos para este código.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos códigos para ti, pendiente en nuestras redes sociales.";
+    setPopUpResponse("Error");
+  }
+
+  const openGeneralErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
+
+  const handleRewardPopUpClose = () => {
+    redeemedDiamonds.current = 0;
+    setInputValue("");
+    setPopUpResponse(null);
   }
 
   const handleExchangeCode = async () => {
+    if (inputValue === "") return;
 
-    if (code.current === "") return;
-
-    const response = await ExchangeCode(`${UserData.current.token_type} ${UserData.current.access_token}`,code.current);
+    const response = await ExchangeCode(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
     const data = await response.json();
     console.log(data);
     if (response.ok) {
+        redeemedDiamonds.current = data.user.related.diamonds - UserData.current.user.related.diamonds;
         setNewUserDiamonds(data.user.related.diamonds);
+        setPopUpResponse("Success");
+        setInputValue("");
       } else {
-              if (data.message) {
-        switch(data.message) {
-          case "api.error.unauthorized":
-            changeRoute("Login");
-            break;
-          case " api.error.code_not_found":
-            //changeRoute("Login");
-            break;
-          case "api.error.code_expired":
-            //openMaxPurchasesReachedPopUp();
-            break;
-          case " api.error.max_redemptions_reached":
-            //openNoDiamondsPopUp();
-            break;
-          case " api.error.no_stock":
-            break;
-          default:
-            //openGeneralErrorPopUp();
-            break;
+        if (data.message) {
+          switch(data.message) {
+            case "api.error.unauthorized":
+              changeRoute("Login");
+              // todo: delete cookie info
+              break;
+            case "api.error.code_not_found":
+              codeNotFoundPopUp();
+              break;
+            case "api.error.code_expired":
+                expiredCodePopUp();
+              break;
+            case " api.error.max_redemptions_reached":
+              maxRedemptionsReachedPopUp();
+              break;
+            case " api.error.no_stock":
+              noStockErrorPopUp();
+              break;
+            default:
+              openGeneralErrorPopUp();
+              break;
+          }
+        }else{
+          openGeneralErrorPopUp();
         }
-      }else{
-        //openGeneralErrorPopUp();
-      }
-      return;
+        return;
       }
   }
 
+   if(popUpResponse === "Error"){
+    rewardPopUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {rewardErrorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {rewardErrorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleRewardPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if(popUpResponse === "Success"){
+    rewardPopUpContent = (
+      <>
+        <Confetti
+          style={{ zIndex: "100" }}
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
+        <div className="PopUp">
+          <div style={{ height: "auto" }} className="PopUpDialog">
+            <div className="GeneralButtonContainer">
+              <img
+                src={diamond}
+                style={{ height: "130px", paddingTop: "20px" }}
+                alt="An illustration representative of a diamond."
+              ></img>
+
+              <p className="subTitlePopUpReward">
+                ¡Código canjeado con exito!
+              </p>
+
+              <p
+                style={{
+                  fontWeight: "800",
+                  margin: "0px",
+                  marginBottom: "20px",
+                  color: "#0066A1",
+                }}
+                className="subTitlePopUpReward"
+              >
+                {`${redeemedDiamonds.current} diamantes`}
+              </p>
+
+              <p
+                style={{
+                  fontWeight: "400",
+                  margin: "0px",
+                  marginBottom: "20px",
+                }}
+                className="subTitlePopUpReward"
+              >
+                Tú código ha sido redimido correctamente.
+                Disfruta de tus recompensas y gracias por ser parte de nuestra comunidad
+                de Sam's Lover.
+              </p>
+
+              <button
+                style={{}}
+                className="GeneralButton4"
+                onClick={handleRewardPopUpClose}
+              >
+                Aceptar
+              </button>
+
+              <div style={{ height: "30px" }}></div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+
   return (
     <>
+    <>{rewardPopUpContent}</>
       <div className="CodePageContainer">
         <div className="headerSpacer"></div>
         <p className="CodeTitle">Redime tu código</p>
@@ -64,7 +203,7 @@ function Codes() {
         <div className="CodeInputContainer">
 
             <p className="CodeInputText"> Introduce tu código</p>
-          <input placeholder="Código" className="GeneralInput" onChange={e => handleOnChangeInput(e.target.value)}></input>
+          <input placeholder="Código" className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
         </div>
         <div className="CodeButtonContainer">
           <button className="GeneralButton4" onClick={handleExchangeCode}>Canjear código</button>

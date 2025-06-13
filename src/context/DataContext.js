@@ -9,6 +9,7 @@ const ElementProviderData = ({ children }) => {
   const [challengesData, setChallengesData] = useState(null);
   const [currentChallenge, setCurrentChallenge] = useState(null);
   const [currentReward, setCurrentReward] = useState(null);
+  const [userDiamonds, setUserDiamonds] = useState(0);
 
   const UserData = useRef(null);
   const currentUserReward = useRef(null);
@@ -265,6 +266,7 @@ const ElementProviderData = ({ children }) => {
 
   const SetUserData = (_Data) => {
     UserData.current = _Data;
+    setUserDiamonds(UserData.current.user.related.diamonds);
     console.log(UserData.current);
   };
 
@@ -344,6 +346,7 @@ const ElementProviderData = ({ children }) => {
         nextChallenges,
         nextRewards,
         nextUserReward,
+        userDiamonds,
         SetUserData,
         setRewardsData,
         setUserRewardsData,

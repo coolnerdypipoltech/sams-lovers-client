@@ -119,7 +119,6 @@ function Challenges() {
       <ChallengePage
         returnPage={handleReturn}
         challengeParticipationPage={handleSelectParticipation}
-        
       ></ChallengePage>
     );
   }
