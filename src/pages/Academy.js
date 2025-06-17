@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import AcademyItem from "../components/AcademyItem";
 import AcademyList from "../components/AcademyList";
 import "../styles/Academy.css";
 import AcademyPage from "../subPages/AcademyPage";
@@ -12,7 +11,7 @@ const [subPage, setSubPage] = useState("");
   const handleSelectArticle =  () =>{
     console.log("select")
     setSubPage("AcademyPage")
-  } 
+  }
 
   const handleReturn =  () =>{
     const div = document.querySelector(".listContainer");

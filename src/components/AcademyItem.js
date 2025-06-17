@@ -1,5 +1,5 @@
 import banner from "../assets/test/Banners_Sams_Banner1131x669_Blog@2x.png";
-function AcademyItem({ onClick }) {
+function AcademyItem({ article, onClick }) {
   const handleClick = () => {
     onClick();
   };

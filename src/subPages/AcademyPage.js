@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { render } from "react-dom";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import banner from "../assets/test/Banners_Sams_Banner1131x669_Blog@2x.png";
 import SamsFooter from "../components/SamsFooter";
+import { ElementContextData } from "../context/DataContext";
+
 function AcademyPage({ onReturn }) {
+
+    const { currentArticle } =
+    useContext(ElementContextData);
+
   const handleOnReturn = () => {
     onReturn();
   };

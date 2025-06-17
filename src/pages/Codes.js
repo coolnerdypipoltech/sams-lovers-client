@@ -11,7 +11,7 @@ function Codes() {
   const { UserData, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [popUpResponse, setPopUpResponse] = useState(null);
-   const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   let redeemedDiamonds = useRef(0);
   let rewardErrorPopUpTitle = useRef("");

@@ -7,21 +7,21 @@ function AcademyList({ changeToSubPage }) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestRewards, currentReward, rewardsData, requestMoreRewards } =
+  const { initRequestArticles, currentArticle, articleData, requestMoreArticlesByURL } =
     useContext(ElementContextData);
 
   const limit = 10;
 
   useEffect(() => {
-    initRequestRewards(limit, 0);
+    initRequestArticles(limit, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadMoreRewards = () => {
+  const loadMoreArticles = () => {
     if (isLoading) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreRewards();
+      await requestMoreArticlesByURL();
       setIsLoading(false);
     }, 1000);
   };
@@ -34,33 +34,33 @@ function AcademyList({ changeToSubPage }) {
         listContainerRef.current.scrollHeight - 20 &&
       !isLoading
     ) {
-      loadMoreRewards();
+      loadMoreArticles();
     }
   };
 
-  const handleSelectReward = (itemData) => {
-    currentReward.current = itemData;
+  const handleSelectArticle = (itemData) => {
+    currentArticle.current = itemData;
     changeToSubPage();
   };
 
   return (
     <>
-      {rewardsData != null ? (
+      {articleData != null ? (
         <div
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh" , width: "95%" }}
         >
-          {rewardsData.map((reward, index) => (
-            <div key={index} onClick={() => handleSelectReward(reward)}>
+          {articleData.map((article, index) => (
+            <div key={index} onClick={() => handleSelectArticle(article)}>
               {" "}
-              <AcademyListItem key={index} reward={reward} />
+              <AcademyListItem key={index} article={article} />
             </div>
           ))}
 
           {isLoading && (
-            <div className="loading">Cargando más recompensas...</div>
+            <div className="loading">Cargando más artículos...</div>
           )}
         </div>
       ) : (

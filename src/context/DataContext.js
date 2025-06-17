@@ -60,11 +60,24 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const initRequestArticles = async () => {
-    const response = await GetArticles();
-    setArticleData(response.data);
-    articleData.current = response.nextLink;
-    return;
+  const initRequestArticles = async (
+    _limit,
+    _offset
+  ) => {
+    const response = await GetArticles(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const data = await response.json();
+    console.log(data.articles);
+    if (response.ok) {
+      setArticleData(data.articles);
+      nextArticles.current = data.next;
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
   };
 
   const initRequestChallenges = async (
@@ -96,7 +109,7 @@ const ElementProviderData = ({ children }) => {
   };
 
   const requestMoreRewards = async (_limit, _offset) => {
-     if (nextRewards === null) {
+    if (nextRewards === null) {
       return;
     }
 
@@ -263,21 +276,59 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const SetUserData = (_Data) => {
-    UserData.current = _Data;
-    setUserDiamonds(UserData.current.user.related.diamonds);
-    console.log(UserData.current);
-  };
-
-  const requestMoreArticles = async () => {
+  const requestMoreArticles = async (_limit, _offset) => {
     if (nextArticles === null) {
       return;
     }
-    let tempArray = [...articleData];
-    nextArticles.current = "";
-    setArticleData(tempArray);
-    return;
+
+    const response = await GetArticles(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      _limit,
+      _offset
+    );
+    const data = await response.json();
+    console.log(data.articles);
+    if (response.ok) {
+      setArticleData((prev) => [...prev, ...data.articles]);
+      nextArticles.current = data.next;
+      console.log("POST get info " + nextArticles.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
   };
+
+  const requestMoreArticlesByURL = async () => {
+
+    if (nextArticles === null || nextArticles.current === null || nextArticles.current === "") {
+      return;
+    }
+
+    const response = await GetPurchasedRewardsWithURL(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      nextArticles.current
+    );
+    console.log(nextArticles.current);
+    const data = await response.json();
+    console.log(data.articles);
+    if (response.ok) {
+      setArticleData((prev) => [...prev, ...data.articles]);
+      nextArticles.current = data.next;
+      console.log("POST get info " + nextArticles.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
 
   const requestNextArticle = async () => {
     if (articleData.length - 1 <= articlePosition.current + 1) {
@@ -293,6 +344,13 @@ const ElementProviderData = ({ children }) => {
       }
     }
     return;
+  };
+
+  const SetUserData = (_Data) => {
+    UserData.current = _Data;
+    if(UserData.current !== null)
+      setUserDiamonds(UserData.current.user.related.diamonds);
+    console.log(UserData.current);
   };
 
   const setNewChallengeTransaction = async (_transaction) => {
@@ -359,6 +417,7 @@ const ElementProviderData = ({ children }) => {
         requestMoreChallengesByURL,
         requestMoreArticles,
         requestNextArticle,
+        requestMoreArticlesByURL,
         initRequestRewards,
         initRequestUserRewardsTransactions,
         initRequestArticles,
