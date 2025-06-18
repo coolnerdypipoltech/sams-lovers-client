@@ -1,16 +1,88 @@
 import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
-function PasswordPage({onReturn}) {
+import { useState, useRef } from "react"
+import { ResetPassword } from "../hooks/apicalls";
+
+function PasswordPage({ onReturn }) {
+
+  const [inputValue, setInputValue] = useState("");
+  const [popUpResponse, setPopUpResponse] = useState(null);
+
+  let rewardErrorPopUpTitle = useRef("");
+  let rewardErrorPopUpContent = useRef("");
+  let popUpContent = <></>;
+
+  const handleOnChangeInput = (input) => {
+    setInputValue(input);
+  }
+
+  const handlePopUpClose = () => {
+    setInputValue("");
+    setPopUpResponse(null);
+  }
+
+  const openGeneralErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
 
   const handleSend = async () => {
-    onReturn()
+    if (inputValue === "") return;
+
+    const response = await ResetPassword(inputValue);
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+        onReturn();
+      } else {
+        if (data.message) {
+          switch(data.message) {
+            default:
+              openGeneralErrorPopUp();
+              break;
+          }
+        }else{
+          openGeneralErrorPopUp();
+        }
+        return;
+      }
   };
 
   const handleReturn = async () => {
-    onReturn()
+    onReturn();
   };
 
+  if(popUpResponse === "Error"){
+    popUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {rewardErrorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {rewardErrorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handlePopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
+    <>
+    <>{popUpContent}</>
     <div className="subPageContainer">
       <div className="LoginContainer">
         <div className="loginHeaderContainer">
@@ -28,13 +100,14 @@ function PasswordPage({onReturn}) {
             instrucciones.
           </p>
           <p className="textForgetPassword">Email*</p>
-          <input placeholder="Tu email" className="GeneralInput"></input>
+          <input placeholder="Tu email" className="GeneralInput" onChange={e => handleOnChangeInput(e.target.value)}></input>
         </div>
 
         <button onClick={handleSend} className="GeneralButton">Enviar</button>
       </div>
     </div>
     </div>
+    </>
   );
 }
 

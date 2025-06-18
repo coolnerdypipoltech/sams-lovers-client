@@ -99,7 +99,7 @@ function Codes() {
       }
   }
 
-   if(popUpResponse === "Error"){
+  if(popUpResponse === "Error"){
     rewardPopUpContent = (
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">

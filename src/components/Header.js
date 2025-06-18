@@ -10,7 +10,7 @@ import { ElementContextData } from "../context/DataContext";
 function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
   const { route, changeRoute } = useContext(ElementContextRoute);
-  const { userDiamonds } = useContext(ElementContextData);
+  const { userDiamonds, UserData } = useContext(ElementContextData);
 
   const handleMenuRoute = (pageToTravelTo) => {
     changeRoute(pageToTravelTo);
@@ -19,6 +19,8 @@ function Header() {
 
   const handleLogOut = () => {
     console.log("Log Out");
+    UserData.current = null;
+    changeRoute("Login");
   };
 
   const handleOnClickLogo = () => {
