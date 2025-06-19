@@ -17,15 +17,13 @@ function Profile() {
   const { UserData } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("ConfirmationPage");
-  const [socialMedia, setSocialMedia] = useState([{link: "https://www.google.com", icon: facebook}, {link: "https://www.google.com", icon: instagram}, {link: "https://www.google.com", icon:tiktok }, {link: "https://www.google.com", icon: youtube}, {link: "https://www.google.com", icon: X} ]);
+
+  const userDataRelated = UserData.current.user.related;
+  const [socialMedia, setSocialMedia] = useState([{link: userDataRelated.facebook, icon: facebook}, {link: userDataRelated.instagram, icon: instagram}, {link: userDataRelated.tiktok, icon:tiktok }, {link: userDataRelated.youtube, icon: youtube}, {link: userDataRelated.x, icon: X} ]);
+
   const [imageSrc, setImageSrc] = useState(null);
 
   let subPageContent = null;
-
-  useEffect(() => {
-    initSocialMedia();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleSelectReward = () => {
     setSubPage("RewardPage");
@@ -70,11 +68,6 @@ function Profile() {
     subPageContent = <SelectedMiReward returnPage={handleReturn}></SelectedMiReward>;
   }*/
 
-  const initSocialMedia = () => {
-    setSocialMedia([[{link: UserData.current.user.related.facebook, icon: facebook}, {link: UserData.current.user.related.instagram, icon: instagram}, {link: UserData.current.user.related.tiktok, icon:tiktok }, {link: UserData.current.user.related.youtube, icon: youtube}, {link: UserData.current.user.related.x, icon: X} ]]);
-    console.log(socialMedia);
-  }
-
   return (
     <>
       <>{subPageContent} </>
@@ -91,12 +84,12 @@ function Profile() {
           </div>
           {socialMedia != null ? (
             <>
-              <div className="socialMediaContainer">
-                {socialMedia.map((item, index) => {(
-                  (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.link)} alt={`${item.link}`}></img>)
-                )})}
-              </div>
-              <div style={{backgroundColor: "white"}} className="Divider"></div>
+            <div className="socialMediaContainer">
+              {socialMedia.map((item, index) => (
+                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item)} alt={`${item.link}`}></img>))
+              )}
+            </div>
+            <div style={{backgroundColor: "white"}} className="Divider"></div>
             </>
           ) : (
             <></>
