@@ -276,9 +276,9 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
         </div>
 
         {((challenge.transaction === null &&
-          challenge.status_challenge !== "TERMINADO") ||
+          challenge.status_challenge === "ACTIVO") ||
           (challenge.transaction?.status === "SUBMITTED" &&
-            challenge.status_challenge !== "TERMINADO")) && (
+            challenge.status_challenge === "ACTIVO")) && (
           <>
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>

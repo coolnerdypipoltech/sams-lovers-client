@@ -7,14 +7,13 @@ function AcademyItem({ article, onClick }) {
   return (
     <>
       <div className="AcademyItemContainer">
-        <img className="imageAcademyItem" src={banner} alt="bannerLogo"></img>
+        <img className="imageAcademyItem" src={article.thumbnail.absolute_url} alt="bannerLogo"></img>
         <div className="AcademyTextContainer">
           <p className="itemTitle">
-            Qué es Sam's Lovers, la nueva campaña de Sam's Club?
+            {article.title}
           </p>
           <p className="itemSubtitle">
-            "Sam's Lovers" es una emocionante campaña de Sam's Club que busca
-            recompensar la fidelidad de sus socios
+            {article.preview_text}
           </p>
           <p className="itemMoreText">Leer más</p>
         </div>

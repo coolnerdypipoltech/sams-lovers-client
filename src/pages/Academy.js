@@ -6,7 +6,7 @@ import AcademyPage from "../subPages/AcademyPage";
 
 function Academy() {
 
-const [subPage, setSubPage] = useState("");
+  const [subPage, setSubPage] = useState("");
   let subPageContent = null;
   const handleSelectArticle =  () =>{
     console.log("select")
