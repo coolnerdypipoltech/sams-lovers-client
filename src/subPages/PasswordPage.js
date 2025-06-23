@@ -2,11 +2,15 @@ import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
 import { useState, useRef } from "react"
 import { ResetPassword } from "../hooks/apicalls";
+import eye from "../assets/Visibility.svg";
+import eyeclosed from "../assets/Visibility2.svg";
 
 function PasswordPage({ onReturn }) {
 
   const [inputValue, setInputValue] = useState("");
   const [popUpResponse, setPopUpResponse] = useState(null);
+  const [eyeHelper, setEyeHelper] = useState(false);
+  const [typeHelper, setTypeHelper] = useState("password");
 
   let rewardErrorPopUpTitle = useRef("");
   let rewardErrorPopUpContent = useRef("");
@@ -100,7 +104,44 @@ function PasswordPage({ onReturn }) {
             instrucciones.
           </p>
           <p className="textForgetPassword">Email*</p>
-          <input placeholder="Tu email" className="GeneralInput" onChange={e => handleOnChangeInput(e.target.value)}></input>
+          <div className="passwordContainer">
+            <p className="loginSubtitle">Contraseña</p>
+            <div className="passwordInput">
+              <input
+                placeholder="Contraseña"
+                className="GeneralInput"
+                type={typeHelper}
+                onChange={e => handleOnChangeInput(e.target.value)}
+              ></input>
+
+              <div onClick={() => {
+                  if(eyeHelper){
+                    setTypeHelper("password")
+                    setEyeHelper(false);
+                  }else{
+                    setTypeHelper("text")
+                    setEyeHelper(true);
+                  }
+                    }}>
+                {eyeHelper === true ? (
+                  <img
+                    alt="eye"
+                    className="eyePassword"
+                    src={eyeclosed}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => {
+                      setEyeHelper(true);
+                    }}
+                    alt="eye"
+                    className="eyePassword"
+                    src={eye}
+                  ></img>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
 
         <button onClick={handleSend} className="GeneralButton">Enviar</button>

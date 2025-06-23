@@ -261,6 +261,55 @@ export async function GetPurchasedRewardsWithURL (_token, _next_url) {
     }
 }
 
+export async function GetTopUsers (_token, _limit, _offset) {
+    try {
+        const response = await fetch(ENDPOINT + `/v1/topusers/${_limit}/${_offset}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": _token,
+            }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetTopUsersByURL (_token, _next_url) {
+    console.log(ENDPOINT + _next_url);
+    try{
+        const response = await fetch(ENDPOINT + _next_url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": _token,
+        }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetMainPageData (_token) {
+    try {
+        const response = await fetch(ENDPOINT + `/v1/homepage/`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": _token,
+            }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
 export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
         const response = await fetch(ENDPOINT + "/v1/user/update", {

@@ -1,31 +1,50 @@
-import { useState } from "react";
-import ArticleList from "../components/ArticleList";
+import { useEffect, useContext, useRef } from "react";
 import "../styles/Main.css";
-import ArticlePage from "../subPages/ArticlePage";
+import { ElementContextData } from "../context/DataContext";
+import { ElementContextRoute } from "../context/RouteContext";
+import MonthlySamsLover from "../components/MonthlySamsLover";
+import SamsLoversRanking from "../components/SamsLoversRanking";
+import SamsFooter from "../components/SamsFooter";
+
 function Main() {
-  const [openArticlePage, setOpenArticlePage] = useState(false);
+  const { changeRoute } = useContext(ElementContextRoute);
+  const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
 
+    useEffect(() => {
+      initMainPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  const onClickOpenArticle = () => {
-    console.log("aqui")
-    setOpenArticlePage(true);
+  const handleSeeChallengesAction = () => {
+    changeRoute("Challenges");
   }
 
-  const onReturn = () => {
-    setOpenArticlePage(false);
+  const handleMonthlySamsLoverProfile = () => {
   }
 
   return (
     <>
-      {openArticlePage ? (
-        <ArticlePage></ArticlePage>
-      ) : (
-        <div className="MainContainer">
-          <p className="Title">Tutoriales, Tips y noticias</p>
-
-          <ArticleList></ArticleList>
+      <div>
+        <img></img>
+        <div>
+          <img></img>
+          <p>Bienvenido a Sam's Lovers</p>
+          <p>¡HOLA {UserData.current.user.name}!</p>
         </div>
-      )}
+        <div>
+          <img></img>
+          <button onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
+        </div>
+        <div>
+          <p>Tú puedes ser nuestro próximo Sam's Lover del mes</p>
+          <p>Súmate al reto, muestra lo mejor de ti y llévate premios únicos ¿Tienes lo necesario para ser el próximo Sam's Lover del mes?</p>
+        </div>
+        {/*
+        <MonthlySamsLover SamsLover={mainPageData.current} handleMonthlySamsLoverProfile={handleMonthlySamsLoverProfile}></-MonthlySamsLover>
+        <SamsLoversRanking></SamsLoversRanking>
+        <SamsFooter></SamsFooter>
+        */}
+      </div>
     </>
   );
 }

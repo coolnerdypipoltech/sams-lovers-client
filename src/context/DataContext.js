@@ -1,5 +1,5 @@
 import React, { createContext, useRef, useState } from "react";
-import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL } from "../hooks/apicalls";
+import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetTopUsers, GetTopUsersByURL } from "../hooks/apicalls";
 const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
@@ -10,6 +10,7 @@ const ElementProviderData = ({ children }) => {
   const [currentChallenge, setCurrentChallenge] = useState(null);
   const [currentReward, setCurrentReward] = useState(null);
   const [userDiamonds, setUserDiamonds] = useState(0);
+  const [topUsersData, setTopUsersData] = useState(null);
 
   const UserData = useRef(null);
   const currentUserRewardTransaction = useRef(null);
@@ -19,6 +20,8 @@ const ElementProviderData = ({ children }) => {
   const nextUserRewardTransaction = useRef(null);
   const nextArticles = useRef(null);
   const nextChallenges = useRef(null);
+  const nextTopUsers = useRef(null);
+  const mainPageData = useRef(null);
 
   const initRequestRewards = async (
     _limit,
@@ -98,6 +101,38 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData(data.challenges);
       nextChallenges.current = data.next;
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const initMainPage = async() => {
+    const response = await GetMainPageData(`${UserData.current.token_type} ${UserData.current.access_token}`);
+    const data = await response.json();
+    if (response.ok) {
+      mainPageData.current = (data);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const initRequestTopUsers = async(_limit, _offset) => {
+    const response = await GetTopUsers(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const data = await response.json();
+    console.log(data.topUsers);
+    if (response.ok) {
+      setTopUsersData(data.topUsers);
+      nextTopUsers.current = data.next;
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -197,7 +232,6 @@ const ElementProviderData = ({ children }) => {
   };
 
   const requestMoreChallengesByURL = async () => {
-
     if (nextChallenges === null || nextChallenges.current === null || nextChallenges.current === "") {
       return;
     }
@@ -250,7 +284,6 @@ const ElementProviderData = ({ children }) => {
   };
 
   const requestMoreUserRewardsTransactionsByURL = async () => {
-
     if (nextUserRewardTransaction === null || nextUserRewardTransaction.current === null || nextUserRewardTransaction.current === "") {
       return;
     }
@@ -303,7 +336,6 @@ const ElementProviderData = ({ children }) => {
   };
 
   const requestMoreArticlesByURL = async () => {
-
     if (nextArticles === null || nextArticles.current === null || nextArticles.current === "") {
       return;
     }
@@ -329,7 +361,6 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-
   const requestNextArticle = async () => {
     if (articleData.length - 1 <= articlePosition.current + 1) {
       currentArticle.current = articleData[articlePosition + 1];
@@ -345,6 +376,58 @@ const ElementProviderData = ({ children }) => {
     }
     return;
   };
+
+  const requestMoreTopUsers = async (_limit, _offset) => {
+    if (nextTopUsers === null) {
+      return;
+    }
+
+    const response = await GetTopUsers(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      _limit,
+      _offset
+    );
+    const data = await response.json();
+    console.log(data.topUsers);
+    if (response.ok) {
+      setTopUsersData((prev) => [...prev, ...data.topUsers]);
+      nextTopUsers.current = data.next;
+      console.log("POST get info " + nextTopUsers.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const RequestMoreTopUsersByURL = async () => {
+    if (nextTopUsers === null || nextTopUsers.current === null || nextTopUsers.current === "") {
+      return;
+    }
+
+    const response = await GetTopUsersByURL(
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      nextTopUsers.current
+    );
+    console.log(nextTopUsers.current);
+    const data = await response.json();
+    console.log(data.topUsers);
+    if (response.ok) {
+      setTopUsersData((prev) => [...prev, ...data.topUsers]);
+      nextTopUsers.current = data.next;
+      console.log("POST get info " + nextTopUsers.current);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  }
 
   const SetUserData = (_Data) => {
     UserData.current = _Data;
@@ -403,6 +486,9 @@ const ElementProviderData = ({ children }) => {
         nextRewards,
         nextUserRewardTransaction,
         userDiamonds,
+        topUsers: topUsersData,
+        nextTopUsers,
+        mainPageData,
         SetUserData,
         setRewardsData,
         setUserRewardsTransactionData,
@@ -418,13 +504,18 @@ const ElementProviderData = ({ children }) => {
         requestMoreArticles,
         requestNextArticle,
         requestMoreArticlesByURL,
+        requestMoreTopUsers,
+        RequestMoreTopUsersByURL,
         initRequestRewards,
         initRequestUserRewardsTransactions,
         initRequestArticles,
         initRequestChallenges,
+        initMainPage,
+        initRequestTopUsers,
         setNewChallengeTransaction,
         setNewReward,
-        setNewUserDiamonds
+        setNewUserDiamonds,
+        setTopUsers: setTopUsersData
       }}
     >
       {children}

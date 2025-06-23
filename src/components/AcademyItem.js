@@ -15,9 +15,9 @@ function AcademyItem({ article, onClick }) {
           <p className="itemSubtitle">
             {article.preview_text}
           </p>
-          <p className="itemMoreText">Leer más</p>
+          <p className="itemMoreText" onClick={handleClick}>Leer más</p>
         </div>
-        <div onClick={handleClick} style={{ height: "10px" }}></div>
+        <div style={{ height: "10px" }}></div>
       </div>
     </>
   );

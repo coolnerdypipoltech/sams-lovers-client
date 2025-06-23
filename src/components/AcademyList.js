@@ -7,7 +7,7 @@ function AcademyList({ changeToSubPage }) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestArticles, currentArticle, articleData, requestMoreArticlesByURL } =
+  const { initRequestArticles, currentArticle, articleData, requestMoreArticlesByURL, nextArticles } =
     useContext(ElementContextData);
 
   const limit = 10;
@@ -19,6 +19,7 @@ function AcademyList({ changeToSubPage }) {
 
   const loadMoreArticles = () => {
     if (isLoading) return;
+    if(nextArticles.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
       await requestMoreArticlesByURL();
@@ -53,9 +54,9 @@ function AcademyList({ changeToSubPage }) {
           style={{ overflowY: "auto", height: "84vh" , width: "95%" }}
         >
           {articleData.map((article, index) => (
-            <div key={index} onClick={() => handleSelectArticle(article)}>
+            <div key={index}>
               {" "}
-              <AcademyListItem key={index} article={article} />
+              <AcademyListItem key={index} article={article} onClick={() => handleSelectArticle(article)} />
             </div>
           ))}
 
