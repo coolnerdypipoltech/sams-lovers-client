@@ -67,7 +67,9 @@ function EditProfilePage({ onReturn }) {
       const data = await response.json();
       if(response.ok){
         if(data.user !== null){
-          SetUserData(data);
+          const tempUser = UserData.user;
+          tempUser.user = data.user;
+          SetUserData(tempUser);
           onReturn();
         }
       }else{
