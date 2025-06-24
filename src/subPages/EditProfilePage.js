@@ -1,18 +1,22 @@
-import { useRef, useState } from "react";
-
+import { useRef, useState, useContext } from "react";
+import { ElementContextData } from "../context/DataContext";
 import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
 import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
 import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
 import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import InfoTooltip from "../components/InfoTooltip";
+import { UpdateUserInfo } from "../hooks/apicalls";
 
 function EditProfilePage({ onReturn }) {
+  const { UserData, SetUserData } = useContext(ElementContextData);
+
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
   const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
   const [errorInputX, SetErrorInputX] = useState(true);
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
+  const [popUpResponse, setPopUpResponse] = useState("");
 
   const InputFacebook = useRef("");
   const InputInstagram = useRef("");
@@ -20,14 +24,66 @@ function EditProfilePage({ onReturn }) {
   const InputX = useRef("");
   const InputYoutube = useRef("");
 
+  let rewardErrorPopUpTitle = useRef("");
+  let rewardErrorPopUpContent = useRef("");
+  let rewardPopUpContent = <></>;
+
   const handleReturn = async () => {
     onReturn();
-
   };
+
+  const handleRewardPopUpClose = () => {
+    setPopUpResponse(null);
+  }
+
+  const openGeneralErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
 
   const handleSave = async () => {
     if (inputValidation()) {
-      onReturn();
+      const facebookVal = InputFacebook.current.value && InputFacebook.current.value !== "" !== null ? InputFacebook.current.value : UserData.current.user.related.facebook;
+      const instagramVal = InputInstagram.current.value !== null && InputInstagram.current.value !== "" ? InputInstagram.current.value : UserData.current.user.related.instagram;
+      const tiktokVal = InputTiktok.current.value !== null && InputTiktok.current.value !== "" ? InputTiktok.current.value : UserData.current.user.related.tiktok;
+      const xVal = InputX.current.value !== null && InputX.current.value !== "" ? InputX.current.value : UserData.current.user.related.x;
+      const youTubeVal = InputYoutube.current.value !== null && InputYoutube.current.value !== "" ? InputYoutube.current.value : UserData.current.user.related.youtube;
+
+      console.log(facebookVal);
+      console.log(instagramVal);
+      console.log(tiktokVal);
+      console.log(xVal);
+      console.log(youTubeVal);
+
+      const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
+         UserData.current.user.name,
+         facebookVal,
+         instagramVal,
+         tiktokVal,
+         xVal,
+         youTubeVal
+      );
+      const data = await response.json();
+      if(response.ok){
+        if(data.user !== null){
+          SetUserData(data);
+          onReturn();
+        }
+      }else{
+        if (data.message) {
+          switch(data.message) {
+            case "api.error.unauthorized":
+              // todo: delete cookie info
+              break;
+            default:
+              openGeneralErrorPopUp();
+              break;
+          }
+        }else{
+          openGeneralErrorPopUp();
+        }
+      }
     }
   };
 
@@ -66,7 +122,36 @@ function EditProfilePage({ onReturn }) {
     return regexFacebook.test(_userToTest);
   };
 
+  if(popUpResponse === "Error"){
+    rewardPopUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {rewardErrorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {rewardErrorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleRewardPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
+    <>
+    <>{rewardPopUpContent}</>
     <div className="subPageContainer">
       <div className="EditProfileContainer">
 
@@ -87,7 +172,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="usuario"
+                placeholder={UserData.current.user.related.tiktok !== null ? UserData.current.user.related.tiktok : "usuario"}
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
@@ -109,7 +194,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="usuario"
+                placeholder={UserData.current.user.related.instagram !== null ? UserData.current.user.related.instagram : "usuario"}
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
@@ -132,7 +217,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="https://www.facebook.com/cashi"
+                placeholder={UserData.current.user.related.facebook !== null ? UserData.current.user.related.facebook : "https://www.facebook.com/cashi"}
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
@@ -150,7 +235,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="usuario"
+                placeholder={UserData.current.user.related.youtube !== null ? UserData.current.user.related.youtube : "usuario"}
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
@@ -168,7 +253,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="usuario"
+                placeholder={UserData.current.user.related.x !== null ? UserData.current.user.related.x : "usuario"}
                 className="GeneralInput"
                 ref={InputX}
               ></input>
@@ -186,11 +271,10 @@ function EditProfilePage({ onReturn }) {
           <button className="GeneralButton4" onClick={handleSave}>
             Guardar
           </button>
-
-          
         </div>
       </div>
     </div>
+    </>
   );
 }
 

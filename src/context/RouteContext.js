@@ -37,6 +37,17 @@ const ElementProviderRoute= ({ children }) => {
     saveItem({loginToken: newValue})
   }
 
+  const deleteSavedItems = async () => {
+    const savedItems = await getItems()
+    if(savedItems !== undefined){
+      if(savedItems.length > 0){
+        for (let index = 0; index < savedItems.length; index++) {
+          await deleteItem(savedItems[index].id);
+        }
+      }
+    }
+  }
+
   const persistLogin = async () => {
     const savedItems = await getItems()
     if(savedItems !== undefined){
@@ -51,7 +62,7 @@ const ElementProviderRoute= ({ children }) => {
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, changeRoute, setLoginToken}}>
+    <ElementContextRoute.Provider value={{ route, changeRoute, setLoginToken, deleteSavedItems}}>
       {children}
     </ElementContextRoute.Provider>
   );

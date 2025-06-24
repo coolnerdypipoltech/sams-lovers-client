@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
 import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
 import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
@@ -7,13 +7,19 @@ import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import InfoTooltip from "../components/InfoTooltip";
+import { UpdateUserInfo } from "../hooks/apicalls";
+import { ElementContextData } from "../context/DataContext";
 
 function SocialMedia({ onReturn, onShowMessage }) {
+
+  const { UserData, SetUserData } = useContext(ElementContextData);
+
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
   const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
   const [errorInputX, SetErrorInputX] = useState(true);
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
+  const [popUpResponse, setPopUpResponse] = useState("");
 
   const InputFacebook = useRef("");
   const InputInstagram = useRef("");
@@ -21,15 +27,56 @@ function SocialMedia({ onReturn, onShowMessage }) {
   const InputX = useRef("");
   const InputYoutube = useRef("");
 
+  let rewardErrorPopUpTitle = useRef("");
+  let rewardErrorPopUpContent = useRef("");
+  let rewardPopUpContent = <></>;
+
   const handleSkip = async () => {
     onReturn();
     onShowMessage()
   };
 
+  const handleRewardPopUpClose = () => {
+    setPopUpResponse(null);
+  }
+
+  const openGeneralErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setPopUpResponse("Error");
+  }
+
   const handleContine = async () => {
     if (inputValidation()) {
-      onReturn();
-      onShowMessage()
+      const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
+         UserData.name,
+         InputFacebook.current,
+         InputInstagram.current,
+         InputTiktok.current,
+         InputX.current,
+         InputYoutube.current
+      );
+      const data = await response.json();
+      if(response.ok){
+        if(data.user !== null){
+          SetUserData(data);
+          onReturn();
+          onShowMessage();
+        }
+      }else{
+        if (data.message) {
+          switch(data.message) {
+            case "api.error.unauthorized":
+              // todo: delete cookie info
+              break;
+            default:
+              openGeneralErrorPopUp();
+              break;
+          }
+        }else{
+          openGeneralErrorPopUp();
+        }
+      }
     }
   };
 
@@ -51,7 +98,36 @@ function SocialMedia({ onReturn, onShowMessage }) {
     return regexFacebook.test(_userToTest);
   };
 
+  if(popUpResponse === "Error"){
+    rewardPopUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {rewardErrorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {rewardErrorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleRewardPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
+    <>
+    <>{rewardPopUpContent}</>
     <div className="subPageContainer">
       <div className="LoginContainer">
         <div className="logoContainer">
@@ -190,6 +266,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

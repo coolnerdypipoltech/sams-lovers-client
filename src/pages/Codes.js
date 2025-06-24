@@ -57,7 +57,6 @@ function Codes() {
     setInputValue("");
     setPopUpResponse(null);
   }
-  
 
   const handleExchangeCode = async () => {
     if (inputValue === "") return;

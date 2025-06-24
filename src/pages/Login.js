@@ -56,7 +56,6 @@ function Login() {
   };
 
   const onClickLogin = async () => {
-
     if (inputValidation()) {
       changePopUpLoading(true)
       const response = await LogIn(
@@ -259,9 +258,7 @@ function Login() {
           </div>
         </div>
       </div>
-      
     </>
-    
   );
 }
 

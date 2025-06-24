@@ -9,17 +9,18 @@ import { ElementContextData } from "../context/DataContext";
 
 function Header() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const { route, changeRoute } = useContext(ElementContextRoute);
-  const { userDiamonds, UserData } = useContext(ElementContextData);
+  const { route, changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { userDiamonds, SetUserData } = useContext(ElementContextData);
 
   const handleMenuRoute = (pageToTravelTo) => {
     changeRoute(pageToTravelTo);
     setMenuVisible(false);
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     console.log("Log Out");
-    UserData.current = null;
+    SetUserData(null);
+    await deleteSavedItems();
     changeRoute("Login");
   };
 

@@ -9,6 +9,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";
 import { CheckBox } from "react-native-web";
 import { ElementContextPopUp } from "../context/PopUpContext";
+
 function CreatePage({ onReturn, onNext }) {
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
@@ -16,17 +17,17 @@ function CreatePage({ onReturn, onNext }) {
   const [errorCheckbox, SetErrorCheckbox] = useState(false);
   const { setLoginToken } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
-   const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
-
-    const [eyeHelper1, setEyeHelper1] = useState(false);
+  const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
+  const [eyeHelper1, setEyeHelper1] = useState(false);
   const [typeHelper1, setTypeHelper1] = useState("password");
-    const [eyeHelper2, setEyeHelper2] = useState(false);
+  const [eyeHelper2, setEyeHelper2] = useState(false);
   const [typeHelper2, setTypeHelper2] = useState("password");
   const InputName = useRef("");
   const InputMail = useRef("");
   const InputPassword1 = useRef("");
   const InputPassword2 = useRef("");
   const checkboxValue = useRef(false);
+
   const handleReturn = async () => {
     onReturn();
   };
@@ -37,7 +38,12 @@ function CreatePage({ onReturn, onNext }) {
       const response = await SignIn(
         InputName.current.value,
         InputMail.current.value,
-        InputPassword1.current.value
+        InputPassword1.current.value,
+        null,
+        null,
+        null,
+        null,
+        null
       );
       if (response.ok) {
         changePopUpLoading(false)
@@ -87,14 +93,11 @@ function CreatePage({ onReturn, onNext }) {
     } else {
       SetErrorInputPassword1(null);
     }
-
-    
     if (responsePassword) {
       console.log("aa");
       if(flag){
         SetErrorInputPassword1(null);
       }
-      
     } else {
       if (InputPassword1.current.value.length === 0) {
         flag = false;
@@ -221,7 +224,6 @@ function CreatePage({ onReturn, onNext }) {
                     setTypeHelper1("text")
                     setEyeHelper1(true);
                   }
-                    
                     }}>
                 {eyeHelper1 === true ? (
                   <img
@@ -257,7 +259,6 @@ function CreatePage({ onReturn, onNext }) {
                 className="GeneralInput"
                 type={typeHelper2}
               ></input>
-
               <div onClick={() => {
                   if(eyeHelper2){
                     setTypeHelper2("password")
@@ -266,7 +267,6 @@ function CreatePage({ onReturn, onNext }) {
                     setTypeHelper2("text")
                     setEyeHelper2(true);
                   }
-                    
                     }}>
                 {eyeHelper2 === true ? (
                   <img
@@ -286,7 +286,6 @@ function CreatePage({ onReturn, onNext }) {
                 )}
               </div>
             </div>
-
           </div>
           <div className="checkBoxContainer">
             <label className="checkbox-container">

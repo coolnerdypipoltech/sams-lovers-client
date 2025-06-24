@@ -1,13 +1,18 @@
 const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api";
 
-export async function SignIn(_name, _email, _password) {
+export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
         console.log(ENDPOINT + "/v1/auth/signin");
         const bodyData = {
             name: _name,
             email: _email,
             password: _password,
-            diamonds: 0
+            diamonds: 0,
+            facebook: _facebook_url,
+            instagram: _instagram_url,
+            tiktok: _tiktok_url,
+            x: _x_url,
+            youtube: _youtube_url,
         };
         const response = await fetch(ENDPOINT + "/v1/auth/signin", {
             method: "POST",
@@ -311,21 +316,26 @@ export async function GetMainPageData (_token) {
 }
 
 export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
+    console.log(_facebook_url);
+    console.log(_instagram_url);
+    console.log(_tiktok_url);
+    console.log(_x_url);
+    console.log(_youtube_url);
     try {
-        const response = await fetch(ENDPOINT + "/v1/user/update", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": _token,
-        },
-        body: JSON.stringify({
-            name: _name,
-            facebook_url: _facebook_url,
-            instagram_url: _instagram_url,
-            tiktok_url: _tiktok_url,
-            x_url: _x_url,
-            youtube_url: _youtube_url,
-        }),
+        const response = await fetch(ENDPOINT + "/v1/auth/info", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": _token,
+            },
+            body: JSON.stringify({
+                name: _name,
+                facebook: _facebook_url,
+                instagram: _instagram_url,
+                tiktok: _tiktok_url,
+                x: _x_url,
+                youtube: _youtube_url,
+            }),
         });
         return response;
     }catch (error) {
@@ -357,7 +367,7 @@ export async function UpdateUserAvatar (_token, _file) {
 
 export async function DeleteUser (_token, _password) {
     try {
-        const response = await fetch(ENDPOINT + "/v1/user/delete", {
+        const response = await fetch(ENDPOINT + "/v1/auth", {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

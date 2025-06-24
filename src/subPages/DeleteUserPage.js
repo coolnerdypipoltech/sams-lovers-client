@@ -1,4 +1,4 @@
-function DeleteUser({handleReturn, inputValue, handleOnChangeInput, handleWarningPopUp}){
+function DeleteUserPage({handleReturn, inputValue, handleOnChangeInput, handleWarningPopUp}){
     return (
         <>
         <div className="subPageContainer"></div>
@@ -32,4 +32,4 @@ function DeleteUser({handleReturn, inputValue, handleOnChangeInput, handleWarnin
     );
 }
 
-export default DeleteUser;
+export default DeleteUserPage;

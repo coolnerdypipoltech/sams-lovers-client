@@ -7,12 +7,10 @@ import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
 import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
 import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
-
 import EditProfilePage from "../subPages/EditProfilePage";
 import { useState, useContext } from "react";
 import logo from "../assets/Perfil_default.png";
 import { ElementContextData } from "../context/DataContext";
-
 
 function Profile() {
   const { UserData } = useContext(ElementContextData);
@@ -37,6 +35,12 @@ function Profile() {
       setSubPage("RewardPage");
       return;
     }
+
+    if(subPage === "EditProfilePage"){
+      const userDataRelated = UserData.current.user.related;
+      setSocialMedia([{link: userDataRelated.facebook, icon: facebook}, {link: userDataRelated.instagram, icon: instagram}, {link: userDataRelated.tiktok, icon:tiktok }, {link: userDataRelated.youtube, icon: youtube}, {link: userDataRelated.x, icon: X} ]);
+    }
+
     setSubPage("");
   };
 
@@ -87,10 +91,9 @@ function Profile() {
             <>
             <div className="socialMediaContainer">
               {socialMedia.map((item, index) => (
-                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item)} alt={`${item.link}`}></img>))
+                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.link)} alt={`${item.link}`}></img>))
               )}
             </div>
-            
             </>
           ) : (
             <></>

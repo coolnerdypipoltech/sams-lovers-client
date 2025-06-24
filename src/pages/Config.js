@@ -3,11 +3,11 @@ import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import { DeleteUser } from "../hooks/apicalls";
 import "../styles/Main.css";
-import DeleteUserSubPage from "../subPages/DeleteUser";
+import DeleteUserPage from "../subPages/DeleteUserPage";
 
 function Config() {
 
-  const { changeRoute } = useContext(ElementContextRoute);
+    const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
@@ -51,13 +51,15 @@ function Config() {
       setPopUpDeleteUser("");
       setSubPage("");
       SetUserData(null);
+      await deleteSavedItems();
       changeRoute("LogIn");
     } else {
       if (data.message) {
         switch(data.message) {
           case "api.error.unauthorized":
+            SetUserData(null);
+            await deleteSavedItems();
             changeRoute("Login");
-            // todo: delete cookie info
             break;
           case "api.error.not_same_password":
             NotSamePasswordPopUp();
@@ -147,7 +149,7 @@ function Config() {
 
   if (subPage === "DeleteAccount") {
     subPageContent = (
-      <DeleteUserSubPage handleReturn={handleReturn} inputValue={inputValue} handleOnChangeInput={handleOnChangeInput} handleWarningPopUp={handleWarningPopUp}></DeleteUserSubPage>
+      <DeleteUserPage handleReturn={handleReturn} inputValue={inputValue} handleOnChangeInput={handleOnChangeInput} handleWarningPopUp={handleWarningPopUp}></DeleteUserPage>
     );
   }
 

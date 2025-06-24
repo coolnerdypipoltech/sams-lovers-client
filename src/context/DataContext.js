@@ -327,7 +327,7 @@ const ElementProviderData = ({ children }) => {
     console.log(data.articles);
     if (response.ok) {
       setArticleData((prev) => [...prev, ...data.articles]);
-      tempArticlesData.current = (prev) => [...prev, ...data.articles];
+      tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
       totalArticles.current = data.total;
       nextArticles.current = data.next;
       console.log("POST get info " + nextArticles.current);
