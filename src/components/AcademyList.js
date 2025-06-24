@@ -7,8 +7,7 @@ function AcademyList({ changeToSubPage }) {
 
   const listContainerRef = useRef(null);
 
-  const { initRequestArticles, currentArticle, articleData, requestMoreArticlesByURL, nextArticles } =
-    useContext(ElementContextData);
+  const { initRequestArticles, setCurrentArticle, articleData, requestMoreArticlesByURL, nextArticles } = useContext(ElementContextData);
 
   const limit = 10;
 
@@ -40,7 +39,7 @@ function AcademyList({ changeToSubPage }) {
   };
 
   const handleSelectArticle = (itemData) => {
-    currentArticle.current = itemData;
+    setCurrentArticle(itemData);
     changeToSubPage();
   };
 

@@ -11,10 +11,10 @@ const ElementProviderData = ({ children }) => {
   const [currentReward, setCurrentReward] = useState(null);
   const [userDiamonds, setUserDiamonds] = useState(0);
   const [topUsersData, setTopUsersData] = useState(null);
+  const [currentArticle, setCurrentArticle] = useState(null);
 
   const UserData = useRef(null);
   const currentUserRewardTransaction = useRef(null);
-  const currentArticle = useRef(null);
   const articlePosition = useRef(null);
   const nextRewards = useRef(null);
   const nextUserRewardTransaction = useRef(null);
@@ -22,6 +22,8 @@ const ElementProviderData = ({ children }) => {
   const nextChallenges = useRef(null);
   const nextTopUsers = useRef(null);
   const mainPageData = useRef(null);
+  const totalArticles = useRef(0);
+  const tempArticlesData = useRef(null);
 
   const initRequestRewards = async (
     _limit,
@@ -69,9 +71,11 @@ const ElementProviderData = ({ children }) => {
   ) => {
     const response = await GetArticles(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data.articles);
+    console.log(data);
     if (response.ok) {
       setArticleData(data.articles);
+      tempArticlesData.current = data.articles;
+      totalArticles.current = data.total;
       nextArticles.current = data.next;
     } else {
       if (data.message) {
@@ -323,6 +327,8 @@ const ElementProviderData = ({ children }) => {
     console.log(data.articles);
     if (response.ok) {
       setArticleData((prev) => [...prev, ...data.articles]);
+      tempArticlesData.current = (prev) => [...prev, ...data.articles];
+      totalArticles.current = data.total;
       nextArticles.current = data.next;
       console.log("POST get info " + nextArticles.current);
     } else {
@@ -349,6 +355,8 @@ const ElementProviderData = ({ children }) => {
     console.log(data.articles);
     if (response.ok) {
       setArticleData((prev) => [...prev, ...data.articles]);
+      tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
+      totalArticles.current = data.total;
       nextArticles.current = data.next;
       console.log("POST get info " + nextArticles.current);
     } else {
@@ -362,16 +370,15 @@ const ElementProviderData = ({ children }) => {
   };
 
   const requestNextArticle = async () => {
-    if (articleData.length - 1 <= articlePosition.current + 1) {
-      currentArticle.current = articleData[articlePosition + 1];
+    if ((articlePosition.current + 1) < (articleData.length)) {
+      setCurrentArticle(articleData[articlePosition.current + 1]);
       articlePosition.current = articlePosition.current + 1;
     } else {
       if (nextArticles.current != null) {
-        const response = await requestMoreArticles();
-        if (response) {
-          currentArticle.current = response;
-          articlePosition.current = articlePosition.current + 1;
-        }
+        await requestMoreArticlesByURL();
+        console.log(tempArticlesData.current);
+        setCurrentArticle(tempArticlesData.current[articlePosition.current + 1]);
+        articlePosition.current = articlePosition.current + 1;
       }
     }
     return;
@@ -482,19 +489,22 @@ const ElementProviderData = ({ children }) => {
         currentArticle,
         articlePosition,
         articleData,
+        nextArticles,
         nextChallenges,
         nextRewards,
         nextUserRewardTransaction,
         userDiamonds,
-        topUsers: topUsersData,
+        topUsersData,
         nextTopUsers,
         mainPageData,
+        totalArticles,
         SetUserData,
         setRewardsData,
         setUserRewardsTransactionData,
         setChallengesData,
         setCurrentChallenge,
         setCurrentReward,
+        setCurrentArticle,
         requestMoreRewards,
         requestMoreRewardsByURL,
         requestMoreUserRewardsTransactions,

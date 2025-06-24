@@ -7,10 +7,9 @@ import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
 import ArticleGallery from "../components/ArticleGalley";
 
-function AcademyPage({ onReturn }) {
+function AcademyPage({ onReturn, handleNextArticle, hasNextArticle }) {
 
-    const { currentArticle } =
-    useContext(ElementContextData);
+    const { currentArticle } = useContext(ElementContextData);
 
   const handleOnReturn = () => {
     onReturn();
@@ -22,7 +21,7 @@ function AcademyPage({ onReturn }) {
     <>
       <div className="AcademyPageContainer">
         <div className="AcademyArticlePageContainer">
-          <div style={{ paddingLeft: "5%", paddingRight: "5%" }}> 
+          <div style={{ paddingLeft: "5%", paddingRight: "5%" }}>
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>
             <p
@@ -37,24 +36,24 @@ function AcademyPage({ onReturn }) {
               style={{ padding: "0px", margin: "0px" }}
               className="AcademyTitle"
             >
-            {currentArticle.current.title}
+            {currentArticle.title}
             </p>
-            {currentArticle.current.main.type !== "VIDEO" ? (
+            {currentArticle.main.type !== "VIDEO" ? (
               <img
                 style={{ width: "100%", paddingLeft: "0px" }}
                 className="imageAcademyItem"
-                src={currentArticle.current.main.absolute_url}
+                src={currentArticle.main.absolute_url}
                 alt="bannerLogo"
               ></img>
             ) : (
-              <LiteYouTubeEmbed style={{borderRadius: "36px", marginTop: "20px"}} id={(currentArticle.current.main.absolute_url.split("/")[3]).split("?")[0]} />
+              <LiteYouTubeEmbed style={{borderRadius: "36px", marginTop: "20px"}} id={(currentArticle.main.absolute_url.split("/")[3]).split("?")[0]} />
             )}
             <p className="AcademyArticleDate">Enero,06 2025</p>
-            <div dangerouslySetInnerHTML={{__html: currentArticle.current.content}}></div>
+            <div dangerouslySetInnerHTML={{__html: currentArticle.content}}></div>
             <ArticleGallery
-              gallery={currentArticle.current.gallery}
+              gallery={currentArticle.gallery}
             ></ArticleGallery>
-            <p className="ArticleNext"> Ver siguiente entrada</p>
+            {(hasNextArticle) && <p className="ArticleNext" onClick={handleNextArticle}> Ver siguiente entrada</p>}
           </div>
           <SamsFooter></SamsFooter>
         </div>

@@ -1,14 +1,19 @@
 function ArticleGallery({gallery}) {
+
     return (
-        gallery.map((galleryItem, index) => {
-            <img
+        <>
+        {gallery.map((galleryItem, index) => (
+            <div key={index}>
+                {""}
+                <img
                 style={{ width: "100%", paddingLeft: "0px" }}
-                key={index}
                 className="imageAcademyItem"
                 src={galleryItem.absolute_url}
-                alt="bannerLogo"
-        ></img>
-        })
+                alt="Gallery illustration"
+                />
+            </div>
+        ))}
+        </>
     );
 }
 
