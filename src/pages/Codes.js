@@ -4,13 +4,13 @@ import { ElementContextRoute } from "../context/RouteContext";
 import { useContext, useRef, useState } from "react";
 import "../styles/Codes.css";
 import diamond from "../assets/diamond.svg";
-import Confetti from "react-confetti";
+import SamsConfetti from "../components/SamsConfetti";
 
 function Codes() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, setNewUserDiamonds } = useContext(ElementContextData);
 
-  const [popUpResponse, setPopUpResponse] = useState(null);
+  const [popUpResponse, setPopUpResponse] = useState("");
   const [inputValue, setInputValue] = useState('');
 
   let redeemedDiamonds = useRef(0);
@@ -57,6 +57,7 @@ function Codes() {
     setInputValue("");
     setPopUpResponse(null);
   }
+  
 
   const handleExchangeCode = async () => {
     if (inputValue === "") return;
@@ -129,11 +130,7 @@ function Codes() {
   if(popUpResponse === "Success"){
     rewardPopUpContent = (
       <>
-        <Confetti
-          style={{ zIndex: "100" }}
-          width={window.innerWidth}
-          height={window.innerHeight}
-        />
+        <SamsConfetti></SamsConfetti>
         <div className="PopUp">
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">

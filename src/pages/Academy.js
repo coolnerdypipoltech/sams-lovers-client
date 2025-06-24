@@ -3,6 +3,7 @@ import { useState } from "react";
 import AcademyList from "../components/AcademyList";
 import "../styles/Academy.css";
 import AcademyPage from "../subPages/AcademyPage";
+import SamsFooter from "../components/SamsFooter";
 
 function Academy() {
 
@@ -39,6 +40,7 @@ function Academy() {
 
 
         <AcademyList changeToSubPage={handleSelectArticle}></AcademyList>
+        
       </div>
     </>
   );

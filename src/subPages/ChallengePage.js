@@ -283,25 +283,12 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>
             <div
-              style={{ alignItems: "center" }}
               className="participationContainer"
             >
               {challenge.transaction?.status === "SUBMITTED" ? (
-                <p
-                  style={{ width: "60%", margin: "0px" }}
-                  className="participate-button"
-                  onClick={handleParticipation}
-                >
-                  Volver a subir URL
-                </p>
+                <button style={{width: "60%"}} className="GeneralButton4" onClick={handleParticipation}>Volver a subir URL</button>
               ) : (
-                <p
-                  style={{ width: "60%", margin: "0px" }}
-                  className="participate-button"
-                  onClick={handleParticipation}
-                >
-                  Participar
-                </p>
+                <button style={{width: "60%"}} className="GeneralButton4" onClick={handleParticipation}>Participar</button>
               )}
             </div>
           </>

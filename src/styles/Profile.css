@@ -4,7 +4,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    background: linear-gradient(180deg,rgba(12, 90, 177, 1) 0%, rgba(50, 134, 196, 1) 100%);
+    background-color: #F2F4FF;
 }
 
 .ProfileContainerItems{
@@ -13,28 +13,18 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    padding-top: 30px;
 }
 
-.containerProfilePic{
-    width: 130px;
-    height: 130px;
-    background-color: white;
-    border-radius: 10000px;
-    -webkit-border-radius: 10000px;
-    -moz-border-radius: 10000px;
-    -ms-border-radius: 10000px;
-    -o-border-radius: 10000px;
 
-}
 .ProfileTitle{
-    color: white;
-    font-size: 20px;
-    font-weight: 400;
+    color: #003087;
+    font-size: 26px;
+    font-weight: 600;
+     font-family:"canada-type-gibson";
+    padding-bottom: 4px;
 }
 
-.ProfileContainer{
-
-}
 
 .socialMediaContainer{
     display: flex;
@@ -57,17 +47,19 @@
 
 
 .userNameProfile{
-    color: white;
-    font-size: 16px;
-    font-weight: 400;
+    color: #0B204F;
+    font-size: 14px;
     margin: 0px;
     margin-top: 10px;
+    font-family:"canada-type-gibson";
+    padding-bottom: 30px;
 }
 
 .socialMediaTitle{
+     font-family: "Poppins", sans-serif;
     width: 90%;
-    color: white;
-    font-size: 16px;
+    color: #868787;
+    font-size: 14px;
     font-weight: 400;
     margin: 0px;
     margin-top: 10px;
@@ -96,11 +88,8 @@
     height: 95%;
     padding-top: 3px;
     z-index: 2;
-    border-radius: 10000px;
-    -webkit-border-radius: 10000px;
-    -moz-border-radius: 10000px;
-    -ms-border-radius: 10000px;
-    -o-border-radius: 10000px;
+
+    opacity: 1;
 }
 
 
@@ -174,7 +163,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    background: #f2f4ff;
+    background: #F2F4FF;
     overflow-y: scroll;
 }
 
@@ -185,4 +174,29 @@
     align-items: center;
     align-content: center;
     background-color: #F2F4FF;
+}
+
+.DiamondImage{
+     position: absolute;
+  width: 140%;
+  height: 160%;
+  top: -30%;
+  left: -20%;
+  transform: rotate(-45deg);
+  object-fit: cover;
+}
+
+.DiamondContainer{
+  position: relative;
+  width: 80px;
+  height: 125px;
+  transform: rotate(45deg);
+  border-radius: 15%;
+  border: 3px solid white;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
