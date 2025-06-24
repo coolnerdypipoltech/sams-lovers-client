@@ -2,6 +2,7 @@ import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
 import { useState, useRef } from "react"
 import { ResetPassword } from "../hooks/apicalls";
+import BackgroundSams from "../components/BackgroundSams";
 
 function PasswordPage({ onReturn }) {
 
@@ -85,6 +86,7 @@ function PasswordPage({ onReturn }) {
     <>{popUpContent}</>
     <div className="subPageContainer">
       <div className="LoginContainer">
+        <BackgroundSams></BackgroundSams>
         <div className="loginHeaderContainer">
           <p onClick={handleReturn} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
@@ -94,16 +96,26 @@ function PasswordPage({ onReturn }) {
         </div>
       <div className="forgetPasswordContainer">
         <p className="loginTitle">Recuperar contraseña</p>
-        <div>
+        <div style={{width: "100%"}}>
           <p className="textForgetPassword">
             Introduce el correo con el que te registraste y te enviaremos las
             instrucciones.
           </p>
-          <p className="textForgetPassword">Email*</p>
-          <input placeholder="Tu email" className="GeneralInput" onChange={e => handleOnChangeInput(e.target.value)}></input>
-        </div>
+          <p className="textForgetPassword">Email</p>
+          <div className="passwordContainer">
+            <div className="passwordInput">
+              <input
+                placeholder="Tu Email"
+                className="GeneralInput"
+                onChange={e => handleOnChangeInput(e.target.value)}
+              ></input>
 
-        <button onClick={handleSend} className="GeneralButton">Enviar</button>
+              
+            </div>
+          </div>
+        </div>
+        <div style={{paddingTop: "75px", width: "80%"}}><button  onClick={handleSend} className="GeneralButton">Enviar</button></div>
+        
       </div>
     </div>
     </div>

@@ -9,6 +9,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";
 import { CheckBox } from "react-native-web";
 import { ElementContextPopUp } from "../context/PopUpContext";
+import BackgroundSams from "../components/BackgroundSams";
 function CreatePage({ onReturn, onNext }) {
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
@@ -16,11 +17,11 @@ function CreatePage({ onReturn, onNext }) {
   const [errorCheckbox, SetErrorCheckbox] = useState(false);
   const { setLoginToken } = useContext(ElementContextRoute);
   const { SetUserData } = useContext(ElementContextData);
-   const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
+  const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
 
-    const [eyeHelper1, setEyeHelper1] = useState(false);
+  const [eyeHelper1, setEyeHelper1] = useState(false);
   const [typeHelper1, setTypeHelper1] = useState("password");
-    const [eyeHelper2, setEyeHelper2] = useState(false);
+  const [eyeHelper2, setEyeHelper2] = useState(false);
   const [typeHelper2, setTypeHelper2] = useState("password");
   const InputName = useRef("");
   const InputMail = useRef("");
@@ -33,19 +34,19 @@ function CreatePage({ onReturn, onNext }) {
 
   const handleCreateUser = async () => {
     if (inputValidation()) {
-      changePopUpLoading(true)
+      changePopUpLoading(true);
       const response = await SignIn(
         InputName.current.value,
         InputMail.current.value,
         InputPassword1.current.value
       );
       if (response.ok) {
-        changePopUpLoading(false)
+        changePopUpLoading(false);
         onNext();
       } else {
         const data = await response.json();
         console.log(data);
-        changePopUpLoading(false)
+        changePopUpLoading(false);
         if (data.message) {
           if (data.message.email) {
             SetErrorInputMail(data.message.email);
@@ -82,23 +83,21 @@ function CreatePage({ onReturn, onNext }) {
     if (InputPassword1.current.value !== InputPassword2.current.value) {
       console.log("here");
       flag = false;
-      console.log(flag)
+      console.log(flag);
       SetErrorInputPassword1("Las contraseñas no coinciden");
     } else {
       SetErrorInputPassword1(null);
     }
 
-    
     if (responsePassword) {
       console.log("aa");
-      if(flag){
+      if (flag) {
         SetErrorInputPassword1(null);
       }
-      
     } else {
       if (InputPassword1.current.value.length === 0) {
         flag = false;
-        console.log(flag)
+        console.log(flag);
         SetErrorInputPassword1(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
         );
@@ -113,7 +112,7 @@ function CreatePage({ onReturn, onNext }) {
       SetErrorInputName(null);
     } else {
       flag = false;
-      console.log(flag)
+      console.log(flag);
       SetErrorInputName(
         "Por favor revisar que la información esté completa, todos los campos son obligatorios"
       );
@@ -135,10 +134,10 @@ function CreatePage({ onReturn, onNext }) {
     }
 
     if (responseMail && flag && checkboxValue.current) {
-      console.log("si")
+      console.log("si");
       return true;
     } else {
-      console.log(responseMail, flag, checkboxValue.current)
+      console.log(responseMail, flag, checkboxValue.current);
       return false;
     }
   };
@@ -156,182 +155,190 @@ function CreatePage({ onReturn, onNext }) {
   return (
     <div className="subPageContainer">
       <div className="LoginContainer">
-        <div className="loginHeaderContainer">
-          <p onClick={handleReturn} className="loginHeaderText">
-            Volver
-          </p>
-          <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
-        </div>
-        <div className="logoContainer">
-          <img src={logo} alt="Logo" className="LoginLogo"></img>
-        </div>
-
-        <div className="createUserContainer">
-          <p className="loginTitle">Registro</p>
-          <div className="GeneralInputContainer">
-            <p className="loginHeader">Nombre*</p>
-            <div className="passwordInput">
-              <input
-                placeholder="Tu nombre de usuario"
-                ref={InputName}
-                className="GeneralInput"
-              ></input>
-            </div>
-            {errorInputName !== null ? (
-              <span className="errorText">{errorInputName} </span>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="GeneralInputContainer">
-            <p className="loginHeader">Email*</p>
-            <div className="passwordInput">
-              <input
-                placeholder="Tu email"
-                ref={InputMail}
-                className="GeneralInput"
-              ></input>
-            </div>
-            {errorInputMail !== null ? (
-              <span className="errorText">{errorInputMail} </span>
-            ) : (
-              <></>
-            )}
-          </div>
-
-          <div className="GeneralInputContainer">
-            <p className="loginHeader">Contraseña*</p>
-                        <p style={{textAlign: "start"}} className="loginBottomText">
-              Tu contraseña ha de tener al menos 8 caracteres, con números,
-              letras y un símbolo.
+        <BackgroundSams></BackgroundSams>
+        <div style={{ paddingTop: "75px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+          <div className="loginHeaderContainer">
+            <p onClick={handleReturn} className="loginHeaderText">
+              Volver
             </p>
-            <div className="passwordInput">
-                            <input
-                placeholder="Contraseña"
-                ref={InputPassword1}
-                className="GeneralInput"
-                type={typeHelper1}
-              ></input>
+            <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
+          </div>
+          <div className="logoContainer">
+            <img src={logo} alt="Logo" className="LoginLogo"></img>
+          </div>
 
-              <div onClick={() => {
-                  if(eyeHelper1){
-                    setTypeHelper1("password")
-                    setEyeHelper1(false);
-                  }else{
-                    setTypeHelper1("text")
-                    setEyeHelper1(true);
-                  }
-                    
-                    }}>
-                {eyeHelper1 === true ? (
-                  <img
-                    alt="eye"
-                    className="eyePassword"
-                    src={eyeclosed}
-                  ></img>
-                ) : (
-                  <img
-                    onClick={() => {
+          <div className="createUserContainer">
+            <p className="loginTitle">Registro</p>
+            <div className="GeneralInputContainer">
+              <p className="loginHeader">Nombre*</p>
+              <div className="passwordInput">
+                <input
+                  placeholder="Tu nombre de usuario"
+                  ref={InputName}
+                  className="GeneralInput"
+                ></input>
+              </div>
+              {errorInputName !== null ? (
+                <span className="errorText">{errorInputName} </span>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className="GeneralInputContainer">
+              <p className="loginHeader">Email*</p>
+              <div className="passwordInput">
+                <input
+                  placeholder="Tu email"
+                  ref={InputMail}
+                  className="GeneralInput"
+                ></input>
+              </div>
+              {errorInputMail !== null ? (
+                <span className="errorText">{errorInputMail} </span>
+              ) : (
+                <></>
+              )}
+            </div>
+
+            <div className="GeneralInputContainer">
+              <p className="loginHeader">Contraseña*</p>
+              <p style={{ textAlign: "start" }} className="loginBottomText">
+                Tu contraseña ha de tener al menos 8 caracteres, con números,
+                letras y un símbolo.
+              </p>
+              <div className="passwordInput">
+                <input
+                  placeholder="Contraseña"
+                  ref={InputPassword1}
+                  className="GeneralInput"
+                  type={typeHelper1}
+                ></input>
+
+                <div
+                  onClick={() => {
+                    if (eyeHelper1) {
+                      setTypeHelper1("password");
+                      setEyeHelper1(false);
+                    } else {
+                      setTypeHelper1("text");
                       setEyeHelper1(true);
-                    }}
-                    alt="eye"
-                    className="eyePassword"
-                    src={eye}
-                  ></img>
-                )}
+                    }
+                  }}
+                >
+                  {eyeHelper1 === true ? (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      src={eyeclosed}
+                    ></img>
+                  ) : (
+                    <img
+                      onClick={() => {
+                        setEyeHelper1(true);
+                      }}
+                      alt="eye"
+                      className="eyePassword"
+                      src={eye}
+                    ></img>
+                  )}
+                </div>
+              </div>
+
+              {errorInputPassword1 !== null ? (
+                <span className="errorText">{errorInputPassword1} </span>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className="GeneralInputContainer">
+              <p className="loginHeader">Confirmar Contraseña*</p>
+              <div className="passwordInput">
+                <input
+                  placeholder="Contraseña"
+                  ref={InputPassword2}
+                  className="GeneralInput"
+                  type={typeHelper2}
+                ></input>
+
+                <div
+                  onClick={() => {
+                    if (eyeHelper2) {
+                      setTypeHelper2("password");
+                      setEyeHelper2(false);
+                    } else {
+                      setTypeHelper2("text");
+                      setEyeHelper2(true);
+                    }
+                  }}
+                >
+                  {eyeHelper2 === true ? (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      src={eyeclosed}
+                    ></img>
+                  ) : (
+                    <img
+                      onClick={() => {
+                        setEyeHelper2(true);
+                      }}
+                      alt="eye"
+                      className="eyePassword"
+                      src={eye}
+                    ></img>
+                  )}
+                </div>
               </div>
             </div>
-
-            {errorInputPassword1 !== null ? (
-              <span className="errorText">{errorInputPassword1} </span>
+            <div className="checkBoxContainer">
+              <label className="checkbox-container">
+                <input
+                  onClick={() => {
+                    checkboxValue.current = !checkboxValue.current;
+                  }}
+                  className="custom-checkbox"
+                  type="checkbox"
+                />
+                <span className="checkmark"></span>
+              </label>
+              <p style={{ textAlign: "start" }} className="loginBottomText">
+                {" "}
+                Tengo consciencia y estoy de acuerdo con los Términos de Uso y
+                con las Políticas de Sam’s Lover
+              </p>
+            </div>
+            {errorCheckbox === true ? (
+              <span className="errorText">
+                Acepta los términos y políticas de Sam's Lover para continuar{" "}
+              </span>
             ) : (
               <></>
             )}
-          </div>
-          <div className="GeneralInputContainer">
-            <p className="loginHeader">Confirmar Contraseña*</p>
-            <div className="passwordInput">
-                            <input
-                placeholder="Contraseña"
-                ref={InputPassword2}
-                className="GeneralInput"
-                type={typeHelper2}
-              ></input>
-
-              <div onClick={() => {
-                  if(eyeHelper2){
-                    setTypeHelper2("password")
-                    setEyeHelper2(false);
-                  }else{
-                    setTypeHelper2("text")
-                    setEyeHelper2(true);
-                  }
-                    
-                    }}>
-                {eyeHelper2 === true ? (
-                  <img
-                    alt="eye"
-                    className="eyePassword"
-                    src={eyeclosed}
-                  ></img>
-                ) : (
-                  <img
-                    onClick={() => {
-                      setEyeHelper2(true);
-                    }}
-                    alt="eye"
-                    className="eyePassword"
-                    src={eye}
-                  ></img>
-                )}
-              </div>
-            </div>
-
-          </div>
-          <div className="checkBoxContainer">
-            <label className="checkbox-container">
-              <input
-                onClick={() => {
-                  checkboxValue.current = !checkboxValue.current;
-                }}
-                className="custom-checkbox"
-                type="checkbox"
-              />
-              <span className="checkmark"></span>
-            </label>
-            <p style={{textAlign: "start"}} className="loginBottomText">
-              {" "}
-              Tengo consciencia y estoy de acuerdo con los Términos de Uso y con
-              las Políticas de Sam’s Lover
-            </p>
-          </div>
-          {errorCheckbox === true ? (
-            <span className="errorText">
-              Acepta los términos y políticas de Sam's Lover para continuar{" "}
-            </span>
-          ) : (
-            <></>
-          )}
-          <button disabled={popUpLoading} className="GeneralButton" onClick={handleCreateUser}>
-            Crear cuenta
-          </button>
-
-          <div className="createPageButtomContainer">
-            <p className="loginBottomText">
-              ¿Ya tienes una cuenta?{" "}
-              <span onClick={handleReturn} className="underlineText">
-                Accede aquí
-              </span>
-            </p>
-            <p
-              className="loginBottomText"
-              style={{ paddingLeft: "5px", textDecoration: "underline"}}
-              onClick={() => {
-                window.open("https://www.google.com")
-              }}
+            <button
+              disabled={popUpLoading}
+              className="GeneralButton"
+              onClick={handleCreateUser}
             >
-              Términos de uso y Políticas
-            </p>
+              Crear cuenta
+            </button>
+
+            <div className="createPageButtomContainer">
+              <p className="loginBottomText">
+                ¿Ya tienes una cuenta?{" "}
+                <span onClick={handleReturn} className="underlineText">
+                  Accede aquí
+                </span>
+              </p>
+              <p
+                className="loginBottomText"
+                style={{ paddingLeft: "5px", textDecoration: "underline" }}
+                onClick={() => {
+                  window.open("https://www.google.com");
+                }}
+              >
+                Términos de uso y Políticas
+              </p>
+            </div>
           </div>
         </div>
       </div>
