@@ -7,7 +7,6 @@ function Main() {
 
 
   const onClickOpenArticle = () => {
-    console.log("aqui")
     setOpenArticlePage(true);
   }
 

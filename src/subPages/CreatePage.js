@@ -45,7 +45,6 @@ function CreatePage({ onReturn, onNext }) {
         onNext();
       } else {
         const data = await response.json();
-        console.log(data);
         changePopUpLoading(false);
         if (data.message) {
           if (data.message.email) {
@@ -79,25 +78,20 @@ function CreatePage({ onReturn, onNext }) {
     } else {
       SetErrorCheckbox(true);
     }
-    console.log(InputPassword1.current.value.length);
     if (InputPassword1.current.value !== InputPassword2.current.value) {
-      console.log("here");
       flag = false;
-      console.log(flag);
       SetErrorInputPassword1("Las contraseñas no coinciden");
     } else {
       SetErrorInputPassword1(null);
     }
 
     if (responsePassword) {
-      console.log("aa");
       if (flag) {
         SetErrorInputPassword1(null);
       }
     } else {
       if (InputPassword1.current.value.length === 0) {
         flag = false;
-        console.log(flag);
         SetErrorInputPassword1(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
         );
@@ -112,7 +106,6 @@ function CreatePage({ onReturn, onNext }) {
       SetErrorInputName(null);
     } else {
       flag = false;
-      console.log(flag);
       SetErrorInputName(
         "Por favor revisar que la información esté completa, todos los campos son obligatorios"
       );
@@ -121,7 +114,6 @@ function CreatePage({ onReturn, onNext }) {
     if (responseMail) {
       SetErrorInputMail(null);
     } else {
-      console.log(InputMail.current.value.length);
       if (InputMail.current.value.length === 0) {
         SetErrorInputMail(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
@@ -134,7 +126,6 @@ function CreatePage({ onReturn, onNext }) {
     }
 
     if (responseMail && flag && checkboxValue.current) {
-      console.log("si");
       return true;
     } else {
       console.log(responseMail, flag, checkboxValue.current);

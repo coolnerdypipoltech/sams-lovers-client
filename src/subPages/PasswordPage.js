@@ -33,7 +33,6 @@ function PasswordPage({ onReturn }) {
 
     const response = await ResetPassword(inputValue);
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
         onReturn();
       } else {

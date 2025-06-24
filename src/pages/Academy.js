@@ -10,7 +10,6 @@ function Academy() {
   const [subPage, setSubPage] = useState("");
   let subPageContent = null;
   const handleSelectArticle =  () =>{
-    console.log("select")
     setSubPage("AcademyPage")
   }
 

@@ -53,9 +53,9 @@ function AcademyList({ changeToSubPage }) {
           style={{ overflowY: "auto", height: "84vh" , width: "95%" }}
         >
           {articleData.map((article, index) => (
-            <div key={index} onClick={() => handleSelectArticle(article)}>
-              {" "}
-              <AcademyListItem key={index} article={article} />
+            <div key={index}>
+              <AcademyListItem doClick={() => handleSelectArticle(article)} key={index} article={article}  />
+              
             </div>
           ))}
 

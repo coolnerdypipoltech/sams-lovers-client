@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { render } from "react-dom";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
@@ -9,18 +9,29 @@ import ArticleGallery from "../components/ArticleGalley";
 
 function AcademyPage({ onReturn }) {
 
-    const { currentArticle } =
-    useContext(ElementContextData);
+    const { currentArticle, loadNextArticle, hasNextArticle } =useContext(ElementContextData);
 
   const handleOnReturn = () => {
     onReturn();
   };
 
-  const [isYoutube, SetIsYoutube] = useState(true);
+  const handleNextArticle = async () => {
+    await loadNextArticle();
+    setUpdate(update + 1)
+    setHasNext(hasNextArticle())
+  }
+  useEffect(() => {
+    setHasNext(hasNextArticle())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
 
+  const [isYoutube, SetIsYoutube] = useState(true);
+  const [update, setUpdate] = useState(0);
+  const [hasNext, setHasNext] = useState(true);
   return (
     <>
-      <div className="AcademyPageContainer">
+      <div key={update} className="AcademyPageContainer">
         <div className="AcademyArticlePageContainer">
           <div style={{ paddingLeft: "5%", paddingRight: "5%" }}> 
             <div className="headerSpacer"></div>
@@ -54,7 +65,8 @@ function AcademyPage({ onReturn }) {
             <ArticleGallery
               gallery={currentArticle.current.gallery}
             ></ArticleGallery>
-            <p className="ArticleNext"> Ver siguiente entrada</p>
+            {hasNext && <p className="ArticleNext" onClick={handleNextArticle}> Ver siguiente entrada</p>}
+            
           </div>
           <SamsFooter></SamsFooter>
         </div>

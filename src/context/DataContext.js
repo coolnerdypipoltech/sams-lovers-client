@@ -40,6 +40,19 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
+  const loadNextArticle = () =>{
+  const index = articleData.findIndex(item => item.id === currentArticle.current.id);
+    if (index !== -1 && index + 1 < articleData.length) {
+      currentArticle.current = articleData[index + 1];
+    }
+    return null;
+  }
+
+  function hasNextArticle() {
+  const index = articleData.findIndex(item => item.id === currentArticle.current.id);
+  return index !== -1 && index + 1 < articleData.length;
+}
+
   const initRequestUserRewardsTransactions = async (
     _limit,
     _offset
@@ -424,7 +437,9 @@ const ElementProviderData = ({ children }) => {
         initRequestChallenges,
         setNewChallengeTransaction,
         setNewReward,
-        setNewUserDiamonds
+        setNewUserDiamonds,
+        loadNextArticle,
+        hasNextArticle
       }}
     >
       {children}

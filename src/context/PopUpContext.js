@@ -8,11 +8,9 @@ const ElementProviderPopUp= ({ children }) => {
   const [popUpLoading, setPopUpLoading] = useState(false)
 
   const changePopUpText = (newValue) => {
-    console.log( newValue);
     setPopUpText(newValue);
   };
   const changePopUpTitle = (newValue) => {
-    console.log( newValue);
     setPopUpTitle(newValue);
   };
 

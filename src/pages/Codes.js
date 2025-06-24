@@ -64,7 +64,6 @@ function Codes() {
 
     const response = await ExchangeCode(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
         redeemedDiamonds.current = data.user.related.diamonds - UserData.current.user.related.diamonds;
         setNewUserDiamonds(data.user.related.diamonds);
