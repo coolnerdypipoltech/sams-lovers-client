@@ -1,17 +1,18 @@
 import "../styles/Profile.css";
 import MyRewards from "../subPages/MyRewards";
 import SelectedMiReward from "../subPages/SelectedMiReward";
-import chevronRight from "../assets/chevronRight.svg";
-import facebook from "../assets/Icon_Facebook.svg";
-import instagram from "../assets/Icon_Instagram.svg";
-import tiktok from "../assets/Icon_Tiktok.svg";
-import X from "../assets/Icon_X.svg";
-import youtube from "../assets/Icon_Youtube.svg";
-import ImagePicker from "../components/ImagePicker";
+import chevronRight from "../assets/chevronRightBlack.svg";
+import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
+import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
+import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
+import X from "../assets/iconsBlue/Icon_X.svg";
+import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
+
 import EditProfilePage from "../subPages/EditProfilePage";
-import { useState, useContext, useEffect } from "react";
-import logo from "../assets/profilePic.jpg";
+import { useState, useContext } from "react";
+import logo from "../assets/Perfil_default.png";
 import { ElementContextData } from "../context/DataContext";
+
 
 function Profile() {
   const { UserData } = useContext(ElementContextData);
@@ -20,8 +21,6 @@ function Profile() {
 
   const userDataRelated = UserData.current.user.related;
   const [socialMedia, setSocialMedia] = useState([{link: userDataRelated.facebook, icon: facebook}, {link: userDataRelated.instagram, icon: instagram}, {link: userDataRelated.tiktok, icon:tiktok }, {link: userDataRelated.youtube, icon: youtube}, {link: userDataRelated.x, icon: X} ]);
-
-  const [imageSrc, setImageSrc] = useState(null);
 
   let subPageContent = null;
 
@@ -75,12 +74,14 @@ function Profile() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <p className="ProfileTitle">Mi Perfil</p>
-        <ImagePicker></ImagePicker>
+        <div className="DiamondContainer">
+          <img src={logo} className="DiamondImage" alt="ProfileLogo"></img>
+        </div>
         <div className="ProfileContainerItems">
-          <p className="userNameProfile">Usuario SamsLovers</p>
+          <p className="userNameProfile">Usuario Sam's Lovers</p>
           <div className="editSocialMediaButtonContainer">
             <p className="socialMediaTitle">Redes sociales</p>
-            <p onClick={handleEditProfile}   className="editSocialMediaButton">Editar</p>
+            <button onClick={handleEditProfile}  style={{height: "20px", minHeight: "20px", width: "82px", fontSize:"10px", marginTop: "10px"}}  className="GeneralButton4">Editar</button>
           </div>
           {socialMedia != null ? (
             <>
@@ -89,14 +90,14 @@ function Profile() {
                 (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item)} alt={`${item.link}`}></img>))
               )}
             </div>
-            <div style={{backgroundColor: "white"}} className="Divider"></div>
+            
             </>
           ) : (
             <></>
           )}
           <div onClick={handleSelectReward} className="ProfileItem">
-            <p className="profileRewardsText">Ver mis canjes</p>
-            <img src={chevronRight} alt="openImg"></img>
+            <p className="socialMediaTitle">Ver mis recompensas</p>
+            <img src={chevronRight} style={{height: "30px", marginTop: "10px"}} alt="openImg"></img>
           </div>
         </div>
       </div>

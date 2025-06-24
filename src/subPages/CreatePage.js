@@ -323,13 +323,15 @@ function CreatePage({ onReturn, onNext }) {
                 Accede aquí
               </span>
             </p>
-            <a
+            <p
               className="loginBottomText"
-              style={{ paddingLeft: "5px" }}
-              href="https://www.google.com"
+              style={{ paddingLeft: "5px", textDecoration: "underline"}}
+              onClick={() => {
+                window.open("https://www.google.com")
+              }}
             >
               Términos de uso y Políticas
-            </a>
+            </p>
           </div>
         </div>
       </div>

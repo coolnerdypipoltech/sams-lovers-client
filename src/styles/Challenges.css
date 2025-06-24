@@ -5,6 +5,7 @@
   align-content: center;
   background: #F2F4FF;
     overflow-y: hidden;
+    height: 100%;
 }
 
 .participateText {
@@ -30,8 +31,7 @@
 .confirmation-subpage-container {
   background-color: #f2f4f7;
   width: 90%;
-  height: 100%;
-  padding-top: 60px;
+  height: 110%;
   position: absolute;
   display: flex;
   margin: 0px;
