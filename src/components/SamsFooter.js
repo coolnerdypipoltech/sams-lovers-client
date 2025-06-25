@@ -36,12 +36,16 @@ const SamsFooter = () => {
         ></img>
         <div style={{ paddingTop: "10px", gap: "12px" }} className="rowAlign">
           {links.map((key, index) => (
-            <img key={index} src={iconMap[key]} alt={`${key} logo`} />
+            <img onClick={() => {
+                  window.open("https://www.google.com");
+                }} key={index} src={iconMap[key]} alt={`${key} logo`} />
           ))}
         </div>
         <div>
           <p className="footerText">Aviso de Privacidad</p>
-          <p style={{ marginTop: "15px" }} className="footerText">
+          <p onClick={() => {
+                  window.open("https://www.google.com");
+                }} style={{ marginTop: "15px" }} className="footerText">
             Términos y Condiciones
           </p>
         </div>

@@ -416,6 +416,7 @@ const ElementProviderData = ({ children }) => {
         nextRewards,
         nextUserRewardTransaction,
         userDiamonds,
+        nextArticles,
         SetUserData,
         setRewardsData,
         setUserRewardsTransactionData,

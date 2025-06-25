@@ -10,7 +10,7 @@ function ChallengeParticipationPage({
   return (
     <>
       <div style={{ overflowY: "scroll" }} className="subPageContainer">
-        <div className="confirmation-subpage-container">
+        <div className="challenges-subpage-container">
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <p onClick={handleReturn} className="challenge-back-button-text">
@@ -72,7 +72,7 @@ function ChallengeParticipationPage({
               ></input>
             </div>
           </div>
-          <div style={{ height: "20px" }}></div>
+          <div style={{ minHeight: "20px" }}></div>
 
           <div
             style={{
@@ -98,6 +98,8 @@ function ChallengeParticipationPage({
               video.
             </p>
           </div>
+          <div className="headerSpacer"></div>
+          <div className="headerSpacer"></div>
           {/*<div>
           <p className="challenge-text-title">Estatus</p>
           <p className="challenge-text">{challenge.transaction?.status}</p>
