@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { ElementContextData } from "../context/DataContext";
 import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
 import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
@@ -7,8 +7,17 @@ import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
+import cross from "../assets/Visibility.svg";
 
 function EditProfilePage({ onReturn }) {
+  useEffect(() => {
+    InputFacebook.current.value = (UserData.current.user.related.facebook === "" || UserData.current.user.related.facebook !== null) ? UserData.current.user.related.facebook : "";
+    InputInstagram.current.value = (UserData.current.user.related.instagram === "" || UserData.current.user.related.instagram !== null) ? UserData.current.user.related.instagram : "";
+    InputTiktok.current.value = (UserData.current.user.related.tiktok === "" || UserData.current.user.related.tiktok !== null) ? UserData.current.user.related.tiktok : "";;
+    InputX.current.value = (UserData.current.user.related.x === "" || UserData.current.user.related.x !== null) ? UserData.current.user.related.x : "";
+    InputYoutube.current.value = (UserData.current.user.related.youtube === "" || UserData.current.user.related.youtube !== null) ? UserData.current.user.related.youtube : "";
+  });
+
   const { UserData, SetUserData } = useContext(ElementContextData);
 
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
@@ -44,17 +53,18 @@ function EditProfilePage({ onReturn }) {
 
   const handleSave = async () => {
     if (inputValidation()) {
-      const facebookVal = InputFacebook.current.value && InputFacebook.current.value !== "" !== null ? InputFacebook.current.value : UserData.current.user.related.facebook;
-      const instagramVal = InputInstagram.current.value !== null && InputInstagram.current.value !== "" ? InputInstagram.current.value : UserData.current.user.related.instagram;
-      const tiktokVal = InputTiktok.current.value !== null && InputTiktok.current.value !== "" ? InputTiktok.current.value : UserData.current.user.related.tiktok;
-      const xVal = InputX.current.value !== null && InputX.current.value !== "" ? InputX.current.value : UserData.current.user.related.x;
-      const youTubeVal = InputYoutube.current.value !== null && InputYoutube.current.value !== "" ? InputYoutube.current.value : UserData.current.user.related.youtube;
+      const facebookVal = InputFacebook.current.value !== "" ? InputFacebook.current.value : null;
+      const instagramVal = InputInstagram.current.value !== "" ? InputInstagram.current.value : null;
+      const tiktokVal = InputTiktok.current.value !== "" ? InputTiktok.current.value : null;
+      const xVal = InputX.current.value !== "" ? InputX.current.value : null;
+      const youTubeVal = InputYoutube.current.value !== "" ? InputYoutube.current.value : null;
 
       console.log(facebookVal);
       console.log(instagramVal);
       console.log(tiktokVal);
       console.log(xVal);
       console.log(youTubeVal);
+      console.log(`${UserData.current.token_type} ${UserData.current.access_token}`);
 
       const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
          UserData.current.user.name,
@@ -67,9 +77,10 @@ function EditProfilePage({ onReturn }) {
       const data = await response.json();
       if(response.ok){
         if(data.user !== null){
-          const tempUser = UserData.user;
-          tempUser.user = data.user;
-          SetUserData(tempUser);
+          let tempUserDataRelated = UserData.current.user.related;
+          tempUserDataRelated = data.user.related;
+          UserData.current.user.related = tempUserDataRelated;
+          SetUserData(UserData.current);
           onReturn();
         }
       }else{
@@ -178,6 +189,17 @@ function EditProfilePage({ onReturn }) {
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
+              <div
+                onClick={() => {
+                  InputTiktok.current.value = "";
+                }}
+              >
+                <img
+                  alt="eye"
+                  className="eyePassword"
+                  src={cross}
+                ></img>
+              </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
@@ -200,6 +222,17 @@ function EditProfilePage({ onReturn }) {
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
+              <div
+                onClick={() => {
+                  InputInstagram.current.value = "";
+                }}
+              >
+                <img
+                  alt="eye"
+                  className="eyePassword"
+                  src={cross}
+                ></img>
+              </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
@@ -223,6 +256,17 @@ function EditProfilePage({ onReturn }) {
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
+              <div
+                onClick={() => {
+                  InputFacebook.current.value = "";
+                }}
+              >
+                <img
+                  alt="eye"
+                  className="eyePassword"
+                  src={cross}
+                ></img>
+              </div>
               <InfoTooltip dark={true}
                 text={"Pon el link de tu \n perfil de facebook"}
               ></InfoTooltip>
@@ -241,6 +285,17 @@ function EditProfilePage({ onReturn }) {
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
+              <div
+                onClick={() => {
+                  InputYoutube.current.value = "";
+                }}
+              >
+                <img
+                  alt="eye"
+                  className="eyePassword"
+                  src={cross}
+                ></img>
+              </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
@@ -259,6 +314,17 @@ function EditProfilePage({ onReturn }) {
                 className="GeneralInput"
                 ref={InputX}
               ></input>
+              <div
+                onClick={() => {
+                  InputX.current.value = "";
+                }}
+              >
+                <img
+                  alt="eye"
+                  className="eyePassword"
+                  src={cross}
+                ></img>
+              </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>

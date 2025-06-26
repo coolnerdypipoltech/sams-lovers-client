@@ -36,22 +36,24 @@ function PasswordPage({ onReturn }) {
     const response = await ResetPassword(inputValue);
     const data = await response.json();
     if (response.ok) {
-        onReturn();
-      } else {
-        if (data.message) {
-          switch(data.message) {
-            default:
-              openGeneralErrorPopUp();
-              break;
-          }
-        }else{
-          openGeneralErrorPopUp();
+      setPopUpResponse("Success");
+    } else {
+      if (data.message) {
+        switch(data.message) {
+          default:
+            openGeneralErrorPopUp();
+            break;
         }
-        return;
+      }else{
+        openGeneralErrorPopUp();
       }
+      return;
+    }
   };
 
-  const handleReturn = async () => {
+  const handleReturn = () => {
+    setInputValue("");
+    setPopUpResponse(null);
     onReturn();
   };
 
@@ -72,6 +74,33 @@ function PasswordPage({ onReturn }) {
             </p>
 
             <button className="GeneralButton4" onClick={handlePopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if(popUpResponse === "Success"){
+    popUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {"Correo enviado"}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {`Se ha enviado un correo a la dirección ${inputValue} con un enlace para que pueda cambiar su contraseña. Verifique su bandeja de entrada por favor.`}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleReturn}>
               Aceptar
             </button>
 
