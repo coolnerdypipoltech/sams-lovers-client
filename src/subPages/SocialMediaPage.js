@@ -1,14 +1,15 @@
 import { useRef, useState, useContext } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
-import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
-import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
-import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
-import X from "../assets/iconsBlue/Icon_X.svg";
-import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
+import facebook from "../assets/Icon_Facebook.svg";
+import instagram from "../assets/Icon_Instagram.svg";
+import tiktok from "../assets/Icon_Tiktok.svg";
+import X from "../assets/Icon_X.svg";
+import youtube from "../assets/Icon_Youtube.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
+import BackgroundSams from "../components/BackgroundSams";
 
 function SocialMedia({ onReturn, onShowMessage }) {
 
@@ -128,8 +129,10 @@ function SocialMedia({ onReturn, onShowMessage }) {
   return (
     <>
     <>{rewardPopUpContent}</>
+    
     <div className="subPageContainer">
       <div className="LoginContainer">
+        <BackgroundSams></BackgroundSams>
         <div className="logoContainer">
           <img src={logo} alt="Logo" className="LoginLogo"></img>
           <img src={samsLogo} alt="Logo" className="LoginLogo"></img>

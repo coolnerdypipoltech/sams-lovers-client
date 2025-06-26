@@ -177,12 +177,7 @@
 }
 
 .DiamondImage{
-     position: absolute;
-  width: 140%;
-  height: 160%;
-  top: -30%;
-  left: -20%;
-  transform: rotate(-45deg);
+    width: 155px;
   object-fit: cover;
 }
 

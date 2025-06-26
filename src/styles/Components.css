@@ -549,3 +549,14 @@
 .react-multi-carousel-dot--active button {
   background: grey !important;
 }
+
+
+.SamsOfTheMonthContainer{
+  width: 50%;
+  border-radius: 7px;
+  padding-bottom: 40px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}

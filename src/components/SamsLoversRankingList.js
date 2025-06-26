@@ -12,7 +12,7 @@ function SamsLoversRankingList() {
   const limit = 10;
 
   useEffect(() => {
-    initRequestTopUsers(limit, 0);
+    //initRequestTopUsers(limit, 0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

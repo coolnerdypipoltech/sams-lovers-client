@@ -9,7 +9,7 @@ import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import EditProfilePage from "../subPages/EditProfilePage";
 import { useState, useContext } from "react";
-import logo from "../assets/Perfil_default.png";
+import logo from "../assets/Imagen_Perfil.png";
 import { ElementContextData } from "../context/DataContext";
 
 function Profile() {
@@ -109,7 +109,7 @@ function Profile() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <p className="ProfileTitle">Mi Perfil</p>
-        <div className="DiamondContainer">
+        <div >
           <img src={logo} className="DiamondImage" alt="ProfileLogo"></img>
         </div>
         <div className="ProfileContainerItems">

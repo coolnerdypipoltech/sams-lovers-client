@@ -5,6 +5,7 @@
     flex-flow: column;
     align-items: center;
     background-color: #F2F4FF;
+    z-index: 2;
 }
 
 .bannerImage{

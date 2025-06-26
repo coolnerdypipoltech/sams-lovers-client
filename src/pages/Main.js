@@ -2,16 +2,17 @@ import { useEffect, useContext, useRef } from "react";
 import "../styles/Main.css";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
-import MonthlySamsLover from "../components/MonthlySamsLover";
-import SamsLoversRanking from "../components/SamsLoversRanking";
+import logo from "../assets/Imagen_Perfil.png";
+import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
+import SamsLoversMonth from "../components/SamsLoversMonth";
+import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
-
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
 
     useEffect(() => {
-      initMainPage();
+      //initMainPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -19,32 +20,33 @@ function Main() {
     changeRoute("Challenges");
     }
 
-  const handleMonthlySamsLoverProfile = () => {
-  }
-
   return (
     <>
-      <div>
-        <img></img>
-        <div>
-          <img></img>
-          <p>Bienvenido a Sam's Lovers</p>
-          <p>¡HOLA {UserData.current.user.name}!</p>
+    
+      <div className="landingPageContainer">
+        <div style={{zIndex: 2}}>
+          <div className="headerSpacer"></div>
+        <div className="headerSpacer"></div>
+        <img src={logo} alt="logoSL" style={{width: "220px"}} className="DiamondImage"></img>
+        <p style={{marginBottom: "05x"}} className="LandingPageTitle">Bienvenido a </p>
+        <p style={{marginTop: "0px"}} className="LandingPageTitle">Sam's Lovers</p>
         </div>
-        <div>
-          <img></img>
-          <button onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
+        <div  className="backgroundLogoLetters">
+          <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
         </div>
-        <div>
-          <p>Tú puedes ser nuestro próximo Sam's Lover del mes</p>
-          <p>Súmate al reto, muestra lo mejor de ti y llévate premios únicos ¿Tienes lo necesario para ser el próximo Sam's Lover del mes?</p>
+        
+        <p className="UserNameText">¡Hola, SUSANA!</p>
+        <img src={banner} className="bannerImage" alt="banner"></img>
+        <div style={{width: "70%", maxWidth: "300px", paddingTop: "30px"}}>
+        <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
-        {/*
-        <MonthlySamsLover SamsLover={mainPageData.current} handleMonthlySamsLoverProfile={handleMonthlySamsLoverProfile}></-MonthlySamsLover>
-        <SamsLoversRanking></SamsLoversRanking>
+        <p className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
+        <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
+        <SamsLoversMonth></SamsLoversMonth>
+        <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
-        */}
       </div>
+    
     </>
   );
 }
