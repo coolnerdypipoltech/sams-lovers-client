@@ -316,11 +316,6 @@ export async function GetMainPageData (_token) {
 }
 
 export async function UpdateUserInfo (_token, _name, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
-    console.log(_facebook_url);
-    console.log(_instagram_url);
-    console.log(_tiktok_url);
-    console.log(_x_url);
-    console.log(_youtube_url);
     try {
         const response = await fetch(ENDPOINT + "/v1/auth/info", {
             method: "PUT",

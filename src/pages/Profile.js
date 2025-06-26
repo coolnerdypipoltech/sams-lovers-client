@@ -18,7 +18,13 @@ function Profile() {
   const [subPage, setSubPage] = useState("ConfirmationPage");
 
   const userDataRelated = UserData.current.user.related;
-  const [socialMedia, setSocialMedia] = useState([{link: userDataRelated.facebook, icon: facebook}, {link: userDataRelated.instagram, icon: instagram}, {link: userDataRelated.tiktok, icon:tiktok }, {link: userDataRelated.youtube, icon: youtube}, {link: userDataRelated.x, icon: X} ]);
+  const [socialMedia, setSocialMedia] = useState([
+    {social_media: "facebook", link: userDataRelated.facebook, icon: facebook},
+    {social_media: "instagram", link: userDataRelated.instagram, icon: instagram},
+    {social_media: "tiktok", link: userDataRelated.tiktok, icon:tiktok },
+    {social_media: "youtube", link: userDataRelated.youtube, icon: youtube},
+    {social_media: "x", link: userDataRelated.x, icon: X}
+  ]);
 
   let subPageContent = null;
 
@@ -38,14 +44,39 @@ function Profile() {
 
     if(subPage === "EditProfilePage"){
       const userDataRelated = UserData.current.user.related;
-      setSocialMedia([{link: userDataRelated.facebook, icon: facebook}, {link: userDataRelated.instagram, icon: instagram}, {link: userDataRelated.tiktok, icon:tiktok }, {link: userDataRelated.youtube, icon: youtube}, {link: userDataRelated.x, icon: X} ]);
+      setSocialMedia([
+        {social_media: "facebook", link: userDataRelated.facebook, icon: facebook},
+        {social_media: "instagram", link: userDataRelated.instagram, icon: instagram},
+        {social_media: "tiktok", link: userDataRelated.tiktok, icon:tiktok },
+        {social_media: "youtube", link: userDataRelated.youtube, icon: youtube},
+        {social_media: "x", link: userDataRelated.x, icon: X}
+      ]);
     }
 
     setSubPage("");
   };
 
-  const handleOpenSocialMedia = (_socialMedia) => {
-    window.open(_socialMedia)
+  const handleOpenSocialMedia = (_socialMedia, _username) => {
+    const split = _username.split('@');
+    switch(_socialMedia){
+      case "instagram":
+        window.open(`https://www.instagram.com/${split[1]}`);
+        break;
+      case "facebook":
+        window.open(_username);
+        break;
+      case "tiktok":
+        window.open(`https://www.tiktok.com/${_username}`);
+        break;
+      case "x":
+        window.open(`https://www.x.com/${split[1]}`);
+        break;
+      case "youtube":
+        window.open(`https://www.youtube.com/${split[1]}`);
+        break;
+      default:
+        break;
+    }
   }
 
   const handleSelectItem= () => {
@@ -91,7 +122,7 @@ function Profile() {
             <>
             <div className="socialMediaContainer">
               {socialMedia.map((item, index) => (
-                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.link)} alt={`${item.link}`}></img>))
+                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.social_media, item.link)} alt={`${item.link}`}></img>))
               )}
             </div>
             </>

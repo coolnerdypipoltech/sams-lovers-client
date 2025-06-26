@@ -1,4 +1,12 @@
+import { useState } from "react";
+import eye from "../assets/Visibility.svg";
+import eyeclosed from "../assets/Visibility2.svg";
+
 function DeleteUserPage({handleReturn, inputValue, handleOnChangeInput, handleWarningPopUp}){
+
+    const [eyeHelper, setEyeHelper] = useState(false);
+    const [typeHelper, setTypeHelper] = useState("password");
+
     return (
         <>
         <div className="subPageContainer"></div>
@@ -22,7 +30,33 @@ function DeleteUserPage({handleReturn, inputValue, handleOnChangeInput, handleWa
             <div className="Divider"></div>
             <div className="CodeInputContainer">
                 <p className="CodeInputText"> Contraseña</p>
-                <input placeholder="Contraseña" className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
+                <input placeholder={"Contraseña"} type={typeHelper} className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
+                <div onClick={() => {
+                  if(eyeHelper){
+                    setTypeHelper("password")
+                    setEyeHelper(false);
+                  }else{
+                    setTypeHelper("text")
+                    setEyeHelper(true);
+                  }
+                    }}>
+                {eyeHelper === true ? (
+                  <img
+                    alt="eye"
+                    className="eyePassword"
+                    src={eyeclosed}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => {
+                      setEyeHelper(true);
+                    }}
+                    alt="eye"
+                    className="eyePassword"
+                    src={eye}
+                  ></img>
+                )}
+              </div>
             </div>
             <div className="CodeButtonContainer">
                 <button className="GeneralButton4" onClick={handleWarningPopUp}>Eliminar cuenta</button>

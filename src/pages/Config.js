@@ -84,6 +84,7 @@ function Config() {
   }
 
   const handleReturn = () => {
+    if(subPage === "DeleteAccount") setInputValue("");
     setSubPage("");
   }
 
