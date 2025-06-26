@@ -1,0 +1,31 @@
+.landingPageContainer{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #F2F4FF;
+}
+
+.bannerImage{
+
+    height: auto;
+    padding-top: 25px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.LandingPageText{
+    font-family: "Poppins", sans-serif;
+    color: #868787;
+    font-size: 14px;
+    width: 80%;
+    max-width: 350px;
+}
+
+.LandingPageTitle{
+    color: #003087;
+    font-size: 26px;
+    font-weight: 600;
+    font-family:"canada-type-gibson";
+}
