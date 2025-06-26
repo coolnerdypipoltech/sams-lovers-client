@@ -15,7 +15,6 @@ const ElementProviderRoute= ({ children }) => {
   }, [isInitialize])
 
   const changeRoute = (newValue) => {
-    console.log( newValue);
     if(loginToken.current === null){
       setRoute("Login")
     }else{

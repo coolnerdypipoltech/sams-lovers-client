@@ -9,37 +9,41 @@
 }
 
 .CodeTitle{
-    font-size: 20px;
+    font-size: 24px;
     text-align: start;
-    width: 80%;
-    font-weight: 500;
+    width: 90%;
+    font-weight: 600;
     margin: 0px;
-    margin-top: 10px;
+    margin-top: 40px;
+    font-family:"canada-type-gibson";
+    color: #003087;
 }
 
 .CodeText{
-    font-size: 13px;
+    font-size: 14px;
     text-align: start;
-    width: 80%;
+    width: 90%;
+    color: #868787;
+    font-family: "Poppins", sans-serif;
     margin: 0px;
 }
 
 
 
 .CodeInputContainer{
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-flow: column;
     gap: 0px;
 }
 
 .CodeInputText{
-    font-size: 12px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
     text-align: start;
     width: 80%;
     margin: 0px;
     margin-bottom: 10px;
-    font-weight: 700;
 }
 
 .CodeButtonContainer{

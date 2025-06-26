@@ -2,8 +2,7 @@ import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
 import { useState, useRef } from "react"
 import { ResetPassword } from "../hooks/apicalls";
-import eye from "../assets/Visibility.svg";
-import eyeclosed from "../assets/Visibility2.svg";
+import BackgroundSams from "../components/BackgroundSams";
 
 function PasswordPage({ onReturn }) {
 
@@ -36,7 +35,6 @@ function PasswordPage({ onReturn }) {
 
     const response = await ResetPassword(inputValue);
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
         onReturn();
       } else {
@@ -89,6 +87,7 @@ function PasswordPage({ onReturn }) {
     <>{popUpContent}</>
     <div className="subPageContainer">
       <div className="LoginContainer">
+        <BackgroundSams></BackgroundSams>
         <div className="loginHeaderContainer">
           <p onClick={handleReturn} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
@@ -98,53 +97,26 @@ function PasswordPage({ onReturn }) {
         </div>
       <div className="forgetPasswordContainer">
         <p className="loginTitle">Recuperar contraseña</p>
-        <div>
+        <div style={{width: "100%"}}>
           <p className="textForgetPassword">
             Introduce el correo con el que te registraste y te enviaremos las
             instrucciones.
           </p>
-          <p className="textForgetPassword">Email*</p>
+          <p className="textForgetPassword">Email</p>
           <div className="passwordContainer">
-            <p className="loginSubtitle">Contraseña</p>
             <div className="passwordInput">
               <input
-                placeholder="Contraseña"
+                placeholder="Tu Email"
                 className="GeneralInput"
-                type={typeHelper}
                 onChange={e => handleOnChangeInput(e.target.value)}
               ></input>
 
-              <div onClick={() => {
-                  if(eyeHelper){
-                    setTypeHelper("password")
-                    setEyeHelper(false);
-                  }else{
-                    setTypeHelper("text")
-                    setEyeHelper(true);
-                  }
-                    }}>
-                {eyeHelper === true ? (
-                  <img
-                    alt="eye"
-                    className="eyePassword"
-                    src={eyeclosed}
-                  ></img>
-                ) : (
-                  <img
-                    onClick={() => {
-                      setEyeHelper(true);
-                    }}
-                    alt="eye"
-                    className="eyePassword"
-                    src={eye}
-                  ></img>
-                )}
-              </div>
+              
             </div>
           </div>
         </div>
-
-        <button onClick={handleSend} className="GeneralButton">Enviar</button>
+        <div style={{paddingTop: "75px", width: "80%"}}><button  onClick={handleSend} className="GeneralButton">Enviar</button></div>
+        
       </div>
     </div>
     </div>

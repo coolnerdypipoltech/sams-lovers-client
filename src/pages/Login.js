@@ -157,6 +157,7 @@ function Login() {
     <>
       <>{subPageContent}</>
       <div  className="LoginContainer">
+        <BackgroundSams></BackgroundSams>
         <div className="loginHeaderContainer">
           <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>

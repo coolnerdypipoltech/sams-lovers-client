@@ -17,7 +17,7 @@ function Main() {
 
   const handleSeeChallengesAction = () => {
     changeRoute("Challenges");
-  }
+    }
 
   const handleMonthlySamsLoverProfile = () => {
   }

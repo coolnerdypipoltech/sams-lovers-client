@@ -1,7 +1,7 @@
 import banner from "../assets/test/Banners_Sams_Banner1131x669_Blog@2x.png";
-function AcademyItem({ article, onClick }) {
+function AcademyItem({ article, doClick }) {
   const handleClick = () => {
-    onClick();
+    doClick();
   };
 
   return (
@@ -15,7 +15,7 @@ function AcademyItem({ article, onClick }) {
           <p className="itemSubtitle">
             {article.preview_text}
           </p>
-          <p className="itemMoreText" onClick={handleClick}>Leer más</p>
+          <p onClick={handleClick}  className="itemMoreText">Leer más</p>
         </div>
         <div style={{ height: "10px" }}></div>
       </div>

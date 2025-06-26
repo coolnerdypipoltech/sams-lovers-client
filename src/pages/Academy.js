@@ -20,7 +20,7 @@ function Academy() {
   //let currentArticleIndex = useRef(0);
 
   const handleSelectArticle =  () =>{
-    setSubPage("AcademyPage");
+    setSubPage("AcademyPage")
   }
 
   const handleReturn =  () =>{
