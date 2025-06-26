@@ -48,8 +48,6 @@ function AcademyList({ changeToSubPage }) {
 
   let contentHelper
 
-  console.log(nextArticles)
-
   if(isLoading){
     if(nextArticles.current != null){
       contentHelper = (<div className="loading">Cargando más artículos...</div>)

@@ -46,15 +46,15 @@ const ElementProviderData = ({ children }) => {
   };
 
   const loadNextArticle = () =>{
-  const index = articleData.findIndex(item => item.id === currentArticle.current.id);
+  const index = articleData.findIndex(item => item.id === currentArticle.id);
     if (index !== -1 && index + 1 < articleData.length) {
-      currentArticle.current = articleData[index + 1];
+      setCurrentArticle(articleData[index + 1]);
     }
     return null;
   }
 
   function hasNextArticle() {
-  const index = articleData.findIndex(item => item.id === currentArticle.current.id);
+  const index = articleData.findIndex(item => item.id === currentArticle.id);
   return index !== -1 && index + 1 < articleData.length;
 }
 
