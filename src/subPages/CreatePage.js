@@ -4,27 +4,22 @@ import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
 import eyeclosed from "../assets/Visibility2.svg";
-import { SignIn, LogIn } from "../hooks/apicalls";
-import { ElementContextRoute } from "../context/RouteContext";
-import { ElementContextData } from "../context/DataContext";
-import { CheckBox } from "react-native-web";
-import { ElementContextPopUp } from "../context/PopUpContext";
 import BackgroundSams from "../components/BackgroundSams";
-function CreatePage({ onReturn, onNext }) {
+import { ElementContextPopUp } from "../context/PopUpContext";
+
+function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
+
+  const { popUpLoading } = useContext(ElementContextPopUp);
+
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
   const [errorInputPassword1, SetErrorInputPassword1] = useState(null);
   const [errorCheckbox, SetErrorCheckbox] = useState(false);
-  const { setLoginToken } = useContext(ElementContextRoute);
-  const { SetUserData } = useContext(ElementContextData);
-  const { changePopUpLoading, popUpLoading } = useContext(ElementContextPopUp);
   const [eyeHelper1, setEyeHelper1] = useState(false);
   const [typeHelper1, setTypeHelper1] = useState("password");
   const [eyeHelper2, setEyeHelper2] = useState(false);
   const [typeHelper2, setTypeHelper2] = useState("password");
-  const InputName = useRef("");
-  const InputMail = useRef("");
-  const InputPassword1 = useRef("");
+
   const InputPassword2 = useRef("");
   const checkboxValue = useRef(false);
 
@@ -32,47 +27,11 @@ function CreatePage({ onReturn, onNext }) {
     onReturn();
   };
 
-  const handleCreateUser = async () => {
-    if (inputValidation()) {
-      changePopUpLoading(true);
-      const response = await SignIn(
-        InputName.current.value,
-        InputMail.current.value,
-        InputPassword1.current.value,
-        null,
-        null,
-        null,
-        null,
-        null
-      );
-      if (response.ok) {
-        changePopUpLoading(false);
-        onNext();
-      } else {
-        const data = await response.json();
-        changePopUpLoading(false);
-        if (data.message) {
-          if (data.message.email) {
-            SetErrorInputMail(data.message.email);
-          }
-
-          if (data.message.name) {
-            SetErrorInputName(data.message.name);
-          }
-
-          if (data.message.password) {
-            SetErrorInputPassword1(data.message.password);
-          }
-
-          if (data.message === "api.error.already_exists") {
-            SetErrorInputMail(
-              "Este correo ya está registrado, por favor intenta con otro correo o si prefieres, inicia sesión"
-            );
-          }
-        }
-      }
+  const handleCreateUser = () => {
+    if(inputValidation()){
+      onNext();
     }
-  };
+  }
 
   const inputValidation = () => {
     const responseMail = validateMail(InputMail.current.value);
@@ -151,7 +110,7 @@ function CreatePage({ onReturn, onNext }) {
     <div className="subPageContainer">
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div style={{ paddingTop: "75px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+        <div style={{ paddingTop: "125px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
           <div className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver

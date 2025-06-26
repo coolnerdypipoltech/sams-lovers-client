@@ -185,7 +185,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder={UserData.current.user.related.tiktok !== null ? UserData.current.user.related.tiktok : "usuario"}
+                placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
@@ -218,7 +218,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder={UserData.current.user.related.instagram !== null ? UserData.current.user.related.instagram : "usuario"}
+                placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
@@ -252,7 +252,7 @@ function EditProfilePage({ onReturn }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder={UserData.current.user.related.facebook !== null ? UserData.current.user.related.facebook : "https://www.facebook.com/cashi"}
+                placeholder={"https://www.facebook.com/samslovers"}
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
@@ -281,7 +281,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <input
-                placeholder={UserData.current.user.related.youtube !== null ? UserData.current.user.related.youtube : "usuario"}
+                placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
@@ -310,7 +310,7 @@ function EditProfilePage({ onReturn }) {
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <input
-                placeholder={UserData.current.user.related.x !== null ? UserData.current.user.related.x : "usuario"}
+                placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputX}
               ></input>

@@ -12,6 +12,7 @@ import { LogIn } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextPopUp } from "../context/PopUpContext";
 import BackgroundSams from "../components/BackgroundSams";
+import { SignIn } from "../hooks/apicalls";
 
 function Login() {
   const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
@@ -20,13 +21,19 @@ function Login() {
   const [subPage, setSubPage] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
-
   const [loginMessage, setLoginMessage] = useState(false);
   const [eyeHelper1, setEyeHelper1] = useState(false);
   const [typeHelper, setTypeHelper] = useState("password");
+
+  //todo mover a context la infor de crear usuario entre esa y redes sociales
   const LoginText = useRef("");
   const LoginPassword = useRef("");
+  const InputName = useRef("");
+  const InputMail = useRef("");
+  const InputPassword1 = useRef("");
+
   let subPageContent = null;
+
   const onClickPassword = () => {
     setSubPage("Password");
   };
@@ -40,11 +47,45 @@ function Login() {
   };
 
   const onClickReturn = () => {
+    if(subPage === "Social Media"){
+      setSubPage("Create");
+      return;
+    }
+
     setSubPage("");
   };
 
+  const handleAfterSignIn = () => {
+    changePopUpLoading(false);
+    setSubPage("");
+    onClickShowLoginMessage();
+  }
+
   const onClickReturnLandingPage = () => {
    changeRoute("Landing")
+  };
+
+  const handleSignIn = async (_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) => {
+    changePopUpLoading(true);
+    const response = await SignIn(
+      _name,
+      _email,
+      _password,
+      _facebook_url,
+      _instagram_url,
+      _tiktok_url,
+      _x_url,
+      _youtube_url
+    );
+    if (response.ok) {
+      handleAfterSignIn();
+    } else {
+      const data = await response.json();
+      changePopUpLoading(false);
+      if (data.message) {
+        //todo handle errors
+      }
+    }
   };
 
   const onClickShowLoginMessage = () => {
@@ -136,19 +177,27 @@ function Login() {
   if (subPage === "Password") {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;
   }
+
   if (subPage === "Create") {
     subPageContent = (
       <CreatePage
         onReturn={onClickReturn}
         onNext={onClickSocialMedia}
+        InputName={InputName}
+        InputMail={InputMail}
+        InputPassword1={InputPassword1}
       ></CreatePage>
     );
   }
+
   if (subPage === "Social Media") {
     subPageContent = (
       <SocialMediaPage
         onReturn={onClickReturn}
-        onShowMessage={onClickShowLoginMessage}
+        handleSignIn={handleSignIn}
+        InputName={InputName.current}
+        InputMail={InputMail.current}
+        InputPassword1={InputPassword1.current}
       ></SocialMediaPage>
     );
   }

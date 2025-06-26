@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
 import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
 import instagram from "../assets/iconsBlue/Icon_Instagram.svg";
@@ -7,12 +7,8 @@ import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import InfoTooltip from "../components/InfoTooltip";
-import { UpdateUserInfo } from "../hooks/apicalls";
-import { ElementContextData } from "../context/DataContext";
 
-function SocialMedia({ onReturn, onShowMessage }) {
-
-  const { UserData, SetUserData } = useContext(ElementContextData);
+function SocialMedia({ onReturn, onShowMessage, handleSignIn, InputName, InputMail, InputPassword1 }) {
 
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
@@ -31,63 +27,45 @@ function SocialMedia({ onReturn, onShowMessage }) {
   let rewardErrorPopUpContent = useRef("");
   let rewardPopUpContent = <></>;
 
-  const handleSkip = async () => {
-    onReturn();
-    onShowMessage()
-  };
-
   const handleRewardPopUpClose = () => {
     setPopUpResponse(null);
   }
 
-  const openGeneralErrorPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
-    rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
-    setPopUpResponse("Error");
-  }
-
   const handleContine = async () => {
-    if (inputValidation()) {
-      const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
-         UserData.name,
-         InputFacebook.current,
-         InputInstagram.current,
-         InputTiktok.current,
-         InputX.current,
-         InputYoutube.current
-      );
-      const data = await response.json();
-      if(response.ok){
-        if(data.user !== null){
-          SetUserData(data);
-          onReturn();
-          onShowMessage();
-        }
-      }else{
-        if (data.message) {
-          switch(data.message) {
-            case "api.error.unauthorized":
-              // todo: delete cookie info
-              break;
-            default:
-              openGeneralErrorPopUp();
-              break;
-          }
-        }else{
-          openGeneralErrorPopUp();
-        }
-      }
+    if(inputValidation()){
+      handleSignIn(InputName, InputMail, InputPassword1, InputFacebook.current.value, InputInstagram.current.value, InputTiktok.current.value, InputX.current.value, InputYoutube.currentValue);
     }
+  };
+
+  const handleOmit = async () => {
+    handleSignIn(InputName, InputMail, InputPassword1, null, null, null, null, null);
   };
 
   const inputValidation = () => {
     const responseF = validateFacebook(InputFacebook.current.value);
+    const responseI = validateUser(InputInstagram.current.value);
+    const responseT = validateUser(InputTiktok.current.value);
+    const responseX = validateUser(InputX.current.value);
+    const responseY = validateUser(InputYoutube.current.value);
+
     SetErrorInputFacebook(responseF);
-    if ( responseF) {
+    SetErrorInputInstagram(responseI);
+    SetErrorInputTiktok(responseT);
+    SetErrorInputX(responseX);
+    SetErrorInputYoutube(responseY);
+    if (responseY && responseX && responseT && responseI && responseF) {
       return true;
     } else {
       return false;
     }
+  };
+
+  const validateUser = (_userToTest) => {
+    if (_userToTest.length === 0) {
+      return true;
+    }
+    const userRegex = /^@.+$/;
+    return userRegex.test(_userToTest);
   };
 
   const validateFacebook = (_userToTest) => {
@@ -130,6 +108,9 @@ function SocialMedia({ onReturn, onShowMessage }) {
     <>{rewardPopUpContent}</>
     <div className="subPageContainer">
       <div className="LoginContainer">
+        <div className="loginHeaderContainer">
+          <p onClick={onReturn} className="loginHeaderText">Volver</p>
+        </div>
         <div className="logoContainer">
           <img src={logo} alt="Logo" className="LoginLogo"></img>
           <img src={samsLogo} alt="Logo" className="LoginLogo"></img>
@@ -150,7 +131,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="usuario"
+                placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputTiktok}
               ></input>
@@ -172,7 +153,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="usuario"
+                placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputInstagram}
               ></input>
@@ -195,7 +176,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
                 className="socialMediaIcon"
               ></img>
               <input
-                placeholder="https://www.facebook.com/cashi"
+                placeholder={"https://www.facebook.com/samslovers"}
                 className="GeneralInput"
                 ref={InputFacebook}
               ></input>
@@ -213,7 +194,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="usuario"
+                placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputYoutube}
               ></input>
@@ -231,7 +212,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <input
-                placeholder="usuario"
+                placeholder="@usuario"
                 className="GeneralInput"
                 ref={InputX}
               ></input>
@@ -250,7 +231,7 @@ function SocialMedia({ onReturn, onShowMessage }) {
             Continuar
           </button>
 
-          <div className="GeneralButton2" onClick={handleSkip}>
+          <div className="GeneralButton2" onClick={handleOmit}>
             Omitir
           </div>
 
