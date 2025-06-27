@@ -1,5 +1,6 @@
 import trazado767 from ".././assets/Trazado 767.svg";
 import trazado767Dark from ".././assets/Trazado 767 dark.svg";
+
 function InfoTooltip({text, dark}) {
   let imgHelper = trazado767
   let classDark = "tooltipImage"
@@ -8,22 +9,19 @@ function InfoTooltip({text, dark}) {
     classDark = "tooltipImageDark"
   }
 
-    return (
-      <>
-        <div className="tooltip-container">
-          <div className= {classDark}>
-            <img className src={imgHelper} alt="tooltip"></img>
-          </div>
-            
-        <div role="tooltip" id="help-tooltip" className="tooltip">
-          
-          <pre>{text} </pre>
-          <div className="tooltip-tip"></div>
+  return (
+    <>
+      <div className="tooltip-container">
+        <div className= {classDark}>
+          <img className src={imgHelper} alt="tooltip"></img>
         </div>
+      <div role="tooltip" id="help-tooltip" className="tooltip">
+        <pre>{text} </pre>
+        <div className="tooltip-tip"></div>
       </div>
-      </>
-    );
-  }
-  
-  export default InfoTooltip;
-  
+    </div>
+    </>
+  );
+}
+
+export default InfoTooltip;

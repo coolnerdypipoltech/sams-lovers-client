@@ -18,7 +18,8 @@ function Login() {
   const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("Social Media");
+
+  const [subPage, setSubPage] = useState(null);
   const [forceRender, setForceRender] = useState(0);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
@@ -26,14 +27,30 @@ function Login() {
   const [eyeHelper1, setEyeHelper1] = useState(false);
   const [typeHelper, setTypeHelper] = useState("password");
 
-  //todo mover a context la infor de crear usuario entre esa y redes sociales
+  //CreatePage variables
+  const [inputCreateUserName, setInputCreateUserName] = useState("");
+  const [inputCreateUserEmail, setInputCreateUserEmail] = useState("");
+  const [inputCreateUserPassword, setInputCreateUserPassword] = useState("");
+  const [inputCreateUserRepeatPassword, setInputCreateUserRepeatPassword] = useState("");
+  const [inputCreateUserTermsAndConditions, setInputCreateUserTermsAndConditions] = useState(false);
+
+  //SocialMediaPage variables
+  const [inputCreateUserFacebook, setInputCreateUserFacebook] = useState("");
+  const [inputCreateUserInstagram, setInputCreateUserInstagram] = useState("");
+  const [inputCreateUserTiktok, setInputCreateUserTiktok] = useState("");
+  const [inputCreateUserX, setInputCreateUserX] = useState("");
+  const [inputCreateUserYoutube, setInputCreateUserYoutube] = useState("");
+
+  //PopupResponse variables
+  const [popUpResponse, setPopUpResponse] = useState("");
+
   const LoginText = useRef("");
   const LoginPassword = useRef("");
-  const InputName = useRef("");
-  const InputMail = useRef("");
-  const InputPassword1 = useRef("");
+  let errorPopUpTitle = useRef("");
+  let errorPopUpContent = useRef("");
 
-  let subPageContent = null;
+  let subPageContent = <></>;
+  let popUpContent = <></>;
 
   const onClickPassword = () => {
     setSubPage("Password");
@@ -56,6 +73,7 @@ function Login() {
     if(subPage === ""){
       setForceRender(forceRender + 1)
     }
+
     setSubPage("");
   };
 
@@ -69,28 +87,92 @@ function Login() {
    changeRoute("Landing")
   };
 
-  const handleSignIn = async (_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) => {
+  const handlePopUpClose = () => {
+    setPopUpResponse(null);
+  }
+
+  const openAlreadyExistingAccountErrorPopUp = () => {
+    errorPopUpTitle.current = "Correo previamente registrado.";
+    errorPopUpContent.current = "Este correo ya está registrado, por favor intenta con otro correo en la sección correspondiente o si prefieres, inicia sesión.";
+    setPopUpResponse("Error");
+  }
+
+  const openGeneralErrorPopUp = () => {
+    errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    errorPopUpContent.current = "Vuelve a intentar más tarde.";
+    setPopUpResponse("Error");
+  }
+
+  const handleSignIn = async (pressedOmit) => {
+    let inputCreateUser_F = inputCreateUserFacebook === "" ? null : inputCreateUserFacebook;
+    let inputCreateUser_I = inputCreateUserInstagram === "" ? null : inputCreateUserInstagram;
+    let inputCreateUser_T = inputCreateUserTiktok === "" ? null : inputCreateUserTiktok;
+    let inputCreateUser_X = inputCreateUserX === "" ? null : inputCreateUserX;
+    let inputCreateUser_Y = inputCreateUserYoutube === "" ? null : inputCreateUserYoutube;
+
+    if(pressedOmit) {
+      inputCreateUser_F = null;
+      inputCreateUser_I = null;
+      inputCreateUser_T = null;
+      inputCreateUser_X = null;
+      inputCreateUser_Y = null;
+    }
+
     changePopUpLoading(true);
+
     const response = await SignIn(
-      _name,
-      _email,
-      _password,
-      _facebook_url,
-      _instagram_url,
-      _tiktok_url,
-      _x_url,
-      _youtube_url
+      inputCreateUserName,
+      inputCreateUserEmail,
+      inputCreateUserPassword,
+      inputCreateUser_F,
+      inputCreateUser_I,
+      inputCreateUser_T,
+      inputCreateUser_X,
+      inputCreateUser_Y
     );
     if (response.ok) {
       handleAfterSignIn();
     } else {
+      generalHandleAfterError();
       const data = await response.json();
-      changePopUpLoading(false);
       if (data.message) {
-        //todo handle errors
+        switch(data.message) {
+          case "api.error.already_exists":
+            openAlreadyExistingAccountErrorPopUp();
+            break;
+          default:
+            setSubPage(null);
+            handleClearInputCreateUser();
+            handleClearInputCreateUserSocialMedia();
+            openGeneralErrorPopUp();
+            break;
+        }
       }
     }
   };
+
+  const handleClearInputCreateUser = () => {
+    setInputCreateUserName("");
+    setInputCreateUserEmail("");
+    setInputCreateUserPassword("");
+    setInputCreateUserRepeatPassword("");
+    setInputCreateUserTermsAndConditions(false);
+  }
+
+  const handleClearInputCreateUserSocialMedia = () => {
+    setInputCreateUserFacebook("");
+    setInputCreateUserInstagram("");
+    setInputCreateUserTiktok("");
+    setInputCreateUserX("");
+    setInputCreateUserYoutube("");
+  }
+
+  const generalHandleAfterError = () => {
+    LoginText.current.value = "";
+    LoginPassword.current.value = "";
+    changePopUpLoading(false);
+    setLoginMessage(false);
+  }
 
   const onClickShowLoginMessage = () => {
     LoginText.current.value = "";
@@ -101,7 +183,7 @@ function Login() {
   };
 
   const onClickLogin = async () => {
-    if (inputValidation()) {
+    if (inputLogInValidation()) {
       changePopUpLoading(true)
       const response = await LogIn(
         LoginText.current.value,
@@ -127,7 +209,7 @@ function Login() {
     }
   };
 
-  const inputValidation = () => {
+  const inputLogInValidation = () => {
     const response1 = ValidateEmail();
     const response2 = ValidatePassword();
 
@@ -177,19 +259,27 @@ function Login() {
       return false;
     }
   };
-  console.log(subPage, registerFlow.current)
+
   if (subPage === "Password") {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;
   }
+
   if (subPage === "Create" || registerFlow.current) {
     registerFlow.current = false;
     subPageContent = (
       <CreatePage
         onReturn={onClickReturn}
         onNext={onClickSocialMedia}
-        InputName={InputName}
-        InputMail={InputMail}
-        InputPassword1={InputPassword1}
+        inputCreateUserName={inputCreateUserName}
+        setInputCreateUserName={setInputCreateUserName}
+        inputCreateUserEmail={inputCreateUserEmail}
+        setInputCreateUserEmail={setInputCreateUserEmail}
+        inputCreateUserPassword={inputCreateUserPassword}
+        setInputCreateUserPassword={setInputCreateUserPassword}
+        inputCreateUserRepeatPassword={inputCreateUserRepeatPassword}
+        setInputCreateUserRepeatPassword={setInputCreateUserRepeatPassword}
+        inputCreateUserTermsAndConditions={inputCreateUserTermsAndConditions}
+        setInputCreateUserTermsAndConditions={setInputCreateUserTermsAndConditions}
       ></CreatePage>
     );
   }
@@ -199,15 +289,50 @@ function Login() {
       <SocialMediaPage
         onReturn={onClickReturn}
         handleSignIn={handleSignIn}
-        InputName={InputName.current}
-        InputMail={InputMail.current}
-        InputPassword1={InputPassword1.current}
+        inputCreateUserFacebook={inputCreateUserFacebook}
+        setInputCreateUserFacebook={setInputCreateUserFacebook}
+        inputCreateUserInstagram={inputCreateUserInstagram}
+        setInputCreateUserInstagram={setInputCreateUserInstagram}
+        inputCreateUserTiktok={inputCreateUserTiktok}
+        setInputCreateUserTiktok={setInputCreateUserTiktok}
+        inputCreateUserX={inputCreateUserX}
+        setInputCreateUserX={setInputCreateUserX}
+        inputCreateUserYoutube={inputCreateUserYoutube}
+        setInputCreateUserYoutube={setInputCreateUserYoutube}
       ></SocialMediaPage>
+    );
+  }
+
+  if(popUpResponse === "Error"){
+    popUpContent = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {errorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {errorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handlePopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
     <>
+    <>{popUpContent}</>
       <>{subPageContent}</>
       <div key={forceRender}  className="LoginContainer">
         <BackgroundSams></BackgroundSams>

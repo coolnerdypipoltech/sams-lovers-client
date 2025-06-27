@@ -7,7 +7,7 @@ import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
-import cross from "../assets/Visibility.svg";
+import cross from "../assets/clear_input.svg";
 
 function EditProfilePage({ onReturn }) {
   useEffect(() => {

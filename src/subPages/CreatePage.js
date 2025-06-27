@@ -1,71 +1,88 @@
 import "../styles/checkbox.css";
-import { useRef, useState, useContext } from "react";
+import { useState } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
 import eyeclosed from "../assets/Visibility2.svg";
 import BackgroundSams from "../components/BackgroundSams";
-import { ElementContextPopUp } from "../context/PopUpContext";
 
-function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
-
-  const { popUpLoading } = useContext(ElementContextPopUp);
+function CreatePage({
+  onReturn,
+  onNext,
+  inputCreateUserName,
+  setInputCreateUserName,
+  inputCreateUserEmail,
+  setInputCreateUserEmail,
+  inputCreateUserPassword,
+  setInputCreateUserPassword,
+  inputCreateUserRepeatPassword,
+  setInputCreateUserRepeatPassword,
+  inputCreateUserTermsAndConditions,
+  setInputCreateUserTermsAndConditions
+}) {
 
   const [errorInputName, SetErrorInputName] = useState(null);
   const [errorInputMail, SetErrorInputMail] = useState(null);
-  const [errorInputPassword1, SetErrorInputPassword1] = useState(null);
+  const [errorInputPassword, SetErrorInputPassword] = useState(null);
   const [errorCheckbox, SetErrorCheckbox] = useState(false);
-  const [eyeHelper1, setEyeHelper1] = useState(false);
-  const [typeHelper1, setTypeHelper1] = useState("password");
-  const [eyeHelper2, setEyeHelper2] = useState(false);
-  const [typeHelper2, setTypeHelper2] = useState("password");
-
-  const InputPassword2 = useRef("");
-  const checkboxValue = useRef(false);
+  const [passwordEyeHelper, setPasswordEyeHelper] = useState(false);
+  const [passwordTypeHelper, setPasswordTypeHelper] = useState("password");
+  const [repeatPasswordEyeHelper, setRepeatPasswordEyeHelper] = useState(false);
+  const [repeatPasswordTypeHelper, setRepeatPasswordTypeHelper] = useState("password");
 
   const handleReturn = async () => {
+    setInputCreateUserName("");
+    setInputCreateUserEmail("");
+    setInputCreateUserPassword("");
+    setInputCreateUserRepeatPassword("");
+    setInputCreateUserTermsAndConditions(false);
     onReturn();
   };
 
-  const handleCreateUser = () => {
+  const handleOntoSocialMedia = () => {
     if(inputValidation()){
       onNext();
     }
   }
 
   const inputValidation = () => {
-    const responseMail = validateMail(InputMail.current.value);
-    const responsePassword = ValidatePassword(InputPassword1.current.value);
+
+    const responseMail = validateMail(inputCreateUserEmail);
+    const responsePassword = ValidatePassword(inputCreateUserPassword);
+
     let flag = true;
-    if (checkboxValue.current) {
+
+    if (inputCreateUserTermsAndConditions) {
       SetErrorCheckbox(false);
     } else {
       SetErrorCheckbox(true);
     }
-    if (InputPassword1.current.value !== InputPassword2.current.value) {
+
+    if (inputCreateUserPassword !== inputCreateUserRepeatPassword) {
       flag = false;
-      SetErrorInputPassword1("Las contraseñas no coinciden");
+      SetErrorInputPassword("Las contraseñas no coinciden");
     } else {
-      SetErrorInputPassword1(null);
+      SetErrorInputPassword(null);
     }
+
     if (responsePassword) {
       if (flag) {
-        SetErrorInputPassword1(null);
+        SetErrorInputPassword(null);
       }
     } else {
-      if (InputPassword1.current.value.length === 0) {
+      if (inputCreateUserPassword.length === 0) {
         flag = false;
-        SetErrorInputPassword1(
+        SetErrorInputPassword(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
         );
       } else {
-        SetErrorInputPassword1(
+        SetErrorInputPassword(
           `La contraseña debe incluir al menos un caracter especial “+.-!"#$%&/(==?¡’¿” y una mayúscula`
         );
       }
     }
 
-    if (InputName.current.value.length > 0) {
+    if (inputCreateUserName.length > 0) {
       SetErrorInputName(null);
     } else {
       flag = false;
@@ -77,7 +94,7 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
     if (responseMail) {
       SetErrorInputMail(null);
     } else {
-      if (InputMail.current.value.length === 0) {
+      if (inputCreateUserEmail.length === 0) {
         SetErrorInputMail(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
         );
@@ -88,10 +105,10 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
       }
     }
 
-    if (responseMail && flag && checkboxValue.current) {
+    if (responseMail && flag && inputCreateUserTermsAndConditions) {
       return true;
     } else {
-      console.log(responseMail, flag, checkboxValue.current);
+      console.log(responseMail, flag, inputCreateUserTermsAndConditions);
       return false;
     }
   };
@@ -128,8 +145,9 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <div className="passwordInput">
                 <input
                   placeholder="Tu nombre de usuario"
-                  ref={InputName}
+                  value={inputCreateUserName}
                   className="GeneralInput"
+                  onChange={e => setInputCreateUserName(e.target.value)}
                 ></input>
               </div>
               {errorInputName !== null ? (
@@ -143,8 +161,9 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <div className="passwordInput">
                 <input
                   placeholder="Tu email"
-                  ref={InputMail}
+                  value={inputCreateUserEmail}
                   className="GeneralInput"
+                  onChange={e => setInputCreateUserEmail(e.target.value)}
                 ></input>
               </div>
               {errorInputMail !== null ? (
@@ -163,23 +182,24 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <div className="passwordInput">
                 <input
                   placeholder="Contraseña"
-                  ref={InputPassword1}
+                  value={inputCreateUserPassword}
                   className="GeneralInput"
-                  type={typeHelper1}
+                  type={passwordTypeHelper}
+                  onChange={e => setInputCreateUserPassword(e.target.value)}
                 ></input>
 
                 <div
                   onClick={() => {
-                    if (eyeHelper1) {
-                      setTypeHelper1("password");
-                      setEyeHelper1(false);
+                    if (passwordEyeHelper) {
+                      setPasswordTypeHelper("password");
+                      setPasswordEyeHelper(false);
                     } else {
-                      setTypeHelper1("text");
-                      setEyeHelper1(true);
+                      setPasswordTypeHelper("text");
+                      setPasswordEyeHelper(true);
                     }
                   }}
                 >
-                  {eyeHelper1 === true ? (
+                  {passwordEyeHelper === true ? (
                     <img
                       alt="eye"
                       className="eyePassword"
@@ -188,7 +208,7 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
                   ) : (
                     <img
                       onClick={() => {
-                        setEyeHelper1(true);
+                        setPasswordEyeHelper(true);
                       }}
                       alt="eye"
                       className="eyePassword"
@@ -198,8 +218,8 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
                 </div>
               </div>
 
-              {errorInputPassword1 !== null ? (
-                <span className="errorText">{errorInputPassword1} </span>
+              {errorInputPassword !== null ? (
+                <span className="errorText">{errorInputPassword} </span>
               ) : (
                 <></>
               )}
@@ -209,23 +229,24 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <div className="passwordInput">
                 <input
                   placeholder="Contraseña"
-                  ref={InputPassword2}
+                  value={inputCreateUserRepeatPassword}
                   className="GeneralInput"
-                  type={typeHelper2}
+                  type={repeatPasswordTypeHelper}
+                  onChange={e => setInputCreateUserRepeatPassword(e.target.value)}
                 ></input>
 
                 <div
                   onClick={() => {
-                    if (eyeHelper2) {
-                      setTypeHelper2("password");
-                      setEyeHelper2(false);
+                    if (repeatPasswordEyeHelper) {
+                      setRepeatPasswordTypeHelper("password");
+                      setRepeatPasswordEyeHelper(false);
                     } else {
-                      setTypeHelper2("text");
-                      setEyeHelper2(true);
+                      setRepeatPasswordTypeHelper("text");
+                      setRepeatPasswordEyeHelper(true);
                     }
                   }}
                 >
-                  {eyeHelper2 === true ? (
+                  {repeatPasswordEyeHelper === true ? (
                     <img
                       alt="eye"
                       className="eyePassword"
@@ -234,7 +255,7 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
                   ) : (
                     <img
                       onClick={() => {
-                        setEyeHelper2(true);
+                        setRepeatPasswordEyeHelper(true);
                       }}
                       alt="eye"
                       className="eyePassword"
@@ -248,10 +269,11 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <label className="checkbox-container">
                 <input
                   onClick={() => {
-                    checkboxValue.current = !checkboxValue.current;
+                    setInputCreateUserTermsAndConditions(!inputCreateUserTermsAndConditions);
                   }}
                   className="custom-checkbox"
                   type="checkbox"
+                  defaultChecked={inputCreateUserTermsAndConditions}
                 />
                 <span className="checkmark"></span>
               </label>
@@ -269,9 +291,8 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
               <></>
             )}
             <button
-              disabled={popUpLoading}
               className="GeneralButton"
-              onClick={handleCreateUser}
+              onClick={handleOntoSocialMedia}
             >
               Crear cuenta
             </button>

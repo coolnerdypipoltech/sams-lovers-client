@@ -79,7 +79,7 @@ function Codes() {
               codeNotFoundPopUp();
               break;
             case "api.error.code_expired":
-                expiredCodePopUp();
+              expiredCodePopUp();
               break;
             case " api.error.max_redemptions_reached":
               maxRedemptionsReachedPopUp();
