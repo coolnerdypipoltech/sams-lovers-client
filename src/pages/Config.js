@@ -61,7 +61,7 @@ function Config() {
             await deleteSavedItems();
             changeRoute("Login");
             break;
-          case "api.error.not_same_password":
+          case "api.error.invalid_password":
             NotSamePasswordPopUp();
             break;
           default:
