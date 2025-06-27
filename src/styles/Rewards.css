@@ -60,6 +60,12 @@
   }
 }
 
+@media (max-width: 350px) {
+  .infoText {
+    font-size: 9px;
+  }
+}
+
 .RewardsPopUpText{
     font-size: 14px;
     text-align: start;

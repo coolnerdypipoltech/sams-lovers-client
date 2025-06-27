@@ -112,6 +112,12 @@
   }
 }
 
+@media (max-width: 350px) {
+  .challenge-text  {
+    font-size: 9px;
+  }
+}
+
 .challenge-text-title{
   font-size: 14px;
   font-weight: 500;

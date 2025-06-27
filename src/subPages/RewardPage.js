@@ -1,4 +1,6 @@
 import diamond from "../assets/diamond.svg";
+import gift from "../assets/Recompensa.svg"
+import canje from "../assets/Canje.svg"
 import chevronRight from "../assets/chevronRightBlack.svg";
 import InfoToolTip from "../components/InfoTooltip";
 import { useRef, useState, useContext } from "react";
@@ -11,7 +13,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
   const { UserData, currentReward } = useContext(ElementContextData);
 
   const [rotated, setRotated] = useState(false);
-  const [showPopUp, setShowPopUp] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(true);
   const textRef = useRef(null);
 
   const handleClick = () => {
@@ -122,7 +124,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
             <RewardInfoBox
               text={"Recompensas \n disponibles"}
               ammount={(reward.stock > 0) ? reward.stock : "Agotado"}
-              icon={diamond}
+              icon={gift}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
               }
@@ -131,7 +133,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
             <RewardInfoBox
               text={"Canjes disponibles"}
               ammount={(reward.total_user_transactions_left > 0) ? reward.total_user_transactions_left : "Agotado" }
-              icon={diamond}
+              icon={canje}
               toolTipText={
                 "El número máximo \n de veces que puedes  \n canjear este artículo"
               }

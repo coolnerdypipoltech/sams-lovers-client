@@ -10,9 +10,10 @@ function RewardInfoBox({ text, ammount, toolTipText, icon }) {
             display: "flex",
             justifyContent: "flex-end"
         }}>
-            <div style={{paddingTop: "1px"}}>
-                    <InfoTooltip  dark={true}></InfoTooltip>
-            </div>
+          {toolTipText !== undefined && <div style={{paddingTop: "1px"}}>
+                    <InfoTooltip  text={toolTipText} dark={true}></InfoTooltip>
+            </div>}
+            
             
         </div>
         <div

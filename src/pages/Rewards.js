@@ -8,13 +8,14 @@ import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import diamond from "../assets/diamond.svg";
 import Confetti from "react-confetti";
+import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
-  const [popUpResponse, setPopUpResponse] = useState(null);
+  const [popUpResponse, setPopUpResponse] = useState("");
 
   let subPageContent = null;
   let rewardErrorPopUpTitle = useRef("");
@@ -160,11 +161,7 @@ function Rewards() {
   if(popUpResponse === "Success"){
     rewardPopUpContent = (
       <>
-        <Confetti
-          style={{ zIndex: "100" }}
-          width={window.innerWidth}
-          height={window.innerHeight}
-        />
+        <SamsConfetti></SamsConfetti>
         <div className="PopUp">
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">

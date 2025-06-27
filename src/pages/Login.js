@@ -18,7 +18,7 @@ function Login() {
   const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("Social Media");
+  const [subPage, setSubPage] = useState("");
   const [forceRender, setForceRender] = useState(0);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);

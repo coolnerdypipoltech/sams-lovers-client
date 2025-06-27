@@ -29,9 +29,9 @@
 .socialMediaContainer{
     display: flex;
     width: 60%;
-    justify-content: space-between;
+    justify-content: center;
     padding-bottom: 20px;
-    gap: 10px;
+    gap: 20px;
 }
 
 .socialMediaItem{
