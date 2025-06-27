@@ -42,8 +42,8 @@
     padding-bottom: 10px;
 }
 
-.infoText{
-      font-size: 14px;
+.infoText {
+  font-size: 14px;
   font-weight: 500;
   text-align: start;
   margin: 0px;
@@ -51,6 +51,13 @@
   color: #0b1432;
   width: 80%;
   margin-left: 5px;
+}
+
+/* Media query para pantallas de menos de 400px */
+@media (max-width: 400px) {
+  .infoText {
+    font-size: 11px;
+  }
 }
 
 .RewardsPopUpText{

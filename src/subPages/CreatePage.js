@@ -110,7 +110,7 @@ function CreatePage({ onReturn, onNext, InputName, InputMail, InputPassword1}) {
     <div className="subPageContainer">
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div style={{ paddingTop: "125px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+        <div style={{ paddingTop: "88px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%"}}>
           <div className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver

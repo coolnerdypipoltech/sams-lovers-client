@@ -15,10 +15,11 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  const { setLoginToken, changeRoute } = useContext(ElementContextRoute);
+  const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("");
+  const [subPage, setSubPage] = useState("Social Media");
+  const [forceRender, setForceRender] = useState(0);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [loginMessage, setLoginMessage] = useState(false);
@@ -52,6 +53,9 @@ function Login() {
       return;
     }
 
+    if(subPage === ""){
+      setForceRender(forceRender + 1)
+    }
     setSubPage("");
   };
 
@@ -173,12 +177,12 @@ function Login() {
       return false;
     }
   };
-
+  console.log(subPage, registerFlow.current)
   if (subPage === "Password") {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;
   }
-
-  if (subPage === "Create") {
+  if (subPage === "Create" || registerFlow.current) {
+    registerFlow.current = false;
     subPageContent = (
       <CreatePage
         onReturn={onClickReturn}
@@ -205,7 +209,7 @@ function Login() {
   return (
     <>
       <>{subPageContent}</>
-      <div  className="LoginContainer">
+      <div key={forceRender}  className="LoginContainer">
         <BackgroundSams></BackgroundSams>
         <div className="loginHeaderContainer">
           <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>

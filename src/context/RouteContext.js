@@ -6,6 +6,7 @@ const ElementContextRoute = createContext();
 const ElementProviderRoute= ({ children }) => {
   const [route, setRoute] = useState("");
   const loginToken = useRef("token");
+  const registerFlow = useRef(false);
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 
 
@@ -61,7 +62,7 @@ const ElementProviderRoute= ({ children }) => {
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, changeRoute, setLoginToken, deleteSavedItems}}>
+    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems}}>
       {children}
     </ElementContextRoute.Provider>
   );

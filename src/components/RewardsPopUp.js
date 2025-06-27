@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 import { render } from "react-dom";
 import diamond from "../assets/diamond.svg";
-import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
+import SamsConfetti from "../components/SamsConfetti"
 import { ElementContextData } from "../context/DataContext";
 
 function RewardsPopUp({ closePopUp, handlePurchase}) {
@@ -28,11 +27,7 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
   if (popUpResponse === "Success") {
     content = (
       <>
-        <Confetti
-          style={{ zIndex: "100" }}
-          width={window.innerWidth}
-          height={window.innerHeight}
-        />
+        <SamsConfetti></SamsConfetti>
         <div className="PopUp">
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">
