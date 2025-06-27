@@ -205,7 +205,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
-              <span className="errorText">Porfavor verifique su usuario</span>
+              <span  style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
             ) : (
               <></>
             )}
@@ -239,7 +239,7 @@ function EditProfilePage({ onReturn }) {
             </div>
 
             {errorInputInstagram === false ? (
-              <span className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}} className="errorText">Porfavor verifique su usuario</span>
             ) : (
               <></>
             )}
@@ -272,7 +272,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
-              <span className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
             ) : (
               <></>
             )}
@@ -301,7 +301,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
-              <span className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
             ) : (
               <></>
             )}
@@ -330,7 +330,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (
-              <span className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
             ) : (
               <></>
             )}

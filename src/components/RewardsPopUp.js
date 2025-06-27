@@ -107,6 +107,7 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
                 display: "flex",
                 justifyContent: "space-evenly",
                 flexDirection: "column",
+                overflowY: "scroll"
               }}
               className="GeneralButtonContainer"
             >
