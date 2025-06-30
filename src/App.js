@@ -12,7 +12,8 @@ import Codes from "./pages/Codes";
 import Landing from "./pages/Landing";
 import Academy from "./pages/Academy";
 import Config from "./pages/Config";
-
+import loadingGif from "./assets/LoadingGif.gif"
+import backgroundImage from "./assets/headerMenu/Gradient.png";
 function App() {
   const { route } = useContext(ElementContextRoute);
   const { popUpText, closePopUp, popUpTitle, popUpLoading } = useContext(ElementContextPopUp);
@@ -113,13 +114,16 @@ function App() {
         <></>
       )}
       {popUpLoading ? (
-        <div className="PopUp">
-          <div className="PopUpDialog">
-            <div className="GeneralButtonContainer">
-              <p className="PopUpText">cargando...</p>
-
-            </div>
-          </div>
+        <div className="backgroundContainer">
+          <img
+          className="background"
+          alt="background"
+          src={backgroundImage}
+        ></img>
+        <div className="loadingGifContainer">
+          <img src={loadingGif} className="loadingGif" alt="loading"></img>
+        </div>
+          
         </div>
       ) : (
         <></>

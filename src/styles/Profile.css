@@ -164,7 +164,7 @@
     flex-flow: column;
     align-items: center;
     background: #F2F4FF;
-    overflow-y: scroll;
+    overflow-y: overlay;
 }
 
 
@@ -194,4 +194,11 @@
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
+}
+
+
+.crossSocialMedia{
+    position: absolute;
+    
+    padding-top: 15px;
 }
