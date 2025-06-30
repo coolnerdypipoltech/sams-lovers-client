@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import eye from "../assets/Visibility.svg";
 import eyeclosed from "../assets/Visibility2.svg";
 
@@ -11,9 +11,6 @@ function DeleteUserPage({
   const [eyeHelper, setEyeHelper] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [typeHelper, setTypeHelper] = useState("password");
-  const LoginPassword = useRef("");
-
-  console.log("here")
   return (
     <>
       <div className="subPageContainer"><div
@@ -41,7 +38,7 @@ function DeleteUserPage({
               <input
                 placeholder="Contraseña"
                 className="GeneralInput"
-                ref={LoginPassword}
+                value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}
                 type={typeHelper}
               ></input>
 
@@ -80,7 +77,7 @@ function DeleteUserPage({
             )}
           </div>
             <div style={{width: "100%", paddingTop: "10px"}} className="CodeButtonContainer">
-                <button style={{width: "70%"}} className={inputValue === "" ? "GeneralButton4-Inactive" : "GeneralButton4"} disabled={LoginPassword.current.value === ""} onClick={handleWarningPopUp}>Eliminar cuenta</button>
+                <button style={{width: "70%"}} className={inputValue === "" ? "GeneralButton4-Inactive" : "GeneralButton4"} disabled={inputValue === ""} onClick={handleWarningPopUp}>Eliminar cuenta</button>
             </div>
         </div>
 
