@@ -369,7 +369,7 @@ export async function DeleteUser (_token, _password) {
                 "Authorization": _token,
             },
             body: JSON.stringify({
-                password0: _password
+                password: _password
             }),
         });
         return response;

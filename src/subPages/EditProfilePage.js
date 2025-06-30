@@ -8,6 +8,7 @@ import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
 import cross from "../assets/clear_input.svg";
+import { ElementContextPopUp } from "../context/PopUpContext";
 
 
 function EditProfilePage({ onReturn }) {
@@ -20,6 +21,7 @@ function EditProfilePage({ onReturn }) {
   });
 
   const { UserData, SetUserData } = useContext(ElementContextData);
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
 
   const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
   const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
@@ -60,12 +62,14 @@ function EditProfilePage({ onReturn }) {
       const xVal = InputX.current.value !== "" ? InputX.current.value : null;
       const youTubeVal = InputYoutube.current.value !== "" ? InputYoutube.current.value : null;
 
-      console.log(facebookVal);
+      /*console.log(facebookVal);
       console.log(instagramVal);
       console.log(tiktokVal);
       console.log(xVal);
       console.log(youTubeVal);
-      console.log(`${UserData.current.token_type} ${UserData.current.access_token}`);
+      console.log(`${UserData.current.token_type} ${UserData.current.access_token}`);*/
+
+      changePopUpLoading(true);
 
       const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
          UserData.current.user.name,
@@ -82,9 +86,11 @@ function EditProfilePage({ onReturn }) {
           tempUserDataRelated = data.user.related;
           UserData.current.user.related = tempUserDataRelated;
           SetUserData(UserData.current);
+          changePopUpLoading(false);
           onReturn();
         }
       }else{
+        changePopUpLoading(false);
         if (data.message) {
           switch(data.message) {
             case "api.error.unauthorized":
@@ -113,6 +119,7 @@ function EditProfilePage({ onReturn }) {
     SetErrorInputTiktok(responseT);
     SetErrorInputX(responseX);
     SetErrorInputYoutube(responseY);
+
     if (responseY && responseX && responseT && responseI && responseF) {
       return true;
     } else {
