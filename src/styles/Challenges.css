@@ -27,6 +27,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 90%;
+
 }
 
 .confirmation-subpage-container {
@@ -39,6 +40,47 @@
   top: 0px;
   flex-direction: column;
   z-index: 10;
+  
+}
+
+.subPageContainer::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.subPageContainer::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-foreground);
+  background: transparent;
+  border-radius: 0px;
+  border: 0px solid transparent;
+  background-clip: padding-box;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+.subPageContainer::-webkit-scrollbar-track { /* Background */
+  background: var(--scrollbar-background);
+  background: transparent;
+}
+
+.challenges-subpage-container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.challenges-subpage-container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-foreground);
+  background: transparent;
+  border-radius: 0px;
+  border: 0px solid transparent;
+  background-clip: padding-box;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+.challenges-subpage-container::-webkit-scrollbar-track { /* Background */
+  background: var(--scrollbar-background);
+  background: transparent;
 }
 
 .challenge-header {

@@ -23,7 +23,7 @@ function Landing() {
       <div className="landingPageContainer">
         <div className="header-container">
           <img className="header-logo" alt="logo" src={logo}></img>
-          <div style={{width: "200px", paddingRight: "2.5%"}}>
+          <div className="LoginLandingButton">
             <button onClick={onclickLogin} className="GeneralButton">Iniciar sesión</button>
           </div>
           
@@ -40,6 +40,8 @@ function Landing() {
           <button onClick={onclickRegister} className="GeneralButton4">Regístrate</button>
         </div>
         <img src={banner2} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>
+
+
 
        <SamsFooter></SamsFooter>
 

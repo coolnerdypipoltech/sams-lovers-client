@@ -9,6 +9,7 @@ import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
 import cross from "../assets/clear_input.svg";
 
+
 function EditProfilePage({ onReturn }) {
   useEffect(() => {
     InputFacebook.current.value = (UserData.current.user.related.facebook === "" || UserData.current.user.related.facebook !== null) ? UserData.current.user.related.facebook : "";
@@ -184,7 +185,8 @@ function EditProfilePage({ onReturn }) {
                 alt="tiktokLogo"
                 className="socialMediaIcon"
               ></img>
-              <input
+              <div style={{minWidth: "50%"}} className="passwordInput">
+                              <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputTiktok}
@@ -197,12 +199,17 @@ function EditProfilePage({ onReturn }) {
                 <img
                   alt="eye"
                   className="eyePassword"
+                  style={{paddingTop: "13px"}}
                   src={cross}
                 ></img>
               </div>
+              </div>
+
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
+
+              
             </div>
             {errorInputTiktok === false ? (
               <span  style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
@@ -217,7 +224,8 @@ function EditProfilePage({ onReturn }) {
                 alt="InstagramLogo"
                 className="socialMediaIcon"
               ></img>
-              <input
+              <div style={{minWidth: "50%"}} className="passwordInput">
+                              <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputInstagram}
@@ -230,9 +238,12 @@ function EditProfilePage({ onReturn }) {
                 <img
                   alt="eye"
                   className="eyePassword"
+                  style={{paddingTop: "13px"}}
                   src={cross}
                 ></img>
               </div>
+              </div>
+
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
@@ -251,7 +262,8 @@ function EditProfilePage({ onReturn }) {
                 alt="FacebookLogo"
                 className="socialMediaIcon"
               ></img>
-              <input
+              <div style={{minWidth: "50%"}} className="passwordInput">
+                              <input
                 placeholder={"https://www.facebook.com/samslovers"}
                 className="GeneralInput"
                 ref={InputFacebook}
@@ -264,9 +276,12 @@ function EditProfilePage({ onReturn }) {
                 <img
                   alt="eye"
                   className="eyePassword"
+                  style={{paddingTop: "13px"}}
                   src={cross}
                 ></img>
               </div>
+              </div>
+
               <InfoTooltip dark={true}
                 text={"Pon el link de tu \n perfil de facebook"}
               ></InfoTooltip>
@@ -280,7 +295,8 @@ function EditProfilePage({ onReturn }) {
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
-              <input
+              <div style={{minWidth: "50%"}} className="passwordInput">
+                            <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputYoutube}
@@ -293,8 +309,11 @@ function EditProfilePage({ onReturn }) {
                 <img
                   alt="eye"
                   className="eyePassword"
+                  style={{paddingTop: "13px"}}
                   src={cross}
                 ></img>
+              </div>
+
               </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
@@ -309,7 +328,7 @@ function EditProfilePage({ onReturn }) {
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
-              <input
+              <div style={{minWidth: "50%"}} className="passwordInput">              <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
                 ref={InputX}
@@ -322,8 +341,10 @@ function EditProfilePage({ onReturn }) {
                 <img
                   alt="eye"
                   className="eyePassword"
+                  style={{paddingTop: "13px"}}
                   src={cross}
-                ></img>
+                ></img></div>
+
               </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}

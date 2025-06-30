@@ -546,10 +546,17 @@
   font-family: "Poppins", sans-serif;
 }
 
-.react-multi-carousel-dot--active button {
-  background: grey !important;
+
+
+.react-multi-carousel-dot button{
+  background: rgba(255, 255, 255, 0) !important;
+  border-color: white !important;
 }
 
+.react-multi-carousel-dot--active button {
+  background: rgb(255, 255, 255) !important;
+  border-color: white !important;
+}
 
 .SamsOfTheMonthContainer{
   width: 50%;

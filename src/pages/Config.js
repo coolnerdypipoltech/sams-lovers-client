@@ -162,13 +162,20 @@ function Config() {
     <>
     {popUpContent}
     {subPageContent}
-    <div className="MainContainer">
-      <p className="Title">Configuracion</p>
-      <p onClick={handleDeleteAccountSubPage}>Eliminar cuenta</p>
-      <p>Al eliminar tu cuenta no podrás recuperar tus datos guardados ni tus diamantes.</p>
-    </div>
+    <div className="CodePageContainer">
+        <div className="headerSpacer"></div>
+        <p className="CodeTitle">Configuración</p>
+        <div style={{opacity: "0.3", width: "90%"}} className="Divider"></div>
+        <p className="CodeText" onClick={handleDeleteAccountSubPage}>Eliminar cuenta</p>
+        <p style={{color: "black"}} className="CodeText">
+          Al eliminar tu cuenta no podrás recuperar tus datos guardados ni tus diamantes
+        </p>
+        
+        
+      </div>
     </>
   );
 }
+
 
 export default Config;

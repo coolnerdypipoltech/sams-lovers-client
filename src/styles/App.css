@@ -328,3 +328,32 @@
   align-items: center;
 }
 
+.loadingGif{
+  width: 100px;
+  height: 100px;
+}
+
+.loadingGifContainer{
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+
+.backButtonConfig{
+  margin: 0px;
+  padding: 0px;
+  width: 90%;
+  text-align: left;
+  color: #3C74F3;
+  font-family:"canada-type-gibson"
+}

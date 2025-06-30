@@ -8,6 +8,18 @@
     z-index: 2;
 }
 
+.LoginLandingButton{
+    width: 200px;
+    padding-right: 2.5%;
+}
+
+@media (max-width: 400px)  {
+  .LoginLandingButton {
+    width: 150px;
+    font-size: 11px;
+  }
+}
+
 .bannerImage{
 
     height: auto;
