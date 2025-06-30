@@ -44,7 +44,7 @@ function Config() {
 
   const handleDeleteUser = async () => {
     if (inputValue === "") return;
-
+    setPopUpDeleteUser("")
     changePopUpLoading(true);
     const response = await DeleteUser(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
 

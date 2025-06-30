@@ -12,18 +12,19 @@ import Codes from "./pages/Codes";
 import Landing from "./pages/Landing";
 import Academy from "./pages/Academy";
 import Config from "./pages/Config";
-import loadingGif from "./assets/LoadingGif.gif"
+import loadingGif from "./assets/LoadingGif.gif";
 import backgroundImage from "./assets/headerMenu/Gradient.png";
 function App() {
   const { route } = useContext(ElementContextRoute);
-  const { popUpText, closePopUp, popUpTitle, popUpLoading } = useContext(ElementContextPopUp);
+  const { popUpText, closePopUp, popUpTitle, popUpLoading } =
+    useContext(ElementContextPopUp);
   let currentPage;
   // eslint-disable-next-line default-case
   switch (route) {
     case "":
       currentPage = <Landing></Landing>;
       break;
-      case "Landing":
+    case "Landing":
       currentPage = <Landing></Landing>;
       break;
     case "Login":
@@ -55,7 +56,7 @@ function App() {
         </>
       );
       break;
-      case "Codes":
+    case "Codes":
       currentPage = (
         <>
           <Header></Header>
@@ -114,16 +115,17 @@ function App() {
         <></>
       )}
       {popUpLoading ? (
-        <div className="backgroundContainer">
-          <img
-          className="background"
-          alt="background"
-          src={backgroundImage}
-        ></img>
-        <div className="loadingGifContainer">
-          <img src={loadingGif} className="loadingGif" alt="loading"></img>
-        </div>
-          
+        <div className="PopUp">
+          <div className="backgroundContainer">
+            <img
+              className="background"
+              alt="background"
+              src={backgroundImage}
+            ></img>
+            <div className="loadingGifContainer">
+              <img src={loadingGif} className="loadingGif" alt="loading"></img>
+            </div>
+          </div>
         </div>
       ) : (
         <></>
