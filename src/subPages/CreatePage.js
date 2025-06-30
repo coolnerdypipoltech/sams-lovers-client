@@ -127,6 +127,7 @@ function CreatePage({
     <div className="subPageContainer">
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
+        <div style={{overflowY: "scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
           <div className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver
@@ -314,6 +315,7 @@ function CreatePage({
               </p>
             </div>
           </div>
+        </div>
       </div>
     </div>
   );
