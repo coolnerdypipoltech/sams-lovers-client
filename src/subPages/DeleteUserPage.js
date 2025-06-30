@@ -59,7 +59,7 @@ function DeleteUserPage({handleReturn, inputValue, handleOnChangeInput, handleWa
               </div>
             </div>
             <div className="CodeButtonContainer">
-                <button className="GeneralButton4" onClick={handleWarningPopUp}>Eliminar cuenta</button>
+                <button className={inputValue === "" ? "GeneralButton4-Inactive" : "GeneralButton4"} disabled={inputValue === ""} onClick={handleWarningPopUp}>Eliminar cuenta</button>
             </div>
         </div>
         </>

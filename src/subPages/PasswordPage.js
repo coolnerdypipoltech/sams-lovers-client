@@ -1,15 +1,15 @@
 import logo from "../assets/Brand_SamsLovers.svg";
 import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
-import { useState, useRef } from "react"
+import { useState, useRef, useContext, useEffect } from "react"
 import { ResetPassword } from "../hooks/apicalls";
 import BackgroundSams from "../components/BackgroundSams";
+import { ElementContextPopUp } from "../context/PopUpContext";
 
 function PasswordPage({ onReturn }) {
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
 
   const [inputValue, setInputValue] = useState("");
   const [popUpResponse, setPopUpResponse] = useState(null);
-  const [eyeHelper, setEyeHelper] = useState(false);
-  const [typeHelper, setTypeHelper] = useState("password");
 
   let rewardErrorPopUpTitle = useRef("");
   let rewardErrorPopUpContent = useRef("");
@@ -20,7 +20,6 @@ function PasswordPage({ onReturn }) {
   }
 
   const handlePopUpClose = () => {
-    setInputValue("");
     setPopUpResponse(null);
   }
 
@@ -30,24 +29,27 @@ function PasswordPage({ onReturn }) {
     setPopUpResponse("Error");
   }
 
+  const openUnprocessableContentErrorPopUp = () => {
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error.";
+    rewardErrorPopUpContent.current = "No se pudo procesar la peticion debido al contenido. Verifica el correo que has escrito.";
+    setPopUpResponse("Error");
+  }
+
   const handleSend = async () => {
     if (inputValue === "") return;
 
+    changePopUpLoading(true);
     const response = await ResetPassword(inputValue);
-    const data = await response.json();
     if (response.ok) {
+      changePopUpLoading(false);
       setPopUpResponse("Success");
     } else {
-      if (data.message) {
-        switch(data.message) {
-          default:
-            openGeneralErrorPopUp();
-            break;
-        }
+      changePopUpLoading(false);
+      if(response.status === 422) {
+        openUnprocessableContentErrorPopUp();
       }else{
         openGeneralErrorPopUp();
       }
-      return;
     }
   };
 
@@ -139,13 +141,10 @@ function PasswordPage({ onReturn }) {
                 className="GeneralInput"
                 onChange={e => handleOnChangeInput(e.target.value)}
               ></input>
-
-              
             </div>
           </div>
         </div>
-        <div style={{paddingTop: "75px", width: "80%"}}><button  onClick={handleSend} className="GeneralButton">Enviar</button></div>
-        
+        <div style={{paddingTop: "75px", width: "80%"}}><button  onClick={handleSend} disabled={(inputValue === "")} className={(inputValue === "") ? "GeneralButton-Inactive" : "GeneralButton"}>Enviar</button></div>
       </div>
     </div>
     </div>

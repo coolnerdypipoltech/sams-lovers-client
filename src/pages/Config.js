@@ -4,11 +4,13 @@ import { ElementContextRoute } from "../context/RouteContext";
 import { DeleteUser } from "../hooks/apicalls";
 import "../styles/Main.css";
 import DeleteUserPage from "../subPages/DeleteUserPage";
+import { ElementContextPopUp } from "../context/PopUpContext";
 
 function Config() {
 
-    const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
 
   const [subPage, setSubPage] = useState("");
   const [popUpDeleteUser, setPopUpDeleteUser] = useState("");
@@ -25,8 +27,8 @@ function Config() {
   }
 
   const NotSamePasswordPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, se han agotado los canjes permitidos para este código.";
-    rewardErrorPopUpContent.current = "Aún tenemos muchísimos códigos para ti, pendiente en nuestras redes sociales.";
+    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error.";
+    rewardErrorPopUpContent.current = "Verifique la contraseña que ha escrito y vuelva a intentar.";
     setPopUpDeleteUser("Fail");
   }
 
@@ -43,10 +45,11 @@ function Config() {
   const handleDeleteUser = async () => {
     if (inputValue === "") return;
 
+    changePopUpLoading(true);
     const response = await DeleteUser(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
-    const data = await response.json();
-    console.log(data);
+
     if (response.ok) {
+      changePopUpLoading(false);
       setInputValue("");
       setPopUpDeleteUser("");
       setSubPage("");
@@ -54,6 +57,8 @@ function Config() {
       await deleteSavedItems();
       changeRoute("LogIn");
     } else {
+      changePopUpLoading(false);
+      const data = await response.json();
       if (data.message) {
         switch(data.message) {
           case "api.error.unauthorized":
