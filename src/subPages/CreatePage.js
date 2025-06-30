@@ -127,7 +127,6 @@ function CreatePage({
     <div className="subPageContainer">
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        
           <div className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver
@@ -315,7 +314,6 @@ function CreatePage({
               </p>
             </div>
           </div>
-        
       </div>
     </div>
   );

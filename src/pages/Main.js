@@ -7,12 +7,13 @@ import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
 import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
+
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
 
     useEffect(() => {
-      //initMainPage();
+      initMainPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -22,7 +23,6 @@ function Main() {
 
   return (
     <>
-    
       <div className="landingPageContainer">
         <div style={{zIndex: 2}}>
           <div className="headerSpacer"></div>
@@ -34,19 +34,17 @@ function Main() {
         <div  className="backgroundLogoLetters">
           <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
         </div>
-        
-        <p className="UserNameText">¡Hola, SUSANA!</p>
-        <img src={banner} className="bannerImage" alt="banner"></img>
+        <p className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
+        {(mainPageData !== null && <img src={mainPageData.home_banner.image_url} className="bannerImage" alt="banner"></img>)}
         <div style={{width: "70%", maxWidth: "300px", paddingTop: "30px"}}>
         <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
         <p className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
         <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
-        <SamsLoversMonth></SamsLoversMonth>
+        <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
       </div>
-    
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useRef, useState } from "react";
-import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetTopUsers, GetTopUsersByURL } from "../hooks/apicalls";
+import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetLandingPageData, GetTopUsers, GetTopUsersByURL } from "../hooks/apicalls";
 const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
@@ -12,6 +12,8 @@ const ElementProviderData = ({ children }) => {
   const [userDiamonds, setUserDiamonds] = useState(0);
   const [topUsersData, setTopUsersData] = useState(null);
   const [currentArticle, setCurrentArticle] = useState(null);
+  const [landingPageData, setLandingPageData] = useState(null);
+  const [mainPageData, setMainPageData] = useState(null);
 
   const UserData = useRef(null);
   const currentUserRewardTransaction = useRef(null);
@@ -21,7 +23,6 @@ const ElementProviderData = ({ children }) => {
   const nextArticles = useRef(null);
   const nextChallenges = useRef(null);
   const nextTopUsers = useRef(null);
-  const mainPageData = useRef(null);
   const totalArticles = useRef(0);
   const tempArticlesData = useRef(null);
 
@@ -129,10 +130,25 @@ const ElementProviderData = ({ children }) => {
   };
 
   const initMainPage = async() => {
-    const response = await GetMainPageData(`${UserData.current.token_type} ${UserData.current.access_token}`);
+    const response = await GetMainPageData();
     const data = await response.json();
     if (response.ok) {
-      mainPageData.current = (data);
+      setMainPageData(data);
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
+
+  const initLandingPage = async() => {
+    const response = await GetLandingPageData();
+    const data = await response.json();
+    if (response.ok) {
+      setLandingPageData(data);
     } else {
       if (data.message) {
         if (response.status === 403) {
@@ -509,6 +525,7 @@ const ElementProviderData = ({ children }) => {
         userDiamonds,
         topUsersData,
         nextTopUsers,
+        landingPageData,
         mainPageData,
         totalArticles,
         SetUserData,
@@ -518,6 +535,8 @@ const ElementProviderData = ({ children }) => {
         setCurrentChallenge,
         setCurrentReward,
         setCurrentArticle,
+        setLandingPageData,
+        setMainPageData,
         requestMoreRewards,
         requestMoreRewardsByURL,
         requestMoreUserRewardsTransactions,
@@ -534,6 +553,7 @@ const ElementProviderData = ({ children }) => {
         initRequestArticles,
         initRequestChallenges,
         initMainPage,
+        initLandingPage,
         initRequestTopUsers,
         setNewChallengeTransaction,
         setNewReward,

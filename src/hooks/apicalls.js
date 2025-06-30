@@ -301,11 +301,25 @@ export async function GetTopUsersByURL (_token, _next_url) {
 
 export async function GetMainPageData (_token) {
     try {
-        const response = await fetch(ENDPOINT + `/v1/homepage/`, {
+        const response = await fetch(ENDPOINT + `/v1/home/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": _token,
+            }
+        });
+        console.log(response);
+        return response;
+    }catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetLandingPageData (_token) {
+    try {
+        const response = await fetch(ENDPOINT + `/v1/landing/`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
             }
         });
         console.log(response);

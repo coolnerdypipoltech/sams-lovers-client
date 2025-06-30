@@ -2,11 +2,20 @@ import "../styles/Landing.css";
 import logo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import banner from "../assets/Banner_1@2x.png"
 import banner2 from "../assets/Banner_2@2x.png"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ElementContextRoute } from "../context/RouteContext";
 import SamsFooter from "../components/SamsFooter"
+import { ElementContextData } from "../context/DataContext";
+
 function Landing() {
+
   const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
+  const { initLandingPage, landingPageData } = useContext(ElementContextData);
+
+  useEffect(() => {
+        initLandingPage();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
 
   const onclickLogin = () => {
     changeRoute("Login");
@@ -26,12 +35,11 @@ function Landing() {
           <div className="LoginLandingButton">
             <button onClick={onclickLogin} className="GeneralButton">Iniciar sesión</button>
           </div>
-          
         </div>
 
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
-        <img src={banner} className="bannerImage" alt="banner"></img>
+        {(landingPageData !== null && <img src={landingPageData?.main_banner.absolute_url} className="bannerImage" alt="banner"></img>)}
         <p className="LandingPageTitle">Sam's me da más</p>
         <p className="LandingPageText">Pon a prueba tus habilidades, 
           completa los desafíos y acumula puntos 
@@ -39,10 +47,7 @@ function Landing() {
         <div style={{width: "70%", maxWidth: "300px"}}>
           <button onClick={onclickRegister} className="GeneralButton4">Regístrate</button>
         </div>
-        <img src={banner2} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>
-
-
-
+        {(landingPageData !== null && <img src={landingPageData?.registration_banner.absolute_url} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>)}
        <SamsFooter></SamsFooter>
 
       </div>

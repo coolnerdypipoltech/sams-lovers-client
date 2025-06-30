@@ -12,14 +12,6 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 
 
 function EditProfilePage({ onReturn }) {
-  useEffect(() => {
-    InputFacebook.current.value = (UserData.current.user.related.facebook === "" || UserData.current.user.related.facebook !== null) ? UserData.current.user.related.facebook : "";
-    InputInstagram.current.value = (UserData.current.user.related.instagram === "" || UserData.current.user.related.instagram !== null) ? UserData.current.user.related.instagram : "";
-    InputTiktok.current.value = (UserData.current.user.related.tiktok === "" || UserData.current.user.related.tiktok !== null) ? UserData.current.user.related.tiktok : "";;
-    InputX.current.value = (UserData.current.user.related.x === "" || UserData.current.user.related.x !== null) ? UserData.current.user.related.x : "";
-    InputYoutube.current.value = (UserData.current.user.related.youtube === "" || UserData.current.user.related.youtube !== null) ? UserData.current.user.related.youtube : "";
-  });
-
   const { UserData, SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
@@ -30,15 +22,23 @@ function EditProfilePage({ onReturn }) {
   const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
   const [popUpResponse, setPopUpResponse] = useState("");
 
-  const InputFacebook = useRef("");
-  const InputInstagram = useRef("");
-  const InputTiktok = useRef("");
-  const InputX = useRef("");
-  const InputYoutube = useRef("");
+  const [inputEditUserFacebook, setInputEditUserFacebook] = useState("");
+  const [inputEditUserInstagram, setInputEditUserInstagram] = useState("");
+  const [inputEditUserTiktok, setInputEditUserTiktok] = useState("");
+  const [inputEditUserX, setInputEditUserX] = useState("");
+  const [inputEditUserYoutube, setInputEditUserYoutube] = useState("");
 
   let rewardErrorPopUpTitle = useRef("");
   let rewardErrorPopUpContent = useRef("");
   let rewardPopUpContent = <></>;
+
+  useEffect(() => {
+    if(UserData.current.user.related.facebook !== null && UserData.current.user.related.facebook !== ""){ setInputEditUserFacebook(UserData.current.user.related.facebook);}
+    if(UserData.current.user.related.instagram !== null && UserData.current.user.related.instagram !== ""){ setInputEditUserInstagram(UserData.current.user.related.instagram);}
+    if(UserData.current.user.related.tiktok !== null && UserData.current.user.related.tiktok !== ""){ setInputEditUserTiktok(UserData.current.user.related.tiktok);}
+    if(UserData.current.user.related.x !== null && UserData.current.user.related.x !== ""){ setInputEditUserX(UserData.current.user.related.x);}
+    if(UserData.current.user.related.youtube !== null && UserData.current.user.related.youtube !== ""){ setInputEditUserYoutube(UserData.current.user.related.youtube);}
+  }, [UserData]);
 
   const handleReturn = async () => {
     onReturn();
@@ -56,28 +56,28 @@ function EditProfilePage({ onReturn }) {
 
   const handleSave = async () => {
     if (inputValidation()) {
-      const facebookVal = InputFacebook.current.value !== "" ? InputFacebook.current.value : null;
-      const instagramVal = InputInstagram.current.value !== "" ? InputInstagram.current.value : null;
-      const tiktokVal = InputTiktok.current.value !== "" ? InputTiktok.current.value : null;
-      const xVal = InputX.current.value !== "" ? InputX.current.value : null;
-      const youTubeVal = InputYoutube.current.value !== "" ? InputYoutube.current.value : null;
 
-      /*console.log(facebookVal);
-      console.log(instagramVal);
-      console.log(tiktokVal);
-      console.log(xVal);
-      console.log(youTubeVal);
-      console.log(`${UserData.current.token_type} ${UserData.current.access_token}`);*/
+      const inputEditUser_F = inputEditUserFacebook === "" ? null : inputEditUserFacebook;
+      const inputEditUser_I = inputEditUserInstagram === "" ? null : inputEditUserInstagram;
+      const inputEditUser_T = inputEditUserTiktok === "" ? null : inputEditUserTiktok;
+      const inputEditUser_X = inputEditUserX === "" ? null : inputEditUserX;
+      const inputEditUser_Y = inputEditUserYoutube === "" ? null : inputEditUserYoutube;
+
+      /*console.log(inputEditUser_F);
+      console.log(inputEditUser_I);
+      console.log(inputEditUser_T);
+      console.log(inputEditUser_X);
+      console.log(inputEditUser_Y);*/
 
       changePopUpLoading(true);
 
       const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
          UserData.current.user.name,
-         facebookVal,
-         instagramVal,
-         tiktokVal,
-         xVal,
-         youTubeVal
+         inputEditUser_F,
+         inputEditUser_I,
+         inputEditUser_T,
+         inputEditUser_X,
+         inputEditUser_Y
       );
       const data = await response.json();
       if(response.ok){
@@ -108,11 +108,11 @@ function EditProfilePage({ onReturn }) {
   };
 
   const inputValidation = () => {
-    const responseF = validateFacebook(InputFacebook.current.value);
-    const responseI = validateUser(InputInstagram.current.value);
-    const responseT = validateUser(InputTiktok.current.value);
-    const responseX = validateUser(InputX.current.value);
-    const responseY = validateUser(InputYoutube.current.value);
+    const responseF = validateFacebook(inputEditUserFacebook);
+    const responseI = validateUser(inputEditUserInstagram);
+    const responseT = validateUser(inputEditUserTiktok);
+    const responseX = validateUser(inputEditUserX);
+    const responseY = validateUser(inputEditUserYoutube);
 
     SetErrorInputFacebook(responseF);
     SetErrorInputInstagram(responseI);
@@ -196,11 +196,12 @@ function EditProfilePage({ onReturn }) {
                               <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
-                ref={InputTiktok}
+                value={inputEditUserTiktok}
+                onChange={e => setInputEditUserTiktok(e.target.value)}
               ></input>
               <div
                 onClick={() => {
-                  InputTiktok.current.value = "";
+                  setInputEditUserTiktok("");
                 }}
               >
                 <img
@@ -211,12 +212,9 @@ function EditProfilePage({ onReturn }) {
                 ></img>
               </div>
               </div>
-
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
-
-              
             </div>
             {errorInputTiktok === false ? (
               <span  style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
@@ -235,11 +233,12 @@ function EditProfilePage({ onReturn }) {
                               <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
-                ref={InputInstagram}
+                value={inputEditUserInstagram}
+                onChange={e => setInputEditUserInstagram(e.target.value)}
               ></input>
               <div
                 onClick={() => {
-                  InputInstagram.current.value = "";
+                  setInputEditUserInstagram("");
                 }}
               >
                 <img
@@ -250,12 +249,10 @@ function EditProfilePage({ onReturn }) {
                 ></img>
               </div>
               </div>
-
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
               ></InfoTooltip>
             </div>
-
             {errorInputInstagram === false ? (
               <span style={{color: "#0063FF"}} className="errorText">Porfavor verifique su usuario</span>
             ) : (
@@ -273,11 +270,12 @@ function EditProfilePage({ onReturn }) {
                               <input
                 placeholder={"https://www.facebook.com/samslovers"}
                 className="GeneralInput"
-                ref={InputFacebook}
+                value={inputEditUserFacebook}
+                onChange={e => setInputEditUserFacebook(e.target.value)}
               ></input>
               <div
                 onClick={() => {
-                  InputFacebook.current.value = "";
+                  setInputEditUserFacebook("");
                 }}
               >
                 <img
@@ -306,11 +304,12 @@ function EditProfilePage({ onReturn }) {
                             <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
-                ref={InputYoutube}
+                value={inputEditUserYoutube}
+                onChange={e => setInputEditUserYoutube(e.target.value)}
               ></input>
               <div
                 onClick={() => {
-                  InputYoutube.current.value = "";
+                  setInputEditUserYoutube("");
                 }}
               >
                 <img
@@ -320,7 +319,6 @@ function EditProfilePage({ onReturn }) {
                   src={cross}
                 ></img>
               </div>
-
               </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
@@ -338,11 +336,12 @@ function EditProfilePage({ onReturn }) {
               <div style={{minWidth: "50%"}} className="passwordInput">              <input
                 placeholder={"@usuario"}
                 className="GeneralInput"
-                ref={InputX}
+                value={inputEditUserX}
+                onChange={e => setInputEditUserX(e.target.value)}
               ></input>
               <div
                 onClick={() => {
-                  InputX.current.value = "";
+                  setInputEditUserX("");
                 }}
               >
                 <img
