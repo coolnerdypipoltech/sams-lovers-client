@@ -75,9 +75,16 @@ function CreatePage({
         SetErrorInputPassword(
           "Por favor revisar que la información esté completa, todos los campos son obligatorios"
         );
-      } else {
+      } else if(inputCreateUserPassword.length < 8){
+        flag = false;
         SetErrorInputPassword(
-          `La contraseña debe incluir al menos un caracter especial “+.-!"#$%&/(==?¡’¿” y una mayúscula`
+          `La contraseña debe de incluir al menos 8 caracteres, entre estos al menos un número, un caracter especial “@$!%*?&#¿¡+-.” y una mayúscula.`
+        );
+      }
+      else {
+        flag = false;
+        SetErrorInputPassword(
+          `La contraseña debe de incluir al menos 8 caracteres, entre estos al menos un número, un caracter especial “@$!%*?&#¿¡+-.” y una mayúscula.`
         );
       }
     }
@@ -114,7 +121,8 @@ function CreatePage({
   };
 
   const ValidatePassword = (_mailToTest) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#¿¡+-.])[A-Za-z\d@$!%*?&#¿¡+-.]{8,}$/;
+    console.log(passwordRegex.test(_mailToTest));
     return passwordRegex.test(_mailToTest);
   };
 
