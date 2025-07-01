@@ -16,10 +16,10 @@ function DeleteUserPage({
       <div className="subPageContainer"><div
         className="CodePageContainer"
       >
-        <div className="headerSpacer"></div>
+
         <div className="headerSpacer"></div>
         <p
-          
+          style={{paddingTop: "50px"}}
           className="backButtonConfig"
           onClick={handleReturn}
         >

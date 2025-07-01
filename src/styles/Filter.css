@@ -1,0 +1,62 @@
+.filterMenuContainer{
+
+}
+
+.filterMenuTitle{
+    text-align: start;
+    font-size: 12px;
+    color: black;
+    font-family:"canada-type-gibson";
+}
+
+.filterDisplay{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.filterMenuSelectedItem{
+    text-align: start;
+    font-size: 14px;
+    color: black;
+   font-family: "Poppins", sans-serif;
+}
+
+
+.filterOverlayMenu{
+    position: absolute;
+    background-color: #F2F4F7;
+    margin-top: -80px;
+    margin-left: -20px;
+    width: 100%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    z-index: 2;
+}
+
+.filterOverlayText{
+    text-align: start;
+    font-size: 14px;
+    color: black;
+   font-family: "Poppins", sans-serif;
+   margin: 5px;
+}
+
+.filterOverlayIcon{
+    width: 15px;
+    color: black;
+    color: #000000;
+    padding-left: 5px;
+}
+
+.filterOverlayContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 3px;
+    gap: 5px;
+}

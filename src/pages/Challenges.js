@@ -68,7 +68,6 @@ function Challenges() {
             submissionURL
     );
     const data = await response.json();
-    console.log(data.transaction);
     if (response.ok) {
       setShowSuccessPopUp(true)
       setNewChallengeTransaction(data.transaction);

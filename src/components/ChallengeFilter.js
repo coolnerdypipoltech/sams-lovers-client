@@ -1,32 +1,16 @@
 import { Picker } from "@react-native-picker/picker";
-
+import FilterMenu from "./FilterMenu"
 function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handleChallengeStatusFilter, handleTransactionStatusFilter}) {
+    const options1 = ["Todos los retos", "Nuevos retos", "Retos por vencer"]
+    const options2 = ["Todos los retos", "Completados", "No Completados"]
+    const optionKey1 = ["TODO", "NUEVO", "POR_TERMINAR"]
+    const optionKey2 = ["TODO", "COMPLETADO", "NO_COMPLETADO"]
     return (
     <>
         <div className="challenges-filter">
-            <p className="challenges-filter-title">Vigencia</p>
-            <Picker className="challenges-filter-picker"
-                selectedValue={challengeStatusFilter}
-                onValueChange={(itemValue, itemIndex) => {
-                    handleChallengeStatusFilter(itemValue);
-                }}
-            >
-                <Picker.Item label="Todos los retos" value="TODO" />
-                <Picker.Item label="Nuevos retos" value="NUEVO" />
-                <Picker.Item label="Retos por vencer" value="POR_TERMINAR" />
-            </Picker>
-            <br/>
-            <p className="challenges-filter-title">Estado</p>
-            <Picker className="challenges-filter-picker"
-                selectedValue={transactionStatusFilter}
-                onValueChange={(itemValue, itemIndex) => {
-                    handleTransactionStatusFilter(itemValue);
-                }}
-            >
-                <Picker.Item label="Todos los retos" value="TODO" />
-                <Picker.Item label="Completados" value="COMPLETADO" />
-                <Picker.Item label="No completados" value="NO_COMPLETADO" />
-            </Picker>
+            <FilterMenu onValueChange={(e) => handleChallengeStatusFilter(e)} title={"Vigencia"} options={options1} selectedValue={challengeStatusFilter} optionKey={optionKey1}></FilterMenu>
+             <div style={{zIndex: 0, opacity: "0.3", width: "100%"}} className="Divider"></div>
+            <FilterMenu onValueChange={(e) => handleTransactionStatusFilter(e)} title={"Estado"} options={options2} selectedValue={transactionStatusFilter} optionKey={optionKey2}></FilterMenu>
         </div>
     </>
   );
