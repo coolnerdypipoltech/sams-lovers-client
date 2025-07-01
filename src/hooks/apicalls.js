@@ -50,8 +50,8 @@ export async function LogIn(_email, _password) {
 
 export async function LogInWithToken(_token) {
     try{
-        const response = await fetch(ENDPOINT + "/v1/auth/login/token", {
-        method: "POST",
+        const response = await fetch(ENDPOINT + "/v1/auth/tokens", {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Authorization": _token,
@@ -268,7 +268,7 @@ export async function GetPurchasedRewardsWithURL (_token, _next_url) {
 
 export async function GetTopUsers (_token, _limit, _offset) {
     try {
-        const response = await fetch(ENDPOINT + `/v1/topusers/${_limit}/${_offset}`, {
+        const response = await fetch(ENDPOINT + `/v1/users/top/${_limit}/${_offset}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -322,7 +322,6 @@ export async function GetLandingPageData (_token) {
                 "Content-Type": "application/json",
             }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -385,6 +384,20 @@ export async function DeleteUser (_token, _password) {
             body: JSON.stringify({
                 password: _password
             }),
+        });
+        return response;
+    } catch (error) {
+        console.error('API Call error:', error);
+    }
+}
+
+export async function GetFooterLinks () {
+    try {
+        const response = await fetch(ENDPOINT + "/v1/links", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
         });
         return response;
     } catch (error) {

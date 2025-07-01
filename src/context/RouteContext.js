@@ -53,16 +53,25 @@ const ElementProviderRoute= ({ children }) => {
     if(savedItems !== undefined){
       if(savedItems.length > 0){
         loginToken.current = savedItems[0].loginToken;
-          const response = await LogInWithToken(loginToken.current);
-          if(response){
-            changeRoute("Main")
-          }
+        const response = await LogInWithToken(`Bearer ${loginToken.current}`);
+        return response;
       }
     }
+    return null;
+  }
+
+  const hasSavedData = async () => {
+    const savedItems = await getItems()
+    if(savedItems !== undefined){
+      if(savedItems.length > 0){
+        return true;
+      }
+    }
+    return false;
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems}}>
+    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems, persistLogin, hasSavedData}}>
       {children}
     </ElementContextRoute.Provider>
   );

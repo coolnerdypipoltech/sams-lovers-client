@@ -1,5 +1,5 @@
 import React, { createContext, useRef, useState } from "react";
-import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetLandingPageData, GetTopUsers, GetTopUsersByURL } from "../hooks/apicalls";
+import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetLandingPageData, GetTopUsers, GetTopUsersByURL, GetFooterLinks } from "../hooks/apicalls";
 const ElementContextData = createContext();
 
 const ElementProviderData = ({ children }) => {
@@ -25,6 +25,7 @@ const ElementProviderData = ({ children }) => {
   const nextTopUsers = useRef(null);
   const totalArticles = useRef(0);
   const tempArticlesData = useRef(null);
+  const footerLinksData = useRef(null);
 
   const initRequestRewards = async (
     _limit,
@@ -162,9 +163,10 @@ const ElementProviderData = ({ children }) => {
   const initRequestTopUsers = async(_limit, _offset) => {
     const response = await GetTopUsers(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data.topUsers);
+    console.log(data.users);
+    console.log(data);
     if (response.ok) {
-      setTopUsersData(data.topUsers);
+      setTopUsersData(data.users);
       nextTopUsers.current = data.next;
     } else {
       if (data.message) {
@@ -424,9 +426,9 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.topUsers);
+    console.log(data.users);
     if (response.ok) {
-      setTopUsersData((prev) => [...prev, ...data.topUsers]);
+      setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
       console.log("POST get info " + nextTopUsers.current);
     } else {
@@ -450,9 +452,9 @@ const ElementProviderData = ({ children }) => {
     );
     console.log(nextTopUsers.current);
     const data = await response.json();
-    console.log(data.topUsers);
+    console.log(data.users);
     if (response.ok) {
-      setTopUsersData((prev) => [...prev, ...data.topUsers]);
+      setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
       console.log("POST get info " + nextTopUsers.current);
     } else {
@@ -464,6 +466,21 @@ const ElementProviderData = ({ children }) => {
       return;
     }
   }
+
+  const initRequestFooterLinks = async () => {
+    const response = await GetFooterLinks();
+    const data = await response.json();
+    if (response.ok) {
+      footerLinksData.current = data;
+    } else {
+      if (data.message) {
+        if (response.status === 403) {
+          //todo send user to log in page
+        }
+      }
+      return;
+    }
+  };
 
   const SetUserData = (_Data) => {
     UserData.current = _Data;
@@ -528,6 +545,7 @@ const ElementProviderData = ({ children }) => {
         landingPageData,
         mainPageData,
         totalArticles,
+        footerLinksData,
         SetUserData,
         setRewardsData,
         setUserRewardsTransactionData,
@@ -558,9 +576,10 @@ const ElementProviderData = ({ children }) => {
         setNewChallengeTransaction,
         setNewReward,
         setNewUserDiamonds,
-        setTopUsers: setTopUsersData,
+        setTopUsersData,
         loadNextArticle,
-        hasNextArticle
+        hasNextArticle,
+        initRequestFooterLinks
       }}
     >
       {children}

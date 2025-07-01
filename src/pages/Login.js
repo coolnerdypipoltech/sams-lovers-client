@@ -15,7 +15,7 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
+  const { setLoginToken, changeRoute, registerFlow, persistLogin, hasSavedData, deleteSavedItems } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
   const [subPage, setSubPage] = useState("");
@@ -47,6 +47,7 @@ function Login() {
   const LoginPassword = useRef("");
   let errorPopUpTitle = useRef("");
   let errorPopUpContent = useRef("");
+  let loadingPersistanceLogIn = useRef(false);
 
   let subPageContent = <></>;
   let popUpContent = <></>;
@@ -99,6 +100,12 @@ function Login() {
   const openGeneralErrorPopUp = () => {
     errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
     errorPopUpContent.current = "Vuelve a intentar más tarde.";
+    setPopUpResponse("Error");
+  }
+
+  const openTokenExpiredErrorPopUp = () => {
+    errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error.";
+    errorPopUpContent.current = "Tú sesión anterior ha expirado. Vuelve a inicar sesión con correo y contraseña.";
     setPopUpResponse("Error");
   }
 
@@ -202,9 +209,8 @@ function Login() {
             setErrorEmail("usuario o contraseña incorrectos");
           }
         }
-
       }
-      changePopUpLoading(false)
+      changePopUpLoading(false);
     }
   };
 
@@ -258,6 +264,57 @@ function Login() {
       return false;
     }
   };
+
+  const TryPersistLogIn = async () => {
+    if(loadingPersistanceLogIn.current) return;
+
+    loadingPersistanceLogIn.current = true;
+
+    const result = await hasSavedData();
+
+    if(!result) {
+      loadingPersistanceLogIn.current = false;
+      return;
+    }
+
+    changePopUpLoading(true);
+
+    const response = await persistLogin();
+
+    try{
+      const data = await response.json();
+      if (response.ok) {
+        SetUserData(data);
+        setLoginToken(data.access_token);
+        loadingPersistanceLogIn.current = false;
+        changeRoute("Main");
+      } else {
+        if(data.message){
+          await deleteSavedItems();
+          setSubPage(null);
+          switch(data.message) {
+            case "api.error.unauthorized":
+              openTokenExpiredErrorPopUp();
+              break;
+            default:
+              openGeneralErrorPopUp();
+              break;
+          }
+        }
+      }
+    }catch{
+      await deleteSavedItems();
+      setSubPage(null);
+      openGeneralErrorPopUp();
+    }
+
+    loadingPersistanceLogIn.current = false;
+    changePopUpLoading(false);
+  }
+
+  if (subPage !== "Create" || !registerFlow.current) {
+    TryPersistLogIn();
+  }
 
   if (subPage === "Password") {
     subPageContent = <PasswordPage onReturn={onClickReturn}></PasswordPage>;

@@ -7,15 +7,16 @@ import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
 import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
+import SamsLoverRankingList from "../components/SamsLoversRankingList";
 
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
 
-    useEffect(() => {
-      initMainPage();
+  useEffect(() => {
+    initMainPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  }, []);
 
   const handleSeeChallengesAction = () => {
     changeRoute("Challenges");
@@ -35,7 +36,7 @@ function Main() {
           <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
         </div>
         <p className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
-        {(mainPageData !== null && <img src={mainPageData.home_banner.image_url} className="bannerImage" alt="banner"></img>)}
+        {(mainPageData !== null && <img src={mainPageData.home_banner.absolute_url} className="bannerImage" alt="banner"></img>)}
         <div style={{width: "70%", maxWidth: "300px", paddingTop: "30px"}}>
         <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
