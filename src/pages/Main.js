@@ -8,7 +8,7 @@ import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
 import SamsLoverRankingList from "../components/SamsLoversRankingList";
-
+import chevronUp from "../assets/Icon_Subir.svg"
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
@@ -21,6 +21,13 @@ function Main() {
   const handleSeeChallengesAction = () => {
     changeRoute("Challenges");
     }
+
+  const handleGoUp = () => {
+    window.scrollTo({
+    top: 0,
+    behavior: "smooth" // puedes usar "auto" si no quieres animación
+  });
+  }
 
   return (
     <>
@@ -43,8 +50,12 @@ function Main() {
         <p className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
         <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
+        
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
+      </div>
+      <div onClick={handleGoUp} className="overlayMenuUp">
+        <img src={chevronUp} alt="up"></img>
       </div>
     </>
   );

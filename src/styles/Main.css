@@ -54,3 +54,18 @@
     width: 100%;
     opacity: 0.1;
 }
+
+.overlayMenuUp{
+    position: fixed;
+    background-color: white;
+    bottom: 50px;
+    right: 0px;
+    height: 46px;
+    width: 54px;
+    border-bottom-left-radius: 11px;
+    border-top-left-radius: 11px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
