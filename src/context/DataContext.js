@@ -69,9 +69,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setUserRewardsTransactionData(data.transactions);
       nextUserRewardTransaction.current = data.next;
-      return {ok: true, data: null};
+      return {ok: true, status: response.status, data: null};
     } else {
-      return {ok: false, data: data};
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -115,13 +115,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData(data.challenges);
       nextChallenges.current = data.next;
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -248,14 +244,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData((prev) => [...prev, ...data.challenges]);
       nextChallenges.current = data.next;
-      console.log("POST get info " + nextChallenges.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -274,14 +265,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setChallengesData((prev) => [...prev, ...data.challenges]);
       nextChallenges.current = data.next;
-      console.log("POST get info " + nextChallenges.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -300,9 +286,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
-      return {ok: true, data: null};
+      return {ok: true, status: response.status, data: null};
     } else {
-      return {ok: false, data: data};
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -321,9 +307,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
-      return {ok: true, data: null};
+      return {ok: true, status: response.status, data: null};
     } else {
-      return {ok: false, data: data};
+      return {ok: false, status: response.status, data: data};
     }
   };
 

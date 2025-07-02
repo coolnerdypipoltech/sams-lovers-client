@@ -60,15 +60,15 @@ function MyRewardsList({ changeToSubPage }) {
       const result = await requestMoreUserRewardsTransactionsByURL();
       setIsLoading(false);
       if(!result.ok){
-      switch (result.data.message) {
-        case "api.error.unauthorized":
-          await handleLogOut();
-          break;
-        default:
-          await handleLogOut();
-          break;
+        switch (result.data.message) {
+          case "api.error.unauthorized":
+            await handleLogOut();
+            break;
+          default:
+            openGeneralErrorPopUp();
+            break;
+        }
       }
-    }
     }, 1000);
   };
 
