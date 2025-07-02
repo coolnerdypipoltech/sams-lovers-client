@@ -124,7 +124,7 @@ function MyRewardsList({ changeToSubPage }) {
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" }}
+          style={{ overflowY: "auto", height: "84vh", width: "100%" }}
         >
           {userRewardsTransactionData.map((transaction, index) => (
             <div key={index}>

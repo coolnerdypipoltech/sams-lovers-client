@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef } from "react";
+import { useEffect, useContext } from "react";
 import "../styles/Main.css";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
@@ -7,9 +7,9 @@ import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
 import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
-import SamsLoverRankingList from "../components/SamsLoversRankingList";
 import SamsLoversRankingList from "../components/SamsLoversRankingList";
 
+import chevronUp from "../assets/Icon_Subir.svg"
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
   const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
@@ -22,6 +22,13 @@ function Main() {
   const handleSeeChallengesAction = () => {
     changeRoute("Challenges");
     }
+
+  const handleGoUp = () => {
+    window.scrollTo({
+    top: 0,
+    behavior: "smooth" // puedes usar "auto" si no quieres animación
+  });
+  }
 
   return (
     <>
@@ -48,6 +55,9 @@ function Main() {
         <SamsLoversRankingList></SamsLoversRankingList>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
+      </div>
+      <div onClick={handleGoUp} className="overlayMenuUp">
+        <img src={chevronUp} alt="up"></img>
       </div>
     </>
   );

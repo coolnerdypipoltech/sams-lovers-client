@@ -1,6 +1,6 @@
 import "../styles/Profile.css";
 import MyRewards from "../subPages/MyRewards";
-import SelectedMiReward from "../subPages/SelectedMiReward";
+import SelectedMiReward from "../subPages/SelectedMyReward";
 import chevronRight from "../assets/chevronRightBlack.svg";
 import facebook from "../assets/iconsBlue/Icon_Facebook.svg";
 import instagram from "../assets/iconsBlue/Icon_Instagram.svg";

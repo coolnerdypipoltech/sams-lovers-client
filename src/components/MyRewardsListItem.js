@@ -3,13 +3,19 @@ import diamond from "../assets/diamond.svg";
 import { formatOneDate } from "../hooks/dateHandler";
 
 function MyRewardsListItem({reward, userTransaction}) {
+
+  let imageHandler = testImage
+  if(reward.image_url !== null && reward.image_url !== ""){
+    imageHandler = reward.image_url
+  }
+
   return (
     <>
       <div className="listItem">
           <div >
              <img
               className="imageContainer"
-              src={reward.image_url !== null || reward.image_url !== "" ? reward.image_url : testImage}
+              src={imageHandler}
               alt="Challenge illustrative reference"
             />
           </div>
@@ -19,7 +25,7 @@ function MyRewardsListItem({reward, userTransaction}) {
             <p className="listItemTitle">{reward.stock > 0 ? "En tienda" : "No disponible"}</p>
             </div>
             <div className="rowAlign">
-            <p className="listItemSubtitle">{`${formatOneDate(userTransaction.created_at)}`}</p>
+            <p style={{color: "#0B204F"}} className="listItemSubtitle">{`${formatOneDate(userTransaction.created_at)}`}</p>
             </div>
 
           </div>

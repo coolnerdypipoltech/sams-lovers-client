@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import MyRewardsList from "../components/MyRewardsList";
-import SelectedMiReward from "../subPages/SelectedMiReward";
+import SelectedMyReward from "./SelectedMyReward";
 import { ElementContextData } from "../context/DataContext";
 
 function MyRewards({returnPage, selectPage}) {
@@ -25,7 +25,7 @@ function MyRewards({returnPage, selectPage}) {
   }
 
   if (subPage === "SelectRewardPage") {
-    userRewardTransactionPage = <SelectedMiReward returnPage={handleLocalReturn}></SelectedMiReward>;
+    userRewardTransactionPage = <SelectedMyReward returnPage={handleLocalReturn}></SelectedMyReward>;
   }
 
   return (
@@ -44,9 +44,9 @@ function MyRewards({returnPage, selectPage}) {
         >
           Volver
         </p>
-        <p className="challengesPage-Title">Mis Recompensas</p>
-        <p className="challenge-text">Historial de recompensas canjeadas</p>
-        <MyRewardsList changeToSubPage={handleUserRewardTransactionSubPage}></MyRewardsList>
+        <p style={{paddingLeft: "0px"}} className="challengesPage-Title">Mis Recompensas</p>
+        <p style={{paddingLeft: "0px"}} className="challenge-text">Historial de recompensas canjeadas</p>
+        <MyRewardsList style={{paddingLeft: "0px"}} changeToSubPage={handleUserRewardTransactionSubPage}></MyRewardsList>
       </div>
       {userRewardTransactionPage}
     </>
