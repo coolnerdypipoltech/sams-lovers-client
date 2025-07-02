@@ -1,28 +1,74 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import MyRewardsListItem from "./MyRewardsListItem";
 import { ElementContextData } from "../context/DataContext";
+import { ElementContextRoute } from "../context/RouteContext";
 
 function MyRewardsList({ changeToSubPage }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorPopUpResponse, setErrorPopUpResponse] = useState("");
 
   const listContainerRef = useRef(null);
+  let errorPopUpTitle = useRef("");
+  let errorPopUpContent = useRef("");
+  let errorPopUp = <></>;
 
   const limit = 10;
 
-  const { initRequestUserRewardsTransactions, currentUserRewardTransaction, userRewardsTransactionData, requestMoreUserRewardsTransactionsByURL, nextUserRewardTransaction } = useContext(ElementContextData);
+  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { SetUserData, initRequestUserRewardsTransactions, currentUserRewardTransaction, userRewardsTransactionData, requestMoreUserRewardsTransactionsByURL, nextUserRewardTransaction } = useContext(ElementContextData);
 
   useEffect(() => {
-    initRequestUserRewardsTransactions(limit, 0);
+    Initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const openGeneralErrorPopUp = () => {
+    errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    errorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setErrorPopUpResponse("Error");
+  }
+
+  const handleErrorPopUpClose = () => {
+    setErrorPopUpResponse(null);
+  }
+
+  const Initialize = async () => {
+    const result = await initRequestUserRewardsTransactions(limit, 0);
+    if(!result.ok){
+      switch (result.data.message) {
+        case "api.error.unauthorized":
+          await handleLogOut();
+          break;
+        default:
+          openGeneralErrorPopUp();
+          break;
+      }
+    }
+  }
+
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
 
   const loadMoreUserRewardsTransactions = () => {
     if(isLoading) return;
     if(nextUserRewardTransaction.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await requestMoreUserRewardsTransactionsByURL();
+      const result = await requestMoreUserRewardsTransactionsByURL();
       setIsLoading(false);
+      if(!result.ok){
+      switch (result.data.message) {
+        case "api.error.unauthorized":
+          await handleLogOut();
+          break;
+        default:
+          await handleLogOut();
+          break;
+      }
+    }
     }, 1000);
   };
 
@@ -43,8 +89,36 @@ function MyRewardsList({ changeToSubPage }) {
     changeToSubPage();
   };
 
+  if(errorPopUpResponse === "Error"){
+    errorPopUp = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {errorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {errorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleErrorPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
+    <>{errorPopUp}</>
       {userRewardsTransactionData != null ? (
         <div
           className="listContainer"

@@ -1,4 +1,4 @@
-import SamsLoversRankingItem from "./SamsLoversRankingList";
+import SamsLoversRankingItem from "./SamsLoverRankingItem";
 import { useState, useEffect, useRef, useContext } from "react";
 import { ElementContextData } from "../context/DataContext";
 
@@ -49,7 +49,7 @@ function SamsLoversRankingList() {
           {topUsersData.map((topUser, index) => (
             <div key={index}>
               {" "}
-              <SamsLoversRankingItem topUser={topUser} />
+              <SamsLoversRankingItem topUser={topUser} rank={index + 1}/>
             </div>
           ))}
 

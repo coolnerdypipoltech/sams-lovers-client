@@ -66,17 +66,12 @@ const ElementProviderData = ({ children }) => {
   ) => {
     const response = await GetPurchasedRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data.transactions);
     if (response.ok) {
       setUserRewardsTransactionData(data.transactions);
       nextUserRewardTransaction.current = data.next;
+      return {ok: true, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, data: data};
     }
   };
 
@@ -161,10 +156,8 @@ const ElementProviderData = ({ children }) => {
   };
 
   const initRequestTopUsers = async(_limit, _offset) => {
-    const response = await GetTopUsers(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const response = await GetTopUsers(_limit, _offset);
     const data = await response.json();
-    console.log(data.users);
-    console.log(data);
     if (response.ok) {
       setTopUsersData(data.users);
       nextTopUsers.current = data.next;
@@ -307,14 +300,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
-      console.log("POST get info " + nextUserRewardTransaction.current);
+      return {ok: true, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, data: data};
     }
   };
 
@@ -333,14 +321,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
-      console.log("POST get info " + nextUserRewardTransaction.current);
+      return {ok: true, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, data: data};
     }
   };
 

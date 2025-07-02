@@ -8,20 +8,27 @@ import { ElementContextData } from "../context/DataContext";
 import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
 import ChallengePopUp	 from "../components/ChallengePopUp";
+import { ElementContextRoute } from "../context/RouteContext";
 
 function Challenges() {
-  const { UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
+
+  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { SetUserData, UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
-  const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
+  const [challengePopUp, setChallengePopUp] = useState(false);
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
   const [prevChallengeStatusFilter, setPrevChallengeStatusFilter] = useState("TODO");
   const [transactionStatusFilter, setTransactionStatusFilter] = useState("TODO");
   const [prevTransactionStatusFilter, setPrevTransactionStatusFilter] = useState("TODO");
   const [challengeFilter, setChallengeFilter] = useState(false);
   const [submissionURL, setSubmissionURL] = useState("");
+  const [errorPopUpResponse, setErrorPopUpResponse] = useState("");
 
   let filterHasBeenModified = useRef(null);
+  let errorPopUpTitle = useRef("");
+  let errorPopUpContent = useRef("");
+  let errorPopUp = <></>;
 
   const refresh_limit = 10;
   const refresh_offset = 0;
@@ -42,6 +49,12 @@ function Challenges() {
     }
   }, [transactionStatusFilter, prevTransactionStatusFilter, filterHasBeenModified]);
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handleSelectChallenge = () => {
     setSubPage("ChallengePage");
   };
@@ -58,36 +71,55 @@ function Challenges() {
     setSubPage("ChallengeParticipationPage");
   };
 
+  const openChallengeExpiredErrorPopUp = () => {
+    errorPopUpTitle.current = "Lo sentimos, el reto ha expirado.";
+    errorPopUpContent.current = "Aún tenemos muchísimos retos disponibles para ti, pendiente en nuestras redes sociales.";
+    setErrorPopUpResponse("Error");
+  }
+
+  const openGeneralErrorPopUp = () => {
+    errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    errorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
+    setErrorPopUpResponse("Error");
+  }
+
+  const handleErrorPopUpClose = () => {
+    setSubmissionURL("");
+    setErrorPopUpResponse(null);
+  }
+
   const handleParticipation = async () => {
 
     if(submissionURL === "") return;
 
     const response = await CreateSubmission(
-            `${UserData.current.token_type} ${UserData.current.access_token}`,
-            currentChallenge.id,
-            submissionURL
+      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      currentChallenge.id,
+      submissionURL
     );
+
     const data = await response.json();
+
     if (response.ok) {
-      setShowSuccessPopUp(true)
+      setChallengePopUp(true)
       setNewChallengeTransaction(data.transaction);
       setSubPage("ChallengePage");
     }else{
       if (data.message) {
-        if(response.status === 400) {
           switch(data.message) {
             case "api.error.challenge_expired":
-              //todo send user a message of expiration
+              openChallengeExpiredErrorPopUp();
+              break;
+            case "api.error.unauthorized":
+              handleLogOut();
               break;
             default:
+              openGeneralErrorPopUp();
               break;
           }
+        }else{
+          openGeneralErrorPopUp();
         }
-
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
       return;
     }
   };
@@ -133,6 +165,33 @@ function Challenges() {
     );
   }
 
+  if(errorPopUpResponse === "Error"){
+    errorPopUp = (
+      <div className="PopUp">
+        <div style={{ height: "auto" }} className="PopUpDialog">
+          <div className="GeneralButtonContainer">
+            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+              {errorPopUpTitle.current}
+            </p>
+
+            <p
+              style={{ fontWeight: "400", margin: "0px", marginBottom: "20px" }}
+              className="subTitlePopUpReward"
+            >
+              {errorPopUpContent.current}
+            </p>
+
+            <button className="GeneralButton4" onClick={handleErrorPopUpClose}>
+              Aceptar
+            </button>
+
+            <div style={{ height: "30px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   function handleSetChallengeFilter(event, value) {
     if (event.target.className === "challenges-filter-container") {
       setChallengeFilter(value);
@@ -144,8 +203,9 @@ function Challenges() {
 
   return (
     <>
-      {showSuccessPopUp && (
-        <ChallengePopUp closePopUp={() => setShowSuccessPopUp(false)}></ChallengePopUp>
+    <>{errorPopUp}</>
+      {challengePopUp && (
+        <ChallengePopUp closePopUp={() => setChallengePopUp(false)}></ChallengePopUp>
       )}
       <>{subPageContent}</>
       <div className="challenges-container">

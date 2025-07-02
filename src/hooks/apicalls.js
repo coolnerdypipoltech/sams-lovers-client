@@ -259,23 +259,20 @@ export async function GetPurchasedRewardsWithURL (_token, _next_url) {
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
     }
 }
 
-export async function GetTopUsers (_token, _limit, _offset) {
+export async function GetTopUsers (_limit, _offset) {
     try {
         const response = await fetch(ENDPOINT + `/v1/users/top/${_limit}/${_offset}`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": _token,
+                "Content-Type": "application/json"
             }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -307,7 +304,6 @@ export async function GetMainPageData (_token) {
                 "Content-Type": "application/json",
             }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);

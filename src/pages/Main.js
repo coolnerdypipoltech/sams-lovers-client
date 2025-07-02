@@ -8,6 +8,7 @@ import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
 import SamsLoverRankingList from "../components/SamsLoversRankingList";
+import SamsLoversRankingList from "../components/SamsLoversRankingList";
 
 function Main() {
   const { changeRoute } = useContext(ElementContextRoute);
@@ -43,6 +44,8 @@ function Main() {
         <p className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
         <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
+        <div style={{height: "30px"}} className="headerSpacer"></div>
+        <SamsLoversRankingList></SamsLoversRankingList>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
       </div>
