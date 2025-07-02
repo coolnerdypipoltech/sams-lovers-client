@@ -32,6 +32,12 @@ function MyRewardsList({ changeToSubPage }) {
     setErrorPopUpResponse(null);
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const Initialize = async () => {
     const result = await initRequestUserRewardsTransactions(limit, 0);
     if(!result.ok){
@@ -44,12 +50,6 @@ function MyRewardsList({ changeToSubPage }) {
           break;
       }
     }
-  }
-
-  const handleLogOut = async () => {
-    SetUserData(null);
-    await deleteSavedItems();
-    changeRoute("Login");
   }
 
   const loadMoreUserRewardsTransactions = () => {

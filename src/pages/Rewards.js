@@ -11,8 +11,8 @@ import Confetti from "react-confetti";
 import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
-  const { changeRoute } = useContext(ElementContextRoute);
-  const { UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
+  const { deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { SetUserData, UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   const [popUpResponse, setPopUpResponse] = useState("");
@@ -66,6 +66,12 @@ function Rewards() {
     setPopUpResponse(null);
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handlePurchase = async () => {
     if(UserData.current.user.related.diamonds < currentReward.price){
       openNoDiamondsPopUp();
@@ -96,7 +102,7 @@ function Rewards() {
       if (data.message) {
         switch(data.message) {
           case "api.error.unauthorized":
-            changeRoute("Login");
+            await handleLogOut();
             break;
           case "api.error.max_purchases_reached":
             openMaxPurchasesReachedPopUp();
@@ -111,7 +117,6 @@ function Rewards() {
       }else{
         openGeneralErrorPopUp();
       }
-      return;
     }
   };
 

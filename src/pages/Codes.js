@@ -7,8 +7,8 @@ import diamond from "../assets/diamond.svg";
 import SamsConfetti from "../components/SamsConfetti";
 
 function Codes() {
-  const { changeRoute } = useContext(ElementContextRoute);
-  const { UserData, setNewUserDiamonds } = useContext(ElementContextData);
+  const { deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { SetUserData, UserData, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [popUpResponse, setPopUpResponse] = useState("");
   const [inputValue, setInputValue] = useState('');
@@ -58,6 +58,12 @@ function Codes() {
     setPopUpResponse(null);
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handleExchangeCode = async () => {
     if (inputValue === "") return;
 
@@ -72,8 +78,7 @@ function Codes() {
         if (data.message) {
           switch(data.message) {
             case "api.error.unauthorized":
-              changeRoute("Login");
-              // todo: delete cookie info
+              await handleLogOut();
               break;
             case "api.error.code_not_found":
               codeNotFoundPopUp();

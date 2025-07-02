@@ -42,6 +42,12 @@ function Config() {
     setPopUpDeleteUser("Warning");
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handleDeleteUser = async () => {
     if (inputValue === "") return;
     setPopUpDeleteUser("")
@@ -62,9 +68,7 @@ function Config() {
       if (data.message) {
         switch(data.message) {
           case "api.error.unauthorized":
-            SetUserData(null);
-            await deleteSavedItems();
-            changeRoute("Login");
+            await handleLogOut();
             break;
           case "api.error.invalid_password":
             NotSamePasswordPopUp();

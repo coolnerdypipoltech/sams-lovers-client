@@ -106,21 +106,20 @@ function Challenges() {
       setSubPage("ChallengePage");
     }else{
       if (data.message) {
-          switch(data.message) {
-            case "api.error.challenge_expired":
-              openChallengeExpiredErrorPopUp();
-              break;
-            case "api.error.unauthorized":
-              handleLogOut();
-              break;
-            default:
-              openGeneralErrorPopUp();
-              break;
-          }
-        }else{
-          openGeneralErrorPopUp();
+        switch(data.message) {
+          case "api.error.challenge_expired":
+            openChallengeExpiredErrorPopUp();
+            break;
+          case "api.error.unauthorized":
+            await handleLogOut();
+            break;
+          default:
+            openGeneralErrorPopUp();
+            break;
         }
-      return;
+      }else{
+        openGeneralErrorPopUp();
+      }
     }
   };
 

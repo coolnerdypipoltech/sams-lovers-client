@@ -5,6 +5,7 @@ import "../styles/Academy.css";
 import AcademyPage from "../subPages/AcademyPage";
 import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
+import { ElementContextPopUp } from "../context/PopUpContext";
 
 function Academy() {
 
@@ -12,12 +13,12 @@ function Academy() {
     if(currentArticle !== null) setCurrentArticleArticleIndex();
   });
 
-  const { currentArticle, setCurrentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
+  const { currentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   let [hasNextArticle, setHasNextArticle] = useState(true);
   let subPageContent = null;
-  //let currentArticleIndex = useRef(0);
 
   const handleSelectArticle =  () =>{
     setSubPage("AcademyPage")
@@ -35,7 +36,6 @@ function Academy() {
     let articleDataTemp = articleData;
     for (let i = 0; i < articleDataTemp.length; i++){
       if (articleDataTemp[i].id === currentArticle.id){
-        //currentArticleIndex.current = i;
         articlePosition.current = i;
         handleNextArticleValue();
         break;
@@ -44,8 +44,9 @@ function Academy() {
   }
 
   const handleNextArticle = async () => {
-    //todo add a loading page when request for more than limit
-    requestNextArticle();
+    changePopUpLoading(true);
+    await requestNextArticle();
+    changePopUpLoading(false);
   }
 
   const handleNextArticleValue = () => {

@@ -37,13 +37,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setRewardsData(data.rewards);
       nextRewards.current = data.next;
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -87,13 +83,9 @@ const ElementProviderData = ({ children }) => {
       tempArticlesData.current = data.articles;
       totalArticles.current = data.total;
       nextArticles.current = data.next;
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -126,13 +118,6 @@ const ElementProviderData = ({ children }) => {
     const data = await response.json();
     if (response.ok) {
       setMainPageData(data);
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   };
 
@@ -141,13 +126,6 @@ const ElementProviderData = ({ children }) => {
     const data = await response.json();
     if (response.ok) {
       setLandingPageData(data);
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   };
 
@@ -157,13 +135,6 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setTopUsersData(data.users);
       nextTopUsers.current = data.next;
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   };
 
@@ -182,14 +153,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setRewardsData((prev) => [...prev, ...data.rewards]);
       nextRewards.current = data.next;
-      console.log("POST get info " + nextRewards.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -209,14 +175,9 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setRewardsData((prev) => [...prev, ...data.rewards]);
       nextRewards.current = data.next;
-      console.log("POST get info " + nextRewards.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -330,14 +291,9 @@ const ElementProviderData = ({ children }) => {
       tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
       totalArticles.current = data.total;
       nextArticles.current = data.next;
-      console.log("POST get info " + nextArticles.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -358,14 +314,9 @@ const ElementProviderData = ({ children }) => {
       tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
       totalArticles.current = data.total;
       nextArticles.current = data.next;
-      console.log("POST get info " + nextArticles.current);
+      return {ok: true, status: response.status, data: null};
     } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
+      return {ok: false, status: response.status, data: data};
     }
   };
 
@@ -399,14 +350,6 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
-      console.log("POST get info " + nextTopUsers.current);
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   };
 
@@ -425,14 +368,6 @@ const ElementProviderData = ({ children }) => {
     if (response.ok) {
       setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
-      console.log("POST get info " + nextTopUsers.current);
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   }
 
@@ -441,13 +376,6 @@ const ElementProviderData = ({ children }) => {
     const data = await response.json();
     if (response.ok) {
       footerLinksData.current = data;
-    } else {
-      if (data.message) {
-        if (response.status === 403) {
-          //todo send user to log in page
-        }
-      }
-      return;
     }
   };
 
