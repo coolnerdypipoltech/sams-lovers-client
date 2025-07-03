@@ -53,7 +53,6 @@ function Main() {
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsLoversRankingList></SamsLoversRankingList>
-        <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsFooter></SamsFooter>
       </div>
       <div onClick={handleGoUp} className="overlayMenuUp">

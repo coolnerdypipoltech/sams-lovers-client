@@ -44,7 +44,7 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
 
   return (
     <>
-      <div className="subPageContainer">
+      <div className="subPageContainer" style={{overflowY: "hidden"}}>
         <div className="challenges-subpage-container">
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
