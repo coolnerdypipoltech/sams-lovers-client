@@ -30,7 +30,7 @@ function SelectedMyReward({returnPage}) {
           <div style={{paddingTop: "15px"}} className="ArticleItem">
             <p className="challenge-text">{currentUserRewardTransaction.current.transactionable.name}</p>
           </div>
-          <p className="arrticleText">{currentUserRewardTransaction.current.transactionable.transaction_text}</p>
+          <p className="challenge-text">{currentUserRewardTransaction.current.transactionable.transaction_text}</p>
         </div>
       </div>
     </>

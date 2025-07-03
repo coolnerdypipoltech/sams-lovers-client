@@ -124,7 +124,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh", paddingTop: "10px" }}
+          style={{ overflowY: "auto", height: "84vh", paddingTop: "10px", paddingBottom: "30px" }}
         >
           {challengesData.map((challenge, index) => (
             <div onClick={() => handleSelectChallenge(challenge)}

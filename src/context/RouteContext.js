@@ -20,6 +20,9 @@ const ElementProviderRoute= ({ children }) => {
       setRoute("Login")
     }else{
       setRoute(newValue);
+      setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 1000); 
     }
   };
 
