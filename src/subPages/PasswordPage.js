@@ -119,7 +119,7 @@ function PasswordPage({ onReturn }) {
     <div className="subPageContainer">
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div className="loginHeaderContainer">
+        <div style={{width: "80%"}} className="loginHeaderContainer">
           <p onClick={handleReturn} className="loginHeaderText">Volver</p>
           <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
         </div>

@@ -5,7 +5,6 @@ const ElementContextRoute = createContext();
 
 const ElementProviderRoute= ({ children }) => {
   const [route, setRoute] = useState("");
-  const loginToken = useRef("token");
   const registerFlow = useRef(false);
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
 
@@ -15,8 +14,9 @@ const ElementProviderRoute= ({ children }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInitialize])
 
-  const changeRoute = (newValue) => {
-    if(loginToken.current === null){
+  const changeRoute = async (newValue) => {
+    const response = await getCurrentToken()
+    if(response === null){
       setRoute("Login")
     }else{
       setRoute(newValue);
@@ -26,8 +26,17 @@ const ElementProviderRoute= ({ children }) => {
     }
   };
 
+  const getCurrentToken = async () => {
+    const savedItems = await getItems()
+    if(savedItems !== undefined){
+      if(savedItems.length === 1){
+        return savedItems[0].loginToken;
+      }
+    }
+    return null
+  }
+
   const setLoginToken = async (newValue) => {
-    loginToken.current = newValue;
     const savedItems = await getItems()
     if(savedItems !== undefined){
       if(savedItems.length > 0){
@@ -36,8 +45,8 @@ const ElementProviderRoute= ({ children }) => {
         }
       }
     }
-    loginToken.current = newValue;
-    saveItem({loginToken: newValue})
+    await saveItem({loginToken: newValue})
+    return 
   }
 
   const deleteSavedItems = async () => {
@@ -55,8 +64,7 @@ const ElementProviderRoute= ({ children }) => {
     const savedItems = await getItems()
     if(savedItems !== undefined){
       if(savedItems.length > 0){
-        loginToken.current = savedItems[0].loginToken;
-        const response = await LogInWithToken(`Bearer ${loginToken.current}`);
+        const response = await LogInWithToken(`Bearer ${savedItems[0].loginToken}`);
         return response;
       }
     }

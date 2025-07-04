@@ -15,7 +15,15 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  const { setLoginToken, changeRoute, registerFlow, persistLogin, hasSavedData, deleteSavedItems } = useContext(ElementContextRoute);
+  console.log("1.0")
+  const {
+    setLoginToken,
+    changeRoute,
+    registerFlow,
+    persistLogin,
+    hasSavedData,
+    deleteSavedItems,
+  } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
   const [subPage, setSubPage] = useState("");
@@ -30,8 +38,12 @@ function Login() {
   const [inputCreateUserName, setInputCreateUserName] = useState("");
   const [inputCreateUserEmail, setInputCreateUserEmail] = useState("");
   const [inputCreateUserPassword, setInputCreateUserPassword] = useState("");
-  const [inputCreateUserRepeatPassword, setInputCreateUserRepeatPassword] = useState("");
-  const [inputCreateUserTermsAndConditions, setInputCreateUserTermsAndConditions] = useState(false);
+  const [inputCreateUserRepeatPassword, setInputCreateUserRepeatPassword] =
+    useState("");
+  const [
+    inputCreateUserTermsAndConditions,
+    setInputCreateUserTermsAndConditions,
+  ] = useState(false);
 
   //SocialMediaPage variables
   const [inputCreateUserFacebook, setInputCreateUserFacebook] = useState("");
@@ -65,13 +77,13 @@ function Login() {
   };
 
   const onClickReturn = () => {
-    if(subPage === "Social Media"){
+    if (subPage === "Social Media") {
       setSubPage("Create");
       return;
     }
 
-    if(subPage === ""){
-      setForceRender(forceRender + 1)
+    if (subPage === "") {
+      setForceRender(forceRender + 1);
     }
 
     setSubPage("");
@@ -81,42 +93,49 @@ function Login() {
     changePopUpLoading(false);
     setSubPage("");
     onClickShowLoginMessage();
-  }
+  };
 
   const onClickReturnLandingPage = () => {
-   changeRoute("Landing")
+    changeRoute("Landing");
   };
 
   const handlePopUpClose = () => {
     setPopUpResponse(null);
-  }
+  };
 
   const openAlreadyExistingAccountErrorPopUp = () => {
     errorPopUpTitle.current = "Correo previamente registrado.";
-    errorPopUpContent.current = "Este correo ya está registrado, por favor intenta con otro correo en la sección correspondiente o si prefieres, inicia sesión.";
+    errorPopUpContent.current =
+      "Este correo ya está registrado, por favor intenta con otro correo en la sección correspondiente o si prefieres, inicia sesión.";
     setPopUpResponse("Error");
-  }
+  };
 
   const openGeneralErrorPopUp = () => {
-    errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    errorPopUpTitle.current =
+      "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
     errorPopUpContent.current = "Vuelve a intentar más tarde.";
     setPopUpResponse("Error");
-  }
+  };
 
   const openTokenExpiredErrorPopUp = () => {
     errorPopUpTitle.current = "Lo sentimos, ha ocurrido un error.";
-    errorPopUpContent.current = "Tú sesión anterior ha expirado. Vuelve a inicar sesión con correo y contraseña.";
+    errorPopUpContent.current =
+      "Tú sesión anterior ha expirado. Vuelve a inicar sesión con correo y contraseña.";
     setPopUpResponse("Error");
-  }
+  };
 
   const handleSignIn = async (pressedOmit) => {
-    let inputCreateUser_F = inputCreateUserFacebook === "" ? null : inputCreateUserFacebook;
-    let inputCreateUser_I = inputCreateUserInstagram === "" ? null : inputCreateUserInstagram;
-    let inputCreateUser_T = inputCreateUserTiktok === "" ? null : inputCreateUserTiktok;
+    let inputCreateUser_F =
+      inputCreateUserFacebook === "" ? null : inputCreateUserFacebook;
+    let inputCreateUser_I =
+      inputCreateUserInstagram === "" ? null : inputCreateUserInstagram;
+    let inputCreateUser_T =
+      inputCreateUserTiktok === "" ? null : inputCreateUserTiktok;
     let inputCreateUser_X = inputCreateUserX === "" ? null : inputCreateUserX;
-    let inputCreateUser_Y = inputCreateUserYoutube === "" ? null : inputCreateUserYoutube;
+    let inputCreateUser_Y =
+      inputCreateUserYoutube === "" ? null : inputCreateUserYoutube;
 
-    if(pressedOmit) {
+    if (pressedOmit) {
       inputCreateUser_F = null;
       inputCreateUser_I = null;
       inputCreateUser_T = null;
@@ -142,7 +161,7 @@ function Login() {
       generalHandleAfterError();
       const data = await response.json();
       if (data.message) {
-        switch(data.message) {
+        switch (data.message) {
           case "api.error.already_exists":
             openAlreadyExistingAccountErrorPopUp();
             break;
@@ -163,7 +182,7 @@ function Login() {
     setInputCreateUserPassword("");
     setInputCreateUserRepeatPassword("");
     setInputCreateUserTermsAndConditions(false);
-  }
+  };
 
   const handleClearInputCreateUserSocialMedia = () => {
     setInputCreateUserFacebook("");
@@ -171,14 +190,14 @@ function Login() {
     setInputCreateUserTiktok("");
     setInputCreateUserX("");
     setInputCreateUserYoutube("");
-  }
+  };
 
   const generalHandleAfterError = () => {
     LoginText.current.value = "";
     LoginPassword.current.value = "";
     changePopUpLoading(false);
     setLoginMessage(false);
-  }
+  };
 
   const onClickShowLoginMessage = () => {
     LoginText.current.value = "";
@@ -190,7 +209,7 @@ function Login() {
 
   const onClickLogin = async () => {
     if (inputLogInValidation()) {
-      changePopUpLoading(true)
+      changePopUpLoading(true);
       const response = await LogIn(
         LoginText.current.value,
         LoginPassword.current.value
@@ -198,13 +217,13 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         SetUserData(data);
-        setLoginToken(data.access_token);
+        await setLoginToken(data.access_token);
         changeRoute("Main");
       } else {
-        if(data.message){
-          if(data.message === "api.error.email_not_verified"){
+        if (data.message) {
+          if (data.message === "api.error.email_not_verified") {
             setErrorEmail("falta verificar");
-          }else{
+          } else {
             setErrorPassword("usuario o contraseña incorrectos");
             setErrorEmail("usuario o contraseña incorrectos");
           }
@@ -266,13 +285,13 @@ function Login() {
   };
 
   const TryPersistLogIn = async () => {
-    if(loadingPersistanceLogIn.current) return;
+    if (loadingPersistanceLogIn.current) return;
 
     loadingPersistanceLogIn.current = true;
 
     const result = await hasSavedData();
 
-    if(!result) {
+    if (!result) {
       loadingPersistanceLogIn.current = false;
       return;
     }
@@ -281,7 +300,7 @@ function Login() {
 
     const response = await persistLogin();
 
-    try{
+    try {
       const data = await response.json();
       if (response.ok) {
         SetUserData(data);
@@ -289,10 +308,10 @@ function Login() {
         loadingPersistanceLogIn.current = false;
         changeRoute("Main");
       } else {
-        if(data.message){
+        if (data.message) {
           await deleteSavedItems();
           setSubPage(null);
-          switch(data.message) {
+          switch (data.message) {
             case "api.error.unauthorized":
               openTokenExpiredErrorPopUp();
               break;
@@ -302,7 +321,7 @@ function Login() {
           }
         }
       }
-    }catch{
+    } catch {
       await deleteSavedItems();
       setSubPage(null);
       openGeneralErrorPopUp();
@@ -310,7 +329,7 @@ function Login() {
 
     loadingPersistanceLogIn.current = false;
     changePopUpLoading(false);
-  }
+  };
 
   if (subPage !== "Create" || !registerFlow.current) {
     TryPersistLogIn();
@@ -335,7 +354,9 @@ function Login() {
         inputCreateUserRepeatPassword={inputCreateUserRepeatPassword}
         setInputCreateUserRepeatPassword={setInputCreateUserRepeatPassword}
         inputCreateUserTermsAndConditions={inputCreateUserTermsAndConditions}
-        setInputCreateUserTermsAndConditions={setInputCreateUserTermsAndConditions}
+        setInputCreateUserTermsAndConditions={
+          setInputCreateUserTermsAndConditions
+        }
       ></CreatePage>
     );
   }
@@ -359,7 +380,7 @@ function Login() {
     );
   }
 
-  if(popUpResponse === "Error"){
+  if (popUpResponse === "Error") {
     popUpContent = (
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">
@@ -388,22 +409,26 @@ function Login() {
 
   return (
     <>
-    <>{popUpContent}</>
+      <>{popUpContent}</>
       <>{subPageContent}</>
-      <div key={forceRender}  className="LoginContainer">
+      <div key={forceRender} className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div className="loginHeaderContainer">
-          <p onClick={onClickReturnLandingPage} className="loginHeaderText">Volver</p>
-          <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
-        </div>
-
-        <div className="logoContainer">
-          <img src={logo} alt="Logo" className="LoginLogo"></img>
-        </div>
 
         <div className="LoginMenuContainer">
-          <p className="loginTitle">Log in</p>
-          <div className="loginContainer">
+          <div style={{width: "80%"}} className="loginHeaderContainer">
+            <p onClick={onClickReturnLandingPage} className="loginHeaderText">
+              Volver
+            </p>
+            <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
+          </div>
+
+          <div style={{ paddingTop: "55px", width: "80%" }} className="logoContainer">
+            <img style={{alignSelf: "center"}} src={logo} alt="Logo" className="LoginLogo"></img>
+          </div>
+          <p style={{ paddingTop: "4px", width: "80%" }} className="loginTitle">
+            Iniciar sesión
+          </p>
+          <div style={{width: "80%"}} className="loginContainer">
             <p className="loginSubtitle">Email</p>
             <div className="passwordInput">
               <input
@@ -420,7 +445,7 @@ function Login() {
             )}
           </div>
 
-          <div className="passwordContainer">
+          <div style={{width: "80%"}} className="passwordContainer">
             <p className="loginSubtitle">Contraseña</p>
             <div className="passwordInput">
               <input
@@ -430,21 +455,19 @@ function Login() {
                 type={typeHelper}
               ></input>
 
-              <div onClick={() => {
-                  if(eyeHelper1){
-                    setTypeHelper("password")
+              <div
+                onClick={() => {
+                  if (eyeHelper1) {
+                    setTypeHelper("password");
                     setEyeHelper1(false);
-                  }else{
-                    setTypeHelper("text")
+                  } else {
+                    setTypeHelper("text");
                     setEyeHelper1(true);
                   }
-                    }}>
+                }}
+              >
                 {eyeHelper1 === true ? (
-                  <img
-                    alt="eye"
-                    className="eyePassword"
-                    src={eyeclosed}
-                  ></img>
+                  <img alt="eye" className="eyePassword" src={eyeclosed}></img>
                 ) : (
                   <img
                     onClick={() => {
@@ -467,9 +490,20 @@ function Login() {
               ¿Olvidaste tu contraseña?
             </p>
           </div>
-          <div className="LoginMenuBottomContainer">
-            <div style={{ display: "flex", gap: "10px", flexFlow: "column" }}>
-              <button className="GeneralButton" onClick={onClickLogin}>
+          <div style={{width: "80%"}} className="LoginMenuBottomContainer">
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                flexFlow: "column",
+                marginTop: "15px",
+              }}
+            >
+              <button
+                style={{ fontSize: "16px" }}
+                className="GeneralButton"
+                onClick={onClickLogin}
+              >
                 Iniciar sesión
               </button>
               {loginMessage !== false ? (

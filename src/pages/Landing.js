@@ -9,7 +9,7 @@ import { ElementContextData } from "../context/DataContext";
 
 function Landing() {
 
-  const { setLoginToken, changeRoute, registerFlow } = useContext(ElementContextRoute);
+  const { changeRoute, registerFlow } = useContext(ElementContextRoute);
   const { initLandingPage, landingPageData } = useContext(ElementContextData);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Landing() {
         <div style={{width: "70%", maxWidth: "300px"}}>
           <button onClick={onclickRegister} className="GeneralButton4">Regístrate</button>
         </div>
-        {landingPageData !== null ? (<img src={landingPageData?.registration_banner.absolute_url} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>) : <img src={shimmer} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>}
+        {landingPageData !== null ? (<img src={landingPageData?.registration_banner.absolute_url} className="bannerImage" style={{paddingBottom: "30px", paddingTop: "30px"}} alt="banner"></img>) : <img src={shimmer} className="bannerImage" style={{paddingBottom: "30px"}} alt="banner"></img>}
        <SamsFooter></SamsFooter>
 
       </div>

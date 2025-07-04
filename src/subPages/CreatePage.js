@@ -136,7 +136,7 @@ function CreatePage({
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
         <div style={{overflowY: "scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
-          <div className="loginHeaderContainer">
+          <div style={{width: "80%"}} className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver
             </p>
@@ -183,7 +183,7 @@ function CreatePage({
 
             <div className="GeneralInputContainer">
               <p className="loginHeader">Contraseña*</p>
-              <p style={{ textAlign: "start" }} className="loginBottomText">
+              <p style={{ textAlign: "start", paddingBottom: "8px" }} className="loginBottomText">
                 Tu contraseña ha de tener al menos 8 caracteres, con números,
                 letras y un símbolo.
               </p>
@@ -298,12 +298,16 @@ function CreatePage({
             ) : (
               <></>
             )}
+            <div style={{paddingBottom: "15px", width: "90%"}}>
             <button
               className="GeneralButton"
+              
               onClick={handleOntoSocialMedia}
             >
               Crear cuenta
             </button>
+            </div>
+
 
             <div className="createPageButtomContainer">
               <p className="loginBottomText">

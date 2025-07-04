@@ -80,7 +80,7 @@
     padding: 0px;
     margin: 0px;
     border: 0px;
-    padding-left: 5px;
+    padding-left: 15px;
     padding-right: 35px;
 }
 
@@ -100,13 +100,6 @@
   min-height: 50px;
 }
 
-
-.GeneralInput::placeholder{
-  padding-left: 10px;
-}
-
-
-
 .underlineText{
   text-decoration: underline;
 }
@@ -122,19 +115,19 @@
     color:rgb(238, 255, 0);
     text-align: start;
     margin: 0px;
-    padding-top: 5px;
+    padding-top: 8px;
 }
 
 .GeneralButton{
   background-color: white;
   width: calc(100% + 2px);
-  height: 47px;
-  min-height: 47px;
+  height: 44px;
+  min-height: 44px;
   border-color: white;
   border-width: 0px;
   color: #0066A1;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -147,13 +140,13 @@
 .GeneralButton-Inactive{
   background-color: rgba(255, 255, 255, 0.496);
   width: calc(100% + 2px);
-  height: 47px;
-  min-height: 47px;
+  height: 44px;
+  min-height: 44px;
   border-color: white;
   border-width: 0px;
   color: #0066A1;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -166,14 +159,14 @@
 .GeneralButton1{
   background-color: white;
   width: calc(100% + 2px);
-  height: 47px;
+  height: 44px;
   min-height: 44px;
   border-style: solid;
   border-color: #08a4ff;
   border-width: 2px;
   color: #0066A1;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -186,8 +179,8 @@
 .GeneralButton3{
   background-color: #0066A1;
   width: calc(100% + 2px);
-  height: 47px;
-  min-height: 47px;
+  height: 44px;
+  min-height: 44px;
   border-color: #0066A1;
   border-width: 0px;
   color: #ffffff;
@@ -208,13 +201,13 @@
 .GeneralButton4{
   background: linear-gradient(90deg,#0063ff 0%, #0095ff 100%);
   width: calc(100% + 2px);
-  height: 47px;
-  min-height: 47px;
+  height: 44px;
+  min-height: 44px;
   border-color: #008eff;
   border-width: 0px;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 23px;
   -webkit-border-radius: 50px;
@@ -229,13 +222,13 @@
 .GeneralButton4-Inactive{
   background: linear-gradient(90deg,#0062ff7f 0%, #0095ff78 100%);
   width: calc(100% + 2px);
-  height: 47px;
-  min-height: 47px;
+  height: 44px;
+  min-height: 44px;
   border-color: #008eff;
   border-width: 0px;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 23px;
   -webkit-border-radius: 50px;
@@ -250,9 +243,8 @@
 .GeneralButton2{
     background-color: rgba(255, 255, 255, 0);
   width: 100%;
-  height: 45px;
-  max-height: 45px;
-  min-height: 45px;
+  height: 44px;
+  min-height: 44px;
   border-color: white;
   border-style: solid;
   border-width: 1px;
@@ -260,7 +252,7 @@
   line-height: 45px;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 23px;
   -webkit-border-radius: 23px;

@@ -73,7 +73,7 @@ const SamsFooter = () => {
         <img
           className=""
           src={samsLogo}
-          style={{ height: "33px", paddingTop: "40px" }}
+          style={{ height: "33px", paddingTop: "40px"}}
           alt="SamsLogo"
         ></img>
         {socialMedia != null ? (
@@ -92,15 +92,15 @@ const SamsFooter = () => {
         <div>
           {((footerLinksData.current !== null) && (footerLinksData.current?.privacy_url !== null) && (footerLinksData.current?.privacy_url !== "")) && (<p onClick={() => {
                   window.open(footerLinksData.current.privacy_url);
-                }} style={{ marginTop: "15px" }} className="footerText">Aviso de Privacidad</p>)}
+                }} style={{ marginTop: "5px" }} className="footerText">Aviso de Privacidad</p>)}
           {((footerLinksData.current !== null) && (footerLinksData.current?.terms_url !== null) && (footerLinksData.current?.terms_url !== "")) && (<p onClick={() => {
                   window.open(footerLinksData.current.terms_url);
-                }} style={{ marginTop: "15px" }} className="footerText">
+                }} style={{ marginTop: "10px", marginBottom: "0px" }} className="footerText">
             Términos y Condiciones
           </p>)}
         </div>
         <div style={{ width: "90%", paddingBottom: "25px" }}>
-          {((footerLinksData.current !== null) && (footerLinksData.current?.copy_url !== "")) && (<p className="footerText">
+          {((footerLinksData.current !== null) && (footerLinksData.current?.copy_url !== "")) && (<p className="footerText" style={{margin: "0px"}}>
             {footerLinksData.current?.copy_url}
           </p>)}
         </div>
