@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect, useRef, use } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
-import filter from "../assets/filter.png"
+import filter from "../assets/Icon_Filtro.svg"
 import ChallengePage from "../subPages/ChallengePage";
 import ChallengeParticipationPage from "../subPages/ChallengeParticipationPage";
 import { ElementContextData } from "../context/DataContext";
@@ -9,6 +9,7 @@ import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
 import ChallengePopUp	 from "../components/ChallengePopUp";
 import { ElementContextRoute } from "../context/RouteContext";
+
 
 function Challenges() {
 

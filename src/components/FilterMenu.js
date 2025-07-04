@@ -53,7 +53,7 @@ function FilterMenu({
       {isOpen && (
         <div className="filterOverlayMenu">
           <p
-            style={{ paddingLeft: "27px", fontSize: "12px" }}
+            style={{ paddingLeft: "27px", fontSize: "12px", marginTop: "15px", marginBottom: "10px" }}
             className="filterOverlayText"
           >
             {title}
@@ -91,6 +91,7 @@ function FilterMenu({
               </div>
             );
           })}
+          <div style={{minHeight: "15px"}}></div>
         </div>
       )}
     </div>

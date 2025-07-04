@@ -145,7 +145,7 @@
   padding-left: 5%;
   padding-right: 5%;
   font-weight: 300;
-  text-align: justify;
+  text-align: left;
 }
 
 /* Media query para pantallas de menos de 400px */
@@ -251,7 +251,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   border: solid;
-  border-color: rgb(175, 175, 175);
+  border-color: #E4E4E4;
   border-width: 1px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -286,16 +286,16 @@
 .challenge-filter-button-container{
   width: 30px;
   height: 30px;
-  background: linear-gradient(180deg,#0063ff 0%, #0095ff 100%);;
+  background: linear-gradient(180deg,#0063ff 0%, #0095ff 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 
 .challenge-filter-title{
@@ -356,8 +356,8 @@
 }
 
 .challenge-filter-icon{
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   color: white;
 }
 

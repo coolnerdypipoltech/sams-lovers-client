@@ -92,12 +92,12 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 className="challenge-information-container"
               >
                 <div
-                  style={{ height: "72px", paddingLeft: "20px" }}
+                  style={{ height: "72px", paddingLeft: "10px" }}
                   className="rowAlign"
                 >
                   <img
                     src={inReviewStatusLogo}
-                    style={{ height: "32px" }}
+                    style={{ height: "42px" }}
                     alt="logo"
                   ></img>
                   <p
@@ -105,6 +105,8 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                       paddingTop: "0px",
                       paddingLeft: "10px",
                       color: "#003087",
+                      fontSize: "16px",
+                      fontWeight: "600"
                     }}
                     className="challenge-text-title"
                   >
@@ -127,20 +129,20 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 }}
               >
                 <div style={{ paddingTop: "1px" }}>
-                  <InfoTooltip dark={true}></InfoTooltip>
+                  <InfoTooltip text={"Tu reto a sido aprobado,\ngracias por participar"} dark={true}></InfoTooltip>
                 </div>
               </div>
               <div
-                style={{ backgroundColor: "##ccffc3" }}
+                style={{ backgroundColor: "#C7F5F6" }}
                 className="challenge-information-container"
               >
                 <div
-                  style={{ height: "72px", paddingLeft: "20px" }}
+                  style={{ height: "72px", paddingLeft: "10px" }}
                   className="rowAlign"
                 >
                   <img
                     src={completedStatusLogo}
-                    style={{ height: "32px" }}
+                    style={{ height: "42px" }}
                     alt="logo"
                   ></img>
                   <p
@@ -148,10 +150,12 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                       paddingTop: "0px",
                       paddingLeft: "10px",
                       color: "#003087",
+                      fontSize: "16px",
+                      fontWeight: "600"
                     }}
                     className="challenge-text-title"
                   >
-                    Aprobado
+                    ¡Reto completado!
                   </p>
                 </div>
               </div>
@@ -174,16 +178,16 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 </div>
               </div>
               <div
-                style={{ backgroundColor: "##ffc4c3" }}
+                style={{ backgroundColor: "#ffc4c3" }}
                 className="challenge-information-container"
               >
                 <div
-                  style={{ height: "72px", paddingLeft: "20px" }}
+                  style={{ height: "72px", paddingLeft: "10px" }}
                   className="rowAlign"
                 >
                   <img
                     src={rejectedStatusLogo}
-                    style={{ height: "32px" }}
+                    style={{ height: "42px" }}
                     alt="logo"
                   ></img>
                   <p
@@ -191,6 +195,8 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                       paddingTop: "0px",
                       paddingLeft: "10px",
                       color: "#003087",
+                      fontSize: "16px",
+                      fontWeight: "600"
                     }}
                     className="challenge-text-title"
                   >
@@ -248,12 +254,13 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
           <div
             style={{ justifyContent: "space-between", paddingTop: "15px" }}
             className="rowAlign"
+            onClick={handleClick}
           >
             <p className="challenge-information-text-conditions">Condiciones</p>
             <img
               src={chevronRight}
               alt="enter"
-              onClick={handleClick}
+              
               style={{
                 transition: "transform 0.3s ease",
                 transform: rotated ? "rotate(90deg)" : "rotate(0deg)",
