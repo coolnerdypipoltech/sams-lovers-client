@@ -95,6 +95,11 @@ function Challenges() {
 
     const token = await getCurrentToken();
 
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const response = await CreateSubmission(
       `Bearer ${token}`,
       currentChallenge.id,

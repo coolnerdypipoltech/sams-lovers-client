@@ -67,8 +67,15 @@ function Codes() {
   const handleExchangeCode = async () => {
     if (inputValue === "") return;
 
-    const token = getCurrentToken();
+    const token = await getCurrentToken();
 
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
+    console.log(token);
+    console.log(inputValue);
     const response = await ExchangeCode(`Bearer ${token}`, inputValue);
     const data = await response.json();
     if (response.ok) {

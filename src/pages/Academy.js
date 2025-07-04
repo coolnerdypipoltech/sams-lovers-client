@@ -14,9 +14,9 @@ function Academy() {
     if(currentArticle !== null) setCurrentArticleArticleIndex();
   });
 
-  const { getCurrentToken } = useContext(ElementContextRoute);
+  const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
-  const { currentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
+  const { SetUserData, currentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   let [hasNextArticle, setHasNextArticle] = useState(true);
@@ -45,9 +45,21 @@ function Academy() {
     }
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handleNextArticle = async () => {
     changePopUpLoading(true);
     const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     await requestNextArticle(token);
     changePopUpLoading(false);
   }

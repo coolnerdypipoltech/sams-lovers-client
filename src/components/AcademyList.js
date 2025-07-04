@@ -31,6 +31,12 @@ function AcademyList({ changeToSubPage }) {
     setIsLoading(true);
     setTimeout(async () => {
       const token = await getCurrentToken();
+
+      if(token === null || token === "") {
+        await handleLogOut();
+        return;
+      }
+
       const result = await requestMoreArticlesByURL(token);
       setIsLoading(false);
       if(!result.ok){
@@ -64,6 +70,12 @@ function AcademyList({ changeToSubPage }) {
 
   const Initialize = async () => {
     const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const result = await initRequestArticles(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {

@@ -52,7 +52,13 @@ function Config() {
     if (inputValue === "") return;
     setPopUpDeleteUser("")
     changePopUpLoading(true);
-    const token = getCurrentToken();
+    const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const response = await DeleteUser(`Bearer ${token}`, inputValue);
 
     if (response.ok) {

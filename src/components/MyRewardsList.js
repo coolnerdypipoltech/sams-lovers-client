@@ -40,6 +40,12 @@ function MyRewardsList({ changeToSubPage }) {
 
   const Initialize = async () => {
     const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const result = await initRequestUserRewardsTransactions(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
@@ -58,17 +64,23 @@ function MyRewardsList({ changeToSubPage }) {
     if(nextUserRewardTransaction.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      const token = await getCurrentToken();
-      const result = await requestMoreUserRewardsTransactionsByURL(token);
-      setIsLoading(false);
-      if(!result.ok){
-        switch (result.data.message) {
-          case "api.error.unauthorized":
-            await handleLogOut();
-            break;
-          default:
-            openGeneralErrorPopUp();
-            break;
+    const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
+    const result = await requestMoreUserRewardsTransactionsByURL(token);
+    setIsLoading(false);
+    if(!result.ok){
+      switch (result.data.message) {
+        case "api.error.unauthorized":
+          await handleLogOut();
+          break;
+        default:
+          openGeneralErrorPopUp();
+          break;
         }
       }
     }, 1000);
