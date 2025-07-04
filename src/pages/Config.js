@@ -8,7 +8,7 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 
 function Config() {
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
@@ -52,7 +52,8 @@ function Config() {
     if (inputValue === "") return;
     setPopUpDeleteUser("")
     changePopUpLoading(true);
-    const response = await DeleteUser(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
+    const token = getCurrentToken();
+    const response = await DeleteUser(`Bearer ${token}`, inputValue);
 
     if (response.ok) {
       changePopUpLoading(false);

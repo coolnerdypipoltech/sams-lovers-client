@@ -6,7 +6,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 
 function AcademyList({ changeToSubPage }) {
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestArticles, setCurrentArticle, articleData, requestMoreArticlesByURL, nextArticles } = useContext(ElementContextData);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,8 @@ function AcademyList({ changeToSubPage }) {
     if(nextArticles.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      const result = await requestMoreArticlesByURL();
+      const token = await getCurrentToken();
+      const result = await requestMoreArticlesByURL(token);
       setIsLoading(false);
       if(!result.ok){
         switch (result.data.message) {
@@ -62,7 +63,8 @@ function AcademyList({ changeToSubPage }) {
   }
 
   const Initialize = async () => {
-    const result = await initRequestArticles(limit, 0);
+    const token = await getCurrentToken();
+    const result = await initRequestArticles(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
         case "api.error.unauthorized":
@@ -146,11 +148,17 @@ function AcademyList({ changeToSubPage }) {
           style={{ overflowY: "auto", height: "84vh" , width: "100%" }}
         >
           <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%"}}>
-                    {articleData.map((article, index) => (
-            <div key={index}>
-              <AcademyListItem doClick={() => handleSelectArticle(article)} key={index} article={article}  />
-            </div>
-          ))}
+            {((articleData !== null) && (articleData.length > 0)) ?
+              (<>
+                {articleData.map((article, index) => (
+                  <div key={index}>
+                    <AcademyListItem doClick={() => handleSelectArticle(article)} key={index} article={article}  />
+                  </div>)
+                )}
+              </>)
+            :
+              (<p style={{textAlign: "center"}} className="challenge-text">No hay artículos disponibles...</p>)
+            }
           </div>
           <div>{contentHelper}</div>
         </div>

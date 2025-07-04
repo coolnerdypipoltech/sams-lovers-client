@@ -12,7 +12,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 
 function Challenges() {
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
@@ -92,8 +92,10 @@ function Challenges() {
 
     if(submissionURL === "") return;
 
+    const token = await getCurrentToken();
+
     const response = await CreateSubmission(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${token}`,
       currentChallenge.id,
       submissionURL
     );

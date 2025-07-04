@@ -6,6 +6,7 @@ import AcademyPage from "../subPages/AcademyPage";
 import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextPopUp } from "../context/PopUpContext";
+import { ElementContextRoute } from "../context/RouteContext";
 
 function Academy() {
 
@@ -13,6 +14,7 @@ function Academy() {
     if(currentArticle !== null) setCurrentArticleArticleIndex();
   });
 
+  const { getCurrentToken } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { currentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
 
@@ -45,7 +47,8 @@ function Academy() {
 
   const handleNextArticle = async () => {
     changePopUpLoading(true);
-    await requestNextArticle();
+    const token = await getCurrentToken();
+    await requestNextArticle(token);
     changePopUpLoading(false);
   }
 

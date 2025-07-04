@@ -28,10 +28,11 @@ const ElementProviderData = ({ children }) => {
   const footerLinksData = useRef(null);
 
   const initRequestRewards = async (
+    _token,
     _limit,
     _offset
   ) => {
-    const response = await GetRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const response = await GetRewards(`Bearer ${_token}`, _limit, _offset);
     const data = await response.json();
     console.log(data.rewards);
     if (response.ok) {
@@ -57,10 +58,11 @@ const ElementProviderData = ({ children }) => {
 }
 
   const initRequestUserRewardsTransactions = async (
+    _token,
     _limit,
     _offset
   ) => {
-    const response = await GetPurchasedRewards(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const response = await GetPurchasedRewards(`Bearer ${_token}`, _limit, _offset);
     const data = await response.json();
     if (response.ok) {
       setUserRewardsTransactionData(data.transactions);
@@ -72,10 +74,11 @@ const ElementProviderData = ({ children }) => {
   };
 
   const initRequestArticles = async (
+    _token,
     _limit,
     _offset
   ) => {
-    const response = await GetArticles(`${UserData.current.token_type} ${UserData.current.access_token}`, _limit, _offset);
+    const response = await GetArticles(`Bearer ${_token}`, _limit, _offset);
     const data = await response.json();
     console.log(data);
     if (response.ok) {
@@ -92,11 +95,12 @@ const ElementProviderData = ({ children }) => {
   const initRequestChallenges = async (
     _challengeStatusFilter,
     _transactionStatusFilter,
+    _token,
     _limit,
     _offset
   ) => {
     const response = await GetChallengesByUser(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _challengeStatusFilter,
       _transactionStatusFilter,
       _limit,
@@ -138,13 +142,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreRewards = async (_limit, _offset) => {
+  const requestMoreRewards = async (_token, _limit, _offset) => {
     if (nextRewards === null) {
       return;
     }
 
     const response = await GetRewards(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _limit,
       _offset
     );
@@ -159,14 +163,14 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreRewardsByURL = async () => {
+  const requestMoreRewardsByURL = async (_token) => {
 
     if (nextRewards === null || nextRewards.current === null || nextRewards.current === "") {
       return;
     }
 
     const response = await GetRewardsByUserWithURL(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       nextRewards.current
     );
     console.log(nextRewards.current);
@@ -185,6 +189,7 @@ const ElementProviderData = ({ children }) => {
   const requestMoreChallenges = async (
     _challengeStatusFilter,
     _transactionStatusFilter,
+    _token,
     _limit,
     _offset
   ) => {
@@ -194,7 +199,7 @@ const ElementProviderData = ({ children }) => {
     }
 
     const response = await GetChallengesByUser(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _challengeStatusFilter,
       _transactionStatusFilter,
       _limit,
@@ -211,13 +216,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreChallengesByURL = async () => {
+  const requestMoreChallengesByURL = async (_token) => {
     if (nextChallenges === null || nextChallenges.current === null || nextChallenges.current === "") {
       return;
     }
 
     const response = await GetChallengesByUserWithURL(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       nextChallenges.current
     );
     console.log(nextChallenges.current);
@@ -232,13 +237,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreUserRewardsTransactions = async (_limit, _offset) => {
+  const requestMoreUserRewardsTransactions = async (_token, _limit, _offset) => {
      if (nextUserRewardTransaction === null) {
       return;
     }
 
     const response = await GetPurchasedRewards(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _limit,
       _offset
     );
@@ -253,13 +258,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreUserRewardsTransactionsByURL = async () => {
+  const requestMoreUserRewardsTransactionsByURL = async (_token) => {
     if (nextUserRewardTransaction === null || nextUserRewardTransaction.current === null || nextUserRewardTransaction.current === "") {
       return;
     }
 
     const response = await GetPurchasedRewardsWithURL(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       nextUserRewardTransaction.current
     );
     console.log(nextUserRewardTransaction.current);
@@ -274,13 +279,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreArticles = async (_limit, _offset) => {
+  const requestMoreArticles = async (_token, _limit, _offset) => {
     if (nextArticles === null) {
       return;
     }
 
     const response = await GetArticles(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _limit,
       _offset
     );
@@ -297,13 +302,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreArticlesByURL = async () => {
+  const requestMoreArticlesByURL = async (_token) => {
     if (nextArticles === null || nextArticles.current === null || nextArticles.current === "") {
       return;
     }
 
     const response = await GetPurchasedRewardsWithURL(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       nextArticles.current
     );
     console.log(nextArticles.current);
@@ -320,13 +325,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestNextArticle = async () => {
+  const requestNextArticle = async (_token) => {
     if ((articlePosition.current + 1) < (articleData.length)) {
       setCurrentArticle(articleData[articlePosition.current + 1]);
       articlePosition.current = articlePosition.current + 1;
     } else {
       if (nextArticles.current != null) {
-        await requestMoreArticlesByURL();
+        await requestMoreArticlesByURL(_token);
         console.log(tempArticlesData.current);
         setCurrentArticle(tempArticlesData.current[articlePosition.current + 1]);
         articlePosition.current = articlePosition.current + 1;
@@ -335,13 +340,13 @@ const ElementProviderData = ({ children }) => {
     return;
   };
 
-  const requestMoreTopUsers = async (_limit, _offset) => {
+  const requestMoreTopUsers = async (_token, _limit, _offset) => {
     if (nextTopUsers === null) {
       return;
     }
 
     const response = await GetTopUsers(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       _limit,
       _offset
     );
@@ -353,13 +358,13 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const RequestMoreTopUsersByURL = async () => {
+  const RequestMoreTopUsersByURL = async (_token) => {
     if (nextTopUsers === null || nextTopUsers.current === null || nextTopUsers.current === "") {
       return;
     }
 
     const response = await GetTopUsersByURL(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${_token}`,
       nextTopUsers.current
     );
     console.log(nextTopUsers.current);

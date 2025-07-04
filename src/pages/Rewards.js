@@ -11,7 +11,7 @@ import Confetti from "react-confetti";
 import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
-  const { deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { deleteSavedItems, changeRoute, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
@@ -88,8 +88,10 @@ function Rewards() {
       return;
     }
 
+    const token = getCurrentToken();
+
     const response = await PurchaseReward(
-      `${UserData.current.token_type} ${UserData.current.access_token}`,
+      `Bearer ${token}`,
       currentReward.id
     );
     const data = await response.json();

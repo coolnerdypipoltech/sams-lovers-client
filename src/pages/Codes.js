@@ -7,7 +7,7 @@ import diamond from "../assets/diamond.svg";
 import SamsConfetti from "../components/SamsConfetti";
 
 function Codes() {
-  const { deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { deleteSavedItems, changeRoute, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, UserData, setNewUserDiamonds } = useContext(ElementContextData);
 
   const [popUpResponse, setPopUpResponse] = useState("");
@@ -67,7 +67,9 @@ function Codes() {
   const handleExchangeCode = async () => {
     if (inputValue === "") return;
 
-    const response = await ExchangeCode(`${UserData.current.token_type} ${UserData.current.access_token}`, inputValue);
+    const token = getCurrentToken();
+
+    const response = await ExchangeCode(`Bearer ${token}`, inputValue);
     const data = await response.json();
     if (response.ok) {
         redeemedDiamonds.current = data.user.related.diamonds - UserData.current.user.related.diamonds;

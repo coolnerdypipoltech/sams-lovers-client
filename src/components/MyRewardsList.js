@@ -14,7 +14,7 @@ function MyRewardsList({ changeToSubPage }) {
 
   const limit = 10;
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestUserRewardsTransactions, currentUserRewardTransaction, userRewardsTransactionData, requestMoreUserRewardsTransactionsByURL, nextUserRewardTransaction } = useContext(ElementContextData);
 
   useEffect(() => {
@@ -39,7 +39,8 @@ function MyRewardsList({ changeToSubPage }) {
   }
 
   const Initialize = async () => {
-    const result = await initRequestUserRewardsTransactions(limit, 0);
+    const token = await getCurrentToken();
+    const result = await initRequestUserRewardsTransactions(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
         case "api.error.unauthorized":
@@ -57,7 +58,8 @@ function MyRewardsList({ changeToSubPage }) {
     if(nextUserRewardTransaction.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      const result = await requestMoreUserRewardsTransactionsByURL();
+      const token = await getCurrentToken();
+      const result = await requestMoreUserRewardsTransactionsByURL(token);
       setIsLoading(false);
       if(!result.ok){
         switch (result.data.message) {
@@ -126,15 +128,20 @@ function MyRewardsList({ changeToSubPage }) {
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh", width: "100%" }}
         >
-          {userRewardsTransactionData.map((transaction, index) => (
-            <div key={index}>
+          {((userRewardsTransactionData !== null) && (userRewardsTransactionData.length > 0)) ?
+              (<>
+                {userRewardsTransactionData.map((transaction, index) => (
+                  <div key={index}>
                     {" "}
                     <div key={index} onClick={() => handleSelectRewardTransaction(transaction)}>
                       <MyRewardsListItem reward={transaction.transactionable} userTransaction={transaction} />
                     </div>
-                </div>
-          ))}
-
+                  </div>)
+                )}
+              </>)
+            :
+              (<p style={{textAlign: "center"}} className="challenge-text">No hay recompensas disponibles...</p>)
+            }
           {isLoading && (
             <div className="loading">Cargando más recompensas...</div>
           )}

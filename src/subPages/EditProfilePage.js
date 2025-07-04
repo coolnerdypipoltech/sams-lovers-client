@@ -9,9 +9,10 @@ import InfoTooltip from "../components/InfoTooltip";
 import { UpdateUserInfo } from "../hooks/apicalls";
 import cross from "../assets/clear_input.svg";
 import { ElementContextPopUp } from "../context/PopUpContext";
-
+import { ElementContextRoute } from "../context/RouteContext";
 
 function EditProfilePage({ onReturn }) {
+  const { getCurrentToken } = useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
@@ -71,7 +72,8 @@ function EditProfilePage({ onReturn }) {
 
       changePopUpLoading(true);
 
-      const response = await UpdateUserInfo(`${UserData.current.token_type} ${UserData.current.access_token}`,
+      const token = getCurrentToken();
+      const response = await UpdateUserInfo(`Bearer ${token}`,
          UserData.current.user.name,
          inputEditUser_F,
          inputEditUser_I,

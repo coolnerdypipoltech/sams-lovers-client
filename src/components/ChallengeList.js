@@ -13,7 +13,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
   let errorPopUpContent = useRef("");
   let errorPopUp = <></>;
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, setCurrentChallenge, nextChallenges, initRequestChallenges, challengesData, requestMoreChallengesByURL } = useContext(ElementContextData);
 
   const limit = 10;
@@ -34,7 +34,8 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
   }
 
   const Initialize = async () => {
-    const result = await initRequestChallenges(challengeStatusFilter, transactionStatusFilter, limit, 0);
+    const token = await getCurrentToken();
+    const result = await initRequestChallenges(challengeStatusFilter, transactionStatusFilter, token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
         case "api.error.unauthorized":
@@ -58,7 +59,8 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
     if(nextChallenges.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      const result = await requestMoreChallengesByURL();
+      const token = await getCurrentToken();
+      const result = await requestMoreChallengesByURL(token);
       setIsLoading(false);
       if(!result.ok){
         switch (result.data.message) {
@@ -126,15 +128,21 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh", paddingTop: "10px", paddingBottom: "30px" }}
         >
-          {challengesData.map((challenge, index) => (
-            <div onClick={() => handleSelectChallenge(challenge)}
-            key={index}
-            >
-              {" "}
-              <ChallengeListItem challenge={challenge} />
-            </div>
-          ))}
-
+          {((challengesData !== null) && (challengesData.length > 0)) ?
+              (<>
+                {challengesData.map((challenge, index) => (
+                  <div
+                    onClick={() => handleSelectChallenge(challenge)}
+                    key={index}
+                  >
+                  {" "}
+                  <ChallengeListItem challenge={challenge} />
+                  </div>)
+                )}
+              </>)
+            :
+              (<p style={{textAlign: "center"}} className="challenge-text">No hay retos disponibles...</p>)
+            }
           {isLoading && (
             <div className="loading">Cargando...</div>
           )}

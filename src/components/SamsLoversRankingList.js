@@ -1,9 +1,13 @@
 import SamsLoversRankingItem from "./SamsLoverRankingItem";
 import { useState, useEffect, useRef, useContext } from "react";
 import { ElementContextData } from "../context/DataContext";
+import { ElementContextRoute } from "../context/RouteContext";
 import backgroundImage from "../assets/headerMenu/Gradient.png";
 import deco from "../assets/Rectángulo 238.svg";
+
 function SamsLoversRankingList() {
+  const { getCurrentToken } = useContext(ElementContextRoute);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const listContainerRef = useRef(null);
@@ -27,7 +31,8 @@ function SamsLoversRankingList() {
     if (nextTopUsers.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      await RequestMoreTopUsersByURL();
+      const token = await getCurrentToken();
+      await RequestMoreTopUsersByURL(token);
       setIsLoading(false);
     }, 1000);
   };
@@ -48,7 +53,6 @@ function SamsLoversRankingList() {
     <>
       {topUsersData != null ? (
         <div style={{width: "100%", height:"600px"}}>
-        
           <div className="SamsLoversRankingListContainer">
             <p className="RankingHeader">Ranking Sam's Lovers</p>
             <p className="RankingTitle">¡Felicidades!</p>
@@ -69,17 +73,21 @@ function SamsLoversRankingList() {
                   paddingTop: "10px",
                   borderRadius: "12px",
                   backgroundColor: "rgba(70, 178, 255, 0.34)",
-                  
                   width: "100%",
                 }}
               >
-                {topUsersData.map((topUser, index) => (
-                  <div key={index}>
-                    {" "}
-                    <SamsLoversRankingItem topUser={topUser} rank={index + 1} />
-                  </div>
-                ))}
-
+                {((topUsersData !== null) && (topUsersData.length > 0)) ?
+                  (<>
+                    {topUsersData.map((topUser, index) => (
+                      <div key={index}>
+                        {" "}
+                        <SamsLoversRankingItem topUser={topUser} rank={index + 1} />
+                    </div>)
+                    )}
+                  </>)
+                :
+                  (<p style={{textAlign: "center", fontSize: "12px"}} className="RankingSubTitle">No hay artículos disponibles...</p>)
+                }
                 {isLoading && <div className="loading">Cargando...</div>}
               </div>
             </div>

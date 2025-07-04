@@ -5,7 +5,7 @@ import { ElementContextRoute } from "../context/RouteContext";
 
 function RewardsList({ changeToSubPage }) {
 
-  const { changeRoute, deleteSavedItems } = useContext(ElementContextRoute);
+  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestRewards, setCurrentReward, rewardsData, requestMoreRewardsByURL, nextRewards } = useContext(ElementContextData);
 
 
@@ -29,7 +29,8 @@ function RewardsList({ changeToSubPage }) {
     if(nextRewards.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
-      const result = await requestMoreRewardsByURL();
+      const token = await getCurrentToken();
+      const result = await requestMoreRewardsByURL(token);
       setIsLoading(false);
       if(!result.ok){
         switch (result.data.message) {
@@ -73,7 +74,8 @@ function RewardsList({ changeToSubPage }) {
   }
 
   const Initialize = async () => {
-    const result = await initRequestRewards(limit, 0);
+    const token = await getCurrentToken();
+    const result = await initRequestRewards(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
         case "api.error.unauthorized":
@@ -128,13 +130,18 @@ function RewardsList({ changeToSubPage }) {
           onScroll={handleScroll}
           style={{ overflowY: "auto", height: "84vh" }}
         >
-          {rewardsData.map((reward, index) => (
-            <div key={index} onClick={() => handleSelectReward(reward)}>
-              {" "}
-              <RewardsListItem key={index} reward={reward} />
-            </div>
-          ))}
-
+          {((rewardsData !== null) && (rewardsData.length > 0)) ?
+              (<>
+                {rewardsData.map((reward, index) => (
+                  <div key={index} onClick={() => handleSelectReward(reward)}>
+                    {" "}
+                    <RewardsListItem key={index} reward={reward} />
+                  </div>)
+                )}
+              </>)
+            :
+              (<p style={{textAlign: "center"}} className="challenge-text">No hay recompensas disponibles...</p>)
+            }
           {isLoading && (
             <div className="loading">Cargando más recompensas...</div>
           )}

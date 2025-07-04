@@ -113,7 +113,7 @@ function Profile() {
           <img src={logo} className="DiamondImage" alt="ProfileLogo"></img>
         </div>
         <div className="ProfileContainerItems">
-          <p className="userNameProfile">Usuario Sam's Lovers</p>
+          <p className="userNameProfile">{UserData.current.user.name}</p>
           <div className="editSocialMediaButtonContainer">
             <p className="socialMediaTitle">Redes sociales</p>
             <button onClick={handleEditProfile}  style={{height: "20px", minHeight: "20px", width: "82px", fontSize:"10px", marginTop: "10px"}}  className="GeneralButton4">Editar</button>

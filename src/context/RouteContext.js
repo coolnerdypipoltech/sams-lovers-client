@@ -22,7 +22,7 @@ const ElementProviderRoute= ({ children }) => {
       setRoute(newValue);
       setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 1000); 
+    }, 1000);
     }
   };
 
@@ -33,7 +33,7 @@ const ElementProviderRoute= ({ children }) => {
         return savedItems[0].loginToken;
       }
     }
-    return null
+    return null;
   }
 
   const setLoginToken = async (newValue) => {
@@ -46,7 +46,7 @@ const ElementProviderRoute= ({ children }) => {
       }
     }
     await saveItem({loginToken: newValue})
-    return 
+    return;
   }
 
   const deleteSavedItems = async () => {
@@ -82,7 +82,7 @@ const ElementProviderRoute= ({ children }) => {
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems, persistLogin, hasSavedData}}>
+    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems, persistLogin, hasSavedData, getCurrentToken}}>
       {children}
     </ElementContextRoute.Provider>
   );
