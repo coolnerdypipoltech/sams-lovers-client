@@ -304,7 +304,6 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         SetUserData(data);
-        setLoginToken(data.access_token);
         loadingPersistanceLogIn.current = false;
         changeRoute("Main");
       } else {

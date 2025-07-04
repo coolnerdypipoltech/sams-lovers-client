@@ -111,7 +111,7 @@
 .errorText{
       font-size: 14px;
     font-weight: 100;
-    font-family: helvetica;
+     font-family: "Poppins", sans-serif;
     color:rgb(238, 255, 0);
     text-align: start;
     margin: 0px;

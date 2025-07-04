@@ -98,10 +98,9 @@
     padding-bottom: 10%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
     align-content: center;
-
+    gap: 30px;
     
 }
 

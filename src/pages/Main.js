@@ -35,20 +35,20 @@ function Main() {
       <div className="landingPageContainer">
         <div style={{zIndex: 2}}>
           <div className="headerSpacer"></div>
-        <div className="headerSpacer"></div>
+        <div style={{height: "75px"}} className="headerSpacer"></div>
         <img src={logo} alt="logoSL" style={{width: "220px"}} className="DiamondImage"></img>
-        <p style={{marginBottom: "05x"}} className="LandingPageTitle">Bienvenido a </p>
-        <p style={{marginTop: "0px"}} className="LandingPageTitle">Sam's Lovers</p>
+        <p style={{marginBottom: "05px", marginTop: "5px"}} className="LandingPageTitle">Bienvenido</p>
+        <p style={{marginTop: "0px", marginBottom: "05px"}} className="LandingPageTitle">a Sam's Lovers</p>
         </div>
         <div  className="backgroundLogoLetters">
           <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
         </div>
-        <p className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
-        {(mainPageData !== null && <img src={mainPageData.home_banner.absolute_url} className="bannerImage" alt="banner"></img>)}
+        <p style={{margin: "0px"}} className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
+        {(mainPageData !== null && <img src={mainPageData.home_banner.absolute_url} style={{paddingTop: "45px"}} className="bannerImage" alt="banner"></img>)}
         <div style={{width: "70%", maxWidth: "300px", paddingTop: "30px"}}>
         <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
-        <p className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
+        <p style={{marginTop: "30px", width: "90%"}} className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
         <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>

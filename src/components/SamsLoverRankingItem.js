@@ -15,15 +15,15 @@ function SamsLoversRankingItem({topUser, rank}) {
                 </div>)
             :
                 (<div className="RankingNumberContainer">
-                    <img style={{height: "45px", width: "45px"}} className="RankingNumberImg" src={obscureDiamond} alt="Ranking Illustration"></img>
-                    <p style={{top: "-38px"}} className="RankingNumberText">{rank}</p>
+                    <img style={{height: "40px", width: "40px"}} className="RankingNumberImg" src={obscureDiamond} alt="Ranking Illustration"></img>
+                    <p style={{top: "-36px"}} className="RankingNumberText">{rank}</p>
                 </div>)
             }
             <img className="RankingNumberContainer" src={profileCircle} alt=""></img>
             <p className="RankingUserText">{`@${topUser.user.name}`}</p>
             </div>
             
-            <p style={{paddingRight: "20px"}} className="RankingUserText">{`${topUser.transactions_count} Retos`}</p>
+            <p style={{paddingRight: "20px", fontWeight: "400"}} className="RankingUserText">{`${topUser.transactions_count} Retos`}</p>
         </div>
         </>
     );
