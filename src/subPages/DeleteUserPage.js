@@ -30,7 +30,7 @@ function DeleteUserPage({
           Por favor, ingresa tu contraseña para confirmar la eliminación de tu
           cuenta.
         </p>
-        <div className="Divider"></div>
+        <div style={{width: "90%"}} className="Divider"></div>
         <div style={{width: "70%"}}>
                     <div className="passwordContainer">
             <p style={{color: "black", fontSize: "14px"}} className="loginSubtitle">Contraseña</p>
@@ -76,7 +76,7 @@ function DeleteUserPage({
               <></>
             )}
           </div>
-            <div style={{width: "100%", paddingTop: "10px"}} className="CodeButtonContainer">
+            <div style={{width: "100%", paddingTop: "30px"}} className="CodeButtonContainer">
                 <button style={{width: "70%"}} className={inputValue === "" ? "GeneralButton4-Inactive" : "GeneralButton4"} disabled={inputValue === ""} onClick={handleWarningPopUp}>Eliminar cuenta</button>
             </div>
         </div>

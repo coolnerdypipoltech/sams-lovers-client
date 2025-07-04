@@ -205,9 +205,9 @@ function Codes() {
         <div className="CodeInputContainer">
 
             <p className="CodeInputText"> Introduce tu código de 16 dígitos</p>
-          <input placeholder="Código"  className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
+          <input style={{width: "auto"}} placeholder="Código"  className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
         </div>
-        <div style={{width: "70%"}} className="CodeButtonContainer">
+        <div style={{width: "70%", paddingTop: "10px"}} className="CodeButtonContainer">
           <button style={{fontSize: "14px"}} className="GeneralButton4" onClick={handleExchangeCode}>Canjear código</button>
         </div>
       </div>
