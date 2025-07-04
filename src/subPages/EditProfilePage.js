@@ -227,7 +227,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
+                text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
@@ -264,7 +264,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
+                text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputInstagram === false ? (
@@ -302,7 +302,7 @@ function EditProfilePage({ onReturn }) {
               </div>
 
               <InfoTooltip dark={true}
-                text={"Pon el link de tu \n perfil de facebook"}
+                text={"Pon el link de tu \nperfil de facebook"}
               ></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
@@ -335,7 +335,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
+                text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
@@ -367,7 +367,7 @@ function EditProfilePage({ onReturn }) {
 
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
+                text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (

@@ -280,7 +280,7 @@
   color: #868787;
   padding: 0 20px 0 20px;
   margin: 0 0 10px 0;
-  text-align: justify;
+  text-align: left;
 }
 
 .challenge-filter-button-container{
@@ -435,5 +435,7 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+
+
 }
   

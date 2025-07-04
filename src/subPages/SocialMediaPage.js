@@ -121,7 +121,7 @@ function SocialMedia({
                   ></img>
                 </div>
                 <InfoTooltip
-                  text={`Escribe tu nombre de usuario, \n por ejemplo: \n cashi o Walmart.245`}
+                  text={`Escribe tu nombre de usuario, \npor ejemplo: \ncashi o Walmart.245`}
                 ></InfoTooltip>
               </div>
               {errorInputTiktok === false ? (
@@ -151,7 +151,7 @@ function SocialMedia({
                   ></img>
                 </div>
                 <InfoTooltip
-                  text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
+                  text={`Escribe tu nombre de usuario, \npor ejemplo: \n“cashi o Walmart.245`}
                 ></InfoTooltip>
               </div>
 
@@ -182,7 +182,7 @@ function SocialMedia({
                   ></img>
                 </div>
                 <InfoTooltip
-                  text={"Pon el link de tu \n perfil de facebook"}
+                  text={"Pon el link de tu \nperfil de facebook"}
                 ></InfoTooltip>
               </div>
               {errorInputFacebook === false ? (
@@ -208,7 +208,7 @@ function SocialMedia({
                   ></img>
                 </div>
                 <InfoTooltip
-                  text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
+                  text={`Escribe tu nombre de usuario, \npor ejemplo: \n“cashi o Walmart.245`}
                 ></InfoTooltip>
               </div>
               {errorInputYoutube === false ? (
@@ -234,7 +234,7 @@ function SocialMedia({
                   ></img>
                 </div>
                 <InfoTooltip
-                  text={`Escribe tu nombre de usuario, \n por ejemplo: \n “cashi o Walmart.245`}
+                  text={`Escribe tu nombre de usuario, \npor ejemplo: \n“cashi o Walmart.245`}
                 ></InfoTooltip>
               </div>
               {errorInputX === false ? (

@@ -129,7 +129,7 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 }}
               >
                 <div style={{ paddingTop: "1px" }}>
-                  <InfoTooltip text={"Tu reto a sido aprobado,\ngracias por participar"} dark={true}></InfoTooltip>
+                  <InfoTooltip text={"¡Felicidades!\nTu reto ha sido aprobado,\ngracias por participar."} dark={true}></InfoTooltip>
                 </div>
               </div>
               <div

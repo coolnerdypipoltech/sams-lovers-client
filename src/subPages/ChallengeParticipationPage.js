@@ -48,7 +48,7 @@ function ChallengeParticipationPage({
             </div>
           </div>
           <div
-            style={{ padding: "10px", width: "auto" }}
+            style={{ padding: "10px", width: "auto", paddingBottom:"20px" }}
             className="challenge-information-container"
           >
             <div

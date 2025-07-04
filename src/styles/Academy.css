@@ -29,6 +29,9 @@
     font-family:"canada-type-gibson";
     font-size: 26px;
     font-weight: 600;
+    
+    margin: 0px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -116,6 +119,6 @@
     font-weight: 500;
     text-align: left;
     margin: 0px;
-
+    margin-top: 15px;
     margin-bottom: 15px;
 }

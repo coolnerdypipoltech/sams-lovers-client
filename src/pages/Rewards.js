@@ -6,8 +6,9 @@ import  ConfirmationPage  from "../subPages/ConfirmationPage";
 import { PurchaseReward } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
-import diamond from "../assets/diamond.svg";
-import Confetti from "react-confetti";
+
+import gift from "../assets/Recompensa.svg"
+
 import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
@@ -178,9 +179,9 @@ function Rewards() {
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">
               <img
-                src={diamond}
+                src={gift}
                 style={{ height: "130px", paddingTop: "20px" }}
-                alt="An illustration representative of a diamond."
+                alt="An illustration representative of a gift."
               ></img>
 
               <p className="subTitlePopUpReward">
