@@ -16,7 +16,7 @@ function InfoTooltip({text, dark}) {
           <img className src={imgHelper} alt="tooltip"></img>
         </div>
       <div role="tooltip" id="help-tooltip" className="tooltip">
-        <pre>{text} </pre>
+        <pre className="toolTipText">{text} </pre>
         <div className="tooltip-tip"></div>
       </div>
     </div>

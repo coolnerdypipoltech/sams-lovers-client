@@ -120,7 +120,7 @@ function Profile() {
           </div>
           {socialMedia != null ? (
             <>
-            <div className="socialMediaContainer">
+            <div style={{paddingBottom: "15px"}} className="socialMediaContainer">
               {socialMedia.map((item, index) => (
                 (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.social_media, item.link)} alt={`${item.link}`}></img>))
               )}
@@ -129,6 +129,7 @@ function Profile() {
           ) : (
             <></>
           )}
+          <div style={{color: "#E2EBF3", width: "80%" , height: "0.5px"}}  className="Divider"></div>
           <div onClick={handleSelectReward} className="ProfileItem">
             <p className="socialMediaTitle">Ver mis recompensas</p>
             <img src={chevronRight} style={{height: "30px", marginTop: "10px"}} alt="openImg"></img>

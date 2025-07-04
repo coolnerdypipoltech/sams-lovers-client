@@ -180,9 +180,9 @@ function EditProfilePage({ onReturn }) {
 
         <div className="createUserContainer">
           <div className="headerSpacer"></div>
-          <p onClick={handleReturn} className="EditProfielBack">Volver</p>
-          <div style={{width: "90%"}} className="Divider"></div>
-          <p style={{color: "black"}} className="loginBottomText">
+          <p onClick={handleReturn} style={{color: "#3C74F3", marginBottom: "15px"}} className="EditProfielBack">Volver</p>
+          <div style={{width: "100%"}} className="Divider"></div>
+          <p style={{color: "black", marginTop: "15px", marginBottom: "15px", textAlign: "justify"}} className="loginBottomText">
             Compártenos tus redes sociales para obtener grandiosos premios,
             recuerda que tu cuenta debe estar publica para que podamos validar
             las dinámicas.
@@ -215,7 +215,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
@@ -252,7 +252,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputInstagram === false ? (
@@ -323,7 +323,7 @@ function EditProfilePage({ onReturn }) {
               </div>
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
@@ -355,7 +355,7 @@ function EditProfilePage({ onReturn }) {
 
               </div>
               <InfoTooltip dark={true}
-                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245`}
+                text={`Escribe tu nombre de usuario, \n por ejemplo: \n “@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (
@@ -364,10 +364,11 @@ function EditProfilePage({ onReturn }) {
               <></>
             )}
           </div>
-          <p style={{color: "black"}} className="loginBottomText">Recuerda que tu cuenta debe estar publica para que se pueda ver tu video</p>
+          <p style={{color: "black", marginBottom: "15px", marginTop: "15px", textAlign: "justify"}} className="loginBottomText">Recuerda que tu cuenta debe estar publica para que se pueda ver tu video</p>
           <button className="GeneralButton4" onClick={handleSave}>
             Guardar
           </button>
+          <div style={{minHeight: "75px"}} className="headerSpacer"></div>
         </div>
       </div>
     </div>

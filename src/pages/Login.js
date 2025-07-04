@@ -15,7 +15,7 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  console.log("1.0")
+  console.log("1.1")
   const {
     setLoginToken,
     changeRoute,
@@ -26,7 +26,7 @@ function Login() {
   } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("");
+  const [subPage, setSubPage] = useState("Social Media");
   const [forceRender, setForceRender] = useState(0);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);

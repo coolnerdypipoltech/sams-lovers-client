@@ -1,14 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
   <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0262ad"/>
+      <stop offset="1" stop-color="#0141ae"/>
+    </linearGradient>
     <clipPath id="clip-path">
-      <rect id="Rectángulo_43" data-name="Rectángulo 43" width="23.32" height="16.324" transform="translate(0 0)" fill="#008eff"/>
+      <rect id="Rectángulo_43" data-name="Rectángulo 43" width="23.32" height="16.324" transform="translate(0 0)" fill="url(#linear-gradient)"/>
     </clipPath>
   </defs>
   <g id="Icon_Youtube" transform="translate(1098 -918)">
     <rect id="Rectángulo_52" data-name="Rectángulo 52" width="33" height="33" transform="translate(-1098 918)" fill="none"/>
     <g id="Grupo_298" data-name="Grupo 298" transform="translate(-1093 926)">
       <g id="Grupo_297" data-name="Grupo 297" transform="translate(0 0)" clip-path="url(#clip-path)">
-        <path id="Trazado_745" data-name="Trazado 745" d="M22.833,2.549A2.92,2.92,0,0,0,20.771.487C18.952,0,11.66,0,11.66,0S4.368,0,2.549.487A2.92,2.92,0,0,0,.487,2.549,30.341,30.341,0,0,0,0,8.162a30.343,30.343,0,0,0,.487,5.613,2.92,2.92,0,0,0,2.062,2.062c1.819.487,9.111.487,9.111.487s7.292,0,9.111-.487a2.92,2.92,0,0,0,2.062-2.062,30.343,30.343,0,0,0,.487-5.613,30.341,30.341,0,0,0-.487-5.613M9.328,11.66v-7l6.058,3.5Z" transform="translate(0 0)" fill="#008eff"/>
+        <path id="Trazado_745" data-name="Trazado 745" d="M22.833,2.549A2.92,2.92,0,0,0,20.771.487C18.952,0,11.66,0,11.66,0S4.368,0,2.549.487A2.92,2.92,0,0,0,.487,2.549,30.341,30.341,0,0,0,0,8.162a30.343,30.343,0,0,0,.487,5.613,2.92,2.92,0,0,0,2.062,2.062c1.819.487,9.111.487,9.111.487s7.292,0,9.111-.487a2.92,2.92,0,0,0,2.062-2.062,30.343,30.343,0,0,0,.487-5.613,30.341,30.341,0,0,0-.487-5.613M9.328,11.66v-7l6.058,3.5Z" transform="translate(0 0)" fill="url(#linear-gradient)"/>
       </g>
     </g>
   </g>

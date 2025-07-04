@@ -45,10 +45,10 @@ function Main() {
         </div>
         <p style={{margin: "0px"}} className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
         {(mainPageData !== null && <img src={mainPageData.home_banner.absolute_url} style={{paddingTop: "45px"}} className="bannerImage" alt="banner"></img>)}
-        <div style={{width: "70%", maxWidth: "300px", paddingTop: "30px"}}>
+        <div style={{width: "70%", maxWidth: "300px", paddingTop: "35px"}}>
         <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
-        <p style={{marginTop: "30px", width: "90%"}} className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
+        <p style={{marginTop: "25px", width: "90%"}} className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
         <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>

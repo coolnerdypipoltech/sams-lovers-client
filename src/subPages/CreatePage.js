@@ -132,8 +132,8 @@ function CreatePage({
   };
 
   return (
-    <div className="subPageContainer">
-      <div className="LoginContainer">
+    <div style={{overflowY: "hidden"}} className="subPageContainer">
+      <div style={{overflowY: "hidden"}} className="LoginContainer">
         <BackgroundSams></BackgroundSams>
         <div style={{overflowY: "scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
           <div style={{width: "80%"}} className="loginHeaderContainer">

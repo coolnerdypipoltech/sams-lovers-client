@@ -75,9 +75,13 @@
     flex-direction: column;
     left: 5%;
     position: absolute;
-    top: 30%;
+    top: 20%;
     z-index: 2;
-    gap: 30px;
+    gap: 20px;
+    overflow-y: scroll;
+    height: 80%;
+    padding-bottom: 100px;
+    width: 100%;
 }
 
 .headerElement{
@@ -87,6 +91,7 @@
     font-size: 26px;
     font-weight: 600;
     text-align: left;
+    margin-bottom: 3px;
 }
 
 .iconLogo{
