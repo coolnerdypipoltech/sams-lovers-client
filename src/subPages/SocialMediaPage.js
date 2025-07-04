@@ -82,7 +82,7 @@ function SocialMedia({
       <div className="LoginContainer">
         <BackgroundSams></BackgroundSams>
         <div style={{ paddingTop: "125px",overflowY: "scroll", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%"}}>
-          <div className="loginHeaderContainer">
+          <div style={{width: "80%"}} className="loginHeaderContainer">
             <p onClick={onReturn} className="loginHeaderText">
               Volver
             </p>
@@ -245,10 +245,10 @@ function SocialMedia({
             </div>
             <p className="loginBottomText">Estos campos no son obligatorios</p>
             <button className="GeneralButton" onClick={handleContine}>
-              Continuar
+              Continuar y crear cuenta
             </button>
             <div className="GeneralButton2" onClick={handleOmit}>
-              Omitir
+              Omitir y crear cuenta
             </div>
             <div>
               <a

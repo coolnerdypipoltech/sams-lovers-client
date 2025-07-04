@@ -23,7 +23,7 @@ function SamsLoversRankingItem({topUser, rank}) {
             <p className="RankingUserText">{`@${topUser.user.name}`}</p>
             </div>
             
-            <p style={{paddingRight: "20px", fontWeight: "400"}} className="RankingUserText">{`${topUser.transactions_count} Retos`}</p>
+            <p style={{paddingRight: "10px", fontWeight: "400"}} className="RankingUserText">{`${topUser.transactions_count} Retos`}</p>
         </div>
         </>
     );
