@@ -12,7 +12,7 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 import { ElementContextRoute } from "../context/RouteContext";
 
 function EditProfilePage({ onReturn }) {
-  const { getCurrentToken } = useContext(ElementContextRoute);
+  const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
@@ -55,6 +55,12 @@ function EditProfilePage({ onReturn }) {
     setPopUpResponse("Error");
   }
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const handleSave = async () => {
     if (inputValidation()) {
 
@@ -72,7 +78,13 @@ function EditProfilePage({ onReturn }) {
 
       changePopUpLoading(true);
 
-      const token = getCurrentToken();
+      const token = await getCurrentToken();
+
+      if(token === null || token === "") {
+        await handleLogOut();
+        return;
+      }
+
       const response = await UpdateUserInfo(`Bearer ${token}`,
          UserData.current.user.name,
          inputEditUser_F,

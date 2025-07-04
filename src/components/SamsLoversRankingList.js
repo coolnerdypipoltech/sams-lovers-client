@@ -6,7 +6,7 @@ import backgroundImage from "../assets/headerMenu/Gradient.png";
 import deco from "../assets/Rectángulo 238.svg";
 
 function SamsLoversRankingList() {
-  const { getCurrentToken } = useContext(ElementContextRoute);
+  const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,6 +17,7 @@ function SamsLoversRankingList() {
     initRequestTopUsers,
     topUsersData,
     RequestMoreTopUsersByURL,
+    SetUserData
   } = useContext(ElementContextData);
 
   const limit = 10;
@@ -26,12 +27,24 @@ function SamsLoversRankingList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleLogOut = async () => {
+    SetUserData(null);
+    await deleteSavedItems();
+    changeRoute("Login");
+  }
+
   const loadMoreChallenges = () => {
     if (isLoading) return;
     if (nextTopUsers.current === null) return;
     setIsLoading(true);
     setTimeout(async () => {
       const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
       await RequestMoreTopUsersByURL(token);
       setIsLoading(false);
     }, 1000);

@@ -35,6 +35,12 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
 
   const Initialize = async () => {
     const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const result = await initRequestChallenges(challengeStatusFilter, transactionStatusFilter, token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
@@ -60,6 +66,12 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
     setIsLoading(true);
     setTimeout(async () => {
       const token = await getCurrentToken();
+
+      if(token === null || token === "") {
+        await handleLogOut();
+        return;
+      }
+
       const result = await requestMoreChallengesByURL(token);
       setIsLoading(false);
       if(!result.ok){

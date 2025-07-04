@@ -30,6 +30,12 @@ function RewardsList({ changeToSubPage }) {
     setIsLoading(true);
     setTimeout(async () => {
       const token = await getCurrentToken();
+
+      if(token === null || token === "") {
+        await handleLogOut();
+        return;
+      }
+
       const result = await requestMoreRewardsByURL(token);
       setIsLoading(false);
       if(!result.ok){
@@ -75,6 +81,12 @@ function RewardsList({ changeToSubPage }) {
 
   const Initialize = async () => {
     const token = await getCurrentToken();
+
+    if(token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+
     const result = await initRequestRewards(token, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
