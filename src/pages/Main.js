@@ -3,7 +3,6 @@ import "../styles/Main.css";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import logo from "../assets/Imagen_Perfil.png";
-import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
 import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
@@ -54,6 +53,7 @@ function Main() {
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsLoversRankingList></SamsLoversRankingList>
         <SamsFooter></SamsFooter>
+        
       </div>
       <div onClick={handleGoUp} className="overlayMenuUp">
         <img src={chevronUp} alt="up"></img>
