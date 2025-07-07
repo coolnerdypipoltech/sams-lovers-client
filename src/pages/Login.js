@@ -26,7 +26,7 @@ function Login() {
   } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData } = useContext(ElementContextData);
-  const [subPage, setSubPage] = useState("");
+  const [subPage, setSubPage] = useState("Social Media");
   const [forceRender, setForceRender] = useState(0);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
@@ -519,7 +519,7 @@ function Login() {
               <p className="loginBottomText">
                 ¿Todavía no tienes una cuenta?{" "}
                 <span onClick={onClickCreate} className="underlineText">
-                  Créala aquí
+                  Créarla aquí
                 </span>
               </p>
             </div>

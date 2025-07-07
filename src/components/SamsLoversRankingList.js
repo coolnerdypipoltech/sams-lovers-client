@@ -101,7 +101,7 @@ function SamsLoversRankingList() {
                 :
                   (<p style={{textAlign: "center", fontSize: "12px"}} className="RankingSubTitle">No hay artículos disponibles...</p>)
                 }
-                {isLoading && <div className="loading">Cargando...</div>}
+                {isLoading && <div style={{paddingBottom: "10px"}} className="loading">Cargando...</div>}
               </div>
             </div>
           </div>
