@@ -50,7 +50,8 @@ function Main() {
         </div>
         <p style={{marginTop: "25px", width: "90%", marginBottom: "0px"}} className="LandingPageTitle">Tú puedes ser nuestro próximo </p>
         <p style={{marginTop: "0px", width: "90%"}} className="LandingPageTitle"> Sam's Lover del mes</p>
-        <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
+        <p className="LandingPageText" style={{marginBottom: "0px"}}>Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser</p>
+        <p className="LandingPageText" style={{marginBottom: "30px", marginTop: "0px"}}>el próximo Sam's Lovers del mes? </p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsLoversRankingList></SamsLoversRankingList>

@@ -304,7 +304,7 @@ function CreatePage({
               
               onClick={handleOntoSocialMedia}
             >
-              Crear cuenta
+              Continuar
             </button>
             </div>
 

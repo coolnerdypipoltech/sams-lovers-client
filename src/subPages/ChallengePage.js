@@ -67,7 +67,7 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
           <p style={{ paddingTop: "30px" }} className="challengesPage-Title">
             {challenge.name}
           </p>
-          <p style={{ marginBottom: "30px" }} className="challenge-text">
+          <p style={{ marginBottom: "30px" }} className="challenge-text2">
             Descripción: {challenge.description}
           </p>
 

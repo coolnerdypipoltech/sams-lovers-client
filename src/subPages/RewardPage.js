@@ -95,7 +95,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
             />
           </div>
           <p style={{paddingTop: "30px"}} className="challengesPage-Title">{reward.name}</p>
-          <p className="challenge-text">
+          <p className="challenge-text2">
             {reward.description}
           </p>
           <div className="informationRewardPageContainer">
