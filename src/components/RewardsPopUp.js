@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { render } from "react-dom";
 import diamond from "../assets/diamond.svg";
+import gift from "../assets/Recompensa.svg"
 import SamsConfetti from "../components/SamsConfetti"
 import { ElementContextData } from "../context/DataContext";
 
@@ -32,9 +33,9 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
           <div style={{ height: "auto" }} className="PopUpDialog">
             <div className="GeneralButtonContainer">
               <img
-                src={diamond}
+                src={gift}
                 style={{ height: "130px", paddingTop: "20px" }}
-                alt="An illustration representative of a diamond."
+                alt="An illustration representative of a gift."
               ></img>
 
               <p className="subTitlePopUpReward">
@@ -176,7 +177,7 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
 
               <div style={{paddingBottom: "15px"}}>
                 <button
-                  style={{ height: "55px", width:"80%" }}
+                  style={{ width:"80%" }}
                   className="GeneralButton4"
                   onClick={handleExchange}
                 >
@@ -185,7 +186,7 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
                 <div style={{ height: "15px" }}></div>
 
                 <button
-                  style={{ height: "55px", width:"80%" }}
+                  style={{ width:"80%" }}
                   className="GeneralButton1"
                   onClick={handleClose}
                 >

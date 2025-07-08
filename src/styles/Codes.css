@@ -29,6 +29,26 @@
     margin: 0px;
 }
 
+@media (max-width: 407px) {
+  .CodeText {
+    width: 80%;
+    padding-right: 5%;
+  }
+}
+
+@media (max-width: 416px) {
+  .CodeText {
+    width: 75%;
+    padding-right: 7.5%;
+  }
+}
+
+@media (max-width: 361px) {
+  .CodeText {
+    width: 90%;
+  }
+}
+
 
 
 .CodeInputContainer{

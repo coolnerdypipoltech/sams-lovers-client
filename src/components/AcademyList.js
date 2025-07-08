@@ -157,7 +157,7 @@ function AcademyList({ changeToSubPage }) {
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" , width: "100%" }}
+          style={{ overflowY: "auto", height: "84vh" , width: "100%", paddingTop:"0px" }}
         >
           <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%"}}>
             {((articleData !== null) && (articleData.length > 0)) ?

@@ -34,7 +34,7 @@ function ChallengeListItem({challenge}){
           <p className="listItemTitle">{challenge.name}</p>
           <div className="rowAlign">
             <img src={diamond} className="diamondLogo" alt="diamonds"></img>
-            <p className="listItemSubtitle">{challenge.diamonds}</p>
+            <p className="listItemSubtitle">{challenge.diamonds} Diamantes</p>
           </div>
           
         </div>

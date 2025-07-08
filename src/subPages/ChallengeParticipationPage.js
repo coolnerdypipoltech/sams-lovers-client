@@ -27,7 +27,7 @@ function ChallengeParticipationPage({
               />
             )}
           </div>
-          <p style={{ paddingTop: "34px" }} className="challengesPage-Title">
+          <p style={{ paddingTop: "30px", marginBottom: "30px" }} className="challengesPage-Title">
             {challenge.name}
           </p>
           <div
@@ -41,14 +41,14 @@ function ChallengeParticipationPage({
             <div style={{ paddingTop: "5px" }}>
               <InfoTooltip
                 text={
-                  "Busca, copia y pega \n el link del video que \n realizaste para el reto."
+                  "Busca, copia y pega \nel link del video que \nrealizaste para el reto."
                 }
                 dark={true}
               ></InfoTooltip>
             </div>
           </div>
           <div
-            style={{ padding: "10px", width: "auto" }}
+            style={{ padding: "10px", width: "auto", paddingBottom:"20px" }}
             className="challenge-information-container"
           >
             <div

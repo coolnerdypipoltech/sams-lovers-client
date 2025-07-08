@@ -66,6 +66,7 @@ function SamsLoversRankingList() {
     <>
       {topUsersData != null ? (
         <div style={{width: "100%", height:"600px"}}>
+          <div className="backgroundRankingList">
           <div className="SamsLoversRankingListContainer">
             <p className="RankingHeader">Ranking Sam's Lovers</p>
             <p className="RankingTitle">¡Felicidades!</p>
@@ -101,14 +102,16 @@ function SamsLoversRankingList() {
                 :
                   (<p style={{textAlign: "center", fontSize: "12px"}} className="RankingSubTitle">No hay artículos disponibles...</p>)
                 }
-                {isLoading && <div className="loading">Cargando...</div>}
+                {isLoading && <div style={{paddingBottom: "10px", color: "white"}} className="loading">Cargando...</div>}
               </div>
             </div>
           </div>
+          
           <img className="deco1" alt="deco" src={deco}></img>
           <img className="deco2" alt="deco" src={deco}></img>
           <img className="deco3" alt="deco" src={deco}></img>
           <img className="deco4" alt="deco" src={deco}></img>
+        </div>
         </div>
       ) : (
         <></>

@@ -3,7 +3,6 @@ import "../styles/Main.css";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import logo from "../assets/Imagen_Perfil.png";
-import banner from "../assets/RetoCreadoresBanner1131x669@2x.png"
 import SamsLoversMonth from "../components/SamsLoversMonth";
 import logoLetters from "../assets/Brand_SamsLovers.svg";
 import SamsFooter from "../components/SamsFooter";
@@ -38,7 +37,8 @@ function Main() {
         <div style={{height: "75px"}} className="headerSpacer"></div>
         <img src={logo} alt="logoSL" style={{width: "220px"}} className="DiamondImage"></img>
         <p style={{marginBottom: "05px", marginTop: "5px"}} className="LandingPageTitle">Bienvenido</p>
-        <p style={{marginTop: "0px", marginBottom: "05px"}} className="LandingPageTitle">a Sam's Lovers</p>
+        
+        <span style={{marginTop: "0px", marginBottom: "05px"}} className="LandingPageTitle">a Sam's Lovers</span>
         </div>
         <div  className="backgroundLogoLetters">
           <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
@@ -48,12 +48,15 @@ function Main() {
         <div style={{width: "70%", maxWidth: "300px", paddingTop: "35px"}}>
         <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
         </div>
-        <p style={{marginTop: "25px", width: "90%"}} className="LandingPageTitle">Tú puedes ser nuestro próximo Sam's Lover del mes</p>
-        <p className="LandingPageText">Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser el próximo Sam's Lovers del mes?</p>
+        <p style={{marginTop: "25px", width: "90%", marginBottom: "0px"}} className="LandingPageTitle">Tú puedes ser nuestro próximo </p>
+        <p style={{marginTop: "0px", width: "90%"}} className="LandingPageTitle"> Sam's Lover del mes</p>
+        <p className="LandingPageText" style={{marginBottom: "0px"}}>Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser</p>
+        <p className="LandingPageText" style={{marginBottom: "30px", marginTop: "0px"}}>el próximo Sam's Lovers del mes? </p>
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsLoversRankingList></SamsLoversRankingList>
         <SamsFooter></SamsFooter>
+        
       </div>
       <div onClick={handleGoUp} className="overlayMenuUp">
         <img src={chevronUp} alt="up"></img>

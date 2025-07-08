@@ -53,7 +53,7 @@ function AcademyPage({ onReturn }) {
             </p>
 
             <p
-              style={{ padding: "0px", margin: "0px" }}
+              style={{ padding: "0px", margin: "0px", paddingTop: "20px" }}
               className="AcademyTitle"
             >
             {currentArticle.title}
@@ -70,6 +70,7 @@ function AcademyPage({ onReturn }) {
             )}
             <p className="AcademyArticleDate">{formatOneDate(currentArticle.created_at)}</p>
             <div dangerouslySetInnerHTML={{__html: currentArticle.content}}></div>
+            <div style={{minHeight: "20px"}}></div>
             <ArticleGallery
               gallery={currentArticle.gallery}
             ></ArticleGallery>

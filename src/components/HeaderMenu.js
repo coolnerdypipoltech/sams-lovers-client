@@ -9,7 +9,16 @@ import iconConfig from "../assets/headerMenu/Icon_Configuración.svg"
 import iconClose from "../assets/headerMenu/Icon_Cerrar sesión.svg"
 import "../styles/headerMenu.css";
 import BackgroundSams from "./BackgroundSams";
+import { useEffect } from "react";
 function HeaderMenu({ handleBack, handleMenuRoute, handleLogOut }) {
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    document.body.style.overflowX = "hidden";
+    return () => {
+      document.body.style.overflowY = "";
+    document.body.style.overflowX = "";
+    };
+  }, []);
   return (
     <>
       <div className="header-menu">
