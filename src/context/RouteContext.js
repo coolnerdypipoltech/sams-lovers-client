@@ -15,9 +15,13 @@ const ElementProviderRoute= ({ children }) => {
   }, [isInitialize])
 
   const changeRoute = async (newValue) => {
-    const response = await getCurrentToken()
+    const response = await getCurrentToken();
     if(response === null){
-      setRoute("Login")
+      if(newValue === "Landing"){
+        setRoute("Landing");
+        return;
+      }
+      setRoute("Login");
     }else{
       setRoute(newValue);
       setTimeout(() => {

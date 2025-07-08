@@ -15,7 +15,7 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  console.log("1.1")
+  console.log("1.1");
   const {
     setLoginToken,
     changeRoute,
