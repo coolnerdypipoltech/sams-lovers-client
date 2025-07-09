@@ -5,7 +5,7 @@ const ElementContextPopUp = createContext();
 const ElementProviderPopUp= ({ children }) => {
   const [popUpText, setPopUpText] = useState("");
   const [popUpTitle, setPopUpTitle] = useState("")
-  const [popUpLoading, setPopUpLoading] = useState(true)
+  const [popUpLoading, setPopUpLoading] = useState(false)
 
   const changePopUpText = (newValue) => {
     setPopUpText(newValue);
@@ -15,6 +15,13 @@ const ElementProviderPopUp= ({ children }) => {
   };
 
   const changePopUpLoading = (newValue) => {
+    if(newValue){
+      document.body.style.overflowY = "hidden";
+    document.body.style.overflowX = "hidden";
+    }else{
+      document.body.style.overflowY = "";
+    document.body.style.overflowX = "";
+    }
     setPopUpLoading(newValue);
   }
 

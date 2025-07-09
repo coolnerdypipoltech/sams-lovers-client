@@ -31,7 +31,7 @@ function ArticleGallery({ gallery }) {
 
   if (tempArray.length > 0) {
     return (
-      <div style={{ maxHeight: "300px", height: "300px", borderRadius: "8px", paddingBottom: "20px"}}>
+      <div style={{ maxHeight: "225px", height: "225px", borderRadius: "8px", paddingBottom: "20px"}}>
         <Carousel
           responsive={responsive}
           infinite={true}
@@ -44,7 +44,7 @@ function ArticleGallery({ gallery }) {
               <img
                 src={url}
                 alt={`Imagen ${index + 1}`}
-                style={{ width: "100%", height: "300px", objectFit: "fill" }}
+                style={{ width: "100%", height: "225px", objectFit: "fill" , maxWidth: "400px" }}
               />
             </div>
           ))}

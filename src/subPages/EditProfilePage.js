@@ -190,7 +190,8 @@ function EditProfilePage({ onReturn }) {
     <div className="subPageContainer">
       <div  className="EditProfileContainer">
 
-         <div style={{overflowY: "auto", height: "100dvh"}} className="createUserContainer">
+         <div style={{overflowY: "scroll", height: "100dvh", width: "100%"}} className="createUserContainer">
+          <div style={{width: "80%", gap: "15px", display: "flex", flexFlow: "column"}}>
           <div className="headerSpacer"></div>
           <p onClick={handleReturn} style={{color: "#3C74F3", marginBottom: "15px"}} className="EditProfielBack">Volver</p>
           <div style={{minHeight: "0.5px", width: "100%", backgroundColor: "grey"}}></div>
@@ -199,7 +200,10 @@ function EditProfilePage({ onReturn }) {
             recuerda que tu cuenta debe estar publica para que podamos validar
             las dinámicas.
           </p>
-          <div className="GeneralInputContainer">
+          
+
+          
+          <div  className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img
                 src={tiktok}
@@ -231,7 +235,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
-              <span  style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
+              <span  style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
             ) : (
               <></>
             )}
@@ -268,7 +272,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputInstagram === false ? (
-              <span style={{color: "#0063FF"}} className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}} className="errorText">El usuario debe comenzar con @</span>
             ) : (
               <></>
             )}
@@ -339,7 +343,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
-              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
             ) : (
               <></>
             )}
@@ -371,7 +375,7 @@ function EditProfilePage({ onReturn }) {
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (
-              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
+              <span style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
             ) : (
               <></>
             )}
@@ -380,6 +384,7 @@ function EditProfilePage({ onReturn }) {
           <button className="GeneralButton4" onClick={handleSave}>
             Guardar
           </button>
+          </div>
           <div style={{minHeight: "35px"}} className="headerSpacer"></div>
         </div>
       </div>
