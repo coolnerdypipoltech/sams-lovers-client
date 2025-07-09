@@ -31,7 +31,7 @@ function ArticleGallery({ gallery }) {
 
   if (tempArray.length > 0) {
     return (
-      <div style={{ maxHeight: "300px", height: "300px" }}>
+      <div style={{ maxHeight: "300px", height: "300px", borderRadius: "8px"}}>
         <Carousel
           responsive={responsive}
           infinite={true}

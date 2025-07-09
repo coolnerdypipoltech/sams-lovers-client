@@ -73,6 +73,7 @@ const ElementProviderRoute= ({ children }) => {
 
   const hasSavedData = async () => {
     const savedItems = await getItems()
+    console.log(savedItems);
     if(savedItems !== undefined){
       if(savedItems.length > 0){
         return true;

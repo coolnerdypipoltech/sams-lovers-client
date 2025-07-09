@@ -25,7 +25,10 @@ const openDatabase = () => {
   });
 };
 
+
+
 const useIndexedDB = () => {
+
 
 
   const [db, setDb] = useState(null);
@@ -34,7 +37,7 @@ const useIndexedDB = () => {
     const initializeDB = async () => {
       const database = await openDatabase();
       setDb(database);
-      setIsInitialize(true)
+      
     };
     initializeDB();
   }, []);
@@ -42,6 +45,7 @@ const useIndexedDB = () => {
   useEffect(() => {
     const fetchItems = async () => {
       if (db) {
+        setIsInitialize(true)
         const items = await getItems();
       }
     };

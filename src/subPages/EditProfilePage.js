@@ -188,9 +188,9 @@ function EditProfilePage({ onReturn }) {
     <>
     <>{rewardPopUpContent}</>
     <div className="subPageContainer">
-      <div className="EditProfileContainer">
+      <div  className="EditProfileContainer">
 
-        <div className="createUserContainer">
+         <div style={{overflowY: "auto", height: "100dvh"}} className="createUserContainer">
           <div className="headerSpacer"></div>
           <p onClick={handleReturn} style={{color: "#3C74F3", marginBottom: "15px"}} className="EditProfielBack">Volver</p>
           <div style={{minHeight: "0.5px", width: "100%", backgroundColor: "grey"}}></div>
@@ -380,7 +380,6 @@ function EditProfilePage({ onReturn }) {
           <button className="GeneralButton4" onClick={handleSave}>
             Guardar
           </button>
-          <div style={{minHeight: "75px"}} className="headerSpacer"></div>
         </div>
       </div>
     </div>

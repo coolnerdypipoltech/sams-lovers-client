@@ -285,8 +285,10 @@ function Login() {
   };
 
   const TryPersistLogIn = async () => {
+    console.log("here")
+    
     if (loadingPersistanceLogIn.current) return;
-
+    
     loadingPersistanceLogIn.current = true;
 
     const result = await hasSavedData();
@@ -295,7 +297,7 @@ function Login() {
       loadingPersistanceLogIn.current = false;
       return;
     }
-
+    
     changePopUpLoading(true);
 
     const response = await persistLogin();

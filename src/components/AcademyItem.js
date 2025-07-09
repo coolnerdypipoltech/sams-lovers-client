@@ -9,7 +9,8 @@ function AcademyItem({ article, doClick }) {
       <div className="AcademyItemContainer">
         <img className="imageAcademyItem" src={article.thumbnail.absolute_url} alt="bannerLogo"></img>
         <div className="AcademyTextContainer">
-          <p className="itemTitle">
+          <p className="itemTitle" style={{    lineHeight: "1.2"
+}}>
             {article.title}
           </p>
           <p className="itemSubtitle">

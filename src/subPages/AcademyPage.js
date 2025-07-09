@@ -53,7 +53,7 @@ function AcademyPage({ onReturn }) {
             </p>
 
             <p
-              style={{ padding: "0px", margin: "0px", paddingTop: "20px" }}
+              style={{ padding: "0px", margin: "0px", paddingTop: "20px", lineHeight: "1.2" }}
               className="AcademyTitle"
             >
             {currentArticle.title}
