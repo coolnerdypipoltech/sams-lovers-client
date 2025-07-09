@@ -380,6 +380,7 @@ function EditProfilePage({ onReturn }) {
           <button className="GeneralButton4" onClick={handleSave}>
             Guardar
           </button>
+          <div style={{minHeight: "35px"}} className="headerSpacer"></div>
         </div>
       </div>
     </div>

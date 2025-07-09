@@ -9,7 +9,7 @@ function AcademyList({ changeToSubPage }) {
   const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestArticles, setCurrentArticle, articleData, requestMoreArticlesByURL, nextArticles } = useContext(ElementContextData);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   //const [triggerUpdate, setTriggerUpdate] = useState(0);
   const [errorPopUpResponse, setErrorPopUpResponse] = useState("");
 
@@ -112,7 +112,7 @@ function AcademyList({ changeToSubPage }) {
 
   if(isLoading){
     if(nextArticles.current != null){
-      contentHelper = (<div className="loading">Cargando más artículos...</div>)
+      contentHelper = (<div className="loading" style={{paddingBottom: "20px", color: "#535353"}}>Cargando más artículos...</div>)
     }else{
       contentHelper = (<SamsFooter></SamsFooter>)
     }

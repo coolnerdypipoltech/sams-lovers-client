@@ -341,6 +341,11 @@
   align-items: center;
 }
 
+.loading{
+  color: #535353;
+  padding-bottom: 20px;
+}
+
 .loadingGif{
   width: 100px;
   height: 100px;

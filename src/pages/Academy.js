@@ -86,7 +86,7 @@ function Academy() {
       <div className="AcademyContainer">
       <div className="headerSpacer"></div>
       <div className="headerSpacer"></div>
-      <p className="AcademyTitle">Sam's Lovers Academy</p>
+      <p className="AcademyTitle" style={{paddingBottom: "20px"}}>Sam's Lovers Academy</p>
         <AcademyList changeToSubPage={handleSelectArticle}></AcademyList>
       </div>
     </>

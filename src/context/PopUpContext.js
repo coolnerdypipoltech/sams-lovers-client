@@ -5,7 +5,7 @@ const ElementContextPopUp = createContext();
 const ElementProviderPopUp= ({ children }) => {
   const [popUpText, setPopUpText] = useState("");
   const [popUpTitle, setPopUpTitle] = useState("")
-  const [popUpLoading, setPopUpLoading] = useState(false)
+  const [popUpLoading, setPopUpLoading] = useState(true)
 
   const changePopUpText = (newValue) => {
     setPopUpText(newValue);
