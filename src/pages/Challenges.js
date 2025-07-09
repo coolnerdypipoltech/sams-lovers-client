@@ -131,9 +131,17 @@ function Challenges() {
     }
   };
 
-  const handleRefreshList = () => {
+  const handleRefreshList = async () => {
     filterHasBeenModified.current = false;
-    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, refresh_limit, refresh_offset);
+
+    const token = await getCurrentToken();
+
+      if(token === null || token === "") {
+        await handleLogOut();
+        return;
+      }
+
+    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, token, refresh_limit, refresh_offset);
   };
 
   const handleChallengeStatusFilter = (challengeStatus) => {

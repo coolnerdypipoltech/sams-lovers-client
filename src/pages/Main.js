@@ -37,7 +37,6 @@ function Main() {
         <div style={{height: "75px"}} className="headerSpacer"></div>
         <img src={logo} alt="logoSL" style={{width: "220px"}} className="DiamondImage"></img>
         <p style={{marginBottom: "05px", marginTop: "5px"}} className="LandingPageTitle">Bienvenido</p>
-        
         <span style={{marginTop: "0px", marginBottom: "05px"}} className="LandingPageTitle">a Sam's Lovers</span>
         </div>
         <div  className="backgroundLogoLetters">
