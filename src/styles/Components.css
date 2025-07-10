@@ -109,6 +109,7 @@
   animation:fadeIn 0.3s ease-in;
   -webkit-animation:fadeIn 0.3s ease-in;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .header-menu.fade{
@@ -259,6 +260,31 @@
   display: flex;
   flex-flow: column;
   padding-top: 20px;
+  max-width: 800px;
+  overflow: overlay;
+}
+
+
+
+
+.listContainer::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.listContainer::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-foreground);
+  background: transparent;
+  border-radius: 0px;
+  border: 0px solid transparent;
+  background-clip: padding-box;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+.listContainer::-webkit-scrollbar-track { /* Background */
+  background: var(--scrollbar-background);
+  background: transparent;
 }
 
 .listItem {

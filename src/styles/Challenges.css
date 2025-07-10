@@ -27,7 +27,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 90%;
-
+  max-width: 1000px;
 }
 
 .confirmation-subpage-container {
@@ -90,6 +90,13 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+@media (min-width: 900px) {
+  .challenge-header{
+    width: 100%;
+  }
+}
+
 
 .challenge-header-title{
   font-size: 24px;
@@ -390,6 +397,13 @@
 
 }
 
+@media (min-width: 900px) {
+  .challenges-text{
+    width: 100%;
+  }
+}
+
+
 .challenges-Title{
   margin: 0;
   color: #003087;
@@ -399,6 +413,7 @@
   font-weight: 700;
   margin-bottom: 30px;
 }
+
 
 .challengesPage-Title{
   margin: 0;

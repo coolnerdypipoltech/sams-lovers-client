@@ -11,6 +11,13 @@ function DeleteUserPage({
   const [eyeHelper, setEyeHelper] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [typeHelper, setTypeHelper] = useState("password");
+  let helper = "70%"
+
+  if(window.innerWidth > 800){
+    helper = "50%"
+
+  }
+  
   return (
     <>
       <div className="subPageContainer"><div
@@ -30,8 +37,8 @@ function DeleteUserPage({
           Por favor, ingresa tu contraseña para confirmar la eliminación de tu
           cuenta.
         </p>
-        <div style={{width: "90%"}} className="Divider"></div>
-        <div style={{width: "70%"}}>
+        <div style={{width: "90%", maxWidth: "600px"}} className="Divider"></div>
+        <div style={{width: "70%", maxWidth: "390px"}}>
                     <div className="passwordContainer">
             <p style={{color: "black", fontSize: "14px"}} className="loginSubtitle">Contraseña</p>
             <div className="passwordInput">

@@ -181,7 +181,7 @@ function Config() {
     <div className="CodePageContainer">
         <div className="headerSpacer"></div>
         <p className="CodeTitle">Configuración</p>
-        <div style={{opacity: "0.3", width: "100%"}} className="Divider"></div>
+        <div style={{opacity: "0.3", width: "100%", maxWidth: "600px"}} className="Divider"></div>
         <p className="CodeText" onClick={handleDeleteAccountSubPage}>Eliminar cuenta</p>
         <p style={{color: "black"}} className="CodeText">
           Al eliminar tu cuenta no podrás recuperar tus datos guardados ni tus diamantes

@@ -223,7 +223,8 @@ function Challenges() {
         <ChallengePopUp closePopUp={() => setChallengePopUp(false)}></ChallengePopUp>
       )}
       <>{subPageContent}</>
-      <div className="challenges-container">
+      <div  className="challenges-container">
+        <div style={{maxWidth: "800px", display: "flex", flexDirection: "column", alignItems: "center"}}>
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <div className="challenge-header">
@@ -242,6 +243,7 @@ function Challenges() {
           challengeStatusFilter={challengeStatusFilter}
           transactionStatusFilter={transactionStatusFilter}
         ></ChallengeList>
+        </div>
       </div>
       {challengeFilter && (
         <div>

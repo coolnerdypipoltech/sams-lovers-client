@@ -42,6 +42,14 @@
   }
 }
 
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
 .subPageContainer{
   background-color: #f2f4f7;
   width: 100vw;
@@ -309,7 +317,7 @@
   justify-content: center;
   align-content: center;
   width: 90%;
-
+  max-width: 600px;
   height: 200px;
   box-shadow: 10px;
   flex-flow: column;

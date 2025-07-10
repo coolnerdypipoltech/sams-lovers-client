@@ -1,19 +1,26 @@
-import { useState, useContext, useRef} from "react";
+import { useState, useContext, useRef } from "react";
 import RewardsList from "../components/RewardsList";
 import "../styles/Rewards.css";
-import  RewardPage  from "../subPages/RewardPage";
-import  ConfirmationPage  from "../subPages/ConfirmationPage";
+import RewardPage from "../subPages/RewardPage";
+import ConfirmationPage from "../subPages/ConfirmationPage";
 import { PurchaseReward } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 
-import gift from "../assets/Recompensa.svg"
+import gift from "../assets/Recompensa.svg";
 
 import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
-  const { deleteSavedItems, changeRoute, getCurrentToken } = useContext(ElementContextRoute);
-  const { SetUserData, UserData, currentReward, setNewReward, setNewUserDiamonds } = useContext(ElementContextData);
+  const { deleteSavedItems, changeRoute, getCurrentToken } =
+    useContext(ElementContextRoute);
+  const {
+    SetUserData,
+    UserData,
+    currentReward,
+    setNewReward,
+    setNewUserDiamonds,
+  } = useContext(ElementContextData);
 
   const [subPage, setSubPage] = useState("");
   const [popUpResponse, setPopUpResponse] = useState("");
@@ -23,92 +30,94 @@ function Rewards() {
   let rewardErrorPopUpContent = useRef("");
   let rewardPopUpContent = <></>;
 
-  const handleSelectReward =  () =>{
-    setSubPage("RewardPage")
-  }
+  const handleSelectReward = () => {
+    setSubPage("RewardPage");
+  };
 
-  const handleReturn =  () =>{
+  const handleReturn = () => {
     const div = document.querySelector(".listContainer");
     if (div) {
       div.style.height = "84vh";
     }
-    setSubPage("")
-  }
+    setSubPage("");
+  };
 
-  const handleConfirm =  () =>{
-    setSubPage("ConfirmationPage")
-  }
+  const handleConfirm = () => {
+    setSubPage("ConfirmationPage");
+  };
 
   const openNoDiamondsPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, no tienes los suficientes diamantes.";
-    rewardErrorPopUpContent.current = "Participa en más retos para obtener diamantes.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, no tienes los suficientes diamantes.";
+    rewardErrorPopUpContent.current =
+      "Participa en más retos para obtener diamantes.";
     setPopUpResponse("Error");
-  }
+  };
 
   const openNoStockPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, este premio se encuentra agotado.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, este premio se encuentra agotado.";
     rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
     setPopUpResponse("Error");
-  }
+  };
 
   const openMaxPurchasesReachedPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, haz agotado tus canjes permitidos para este premio.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, haz agotado tus canjes permitidos para este premio.";
     rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
     setPopUpResponse("Error");
-  }
+  };
 
   const openGeneralErrorPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
     rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
     setPopUpResponse("Error");
-  }
+  };
 
   const handleRewardPopUpClose = () => {
     setPopUpResponse(null);
-  }
+  };
 
   const handleLogOut = async () => {
     SetUserData(null);
     await deleteSavedItems();
     changeRoute("Login");
-  }
+  };
 
   const handlePurchase = async () => {
-    if(UserData.current.user.related.diamonds < currentReward.price){
+    if (UserData.current.user.related.diamonds < currentReward.price) {
       openNoDiamondsPopUp();
       return;
     }
 
-    if(currentReward.stock <= 0){
+    if (currentReward.stock <= 0) {
       openNoStockPopUp();
       return;
     }
 
-    if(currentReward.total_user_transactions_left <= 0){
+    if (currentReward.total_user_transactions_left <= 0) {
       openMaxPurchasesReachedPopUp();
       return;
     }
 
     const token = await getCurrentToken();
 
-    if(token === null || token === "") {
+    if (token === null || token === "") {
       await handleLogOut();
       return;
     }
 
-    const response = await PurchaseReward(
-      `Bearer ${token}`,
-      currentReward.id
-    );
+    const response = await PurchaseReward(`Bearer ${token}`, currentReward.id);
     const data = await response.json();
     console.log(data);
     if (response.ok) {
       setNewReward(data.reward);
       setNewUserDiamonds(data.diamonds_left);
       setPopUpResponse("Success");
-    }else{
+    } else {
       if (data.message) {
-        switch(data.message) {
+        switch (data.message) {
           case "api.error.unauthorized":
             await handleLogOut();
             break;
@@ -122,7 +131,7 @@ function Rewards() {
             openGeneralErrorPopUp();
             break;
         }
-      }else{
+      } else {
         openGeneralErrorPopUp();
       }
     }
@@ -133,7 +142,13 @@ function Rewards() {
     if (div) {
       div.style.height = "100px";
     }
-    subPageContent = <RewardPage returnPage={handleReturn} handlePurchase={handlePurchase} reward={currentReward}></RewardPage>;
+    subPageContent = (
+      <RewardPage
+        returnPage={handleReturn}
+        handlePurchase={handlePurchase}
+        reward={currentReward}
+      ></RewardPage>
+    );
   }
 
   if (subPage === "ConfirmationPage") {
@@ -141,10 +156,16 @@ function Rewards() {
     if (div) {
       div.style.height = "100px";
     }
-    subPageContent = <ConfirmationPage returnPage={handleReturn} handlePurchase={handlePurchase} reward={currentReward}></ConfirmationPage>;
+    subPageContent = (
+      <ConfirmationPage
+        returnPage={handleReturn}
+        handlePurchase={handlePurchase}
+        reward={currentReward}
+      ></ConfirmationPage>
+    );
   }
 
-  if(popUpResponse === "Error"){
+  if (popUpResponse === "Error") {
     rewardPopUpContent = (
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">
@@ -171,7 +192,7 @@ function Rewards() {
     );
   }
 
-  if(popUpResponse === "Success"){
+  if (popUpResponse === "Success") {
     rewardPopUpContent = (
       <>
         <SamsConfetti></SamsConfetti>
@@ -224,11 +245,30 @@ function Rewards() {
       <div className="RewardsContainer">
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
-        <div className="challenge-header">
-        <p  className="challenges-Title">Recompensas disponibles</p>
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          className="challenge-header"
+        >
+          <div
+            style={{
+              maxWidth: "750px", width: "100%"
+            }}
+          >
+            <p style={{textAlign: "left", width: "100%"}} className="challenges-Title">Recompensas disponibles</p>
+
+            <p style={{textAlign: "left"}}  className="challenges-text">
+              {" "}
+              Redime tus diamantes por increibles premios.
+            </p>
+          </div>
+          <RewardsList changeToSubPage={handleSelectReward}></RewardsList>
         </div>
-        <p  className="challenges-text"> Redime tus diamantes por increibles premios.</p>
-        <RewardsList changeToSubPage={handleSelectReward}></RewardsList>
       </div>
     </>
   );

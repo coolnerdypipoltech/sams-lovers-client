@@ -41,7 +41,7 @@ function AcademyPage({ onReturn }) {
     <>
       <div key={update} className="AcademyPageContainer">
         <div className="AcademyArticlePageContainer">
-          <div style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+          <div style={{ paddingLeft: "5%", paddingRight: "5%"}} >
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>
             <p
@@ -66,7 +66,7 @@ function AcademyPage({ onReturn }) {
                 alt="bannerLogo"
               ></img>
             ) : (
-              <LiteYouTubeEmbed style={{borderRadius: "36px", marginTop: "20px"}} id={(currentArticle.main.absolute_url.split("/")[3]).split("?")[0]} />
+                <LiteYouTubeEmbed style={{borderRadius: "36px", marginTop: "20px", maxWidth: "500px"}} id={(currentArticle.main.absolute_url.split("/")[3]).split("?")[0]} />
             )}
             <p className="AcademyArticleDate">{formatOneDate(currentArticle.created_at)}</p>
             <div dangerouslySetInnerHTML={{__html: currentArticle.content}}></div>

@@ -157,9 +157,9 @@ function AcademyList({ changeToSubPage }) {
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" , width: "100%", paddingTop:"0px" }}
+          style={{ overflowY: "auto", height: "84vh" , width: "100%", paddingTop:"0px",}}
         >
-          <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%"}}>
+          <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%",  display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center"}}>
             {((articleData !== null) && (articleData.length > 0)) ?
               (<>
                 {articleData.map((article, index) => (

@@ -6,7 +6,7 @@ function AcademyItem({ article, doClick }) {
 
   return (
     <>
-      <div className="AcademyItemContainer">
+      <div style={{maxWidth: "500px"}} className="AcademyItemContainer">
         <img className="imageAcademyItem" src={article.thumbnail.absolute_url} alt="bannerLogo"></img>
         <div className="AcademyTextContainer">
           <p className="itemTitle" style={{    lineHeight: "1.2"

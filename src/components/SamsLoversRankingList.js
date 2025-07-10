@@ -76,7 +76,7 @@ function SamsLoversRankingList() {
             <p className="RankingSubTitle">
               Inspírate, comparte y brilla. El top 1 te espera
             </p>
-            <div style={{ padding: "30px", paddingTop: "25px" }}>
+            <div style={{ padding: "30px", paddingTop: "25px", display: "flex", justifyContent: "center" }}>
               <div
                 className="listContainer"
                 ref={listContainerRef}
@@ -86,6 +86,7 @@ function SamsLoversRankingList() {
                   height: "300px",
                   paddingTop: "10px",
                   borderRadius: "12px",
+                  maxWidth: "600px", 
                   backgroundColor: "rgba(70, 178, 255, 0.34)",
                   width: "100%",
                 }}

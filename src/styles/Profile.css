@@ -14,6 +14,7 @@
     flex-flow: column;
     align-items: center;
     padding-top: 30px;
+    max-width: 800px;
 }
 
 
@@ -163,7 +164,7 @@
     flex-flow: column;
     align-items: center;
     background: #F2F4FF;
-    overflow-y: scroll;
+    overflow-y: overlay;
 }
 
 
