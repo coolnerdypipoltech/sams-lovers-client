@@ -115,14 +115,12 @@ function CreatePage({
     if (responseMail && flag && inputCreateUserTermsAndConditions) {
       return true;
     } else {
-      console.log(responseMail, flag, inputCreateUserTermsAndConditions);
       return false;
     }
   };
 
   const ValidatePassword = (_mailToTest) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#¿¡+-.])[A-Za-z\d@$!%*?&#¿¡+-.]{8,}$/;
-    console.log(passwordRegex.test(_mailToTest));
     return passwordRegex.test(_mailToTest);
   };
 
@@ -133,9 +131,9 @@ function CreatePage({
 
   return (
     <div style={{overflowY: "hidden"}} className="subPageContainer">
-      <div style={{overflowY: "hidden"}} className="LoginContainer">
+      <div style={{overflowX: "hidden", overflowY: "hidden"}} className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div style={{overflowY: "scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <div style={{ overflowY:"scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
           <div style={{width: "80%"}} className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver

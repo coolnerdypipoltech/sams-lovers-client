@@ -70,12 +70,6 @@ function EditProfilePage({ onReturn }) {
       const inputEditUser_X = inputEditUserX === "" ? null : inputEditUserX;
       const inputEditUser_Y = inputEditUserYoutube === "" ? null : inputEditUserYoutube;
 
-      /*console.log(inputEditUser_F);
-      console.log(inputEditUser_I);
-      console.log(inputEditUser_T);
-      console.log(inputEditUser_X);
-      console.log(inputEditUser_Y);*/
-
       changePopUpLoading(true);
 
       const token = await getCurrentToken();

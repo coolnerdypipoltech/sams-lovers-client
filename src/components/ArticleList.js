@@ -3,7 +3,6 @@ import ArticleItem from "./ArticleItem";
 function ArticleList({onClickOpenArticle}) {
 
   const handleOnClickOpenArticle = (itemData) => {
-    console.log("aqui")
     onClickOpenArticle();
   };
 

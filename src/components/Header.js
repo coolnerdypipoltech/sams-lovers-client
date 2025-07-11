@@ -18,7 +18,6 @@ function Header() {
   };
 
   const handleLogOut = async () => {
-    console.log("Log Out");
     SetUserData(null);
     await deleteSavedItems();
     changeRoute("Login");

@@ -2,7 +2,6 @@ const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.az
 
 export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
-        console.log(ENDPOINT + "/v1/auth/signin");
         const bodyData = {
             name: _name,
             email: _email,
@@ -29,8 +28,6 @@ export async function SignIn(_name, _email, _password, _facebook_url, _instagram
 }
 
 export async function LogIn(_email, _password) {
-    console.log(_email, _password)
-    console.log(ENDPOINT + "/v1/auth/login")
     try{
         const response = await fetch(ENDPOINT + "/v1/auth/login", {
         method: "POST",
@@ -82,7 +79,6 @@ export async function ResetPassword(_email) {
 
 export async function CreateSubmission(_token, _challenge_id, _url) {
 
-    console.log(_token);
     try{
         const response = await fetch(ENDPOINT + "/v1/challenges/submission/", {
         method: "POST",
@@ -168,8 +164,7 @@ export async function GetArticles (_token, _limit, _offset) {
 }
 
 export async function GetChallengesByUser (_token, _challenge_status, _transaction_status, _limit, _offset) {
-    console.log(ENDPOINT + `challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`)
-    try{
+   try{
         const response = await fetch(ENDPOINT + `/v1/challenges/${_challenge_status}/${_transaction_status}/${_limit}/${_offset}`, {
         method: "GET",
         headers: {
@@ -177,7 +172,6 @@ export async function GetChallengesByUser (_token, _challenge_status, _transacti
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -185,7 +179,6 @@ export async function GetChallengesByUser (_token, _challenge_status, _transacti
 }
 
 export async function GetRewards(_token, _limit, _offset) {
-    console.log(ENDPOINT + `rewards//${_limit}/${_offset}`);
     try{
         const response = await fetch(ENDPOINT + `/v1/rewards/${_limit}/${_offset}`, {
         method: "GET",
@@ -194,7 +187,6 @@ export async function GetRewards(_token, _limit, _offset) {
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -202,7 +194,6 @@ export async function GetRewards(_token, _limit, _offset) {
 }
 
 export async function GetRewardsByUserWithURL (_token, _next_url) {
-    console.log(ENDPOINT + _next_url);
     try{
         const response = await fetch(ENDPOINT + _next_url, {
         method: "GET",
@@ -211,7 +202,6 @@ export async function GetRewardsByUserWithURL (_token, _next_url) {
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -219,7 +209,6 @@ export async function GetRewardsByUserWithURL (_token, _next_url) {
 }
 
 export async function GetChallengesByUserWithURL (_token, _next_url) {
-    console.log(ENDPOINT + _next_url);
     try{
         const response = await fetch(ENDPOINT + _next_url, {
         method: "GET",
@@ -228,7 +217,6 @@ export async function GetChallengesByUserWithURL (_token, _next_url) {
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -244,7 +232,6 @@ export async function GetPurchasedRewards (_token, _limit, _offset) {
                 "Authorization": _token,
             }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);
@@ -252,7 +239,6 @@ export async function GetPurchasedRewards (_token, _limit, _offset) {
 }
 
 export async function GetPurchasedRewardsWithURL (_token, _next_url) {
-    console.log(ENDPOINT + _next_url);
     try{
         const response = await fetch(ENDPOINT + _next_url, {
         method: "GET",
@@ -282,7 +268,6 @@ export async function GetTopUsers (_limit, _offset) {
 }
 
 export async function GetTopUsersByURL (_token, _next_url) {
-    console.log(ENDPOINT + _next_url);
     try{
         const response = await fetch(ENDPOINT + _next_url, {
         method: "GET",
@@ -291,7 +276,6 @@ export async function GetTopUsersByURL (_token, _next_url) {
             "Authorization": _token,
         }
         });
-        console.log(response);
         return response;
     }catch (error) {
         console.error('API Call error:', error);

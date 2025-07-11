@@ -13,7 +13,6 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
   const { currentChallenge } = useContext(ElementContextData);
 
   const challenge = currentChallenge;
-  console.log("---------", challenge);
 
   const [rotated, setRotated] = useState(false);
   const textRef = useRef(null);
@@ -35,8 +34,6 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
       textRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  console.log(challenge);
 
   const handleParticipation = () => {
     challengeParticipationPage();

@@ -15,7 +15,6 @@ import BackgroundSams from "../components/BackgroundSams";
 import { SignIn } from "../hooks/apicalls";
 
 function Login() {
-  console.log("1.1");
   const {
     setLoginToken,
     changeRoute,
@@ -285,8 +284,7 @@ function Login() {
   };
 
   const TryPersistLogIn = async () => {
-    console.log("here")
-    
+
     if (loadingPersistanceLogIn.current) return;
     
     loadingPersistanceLogIn.current = true;
@@ -423,13 +421,13 @@ function Login() {
             <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
           </div>
 
-          <div style={{ paddingTop: "55px", width: "80%" }} className="logoContainer">
+          <div style={{ paddingTop: "55px", width: "80%", maxWidth: "800px" }} className="logoContainer">
             <img style={{alignSelf: "center"}} src={logo} alt="Logo" className="LoginLogo"></img>
           </div>
-          <p style={{ paddingTop: "4px", width: "80%" }} className="loginTitle">
+          <p style={{ paddingTop: "4px", width: "80%", maxWidth: "800px" }} className="loginTitle">
             Iniciar sesión
           </p>
-          <div style={{width: "80%"}} className="loginContainer">
+          <div style={{width: "80%", maxWidth: "800px"}} className="loginContainer">
             <p className="loginSubtitle">Email</p>
             <div className="passwordInput">
               <input
@@ -446,7 +444,7 @@ function Login() {
             )}
           </div>
 
-          <div style={{width: "80%"}} className="passwordContainer">
+          <div style={{width: "80%", maxWidth: "800px"}} className="passwordContainer">
             <p className="loginSubtitle">Contraseña</p>
             <div className="passwordInput">
               <input
@@ -491,17 +489,19 @@ function Login() {
               ¿Olvidaste tu contraseña?
             </p>
           </div>
-          <div style={{width: "80%"}} className="LoginMenuBottomContainer">
+          <div style={{width: "80%", maxWidth: "800px"}} className="LoginMenuBottomContainer">
             <div
               style={{
                 display: "flex",
                 gap: "10px",
                 flexFlow: "column",
                 marginTop: "15px",
+                alignItems: "center"
               }}
             >
+              
               <button
-                style={{ fontSize: "16px" }}
+                style={{ fontSize: "16px", width: "80%" }}
                 className="GeneralButton"
                 onClick={onClickLogin}
               >

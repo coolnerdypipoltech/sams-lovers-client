@@ -10,8 +10,6 @@ function SelectedMyReward({returnPage}) {
     returnPage()
   }
 
-  console.log(currentUserRewardTransaction.current);
-
   return (
     <>
       <div className="subPageContainer">

@@ -8,7 +8,9 @@
 }
 
 .LoginLogo{
-    width: 180px;
+    width: 60%;
+    min-width: 180px;
+    max-width: 350px;
 }
 
 .logoContainer{
@@ -207,6 +209,7 @@
     align-items: center;
     align-content: center;
     z-index: 2;
+    max-width: 800px;
 }
 
 .forgetPasswordSend{

@@ -110,7 +110,6 @@ function Rewards() {
 
     const response = await PurchaseReward(`Bearer ${token}`, currentReward.id);
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
       setNewReward(data.reward);
       setNewUserDiamonds(data.diamonds_left);

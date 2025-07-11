@@ -30,8 +30,6 @@ function AcademyPage({ onReturn }) {
     setHasNext(hasNextArticle())
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
-  console.log(currentArticle.current)
 
   const [isYoutube, SetIsYoutube] = useState(true);
   const [update, setUpdate] = useState(0);

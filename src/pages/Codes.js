@@ -74,8 +74,6 @@ function Codes() {
       return;
     }
 
-    console.log(token);
-    console.log(inputValue);
     const response = await ExchangeCode(`Bearer ${token}`, inputValue);
     const data = await response.json();
     if (response.ok) {

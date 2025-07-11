@@ -38,13 +38,11 @@ function Landing() {
   }
 
   const TryPersistLogIn = async () => {
-    console.log(loadingPersistanceLogIn.current)
     if (loadingPersistanceLogIn.current) return;
 
     loadingPersistanceLogIn.current = true;
     
     const result = await hasSavedData();
-    console.log(result, isInitialize)
     if (!result) {
       loadingPersistanceLogIn.current = false;
       return;

@@ -34,7 +34,6 @@ const ElementProviderData = ({ children }) => {
   ) => {
     const response = await GetRewards(`Bearer ${_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data.rewards);
     if (response.ok) {
       setRewardsData(data.rewards);
       nextRewards.current = data.next;
@@ -80,7 +79,6 @@ const ElementProviderData = ({ children }) => {
   ) => {
     const response = await GetArticles(`Bearer ${_token}`, _limit, _offset);
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
       setArticleData(data.articles);
       tempArticlesData.current = data.articles;
@@ -107,7 +105,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.challenges);
     if (response.ok) {
       setChallengesData(data.challenges);
       nextChallenges.current = data.next;
@@ -153,7 +150,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.rewards);
     if (response.ok) {
       setRewardsData((prev) => [...prev, ...data.rewards]);
       nextRewards.current = data.next;
@@ -173,9 +169,7 @@ const ElementProviderData = ({ children }) => {
       `Bearer ${_token}`,
       nextRewards.current
     );
-    console.log(nextRewards.current);
     const data = await response.json();
-    console.log(data.rewards);
     if (response.ok) {
       setRewardsData((prev) => [...prev, ...data.rewards]);
       nextRewards.current = data.next;
@@ -206,7 +200,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.challenges);
     if (response.ok) {
       setChallengesData((prev) => [...prev, ...data.challenges]);
       nextChallenges.current = data.next;
@@ -225,9 +218,7 @@ const ElementProviderData = ({ children }) => {
       `Bearer ${_token}`,
       nextChallenges.current
     );
-    console.log(nextChallenges.current);
     const data = await response.json();
-    console.log(data.challenges);
     if (response.ok) {
       setChallengesData((prev) => [...prev, ...data.challenges]);
       nextChallenges.current = data.next;
@@ -248,7 +239,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.transactions);
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
@@ -267,9 +257,7 @@ const ElementProviderData = ({ children }) => {
       `Bearer ${_token}`,
       nextUserRewardTransaction.current
     );
-    console.log(nextUserRewardTransaction.current);
     const data = await response.json();
-    console.log(data.transactions);
     if (response.ok) {
       setUserRewardsTransactionData((prev) => [...prev, ...data.transactions]);
       nextUserRewardTransaction.current = data.next;
@@ -290,7 +278,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.articles);
     if (response.ok) {
       setArticleData((prev) => [...prev, ...data.articles]);
       tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
@@ -311,9 +298,7 @@ const ElementProviderData = ({ children }) => {
       `Bearer ${_token}`,
       nextArticles.current
     );
-    console.log(nextArticles.current);
     const data = await response.json();
-    console.log(data.articles);
     if (response.ok) {
       setArticleData((prev) => [...prev, ...data.articles]);
       tempArticlesData.current = [...tempArticlesData.current, ...data.articles];
@@ -332,7 +317,6 @@ const ElementProviderData = ({ children }) => {
     } else {
       if (nextArticles.current != null) {
         await requestMoreArticlesByURL(_token);
-        console.log(tempArticlesData.current);
         setCurrentArticle(tempArticlesData.current[articlePosition.current + 1]);
         articlePosition.current = articlePosition.current + 1;
       }
@@ -351,7 +335,6 @@ const ElementProviderData = ({ children }) => {
       _offset
     );
     const data = await response.json();
-    console.log(data.users);
     if (response.ok) {
       setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
@@ -367,9 +350,7 @@ const ElementProviderData = ({ children }) => {
       `Bearer ${_token}`,
       nextTopUsers.current
     );
-    console.log(nextTopUsers.current);
     const data = await response.json();
-    console.log(data.users);
     if (response.ok) {
       setTopUsersData((prev) => [...prev, ...data.users]);
       nextTopUsers.current = data.next;
@@ -388,13 +369,11 @@ const ElementProviderData = ({ children }) => {
     UserData.current = _Data;
     if(UserData.current !== null)
       setUserDiamonds(UserData.current.user.related.diamonds);
-    console.log(UserData.current);
   };
 
   const setNewChallengeTransaction = async (_transaction) => {
     var tempChallenge = currentChallenge;
     tempChallenge.transaction = _transaction;
-    console.log(tempChallenge);
     setCurrentChallenge(tempChallenge);
     let tempArray = challengesData;
     for (var i = 0; i < tempArray.length; i++) {
