@@ -1,39 +1,29 @@
-import React, { useState, useContext, useEffect } from "react";
-
+import React, { useState, useContext } from "react";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
-
-
-
 import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
 import ArticleGallery from "../components/ArticleGalley";
-import {formatOneDate} from "../hooks/dateHandler"
-function AcademyPage({ onReturn }) {
+import {formatOneDate} from "../hooks/dateHandler";
 
-  const { currentArticle, loadNextArticle, hasNextArticle } =useContext(ElementContextData);
+function AcademyPage({ onReturn, handleNextArticle, hasNextArticle }) {
+
+  const { currentArticle } = useContext(ElementContextData);
+
+  const [update, setUpdate] = useState(0);
 
   const handleOnReturn = () => {
     onReturn();
   };
 
-  const handleNextArticle = async () => {
-    await loadNextArticle();
-    setUpdate(update + 1)
-    setHasNext(hasNextArticle())
+  const OnNextArticleOnClick = async () => {
+    await handleNextArticle();
+    setUpdate(update + 1);
     window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+      top: 0,
+      behavior: 'smooth',
+    });
   }
-  useEffect(() => {
-    setHasNext(hasNextArticle())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const [isYoutube, SetIsYoutube] = useState(true);
-  const [update, setUpdate] = useState(0);
-  const [hasNext, setHasNext] = useState(true);
 
   return (
     <>
@@ -72,8 +62,7 @@ function AcademyPage({ onReturn }) {
             <ArticleGallery
               gallery={currentArticle.gallery}
             ></ArticleGallery>
-            {hasNext && <p className="ArticleNext" onClick={handleNextArticle}> Ver siguiente entrada</p>}
-            
+            {hasNextArticle && <p className="ArticleNext" onClick={OnNextArticleOnClick}> Ver siguiente entrada</p>}
           </div>
           <SamsFooter></SamsFooter>
         </div>

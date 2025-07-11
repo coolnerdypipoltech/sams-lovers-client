@@ -44,7 +44,7 @@ const ElementProviderData = ({ children }) => {
   };
 
   const loadNextArticle = () =>{
-  const index = articleData.findIndex(item => item.id === currentArticle.id);
+    const index = articleData.findIndex(item => item.id === currentArticle.id);
     if (index !== -1 && index + 1 < articleData.length) {
       setCurrentArticle(articleData[index + 1]);
     }
@@ -52,9 +52,9 @@ const ElementProviderData = ({ children }) => {
   }
 
   function hasNextArticle() {
-  const index = articleData.findIndex(item => item.id === currentArticle.id);
-  return index !== -1 && index + 1 < articleData.length;
-}
+    const index = articleData.findIndex(item => item.id === currentArticle.id);
+    return index !== -1 && index + 1 < articleData.length;
+  }
 
   const initRequestUserRewardsTransactions = async (
     _token,
