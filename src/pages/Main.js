@@ -54,9 +54,8 @@ function Main() {
         <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
         <div style={{height: "30px"}} className="headerSpacer"></div>
         <SamsLoversRankingList></SamsLoversRankingList>
-        <SamsFooter></SamsFooter>
-        
       </div>
+      <SamsFooter></SamsFooter>
       <div onClick={handleGoUp} className="overlayMenuUp">
         <img src={chevronUp} alt="up"></img>
       </div>
