@@ -6,7 +6,7 @@ import ConfirmationPage from "../subPages/ConfirmationPage";
 import { PurchaseReward } from "../hooks/apicalls";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
-
+import { ElementContextPopUp } from "../context/PopUpContext";
 import gift from "../assets/Recompensa.svg";
 
 import SamsConfetti from "../components/SamsConfetti";
@@ -21,7 +21,7 @@ function Rewards() {
     setNewReward,
     setNewUserDiamonds,
   } = useContext(ElementContextData);
-
+    const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
   const [popUpResponse, setPopUpResponse] = useState("");
 
@@ -86,6 +86,7 @@ function Rewards() {
   };
 
   const handlePurchase = async () => {
+    changePopUpLoading(true)
     if (UserData.current.user.related.diamonds < currentReward.price) {
       openNoDiamondsPopUp();
       return;
@@ -134,6 +135,7 @@ function Rewards() {
         openGeneralErrorPopUp();
       }
     }
+    changePopUpLoading(false)
   };
 
   if (subPage === "RewardPage") {
@@ -251,12 +253,13 @@ function Rewards() {
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
+            maxWidth: "1000px"
           }}
           className="challenge-header"
         >
           <div
             style={{
-              maxWidth: "750px", width: "100%"
+              maxWidth: "1000px", width: "80%"
             }}
           >
             <p style={{textAlign: "left", width: "100%"}} className="challenges-Title">Recompensas disponibles</p>

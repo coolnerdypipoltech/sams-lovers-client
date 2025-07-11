@@ -123,7 +123,7 @@ function Config() {
             </button>
             <br/>
             <br/>
-            <button className="GeneralButton4" onClick={handleDeleteUser}>
+            <button className="GeneralButton1" onClick={handleDeleteUser}>
               Eliminar Cuenta
             </button>
             <div style={{ height: "30px" }}></div>

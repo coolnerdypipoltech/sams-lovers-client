@@ -290,9 +290,9 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
               className="participationContainer"
             >
               {challenge.transaction?.status === "SUBMITTED" ? (
-                <button style={{width: "60%"}} className="GeneralButton4" onClick={handleParticipation}>Volver a subir URL</button>
+                <button style={{width: "60%", maxWidth: "800px"}} className="GeneralButton4" onClick={handleParticipation}>Volver a subir URL</button>
               ) : (
-                <button style={{width: "60%"}} className="GeneralButton4" onClick={handleParticipation}>Participar</button>
+                <button style={{width: "60%", maxWidth: "800px"}} className="GeneralButton4" onClick={handleParticipation}>Participar</button>
               )}
             </div>
           </>

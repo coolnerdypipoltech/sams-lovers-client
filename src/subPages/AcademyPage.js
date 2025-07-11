@@ -3,15 +3,13 @@ import React, { useState, useContext, useEffect } from "react";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
-
-
 import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
 import ArticleGallery from "../components/ArticleGalley";
-import {formatOneDate} from "../hooks/dateHandler"
+import { formatOneDate } from "../hooks/dateHandler";
 function AcademyPage({ onReturn }) {
-
-  const { currentArticle, loadNextArticle, hasNextArticle } =useContext(ElementContextData);
+  const { currentArticle, loadNextArticle, hasNextArticle } =
+    useContext(ElementContextData);
 
   const handleOnReturn = () => {
     onReturn();
@@ -19,17 +17,17 @@ function AcademyPage({ onReturn }) {
 
   const handleNextArticle = async () => {
     await loadNextArticle();
-    setUpdate(update + 1)
-    setHasNext(hasNextArticle())
+    setUpdate(update + 1);
+    setHasNext(hasNextArticle());
     window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-  }
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   useEffect(() => {
-    setHasNext(hasNextArticle())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    setHasNext(hasNextArticle());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [isYoutube, SetIsYoutube] = useState(true);
   const [update, setUpdate] = useState(0);
@@ -39,7 +37,8 @@ function AcademyPage({ onReturn }) {
     <>
       <div key={update} className="AcademyPageContainer">
         <div className="AcademyArticlePageContainer">
-          <div style={{ paddingLeft: "5%", paddingRight: "5%"}} >
+          <div className="center">
+          <div style={{ maxWidth: "1000px"}}>
             <div className="headerSpacer"></div>
             <div className="headerSpacer"></div>
             <p
@@ -51,29 +50,63 @@ function AcademyPage({ onReturn }) {
             </p>
 
             <p
-              style={{ padding: "0px", margin: "0px", paddingTop: "20px", lineHeight: "1.2" }}
+              style={{
+                padding: "0px",
+                margin: "0px",
+                paddingTop: "20px",
+                lineHeight: "1.2",
+              }}
               className="AcademyTitle"
             >
-            {currentArticle.title}
+              {currentArticle.title}
             </p>
             {currentArticle.main.type !== "VIDEO" ? (
-              <img
+              <div className="center">
+                <div className="YtContainer">
+                  
+                                <img
                 style={{ width: "100%", paddingLeft: "0px" }}
                 className="imageAcademyItem"
                 src={currentArticle.main.absolute_url}
                 alt="bannerLogo"
               ></img>
+                </div>
+              </div>
+
             ) : (
-                <LiteYouTubeEmbed style={{borderRadius: "36px", marginTop: "20px", maxWidth: "500px"}} id={(currentArticle.main.absolute_url.split("/")[3]).split("?")[0]} />
+              <div className="center">
+                <div className="YtContainer">
+                  <LiteYouTubeEmbed
+                    style={{ borderRadius: "36px", marginTop: "20px" }}
+                    id={
+                      currentArticle.main.absolute_url
+                        .split("/")[3]
+                        .split("?")[0]
+                    }
+                  />
+                </div>
+              </div>
             )}
-            <p className="AcademyArticleDate">{formatOneDate(currentArticle.created_at)}</p>
-            <div dangerouslySetInnerHTML={{__html: currentArticle.content}}></div>
-            <div style={{minHeight: "20px"}}></div>
-            <ArticleGallery
-              gallery={currentArticle.gallery}
-            ></ArticleGallery>
-            {hasNext && <p className="ArticleNext" onClick={handleNextArticle}> Ver siguiente entrada</p>}
-            
+            <p className="AcademyArticleDate">
+              {formatOneDate(currentArticle.created_at)}
+            </p>
+            <div
+              dangerouslySetInnerHTML={{ __html: currentArticle.content }}
+            ></div>
+            <div style={{ minHeight: "20px" }}></div>
+
+            <div className="center">
+                          <div className="center" style={{width: "100%", maxWidth: "800px"}}>
+              <ArticleGallery gallery={currentArticle.gallery}></ArticleGallery>
+            </div>
+            </div>
+            {hasNext && (
+              <p className="ArticleNext" onClick={handleNextArticle}>
+                {" "}
+                Ver siguiente entrada
+              </p>
+            )}
+          </div>
           </div>
           <SamsFooter></SamsFooter>
         </div>

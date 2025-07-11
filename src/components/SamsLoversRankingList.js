@@ -89,6 +89,7 @@ function SamsLoversRankingList() {
                   maxWidth: "600px", 
                   backgroundColor: "rgba(70, 178, 255, 0.34)",
                   width: "100%",
+                  paddingBottom: "10px"
                 }}
               >
                 {((topUsersData !== null) && (topUsersData.length > 0)) ?
@@ -103,7 +104,8 @@ function SamsLoversRankingList() {
                 :
                   (<p style={{textAlign: "center", fontSize: "12px"}} className="RankingSubTitle">No hay artículos disponibles...</p>)
                 }
-                {isLoading && <div style={{paddingBottom: "10px", color: "white"}} className="loading">Cargando...</div>}
+                {isLoading && <div style={{paddingBottom: "20px", color: "white"}} className="loading">Cargando...</div>}
+                
               </div>
             </div>
           </div>

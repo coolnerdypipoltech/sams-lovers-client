@@ -11,6 +11,12 @@
     overflow-y: scroll;
 }
 
+.YtContainer{
+    width: 100%;
+    max-width: 500px
+}
+
+
 .AcademyPageContainer{
         display: flex;
     flex-flow: column;

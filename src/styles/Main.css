@@ -52,6 +52,7 @@
 
 .LogoLettersFade{
     width: 100%;
+    max-width: 1000px;
     opacity: 0.1;
 }
 

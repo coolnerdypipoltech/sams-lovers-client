@@ -14,7 +14,7 @@
 }
 
 .challenges-subpage-container {
-  background-color: #f2f4f7;
+  background-color: rgb(242, 244, 255);
   padding-left: 5%;
   padding-right: 5%;
   height:calc(100%);
@@ -27,7 +27,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 90%;
-  max-width: 1000px;
+
 }
 
 .confirmation-subpage-container {
@@ -91,11 +91,6 @@
   justify-content: space-between;
 }
 
-@media (min-width: 900px) {
-  .challenge-header{
-    width: 100%;
-  }
-}
 
 
 .challenge-header-title{
@@ -352,6 +347,137 @@
   -o-border-radius: 20px;
 }
 
+
+@media(min-width: 650px){
+  .challenges-filter {
+
+  right: 10%;
+
+  }
+}
+
+@media(min-width: 950px){
+  .challenges-filter {
+    right: 10%;
+  }
+}
+
+@media(min-width: 1000px){
+  .challenges-filter {
+    right: 11%;
+  }
+}
+
+@media(min-width: 1050px){
+  .challenges-filter {
+    right: 12%;
+  }
+}
+
+@media(min-width: 1100px){
+  .challenges-filter {
+    right: 13%;
+  }
+}
+
+@media(min-width: 1150px){
+  .challenges-filter {
+    right: 14%;
+  }
+}
+
+@media(min-width: 1200px){
+  .challenges-filter {
+    right: 15%;
+  }
+}
+
+@media(min-width: 1250px){
+  .challenges-filter {
+    right: 16%;
+  }
+}
+
+@media(min-width: 1300px){
+  .challenges-filter {
+    right: 17%;
+  }
+}
+
+@media(min-width: 1350px){
+  .challenges-filter {
+    right: 18%;
+  }
+}
+
+@media(min-width: 1400px){
+  .challenges-filter {
+    right: 19%;
+  }
+}
+
+@media(min-width: 1450px){
+  .challenges-filter {
+    right: 20%;
+  }
+}
+
+@media(min-width: 1500px){
+  .challenges-filter {
+    right: 21%;
+  }
+}
+
+@media(min-width: 1550px){
+  .challenges-filter {
+    right: 22%;
+  }
+}
+
+@media(min-width: 1600px){
+  .challenges-filter {
+    right: 23%;
+  }
+}
+
+@media(min-width: 1650px){
+  .challenges-filter {
+    right: 24%;
+  }
+}
+
+@media(min-width: 1700px){
+  .challenges-filter {
+    right: 25%;
+  }
+}
+
+
+@media(min-width: 1750px){
+  .challenges-filter {
+    right: 22%;
+  }
+}
+
+@media(min-width: 1800px){
+  .challenges-filter {
+    right: 23%;
+  }
+}
+
+@media(min-width: 1850px){
+  .challenges-filter {
+    right: 24%;
+  }
+}
+
+@media(min-width: 1900px){
+  .challenges-filter {
+    right: 25%;
+  }
+}
+
+
 .challenges-filter-title{
   color: black;
   font-weight: 500;
@@ -397,11 +523,6 @@
 
 }
 
-@media (min-width: 900px) {
-  .challenges-text{
-    width: 100%;
-  }
-}
 
 
 .challenges-Title{

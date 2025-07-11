@@ -260,7 +260,7 @@
   display: flex;
   flex-flow: column;
   padding-top: 20px;
-  max-width: 800px;
+  max-width: 1000px;
   overflow: overlay;
 }
 

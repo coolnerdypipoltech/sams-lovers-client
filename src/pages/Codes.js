@@ -206,13 +206,13 @@ function Codes() {
           Obten diamantes gratis con los códigos Sam's Lovers ¿Ya tienes un
           código? Redimelo aquí
         </p>
-        <div style={{opacity: "0.3", width: "90%", maxWidth: "600px"}} className="Divider"></div>
-        <div className="CodeInputContainer" style={{maxWidth: "500px"}}>
+        <div style={{opacity: "0.3", width: "90%", maxWidth: "1000px"}} className="Divider"></div>
+        <div className="CodeInputContainer" style={{maxWidth: "700px"}}>
 
             <p className="CodeInputText"> Introduce tu código de 16 dígitos</p>
           <input style={{width: "auto"}} placeholder="Código"  className="GeneralInput" value={inputValue} onChange={e => handleOnChangeInput(e.target.value)}></input>
         </div>
-        <div style={{width: "70%", paddingTop: "10px", maxWidth: "400px"}} className="CodeButtonContainer">
+        <div style={{width: "70%", paddingTop: "10px", maxWidth: "600px"}} className="CodeButtonContainer">
           <button style={{fontSize: "14px"}} className="GeneralButton4" onClick={handleExchangeCode}>Canjear código</button>
         </div>
       </div>

@@ -216,12 +216,12 @@ function EditProfilePage({ onReturn }) {
                   setInputEditUserTiktok("");
                 }}
               >
-                <img
+                {inputEditUserTiktok !== "" && (<img
                   alt="eye"
                   className="eyePassword"
                   style={{paddingTop: "13px"}}
                   src={cross}
-                ></img>
+                ></img>)}
               </div>
               </div>
               <InfoTooltip dark={true}
@@ -253,12 +253,12 @@ function EditProfilePage({ onReturn }) {
                   setInputEditUserInstagram("");
                 }}
               >
-                <img
+               {inputEditUserInstagram !== "" && (<img
                   alt="eye"
                   className="eyePassword"
                   style={{paddingTop: "13px"}}
                   src={cross}
-                ></img>
+                ></img>)}
               </div>
               </div>
               <InfoTooltip dark={true}
@@ -290,12 +290,12 @@ function EditProfilePage({ onReturn }) {
                   setInputEditUserFacebook("");
                 }}
               >
-                <img
+                {inputEditUserFacebook !== "" && (<img
                   alt="eye"
                   className="eyePassword"
                   style={{paddingTop: "13px"}}
                   src={cross}
-                ></img>
+                ></img>)}
               </div>
               </div>
 
@@ -324,12 +324,12 @@ function EditProfilePage({ onReturn }) {
                   setInputEditUserYoutube("");
                 }}
               >
-                <img
+                {inputEditUserYoutube !== "" && (<img
                   alt="eye"
                   className="eyePassword"
                   style={{paddingTop: "13px"}}
                   src={cross}
-                ></img>
+                ></img>)}
               </div>
               </div>
               <InfoTooltip dark={true}
@@ -356,13 +356,13 @@ function EditProfilePage({ onReturn }) {
                   setInputEditUserX("");
                 }}
               >
-                <img
+               {inputEditUserX !== "" && (<img
                   alt="eye"
                   className="eyePassword"
                   style={{paddingTop: "13px"}}
                   src={cross}
-                ></img></div>
-
+                ></img>)}
+</div>
               </div>
               <InfoTooltip dark={true}
                 text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}

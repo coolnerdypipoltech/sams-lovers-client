@@ -18,7 +18,7 @@
     margin-top: 40px;
     font-family:"canada-type-gibson";
     color: #003087;
-        max-width: 600px;
+        max-width: 1000px;
 }
 
 .CodeText{
@@ -28,7 +28,7 @@
     color: #868787;
     font-family: "Poppins", sans-serif;
     margin: 0px;
-        max-width: 600px;
+        max-width: 1000px;
 }
 
 @media (max-width: 407px) {

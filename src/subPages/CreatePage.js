@@ -283,7 +283,7 @@ function CreatePage({
                 />
                 <span className="checkmark"></span>
               </label>
-              <p style={{ textAlign: "start" }} className="loginBottomText">
+              <p style={{ textAlign: "start", }} className="loginBottomText2">
                 {" "}
                 Tengo consciencia y estoy de acuerdo con los Términos de Uso y
                 con las Políticas de Sam’s Lover

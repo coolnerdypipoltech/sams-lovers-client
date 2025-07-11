@@ -116,7 +116,7 @@ function ChallengeParticipationPage({
           challenge.status_challenge !== "TERMINADO")) && (
         <div className="participationContainer">
           <button
-            style={{ width: "60%" }}
+            style={{ width: "60%", maxWidth: "800px" }}
             className="GeneralButton4"
             onClick={handleParticipation}
           >
