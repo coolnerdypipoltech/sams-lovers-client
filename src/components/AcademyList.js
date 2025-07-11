@@ -9,7 +9,7 @@ function AcademyList({ changeToSubPage }) {
   const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestArticles, setCurrentArticle, articleData, requestMoreArticlesByURL, nextArticles } = useContext(ElementContextData);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   //const [triggerUpdate, setTriggerUpdate] = useState(0);
   const [errorPopUpResponse, setErrorPopUpResponse] = useState("");
 
