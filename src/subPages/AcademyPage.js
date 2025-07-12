@@ -29,7 +29,7 @@ function AcademyPage({ onReturn, handleNextArticle, hasNextArticle }) {
       <div key={update} className="AcademyPageContainer">
         <div className="AcademyArticlePageContainer">
           <div className="center">
-            <div style={{ maxWidth: "1000px" }}>
+            <div style={{ maxWidth: "1000px", width: "80%" }}>
               <div className="headerSpacer"></div>
               <div className="headerSpacer"></div>
               <p
@@ -52,12 +52,19 @@ function AcademyPage({ onReturn, handleNextArticle, hasNextArticle }) {
                 {currentArticle.title}
               </p>
               {currentArticle.main.type !== "VIDEO" ? (
-                <img
-                  style={{ width: "100%", paddingLeft: "0px" }}
-                  className="imageAcademyItem"
-                  src={currentArticle.main.absolute_url}
-                  alt="bannerLogo"
-                ></img>
+                <div className="center">
+                  <div
+                    className="center"
+                    style={{ width: "100%", maxWidth: "800px" }}
+                  >
+                    <img
+                      style={{ width: "100%", paddingLeft: "0px", maxWidth: "500px" }}
+                      className="imageAcademyItem"
+                      src={currentArticle.main.absolute_url}
+                      alt="bannerLogo"
+                    ></img>
+                  </div>
+                </div>
               ) : (
                 <div className="center">
                   <div className="YtContainer">

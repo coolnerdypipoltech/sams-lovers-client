@@ -5,11 +5,11 @@ import { useContext, useRef, useState } from "react";
 import "../styles/Codes.css";
 import diamond from "../assets/diamond.svg";
 import SamsConfetti from "../components/SamsConfetti";
-
+import { ElementContextPopUp } from "../context/PopUpContext";
 function Codes() {
   const { deleteSavedItems, changeRoute, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, UserData, setNewUserDiamonds } = useContext(ElementContextData);
-
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [popUpResponse, setPopUpResponse] = useState("");
   const [inputValue, setInputValue] = useState('');
 
@@ -73,6 +73,7 @@ function Codes() {
       await handleLogOut();
       return;
     }
+    changePopUpLoading(true)
 
     const response = await ExchangeCode(`Bearer ${token}`, inputValue);
     const data = await response.json();
@@ -81,6 +82,7 @@ function Codes() {
         setNewUserDiamonds(data.user.related.diamonds);
         setPopUpResponse("Success");
         setInputValue("");
+        changePopUpLoading(false)
       } else {
         if (data.message) {
           switch(data.message) {
@@ -106,8 +108,10 @@ function Codes() {
         }else{
           openGeneralErrorPopUp();
         }
+        changePopUpLoading(false)
         return;
       }
+     
   }
 
   if(popUpResponse === "Error"){

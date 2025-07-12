@@ -31,25 +31,26 @@ function MyRewards({returnPage, selectPage}) {
   return (
     <>
     <div className="subPageContainer"></div>
-      <div className="center" style={{width: "100%"}}>
-        
+      <div
+          style={{ width: "90%", backgroundColor: "#F2F4FF", alignItems: "center"  }}
+          className="challenges-subpage-container"
+        >
+        <div style={{width: "100%", height: "100%", maxWidth: "900px"}}>
+          <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
-        <div className="headerSpacer"></div>
-        <p
+        <div style={{width: "100%", maxWidth: "1000px", paddingLeft: "5%"}}>
+          <p
             style={{ color: "#3C74F3" }}
             className="challenge-back-button-text"
             onClick={handleReturn}
         >
           Volver
         </p>
-        <div
-          style={{ width: "90%", backgroundColor: "#F2F4FF" }}
-          className="challenges-subpage-container"
-        >
         <p style={{paddingLeft: "0px"}} className="challengesPage-Title">Mis Recompensas</p>
         <p style={{paddingLeft: "0px"}} className="challenge-text">Historial de recompensas canjeadas</p>
+        </div>
         <MyRewardsList style={{paddingLeft: "0px"}} changeToSubPage={handleUserRewardTransactionSubPage}></MyRewardsList>
-      </div>
+        </div>
       </div>
       {userRewardTransactionPage}
     </>

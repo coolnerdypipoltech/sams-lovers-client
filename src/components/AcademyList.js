@@ -157,9 +157,9 @@ function AcademyList({ changeToSubPage }) {
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" , width: "100%", paddingTop:"0px",}}
+          style={{ overflowY: "auto", height: "84vh" , width: "100%", paddingTop:"0px", maxWidth: "100%", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center"}}
         >
-          <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%",  display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center"}}>
+          <div style={{width: "95%", paddingLeft: "2.5%", paddingRight: "2.5%",  display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", maxWidth: "1000px"}}>
             {((articleData !== null) && (articleData.length > 0)) ?
               (<>
                 {articleData.map((article, index) => (
@@ -172,7 +172,7 @@ function AcademyList({ changeToSubPage }) {
               (<p style={{textAlign: "center"}} className="challenge-text">No hay artículos disponibles...</p>)
             }
           </div>
-          <div>{contentHelper}</div>
+          <div style={{width: "100%"}}>{contentHelper}</div>
         </div>
       ) : (
         <></>

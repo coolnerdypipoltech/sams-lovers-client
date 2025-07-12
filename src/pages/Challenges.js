@@ -9,13 +9,14 @@ import ChallengeFilter from "../components/ChallengeFilter";
 import { CreateSubmission } from "../hooks/apicalls";
 import ChallengePopUp	 from "../components/ChallengePopUp";
 import { ElementContextRoute } from "../context/RouteContext";
+import { ElementContextPopUp } from "../context/PopUpContext";
 
 
 function Challenges() {
 
   const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
-
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
   const [challengePopUp, setChallengePopUp] = useState(false);
   const [challengeStatusFilter, setChallengeStatusFilter] = useState("TODO");
@@ -90,7 +91,7 @@ function Challenges() {
   }
 
   const handleParticipation = async () => {
-
+     
     if(submissionURL === "") return;
 
     const token = await getCurrentToken();
@@ -99,7 +100,7 @@ function Challenges() {
       await handleLogOut();
       return;
     }
-
+    changePopUpLoading(true)
     const response = await CreateSubmission(
       `Bearer ${token}`,
       currentChallenge.id,
@@ -112,6 +113,7 @@ function Challenges() {
       setChallengePopUp(true)
       setNewChallengeTransaction(data.transaction);
       setSubPage("ChallengePage");
+      changePopUpLoading(false)
     }else{
       if (data.message) {
         switch(data.message) {
@@ -125,10 +127,13 @@ function Challenges() {
             openGeneralErrorPopUp();
             break;
         }
+        
       }else{
         openGeneralErrorPopUp();
       }
+      changePopUpLoading(false)
     }
+    changePopUpLoading(false)
   };
 
   const handleRefreshList = async () => {

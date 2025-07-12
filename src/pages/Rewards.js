@@ -253,7 +253,8 @@ function Rewards() {
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
-            maxWidth: "1000px"
+            maxWidth: "1000px",
+            width: "100%"
           }}
           className="challenge-header"
         >
