@@ -9,8 +9,8 @@ function ChallengeParticipationPage({
 }) {
   return (
     <>
-      <div style={{ overflowY: "scroll" }} className="subPageContainer">
-        <div className="challenges-subpage-container">
+      <div style={{ overflowY: "scroll" , backgroundColor: "#f2f4ff" }} className="subPageContainer">
+        <div className="challenges-subpage-container" style={{maxWidth: "1000px"}} >
           <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <p onClick={handleReturn} className="challenge-back-button-text">

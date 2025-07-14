@@ -254,7 +254,8 @@ function Rewards() {
             flexDirection: "column",
             alignItems: "center",
             maxWidth: "1000px",
-            width: "100%"
+            width: "100%",
+            overflowY: "scroll"
           }}
           className="challenge-header"
         >

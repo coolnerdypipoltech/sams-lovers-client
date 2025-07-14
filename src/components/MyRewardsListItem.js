@@ -18,7 +18,7 @@ function MyRewardsListItem({ reward, userTransaction }) {
             alt="Challenge illustrative reference"
           />
         </div>
-        <div className="listItemContainer">
+        <div style={{width: "100%"}}  className="listItemContainer">
           <div>
             <p style={{width: "90%"}} className="listItemTitle">{reward.name}</p>
           </div>
