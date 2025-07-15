@@ -19,11 +19,19 @@ function Profile() {
 
   const userDataRelated = UserData.current.user.related;
   const [socialMedia, setSocialMedia] = useState([
-    {social_media: "facebook", link: userDataRelated.facebook, icon: facebook},
-    {social_media: "instagram", link: userDataRelated.instagram, icon: instagram},
-    {social_media: "tiktok", link: userDataRelated.tiktok, icon:tiktok },
-    {social_media: "youtube", link: userDataRelated.youtube, icon: youtube},
-    {social_media: "x", link: userDataRelated.x, icon: X}
+    {
+      social_media: "facebook",
+      link: userDataRelated.facebook,
+      icon: facebook,
+    },
+    {
+      social_media: "instagram",
+      link: userDataRelated.instagram,
+      icon: instagram,
+    },
+    { social_media: "tiktok", link: userDataRelated.tiktok, icon: tiktok },
+    { social_media: "youtube", link: userDataRelated.youtube, icon: youtube },
+    { social_media: "x", link: userDataRelated.x, icon: X },
   ]);
 
   let subPageContent = null;
@@ -33,23 +41,44 @@ function Profile() {
   };
 
   const handleEditProfile = () => {
+    const container = document.querySelector(".ProfileContainer");
+    if (container) {
+      container.style.height = "0px";
+      container.style.overflow = "hidden";
+    }
     setSubPage("EditProfilePage");
   };
 
   const handleReturn = () => {
-    if(subPage === "SelectRewardPage"){
+    const container = document.querySelector(".ProfileContainer");
+    if (container) {
+      container.style.height = "100%";
+    }
+    if (subPage === "SelectRewardPage") {
       setSubPage("RewardPage");
       return;
     }
 
-    if(subPage === "EditProfilePage"){
+    if (subPage === "EditProfilePage") {
       const userDataRelated = UserData.current.user.related;
       setSocialMedia([
-        {social_media: "facebook", link: userDataRelated.facebook, icon: facebook},
-        {social_media: "instagram", link: userDataRelated.instagram, icon: instagram},
-        {social_media: "tiktok", link: userDataRelated.tiktok, icon:tiktok },
-        {social_media: "youtube", link: userDataRelated.youtube, icon: youtube},
-        {social_media: "x", link: userDataRelated.x, icon: X}
+        {
+          social_media: "facebook",
+          link: userDataRelated.facebook,
+          icon: facebook,
+        },
+        {
+          social_media: "instagram",
+          link: userDataRelated.instagram,
+          icon: instagram,
+        },
+        { social_media: "tiktok", link: userDataRelated.tiktok, icon: tiktok },
+        {
+          social_media: "youtube",
+          link: userDataRelated.youtube,
+          icon: youtube,
+        },
+        { social_media: "x", link: userDataRelated.x, icon: X },
       ]);
     }
 
@@ -57,8 +86,8 @@ function Profile() {
   };
 
   const handleOpenSocialMedia = (_socialMedia, _username) => {
-    const split = _username.split('@');
-    switch(_socialMedia){
+    const split = _username.split("@");
+    switch (_socialMedia) {
       case "instagram":
         window.open(`https://www.instagram.com/${split[1]}`);
         break;
@@ -77,9 +106,9 @@ function Profile() {
       default:
         break;
     }
-  }
+  };
 
-  const handleSelectItem= () => {
+  const handleSelectItem = () => {
     setSubPage("SelectRewardPage");
   };
 
@@ -92,10 +121,10 @@ function Profile() {
     );
   }
 
-  if(subPage === "EditProfilePage"){
+  if (subPage === "EditProfilePage") {
     subPageContent = (
       <EditProfilePage onReturn={handleReturn}></EditProfilePage>
-    )
+    );
   }
 
   /*if (subPage === "SelectRewardPage") {
@@ -109,30 +138,62 @@ function Profile() {
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <p className="ProfileTitle">Mi Perfil</p>
-        <div >
+        <div>
           <img src={logo} className="DiamondImage" alt="ProfileLogo"></img>
         </div>
         <div className="ProfileContainerItems">
           <p className="userNameProfile">{UserData.current.user.name}</p>
           <div className="editSocialMediaButtonContainer">
             <p className="socialMediaTitle">Redes sociales</p>
-            <button onClick={handleEditProfile}  style={{height: "20px", minHeight: "20px", width: "82px", fontSize:"10px", marginTop: "10px"}}  className="GeneralButton4">Editar</button>
+            <button
+              onClick={handleEditProfile}
+              style={{
+                height: "20px",
+                minHeight: "20px",
+                width: "82px",
+                fontSize: "10px",
+                marginTop: "10px",
+              }}
+              className="GeneralButton4"
+            >
+              Editar
+            </button>
           </div>
           {socialMedia != null ? (
             <>
-            <div style={{paddingBottom: "15px"}} className="socialMediaContainer">
-              {socialMedia.map((item, index) => (
-                (item.link !== null) && (<img src={item.icon} key={index} onClick={() => handleOpenSocialMedia(item.social_media, item.link)} alt={`${item.link}`}></img>))
-              )}
-            </div>
+              <div
+                style={{ paddingBottom: "15px" }}
+                className="socialMediaContainer"
+              >
+                {socialMedia.map(
+                  (item, index) =>
+                    item.link !== null && (
+                      <img
+                        src={item.icon}
+                        key={index}
+                        onClick={() =>
+                          handleOpenSocialMedia(item.social_media, item.link)
+                        }
+                        alt={`${item.link}`}
+                      ></img>
+                    )
+                )}
+              </div>
             </>
           ) : (
             <></>
           )}
-          <div style={{color: "#E2EBF3", width: "80%" , height: "0.5px"}}  className="Divider"></div>
+          <div
+            style={{ color: "#E2EBF3", width: "80%", height: "0.5px" }}
+            className="Divider"
+          ></div>
           <div onClick={handleSelectReward} className="ProfileItem">
             <p className="socialMediaTitle">Ver mis recompensas</p>
-            <img src={chevronRight} style={{height: "30px", marginTop: "10px"}} alt="openImg"></img>
+            <img
+              src={chevronRight}
+              style={{ height: "30px", marginTop: "10px" }}
+              alt="openImg"
+            ></img>
           </div>
         </div>
       </div>

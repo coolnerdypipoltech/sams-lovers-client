@@ -82,7 +82,6 @@ function SocialMedia({
           <BackgroundSams></BackgroundSams>
           <div
             style={{
-              paddingTop: "125px",
               overflowY: "scroll",
               display: "flex",
               flexDirection: "column",
@@ -91,18 +90,18 @@ function SocialMedia({
               width: "100%",
             }}
           >
+
             <div style={{ width: "80%" }} className="loginHeaderContainer">
               <p onClick={onReturn} className="loginHeaderText">
                 Volver
               </p>
               <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
             </div>
-            <div className="logoContainer">
+            <div  className="logoContainer" >
               <img src={logo} alt="Logo" className="LoginLogo"></img>
-              <img src={samsLogo} alt="Logo" className="LoginLogo"></img>
             </div>
 
-            <div className="createUserContainer">
+            <div style={{paddingTop: "20px", maxWidth: "800px"}} className="createUserContainer">
               <p className="loginTitle">¡Bienvenido a Sam’s Lovers!</p>
               <p className="loginBottomText">
                 Compártenos tus redes sociales para obtener grandiosos premios,
@@ -123,12 +122,22 @@ function SocialMedia({
                     onChange={(e) => setInputCreateUserTiktok(e.target.value)}
                   ></input>
                   <div
-                    style={{ position: "relative", left: "-20px" }}
+                    style={{ position: "relative", left: "-30px", }}
                     onClick={() => {
                       setInputCreateUserTiktok("");
                     }}
                   >
-                    <img alt="cross" className="clearCross" src={cross}></img>
+                    {inputCreateUserTiktok !== "" ? (<img
+                  alt="eye"
+                  style={{paddingTop: "13px"}}
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
                   </div>
                   <div
                     style={{ position: "relative", left: "-10px", top: "10px" }}
@@ -140,7 +149,7 @@ function SocialMedia({
                 </div>
                 {errorInputTiktok === false ? (
                   <span className="errorText">
-                    Porfavor verifique su usuario
+                    El usuario debe comenzar con @
                   </span>
                 ) : (
                   <></>
@@ -162,12 +171,21 @@ function SocialMedia({
                     }
                   ></input>
                   <div
-                    style={{ position: "relative", left: "-20px" }}
+                    style={{ position: "relative", left: "-30px" }}
                     onClick={() => {
                       setInputCreateUserInstagram("");
                     }}
                   >
-                    <img alt="cross" className="clearCross" src={cross}></img>
+                    {inputCreateUserInstagram !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
                   </div>
                   <div
                     style={{ position: "relative", left: "-10px", top: "10px" }}
@@ -180,7 +198,7 @@ function SocialMedia({
 
                 {errorInputInstagram === false ? (
                   <span className="errorText">
-                    Porfavor verifique su usuario
+                    El usuario debe comenzar con @
                   </span>
                 ) : (
                   <></>
@@ -200,12 +218,21 @@ function SocialMedia({
                     onChange={(e) => setInputCreateUserFacebook(e.target.value)}
                   ></input>
                   <div
-                    style={{ position: "relative", left: "-20px" }}
+                    style={{ position: "relative", left: "-30px" }}
                     onClick={() => {
                       setInputCreateUserFacebook("");
                     }}
                   >
-                    <img alt="cross" className="clearCross" src={cross}></img>
+                    {inputCreateUserFacebook !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>): (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
                   </div>
                   <div
                     style={{ position: "relative", left: "-10px", top: "10px" }}
@@ -237,12 +264,21 @@ function SocialMedia({
                     onChange={(e) => setInputCreateUserYoutube(e.target.value)}
                   ></input>
                   <div
-                    style={{ position: "relative", left: "-20px" }}
+                    style={{ position: "relative", left: "-30px" }}
                     onClick={() => {
                       setInputCreateUserYoutube("");
                     }}
                   >
-                    <img alt="cross" className="clearCross" src={cross}></img>
+                    {inputCreateUserYoutube !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
                   </div>
                   <div
                     style={{ position: "relative", left: "-10px", top: "10px" }}
@@ -254,7 +290,7 @@ function SocialMedia({
                 </div>
                 {errorInputYoutube === false ? (
                   <span className="errorText">
-                    Porfavor verifique su usuario
+                    El usuario debe comenzar con @
                   </span>
                 ) : (
                   <></>
@@ -270,12 +306,21 @@ function SocialMedia({
                     onChange={(e) => setInputCreateUserX(e.target.value)}
                   ></input>
                   <div
-                    style={{ position: "relative", left: "-20px" }}
+                    style={{ position: "relative", left: "-30px" }}
                     onClick={() => {
                       setInputCreateUserX("");
                     }}
                   >
-                    <img alt="cross" className="clearCross" src={cross}></img>
+                    {inputCreateUserX !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
                   </div>
                   <div
                     style={{ position: "relative", left: "-10px", top: "10px" }}
@@ -287,7 +332,7 @@ function SocialMedia({
                 </div>
                 {errorInputX === false ? (
                   <span className="errorText">
-                    Porfavor verifique su usuario
+                    El usuario debe comenzar con @
                   </span>
                 ) : (
                   <></>

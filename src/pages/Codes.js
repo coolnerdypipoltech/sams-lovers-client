@@ -119,7 +119,7 @@ function Codes() {
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">
           <div className="GeneralButtonContainer">
-            <p style={{ marginTop: "30px" }} className="subTitlePopUpReward">
+            <p style={{ marginTop: "30px", }} className="subTitlePopUpReward">
               {rewardErrorPopUpTitle.current}
             </p>
 
@@ -146,13 +146,8 @@ function Codes() {
       <>
         <SamsConfetti></SamsConfetti>
         <div className="PopUp">
-          <div style={{ height: "auto" }} className="PopUpDialog">
+          <div style={{ height: "auto", }} className="PopUpDialog">
             <div className="GeneralButtonContainer">
-              <img
-                src={diamond}
-                style={{ height: "130px", paddingTop: "20px" }}
-                alt="An illustration representative of a diamond."
-              ></img>
 
               <p className="subTitlePopUpReward">
                 ¡Código canjeado con exito!
@@ -160,10 +155,11 @@ function Codes() {
 
               <p
                 style={{
-                  fontWeight: "800",
+                  fontWeight: "400",
                   margin: "0px",
-                  marginBottom: "20px",
+                  marginBottom: "14px",
                   color: "#0066A1",
+                  fontSize: "32px"
                 }}
                 className="subTitlePopUpReward"
               >
@@ -174,7 +170,7 @@ function Codes() {
                 style={{
                   fontWeight: "400",
                   margin: "0px",
-                  marginBottom: "20px",
+                  marginBottom: "14px",
                 }}
                 className="subTitlePopUpReward"
               >

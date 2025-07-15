@@ -421,7 +421,7 @@ function Login() {
             <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
           </div>
 
-          <div style={{ paddingTop: "55px", width: "80%", maxWidth: "800px" }} className="logoContainer">
+          <div  className="logoContainer">
             <img style={{alignSelf: "center"}} src={logo} alt="Logo" className="LoginLogo"></img>
           </div>
           <p style={{ paddingTop: "4px", width: "80%", maxWidth: "800px" }} className="loginTitle">

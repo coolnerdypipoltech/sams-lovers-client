@@ -138,7 +138,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "overlay", height: "84vh", paddingTop: "10px", paddingBottom: "30px", }}
+          style={{ overflowY: "overlay", height: "100%", paddingTop: "10px", paddingBottom: "30px",}}
         >
           {((challengesData !== null) && (challengesData.length > 0)) ?
               (<>
@@ -156,7 +156,7 @@ function ChallengesList({changeToSubPage, challengeStatusFilter, transactionStat
               (<p style={{textAlign: "center"}} className="challenge-text">No hay retos disponibles...</p>)
             }
           {isLoading && (
-            <div className="loading">Cargando...</div>
+            <div className="loading">Cargando más retos...</div>
           )}
         </div>
       ) : (

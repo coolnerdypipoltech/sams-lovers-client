@@ -255,7 +255,8 @@ function Rewards() {
             alignItems: "center",
             maxWidth: "1000px",
             width: "100%",
-            overflowY: "scroll"
+            overflowY: "overlay", 
+            paddingBottom: "20px"
           }}
           className="challenge-header"
         >

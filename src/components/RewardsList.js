@@ -140,7 +140,7 @@ function RewardsList({ changeToSubPage }) {
           className="listContainer"
           ref={listContainerRef}
           onScroll={handleScroll}
-          style={{ overflowY: "auto", height: "84vh" }}
+          style={{ overflowY: "auto", height: "100%" }}
         >
           {((rewardsData !== null) && (rewardsData.length > 0)) ?
               (<>

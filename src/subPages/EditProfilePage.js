@@ -12,7 +12,8 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 import { ElementContextRoute } from "../context/RouteContext";
 
 function EditProfilePage({ onReturn }) {
-  const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { getCurrentToken, deleteSavedItems, changeRoute } =
+    useContext(ElementContextRoute);
   const { UserData, SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
@@ -34,11 +35,36 @@ function EditProfilePage({ onReturn }) {
   let rewardPopUpContent = <></>;
 
   useEffect(() => {
-    if(UserData.current.user.related.facebook !== null && UserData.current.user.related.facebook !== ""){ setInputEditUserFacebook(UserData.current.user.related.facebook);}
-    if(UserData.current.user.related.instagram !== null && UserData.current.user.related.instagram !== ""){ setInputEditUserInstagram(UserData.current.user.related.instagram);}
-    if(UserData.current.user.related.tiktok !== null && UserData.current.user.related.tiktok !== ""){ setInputEditUserTiktok(UserData.current.user.related.tiktok);}
-    if(UserData.current.user.related.x !== null && UserData.current.user.related.x !== ""){ setInputEditUserX(UserData.current.user.related.x);}
-    if(UserData.current.user.related.youtube !== null && UserData.current.user.related.youtube !== ""){ setInputEditUserYoutube(UserData.current.user.related.youtube);}
+    if (
+      UserData.current.user.related.facebook !== null &&
+      UserData.current.user.related.facebook !== ""
+    ) {
+      setInputEditUserFacebook(UserData.current.user.related.facebook);
+    }
+    if (
+      UserData.current.user.related.instagram !== null &&
+      UserData.current.user.related.instagram !== ""
+    ) {
+      setInputEditUserInstagram(UserData.current.user.related.instagram);
+    }
+    if (
+      UserData.current.user.related.tiktok !== null &&
+      UserData.current.user.related.tiktok !== ""
+    ) {
+      setInputEditUserTiktok(UserData.current.user.related.tiktok);
+    }
+    if (
+      UserData.current.user.related.x !== null &&
+      UserData.current.user.related.x !== ""
+    ) {
+      setInputEditUserX(UserData.current.user.related.x);
+    }
+    if (
+      UserData.current.user.related.youtube !== null &&
+      UserData.current.user.related.youtube !== ""
+    ) {
+      setInputEditUserYoutube(UserData.current.user.related.youtube);
+    }
   }, [UserData]);
 
   const handleReturn = async () => {
@@ -47,49 +73,54 @@ function EditProfilePage({ onReturn }) {
 
   const handleRewardPopUpClose = () => {
     setPopUpResponse(null);
-  }
+  };
 
   const openGeneralErrorPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
     rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
     setPopUpResponse("Error");
-  }
+  };
 
   const handleLogOut = async () => {
     SetUserData(null);
     await deleteSavedItems();
     changeRoute("Login");
-  }
+  };
 
   const handleSave = async () => {
     if (inputValidation()) {
-
-      const inputEditUser_F = inputEditUserFacebook === "" ? null : inputEditUserFacebook;
-      const inputEditUser_I = inputEditUserInstagram === "" ? null : inputEditUserInstagram;
-      const inputEditUser_T = inputEditUserTiktok === "" ? null : inputEditUserTiktok;
+      const inputEditUser_F =
+        inputEditUserFacebook === "" ? null : inputEditUserFacebook;
+      const inputEditUser_I =
+        inputEditUserInstagram === "" ? null : inputEditUserInstagram;
+      const inputEditUser_T =
+        inputEditUserTiktok === "" ? null : inputEditUserTiktok;
       const inputEditUser_X = inputEditUserX === "" ? null : inputEditUserX;
-      const inputEditUser_Y = inputEditUserYoutube === "" ? null : inputEditUserYoutube;
+      const inputEditUser_Y =
+        inputEditUserYoutube === "" ? null : inputEditUserYoutube;
 
       changePopUpLoading(true);
 
       const token = await getCurrentToken();
 
-      if(token === null || token === "") {
+      if (token === null || token === "") {
         await handleLogOut();
         return;
       }
 
-      const response = await UpdateUserInfo(`Bearer ${token}`,
-         UserData.current.user.name,
-         inputEditUser_F,
-         inputEditUser_I,
-         inputEditUser_T,
-         inputEditUser_X,
-         inputEditUser_Y
+      const response = await UpdateUserInfo(
+        `Bearer ${token}`,
+        UserData.current.user.name,
+        inputEditUser_F,
+        inputEditUser_I,
+        inputEditUser_T,
+        inputEditUser_X,
+        inputEditUser_Y
       );
       const data = await response.json();
-      if(response.ok){
-        if(data.user !== null){
+      if (response.ok) {
+        if (data.user !== null) {
           let tempUserDataRelated = UserData.current.user.related;
           tempUserDataRelated = data.user.related;
           UserData.current.user.related = tempUserDataRelated;
@@ -97,10 +128,10 @@ function EditProfilePage({ onReturn }) {
           changePopUpLoading(false);
           onReturn();
         }
-      }else{
+      } else {
         changePopUpLoading(false);
         if (data.message) {
-          switch(data.message) {
+          switch (data.message) {
             case "api.error.unauthorized":
               // todo: delete cookie info
               break;
@@ -108,7 +139,7 @@ function EditProfilePage({ onReturn }) {
               openGeneralErrorPopUp();
               break;
           }
-        }else{
+        } else {
           openGeneralErrorPopUp();
         }
       }
@@ -151,7 +182,7 @@ function EditProfilePage({ onReturn }) {
     return regexFacebook.test(_userToTest);
   };
 
-  if(popUpResponse === "Error"){
+  if (popUpResponse === "Error") {
     rewardPopUpContent = (
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">
@@ -180,56 +211,85 @@ function EditProfilePage({ onReturn }) {
 
   return (
     <>
-    <>{rewardPopUpContent}</>
-    <div className="subPageContainer">
-      <div  className="EditProfileContainer">
+      <>{rewardPopUpContent}</>
+      <div className="subPageContainer">
+        <div
+          style={{  zIndex: 2, width: "100%", overflowY: "scroll" }}
+          className="EditProfileContainer"
+        >
+          <div style={{width: "80%", maxWidth: "1000px", gap: "15px", display: "flex", flexDirection: "column"}}>
 
-         <div style={{overflowY: "scroll", height: "100dvh", width: "100%"}} className="createUserContainer">
-          <div style={{width: "80%", gap: "15px", display: "flex", flexFlow: "column"}}>
-          <div className="headerSpacer"></div>
-          <p onClick={handleReturn} style={{color: "#3C74F3", marginBottom: "15px"}} className="EditProfielBack">Volver</p>
-          <div style={{minHeight: "0.5px", width: "100%", backgroundColor: "grey"}}></div>
-          <p style={{color: "grey", marginTop: "15px", marginBottom: "15px", textAlign: "left"}} className="loginBottomText">
+
+          <div
+            style={{ height: "80px", minHeight: "80px" }}
+            className="headerSpacer"
+          ></div>
+          <p
+            onClick={handleReturn}
+            style={{ color: "#3C74F3", marginBottom: "15px" }}
+            className="EditProfielBack"
+          >
+            Volver
+          </p>
+          <div
+            style={{
+              minHeight: "0.5px",
+              width: "100%",
+              backgroundColor: "grey",
+            }}
+          ></div>
+          <p
+            style={{
+              color: "grey",
+              marginTop: "15px",
+              marginBottom: "15px",
+              textAlign: "left",
+            }}
+            className="loginBottomText"
+          >
             Compártenos tus redes sociales para obtener grandiosos premios,
             recuerda que tu cuenta debe estar publica para que podamos validar
             las dinámicas.
           </p>
-          
 
-          
-          <div  className="GeneralInputContainer">
+          <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img
                 src={tiktok}
                 alt="tiktokLogo"
                 className="socialMediaIcon"
               ></img>
-              <div style={{minWidth: "50%"}} className="passwordInput">
-                              <input
-                placeholder={"@usuario"}
-                className="GeneralInput"
-                value={inputEditUserTiktok}
-                onChange={e => setInputEditUserTiktok(e.target.value)}
-              ></input>
-              <div
-                onClick={() => {
-                  setInputEditUserTiktok("");
-                }}
-              >
-                {inputEditUserTiktok !== "" && (<img
-                  alt="eye"
-                  className="eyePassword"
-                  style={{paddingTop: "13px"}}
-                  src={cross}
-                ></img>)}
+              <div style={{ minWidth: "50%" }} className="passwordInput">
+                <input
+                  placeholder={"@usuario"}
+                  className="GeneralInput"
+                  value={inputEditUserTiktok}
+                  onChange={(e) => setInputEditUserTiktok(e.target.value)}
+                ></input>
+                <div
+                  onClick={() => {
+                    setInputEditUserTiktok("");
+                  }}
+                >
+                  {inputEditUserTiktok !== "" && (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      style={{ paddingTop: "13px", paddingRight: "10px" }}
+                      src={cross}
+                    ></img>
+                  )}
+                </div>
               </div>
-              </div>
-              <InfoTooltip dark={true}
+              <InfoTooltip
+                dark={true}
                 text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputTiktok === false ? (
-              <span  style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
+              <span style={{ color: "#0063FF" }} className="errorText">
+                El usuario debe comenzar con @
+              </span>
             ) : (
               <></>
             )}
@@ -241,32 +301,37 @@ function EditProfilePage({ onReturn }) {
                 alt="InstagramLogo"
                 className="socialMediaIcon"
               ></img>
-              <div style={{minWidth: "50%"}} className="passwordInput">
-                              <input
-                placeholder={"@usuario"}
-                className="GeneralInput"
-                value={inputEditUserInstagram}
-                onChange={e => setInputEditUserInstagram(e.target.value)}
-              ></input>
-              <div
-                onClick={() => {
-                  setInputEditUserInstagram("");
-                }}
-              >
-               {inputEditUserInstagram !== "" && (<img
-                  alt="eye"
-                  className="eyePassword"
-                  style={{paddingTop: "13px"}}
-                  src={cross}
-                ></img>)}
+              <div style={{ minWidth: "50%" }} className="passwordInput">
+                <input
+                  placeholder={"@usuario"}
+                  className="GeneralInput"
+                  value={inputEditUserInstagram}
+                  onChange={(e) => setInputEditUserInstagram(e.target.value)}
+                ></input>
+                <div
+                  onClick={() => {
+                    setInputEditUserInstagram("");
+                  }}
+                >
+                  {inputEditUserInstagram !== "" && (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      style={{ paddingTop: "13px", paddingRight: "10px" }}
+                      src={cross}
+                    ></img>
+                  )}
+                </div>
               </div>
-              </div>
-              <InfoTooltip dark={true}
+              <InfoTooltip
+                dark={true}
                 text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputInstagram === false ? (
-              <span style={{color: "#0063FF"}} className="errorText">El usuario debe comenzar con @</span>
+              <span style={{ color: "#0063FF" }} className="errorText">
+                El usuario debe comenzar con @
+              </span>
             ) : (
               <></>
             )}
@@ -278,33 +343,38 @@ function EditProfilePage({ onReturn }) {
                 alt="FacebookLogo"
                 className="socialMediaIcon"
               ></img>
-              <div style={{minWidth: "50%"}} className="passwordInput">
-                              <input
-                placeholder={"https://www.facebook.com/samslovers"}
-                className="GeneralInput"
-                value={inputEditUserFacebook}
-                onChange={e => setInputEditUserFacebook(e.target.value)}
-              ></input>
-              <div
-                onClick={() => {
-                  setInputEditUserFacebook("");
-                }}
-              >
-                {inputEditUserFacebook !== "" && (<img
-                  alt="eye"
-                  className="eyePassword"
-                  style={{paddingTop: "13px"}}
-                  src={cross}
-                ></img>)}
-              </div>
+              <div style={{ minWidth: "50%" }} className="passwordInput">
+                <input
+                  placeholder={"https://www.facebook.com/samslovers"}
+                  className="GeneralInput"
+                  value={inputEditUserFacebook}
+                  onChange={(e) => setInputEditUserFacebook(e.target.value)}
+                ></input>
+                <div
+                  onClick={() => {
+                    setInputEditUserFacebook("");
+                  }}
+                >
+                  {inputEditUserFacebook !== "" && (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      style={{ paddingTop: "13px", paddingRight: "10px" }}
+                      src={cross}
+                    ></img>
+                  )}
+                </div>
               </div>
 
-              <InfoTooltip dark={true}
+              <InfoTooltip
+                dark={true}
                 text={"Pon el link de tu \nperfil de facebook"}
               ></InfoTooltip>
             </div>
             {errorInputFacebook === false ? (
-              <span style={{color: "#0063FF"}}  className="errorText">Porfavor verifique su usuario</span>
+              <span style={{ color: "#0063FF" }} className="errorText">
+                Porfavor verifique su usuario
+              </span>
             ) : (
               <></>
             )}
@@ -312,32 +382,37 @@ function EditProfilePage({ onReturn }) {
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
-              <div style={{minWidth: "50%"}} className="passwordInput">
-                            <input
-                placeholder={"@usuario"}
-                className="GeneralInput"
-                value={inputEditUserYoutube}
-                onChange={e => setInputEditUserYoutube(e.target.value)}
-              ></input>
-              <div
-                onClick={() => {
-                  setInputEditUserYoutube("");
-                }}
-              >
-                {inputEditUserYoutube !== "" && (<img
-                  alt="eye"
-                  className="eyePassword"
-                  style={{paddingTop: "13px"}}
-                  src={cross}
-                ></img>)}
+              <div style={{ minWidth: "50%" }} className="passwordInput">
+                <input
+                  placeholder={"@usuario"}
+                  className="GeneralInput"
+                  value={inputEditUserYoutube}
+                  onChange={(e) => setInputEditUserYoutube(e.target.value)}
+                ></input>
+                <div
+                  onClick={() => {
+                    setInputEditUserYoutube("");
+                  }}
+                >
+                  {inputEditUserYoutube !== "" && (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      style={{ paddingTop: "13px", paddingRight: "10px" }}
+                      src={cross}
+                    ></img>
+                  )}
+                </div>
               </div>
-              </div>
-              <InfoTooltip dark={true}
+              <InfoTooltip
+                dark={true}
                 text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputYoutube === false ? (
-              <span style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
+              <span style={{ color: "#0063FF" }} className="errorText">
+                El usuario debe comenzar con @
+              </span>
             ) : (
               <></>
             )}
@@ -345,44 +420,62 @@ function EditProfilePage({ onReturn }) {
           <div className="GeneralInputContainer">
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
-              <div style={{minWidth: "50%"}} className="passwordInput">              <input
-                placeholder={"@usuario"}
-                className="GeneralInput"
-                value={inputEditUserX}
-                onChange={e => setInputEditUserX(e.target.value)}
-              ></input>
-              <div
-                onClick={() => {
-                  setInputEditUserX("");
-                }}
-              >
-               {inputEditUserX !== "" && (<img
-                  alt="eye"
-                  className="eyePassword"
-                  style={{paddingTop: "13px"}}
-                  src={cross}
-                ></img>)}
-</div>
+              <div style={{ minWidth: "50%" }} className="passwordInput">
+                {" "}
+                <input
+                  placeholder={"@usuario"}
+                  className="GeneralInput"
+                  value={inputEditUserX}
+                  onChange={(e) => setInputEditUserX(e.target.value)}
+                ></input>
+                <div
+                  onClick={() => {
+                    setInputEditUserX("");
+                  }}
+                >
+                  {inputEditUserX !== "" && (
+                    <img
+                      alt="eye"
+                      className="eyePassword"
+                      style={{ paddingTop: "13px", paddingRight: "10px" }}
+                      src={cross}
+                    ></img>
+                  )}
+                </div>
               </div>
-              <InfoTooltip dark={true}
+              <InfoTooltip
+                dark={true}
                 text={`Escribe tu nombre de usuario, \npor ejemplo: \n“@cashi o @Walmart.245"`}
               ></InfoTooltip>
             </div>
             {errorInputX === false ? (
-              <span style={{color: "#0063FF"}}  className="errorText">El usuario debe comenzar con @</span>
+              <span style={{ color: "#0063FF" }} className="errorText">
+                El usuario debe comenzar con @
+              </span>
             ) : (
               <></>
             )}
           </div>
-          <p style={{color: "grey", marginBottom: "15px", marginTop: "15px", textAlign: "left"}} className="loginBottomText">Recuerda que tu cuenta debe estar publica para que se pueda ver tu video</p>
-          <button className="GeneralButton4" onClick={handleSave}>
-            Guardar
-          </button>
+          <p
+            style={{
+              color: "grey",
+              marginBottom: "15px",
+              marginTop: "15px",
+              textAlign: "left",
+            }}
+            className="loginBottomText"
+          >
+            Recuerda que tu cuenta debe estar publica para que se pueda ver tu
+            video
+          </p>
+          <div style={{ paddingBottom: "35px" }}>
+            <button className="GeneralButton4" onClick={handleSave}>
+              Guardar
+            </button>
           </div>
-          <div style={{minHeight: "35px"}} className="headerSpacer"></div>
         </div>
       </div>
-    </div>
+                </div>
     </>
   );
 }

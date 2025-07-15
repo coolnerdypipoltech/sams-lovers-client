@@ -38,9 +38,9 @@ function MyRewards({returnPage, selectPage}) {
         <div style={{width: "100%", height: "100%", maxWidth: "900px"}}>
           <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
-        <div style={{width: "100%", maxWidth: "1000px", paddingLeft: "5%"}}>
+        <div style={{width: "100%", maxWidth: "1000px"}}>
           <p
-            style={{ color: "#3C74F3" }}
+            style={{ color: "#3C74F3", paddingLeft: "0px" }}
             className="challenge-back-button-text"
             onClick={handleReturn}
         >

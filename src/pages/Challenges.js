@@ -229,7 +229,7 @@ function Challenges() {
       )}
       <>{subPageContent}</>
       <div  className="challenges-container">
-        <div style={{maxWidth: "1000px", display: "flex", flexDirection: "column", alignItems: "center", width: "100%"}}>
+        <div style={{maxWidth: "1000px", display: "flex", flexDirection: "column", alignItems: "center", width: "100%", overflow: "overlay", overflowX: "hidden" }}>
         <div className="headerSpacer"></div>
         <div className="headerSpacer"></div>
         <div className="challenge-header">

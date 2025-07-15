@@ -133,18 +133,18 @@ function CreatePage({
     <div style={{overflowY: "hidden"}} className="subPageContainer">
       <div style={{overflowX: "hidden", overflowY: "hidden"}} className="LoginContainer">
         <BackgroundSams></BackgroundSams>
-        <div style={{ overflowY:"scroll", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <div style={{ overflowY:"overlay", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
           <div style={{width: "80%"}} className="loginHeaderContainer">
             <p onClick={handleReturn} className="loginHeaderText">
               Volver
             </p>
             <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
           </div>
-          <div className="logoContainer">
+          <div className="logoContainer" style={{paddingTop: "70px"}} >
             <img src={logo} alt="Logo" className="LoginLogo"></img>
           </div>
 
-          <div className="createUserContainer">
+          <div style={{maxWidth: "800px", paddingTop: "20px"}} className="createUserContainer">
             <p className="loginTitle">Registro</p>
             <div className="GeneralInputContainer">
               <p className="loginHeader">Nombre*</p>

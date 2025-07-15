@@ -29,7 +29,6 @@ function MyRewardsListItem({ reward, userTransaction }) {
               className="listItemSubtitle"
             >{`${formatOneDate(userTransaction.created_at)}`}</p>
           </div>
-          <p style={{paddingRight: "15px"}} className="listItemTitle">{reward.stock > 0 ? "En tienda" : "No disponible"}</p>
           </div>
         </div>
       </div>

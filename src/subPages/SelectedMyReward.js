@@ -13,8 +13,9 @@ function SelectedMyReward({returnPage}) {
   return (
     <>
       <div className="subPageContainer">
-        <div style={{gap:"0px", width: "100%", alignItems: "flex-start"}} className="CodePageContainer">
-          <div className="headerSpacer"></div>
+        <div style={{gap:"0px", width: "100%", alignItems: "center"}} className="CodePageContainer">
+          <div style={{maxWidth: "1000px"}}>
+            <div className="headerSpacer"></div>
           <div className="headerSpacer"></div>
           <p
             style={{ color: "#3C74F3", paddingLeft: "5%" }}
@@ -29,6 +30,7 @@ function SelectedMyReward({returnPage}) {
             <p className="challenge-text">{currentUserRewardTransaction.current.transactionable.name}</p>
           </div>
           <p className="challenge-text">{currentUserRewardTransaction.current.transactionable.transaction_text}</p>
+          </div>
         </div>
       </div>
     </>
