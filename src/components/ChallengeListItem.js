@@ -15,8 +15,20 @@ const getStatusIcon = (status) => {
       return rejectedStatusLogo;
   }
 
-  
+}
 
+const truncateByScreenWidth = (str) => {
+  const width = window.innerWidth;
+  let maxLength = str.length;
+
+  if (width <= 350) maxLength = 13;
+  else if (width <= 400) maxLength = 19;
+  else if (width <= 450) maxLength = 22;
+  else if (width <= 500) maxLength = 26;
+  else if (width <= 600) maxLength = 50;
+  else if (width <= 800) maxLength = 100;
+
+  return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
 }
 
 function ChallengeListItem({challenge}){
@@ -24,14 +36,14 @@ function ChallengeListItem({challenge}){
   return (
     <>
       
-      <div className="listItem">
+      <div className="listItem" style={{gap: "0px"}}>
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
         ) : (
           <img className="imageContainer" src={challenge.image_url} alt="Challenge illustrative reference"/>
         )}
         <div className="listItemTextContainer">
-          <p className="listItemTitle">{challenge.name}</p>
+          <p className="listItemTitle">{truncateByScreenWidth(challenge.name) }</p>
           <div className="rowAlign">
             <img src={diamond} className="diamondLogo" alt="diamonds"></img>
             <p className="listItemSubtitle">{challenge.diamonds} Diamantes</p>

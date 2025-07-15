@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import RewardsList from "../components/RewardsList";
 import "../styles/Rewards.css";
 import RewardPage from "../subPages/RewardPage";
@@ -12,7 +12,7 @@ import gift from "../assets/Recompensa.svg";
 import SamsConfetti from "../components/SamsConfetti";
 
 function Rewards() {
-  const { deleteSavedItems, changeRoute, getCurrentToken } =
+  const { deleteSavedItems, changeRoute, getCurrentToken, forceUpdate } =
     useContext(ElementContextRoute);
   const {
     SetUserData,
@@ -21,7 +21,7 @@ function Rewards() {
     setNewReward,
     setNewUserDiamonds,
   } = useContext(ElementContextData);
-    const { changePopUpLoading } = useContext(ElementContextPopUp);
+  const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
   const [popUpResponse, setPopUpResponse] = useState("");
 
@@ -34,6 +34,13 @@ function Rewards() {
     setSubPage("RewardPage");
   };
 
+  useEffect(() => {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "84vh";
+    }
+    setSubPage("");
+  }, [forceUpdate]);
   const handleReturn = () => {
     const div = document.querySelector(".listContainer");
     if (div) {
@@ -86,7 +93,7 @@ function Rewards() {
   };
 
   const handlePurchase = async () => {
-    changePopUpLoading(true)
+    changePopUpLoading(true);
     if (UserData.current.user.related.diamonds < currentReward.price) {
       openNoDiamondsPopUp();
       return;
@@ -135,7 +142,7 @@ function Rewards() {
         openGeneralErrorPopUp();
       }
     }
-    changePopUpLoading(false)
+    changePopUpLoading(false);
   };
 
   if (subPage === "RewardPage") {
@@ -255,19 +262,25 @@ function Rewards() {
             alignItems: "center",
             maxWidth: "1000px",
             width: "100%",
-            overflowY: "overlay", 
-            paddingBottom: "20px"
+            overflowY: "overlay",
+            paddingBottom: "20px",
           }}
           className="challenge-header"
         >
           <div
             style={{
-              maxWidth: "1000px", width: "80%"
+              maxWidth: "1000px",
+              width: "80%",
             }}
           >
-            <p style={{textAlign: "left", width: "100%"}} className="challenges-Title">Recompensas disponibles</p>
+            <p
+              style={{ textAlign: "left", width: "100%" }}
+              className="challenges-Title"
+            >
+              Recompensas disponibles
+            </p>
 
-            <p style={{textAlign: "left"}}  className="challenges-text">
+            <p style={{ textAlign: "left" }} className="challenges-text">
               {" "}
               Redime tus diamantes por increibles premios.
             </p>

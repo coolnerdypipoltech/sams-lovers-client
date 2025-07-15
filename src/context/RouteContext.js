@@ -7,7 +7,7 @@ const ElementProviderRoute= ({ children }) => {
   const [route, setRoute] = useState("");
   const registerFlow = useRef(false);
   const { getItems, isInitialize, deleteItem, saveItem } = useIndexedDB();
-
+  const [forceUpdate, setForceUpdate] = useState(0); 
 
   useEffect(() => {
     //persistLogin()
@@ -15,6 +15,10 @@ const ElementProviderRoute= ({ children }) => {
   }, [isInitialize])
 
   const changeRoute = async (newValue) => {
+    console.log(newValue, route)
+    if(newValue === route){
+      setForceUpdate(forceUpdate + 1)
+    }
     const response = await getCurrentToken();
     if(response === null){
       if(newValue === "Landing"){
@@ -86,7 +90,7 @@ const ElementProviderRoute= ({ children }) => {
   }
 
   return (
-    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems, persistLogin, hasSavedData, getCurrentToken}}>
+    <ElementContextRoute.Provider value={{ route, registerFlow, changeRoute, setLoginToken, deleteSavedItems, persistLogin, hasSavedData, getCurrentToken, forceUpdate}}>
       {children}
     </ElementContextRoute.Provider>
   );

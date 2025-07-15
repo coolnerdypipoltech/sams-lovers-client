@@ -14,8 +14,8 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 
 function Challenges() {
 
-  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
-  const { SetUserData, UserData, initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
+  const { changeRoute, deleteSavedItems, getCurrentToken, forceUpdate } = useContext(ElementContextRoute);
+  const { SetUserData,  initRequestChallenges, currentChallenge, setNewChallengeTransaction } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
   const [challengePopUp, setChallengePopUp] = useState(false);
@@ -43,6 +43,15 @@ function Challenges() {
       setPrevChallengeStatusFilter(challengeStatusFilter);
     }
   }, [challengeStatusFilter, prevChallengeStatusFilter, filterHasBeenModified]);
+
+  useEffect(() =>{
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "84vh";
+    }
+    setSubPage("")
+    
+  }, [forceUpdate])
 
   useEffect(() => {
     if(prevTransactionStatusFilter !== transactionStatusFilter){

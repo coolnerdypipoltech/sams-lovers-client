@@ -8,14 +8,14 @@ import tiktok from "../assets/iconsBlue/Icon_Tiktok.svg";
 import X from "../assets/iconsBlue/Icon_X.svg";
 import youtube from "../assets/iconsBlue/Icon_Youtube.svg";
 import EditProfilePage from "../subPages/EditProfilePage";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import logo from "../assets/Imagen_Perfil.png";
 import { ElementContextData } from "../context/DataContext";
-
+import { ElementContextRoute } from "../context/RouteContext";
 function Profile() {
   const { UserData } = useContext(ElementContextData);
-
-  const [subPage, setSubPage] = useState("ConfirmationPage");
+  const { forceUpdate } = useContext(ElementContextRoute);
+  const [subPage, setSubPage] = useState("");
 
   const userDataRelated = UserData.current.user.related;
   const [socialMedia, setSocialMedia] = useState([
@@ -35,6 +35,14 @@ function Profile() {
   ]);
 
   let subPageContent = null;
+
+  useEffect(() => {
+    const container = document.querySelector(".ProfileContainer");
+    if (container) {
+      container.style.height = "100%";
+    }
+    setSubPage("");
+  }, [forceUpdate]);
 
   const handleSelectReward = () => {
     setSubPage("RewardPage");

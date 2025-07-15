@@ -214,10 +214,10 @@ function EditProfilePage({ onReturn }) {
       <>{rewardPopUpContent}</>
       <div className="subPageContainer">
         <div
-          style={{  zIndex: 2, width: "100%", overflowY: "scroll" }}
+          style={{  zIndex: 2, width: "100%", height:"100%" , overflowX: "hidden" }}
           className="EditProfileContainer"
         >
-          <div style={{width: "80%", maxWidth: "1000px", gap: "15px", display: "flex", flexDirection: "column"}}>
+          <div style={{width: "100%", gap: "15px", display: "flex", flexDirection: "column", height: "100%", overflowX: "hidden", alignItems: "center"}}>
 
 
           <div
@@ -226,7 +226,8 @@ function EditProfilePage({ onReturn }) {
           ></div>
           <p
             onClick={handleReturn}
-            style={{ color: "#3C74F3", marginBottom: "15px" }}
+            
+            style={{ color: "#3C74F3", marginBottom: "15px" , maxWidth: "1000px", width: "80%"  }}
             className="EditProfielBack"
           >
             Volver
@@ -234,8 +235,8 @@ function EditProfilePage({ onReturn }) {
           <div
             style={{
               minHeight: "0.5px",
-              width: "100%",
               backgroundColor: "grey",
+               maxWidth: "1000px", width: "80%"
             }}
           ></div>
           <p
@@ -243,7 +244,8 @@ function EditProfilePage({ onReturn }) {
               color: "grey",
               marginTop: "15px",
               marginBottom: "15px",
-              textAlign: "left",
+              textAlign: "left"
+              , maxWidth: "1000px", width: "80%"
             }}
             className="loginBottomText"
           >
@@ -252,7 +254,9 @@ function EditProfilePage({ onReturn }) {
             las dinámicas.
           </p>
 
-          <div className="GeneralInputContainer">
+          <div className="GeneralInputContainer" style={{
+               maxWidth: "1000px", width: "80%"
+            }} >
             <div className="GeneralInputSubContainer">
               <img
                 src={tiktok}
@@ -294,7 +298,9 @@ function EditProfilePage({ onReturn }) {
               <></>
             )}
           </div>
-          <div className="GeneralInputContainer">
+          <div className="GeneralInputContainer" style={{
+               maxWidth: "1000px", width: "80%"
+            }}>
             <div className="GeneralInputSubContainer">
               <img
                 src={instagram}
@@ -336,7 +342,9 @@ function EditProfilePage({ onReturn }) {
               <></>
             )}
           </div>
-          <div className="GeneralInputContainer">
+          <div className="GeneralInputContainer" style={{
+               maxWidth: "1000px", width: "80%"
+            }}>
             <div className="GeneralInputSubContainer">
               <img
                 src={facebook}
@@ -379,7 +387,9 @@ function EditProfilePage({ onReturn }) {
               <></>
             )}
           </div>
-          <div className="GeneralInputContainer">
+          <div className="GeneralInputContainer" style={{
+               maxWidth: "1000px", width: "80%"
+            }}>
             <div className="GeneralInputSubContainer">
               <img src={youtube} alt="YTLogo" className="socialMediaIcon"></img>
               <div style={{ minWidth: "50%" }} className="passwordInput">
@@ -417,7 +427,9 @@ function EditProfilePage({ onReturn }) {
               <></>
             )}
           </div>
-          <div className="GeneralInputContainer">
+          <div className="GeneralInputContainer" style={{
+               maxWidth: "1000px", width: "80%"
+            }}>
             <div className="GeneralInputSubContainer">
               <img src={X} alt="XLogo" className="socialMediaIcon"></img>
               <div style={{ minWidth: "50%" }} className="passwordInput">
@@ -461,14 +473,14 @@ function EditProfilePage({ onReturn }) {
               color: "grey",
               marginBottom: "15px",
               marginTop: "15px",
-              textAlign: "left",
+              textAlign: "left", maxWidth: "1000px", width: "80%", textAlignLast:"center"
             }}
             className="loginBottomText"
           >
             Recuerda que tu cuenta debe estar publica para que se pueda ver tu
             video
           </p>
-          <div style={{ paddingBottom: "35px" }}>
+          <div style={{ paddingBottom: "35px" , maxWidth: "1000px", width: "80%" }}>
             <button className="GeneralButton4" onClick={handleSave}>
               Guardar
             </button>

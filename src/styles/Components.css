@@ -312,15 +312,8 @@
   flex-flow: column;
   align-items: right;
   align-content: space-evenly;
-  gap: 15px;
-}
-
-.listItemTextContainer{
-  display: flex;
-  width: 100%;
-  flex-flow: column;
-  align-items: right;
-  align-content: space-evenly;
+  gap: 8px;
+  padding-left: 10px;
 }
 
 .listItemTitle {

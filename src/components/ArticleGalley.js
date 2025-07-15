@@ -33,6 +33,8 @@ function ArticleGallery({ gallery }) {
     return (
       <div style={{ maxHeight: "225px", height: "225px", borderRadius: "8px", paddingBottom: "20px", width: "100%"}}>
         <Carousel
+        autoPlay={TextTrackCue}
+        autoPlaySpeed={3000}
           responsive={responsive}
           infinite={true}
           showDots={true}

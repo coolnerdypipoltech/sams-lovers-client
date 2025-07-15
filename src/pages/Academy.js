@@ -14,7 +14,7 @@ function Academy() {
     if(currentArticle !== null) setCurrentArticleArticleIndex();
   });
 
-  const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
+  const { getCurrentToken, deleteSavedItems, changeRoute, forceUpdate } = useContext(ElementContextRoute);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const { SetUserData, currentArticle, articleData, requestNextArticle, articlePosition, totalArticles } = useContext(ElementContextData);
 
@@ -25,6 +25,14 @@ function Academy() {
   const handleSelectArticle =  () =>{
     setSubPage("AcademyPage")
   }
+
+    useEffect(() => {
+    const div = document.querySelector(".listContainer");
+    if (div) {
+      div.style.height = "84vh";
+    }
+    setSubPage("");
+  }, [forceUpdate]);
 
   const handleReturn =  () =>{
     const div = document.querySelector(".listContainer");

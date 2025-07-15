@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import { DeleteUser } from "../hooks/apicalls";
@@ -7,14 +7,14 @@ import DeleteUserPage from "../subPages/DeleteUserPage";
 import { ElementContextPopUp } from "../context/PopUpContext";
 
 function Config() {
-
-  const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
-  const { UserData, SetUserData } = useContext(ElementContextData);
+  const { changeRoute, deleteSavedItems, getCurrentToken, forceUpdate } =
+    useContext(ElementContextRoute);
+  const { SetUserData } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
 
   const [subPage, setSubPage] = useState("");
   const [popUpDeleteUser, setPopUpDeleteUser] = useState("");
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   let rewardErrorPopUpTitle = useRef("");
   let rewardErrorPopUpContent = useRef("");
@@ -22,39 +22,46 @@ function Config() {
   let subPageContent = <></>;
   let popUpContent = <></>;
 
+  useEffect(() => {
+    setInputValue("");
+    setSubPage("");
+  }, [forceUpdate]);
+
   const handleOnChangeInput = (input) => {
     setInputValue(input);
-  }
+  };
 
   const NotSamePasswordPopUp = () => {
     rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error.";
-    rewardErrorPopUpContent.current = "Verifique la contraseña que ha escrito y vuelva a intentar.";
+    rewardErrorPopUpContent.current =
+      "Verifique la contraseña que ha escrito y vuelva a intentar.";
     setPopUpDeleteUser("Fail");
-  }
+  };
 
   const openGeneralErrorPopUp = () => {
-    rewardErrorPopUpTitle.current = "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
+    rewardErrorPopUpTitle.current =
+      "Lo sentimos, ha ocurrido un error, favor de intentar más tarde.";
     rewardErrorPopUpContent.current = "Aún tenemos muchísimos premios para ti.";
     setPopUpDeleteUser("Fail");
-  }
+  };
 
   const handleWarningPopUp = () => {
     setPopUpDeleteUser("Warning");
-  }
+  };
 
   const handleLogOut = async () => {
     SetUserData(null);
     await deleteSavedItems();
     changeRoute("Login");
-  }
+  };
 
   const handleDeleteUser = async () => {
     if (inputValue === "") return;
-    setPopUpDeleteUser("")
+    setPopUpDeleteUser("");
     changePopUpLoading(true);
     const token = await getCurrentToken();
 
-    if(token === null || token === "") {
+    if (token === null || token === "") {
       await handleLogOut();
       return;
     }
@@ -73,7 +80,7 @@ function Config() {
       changePopUpLoading(false);
       const data = await response.json();
       if (data.message) {
-        switch(data.message) {
+        switch (data.message) {
           case "api.error.unauthorized":
             await handleLogOut();
             break;
@@ -84,27 +91,27 @@ function Config() {
             openGeneralErrorPopUp();
             break;
         }
-      }else{
+      } else {
         openGeneralErrorPopUp();
       }
       return;
     }
-  }
+  };
 
   const handleDeleteAccountSubPage = () => {
     setSubPage("DeleteAccount");
-  }
+  };
 
   const handleErrorDeleteUserPopUpClose = () => {
     setPopUpDeleteUser("");
-  }
+  };
 
   const handleReturn = () => {
-    if(subPage === "DeleteAccount") setInputValue("");
+    if (subPage === "DeleteAccount") setInputValue("");
     setSubPage("");
-  }
+  };
 
-  if(popUpDeleteUser === "Warning") {
+  if (popUpDeleteUser === "Warning") {
     popUpContent = (
       <div className="PopUp">
         <div style={{ height: "auto" }} className="PopUpDialog">
@@ -118,11 +125,14 @@ function Config() {
             >
               ¿Estás seguro que quieres eliminar tu cuenta?
             </p>
-            <button className="GeneralButton4" onClick={handleErrorDeleteUserPopUpClose}>
+            <button
+              className="GeneralButton4"
+              onClick={handleErrorDeleteUserPopUpClose}
+            >
               Mejor no
             </button>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <button className="GeneralButton1" onClick={handleDeleteUser}>
               Eliminar Cuenta
             </button>
@@ -149,7 +159,10 @@ function Config() {
               {rewardErrorPopUpContent.current}
             </p>
 
-            <button className="GeneralButton4" onClick={handleErrorDeleteUserPopUpClose}>
+            <button
+              className="GeneralButton4"
+              onClick={handleErrorDeleteUserPopUpClose}
+            >
               Aceptar
             </button>
 
@@ -160,38 +173,46 @@ function Config() {
     );
   }
 
-  if(popUpDeleteUser === ""){
+  if (popUpDeleteUser === "") {
     popUpContent = <></>;
   }
 
   if (subPage === "DeleteAccount") {
     subPageContent = (
-      <DeleteUserPage handleReturn={handleReturn} inputValue={inputValue} handleOnChangeInput={handleOnChangeInput} handleWarningPopUp={handleWarningPopUp}></DeleteUserPage>
+      <DeleteUserPage
+        handleReturn={handleReturn}
+        inputValue={inputValue}
+        handleOnChangeInput={handleOnChangeInput}
+        handleWarningPopUp={handleWarningPopUp}
+      ></DeleteUserPage>
     );
   }
 
-  if(subPage === "") {
+  if (subPage === "") {
     subPageContent = <></>;
   }
 
   return (
     <>
-    {popUpContent}
-    {subPageContent}
-    <div className="CodePageContainer">
+      {popUpContent}
+      {subPageContent}
+      <div className="CodePageContainer">
         <div className="headerSpacer"></div>
         <p className="CodeTitle">Configuración</p>
-        <div style={{opacity: "0.3", width: "100%", maxWidth: "600px"}} className="Divider"></div>
-        <p className="CodeText" onClick={handleDeleteAccountSubPage}>Eliminar cuenta</p>
-        <p style={{color: "black"}} className="CodeText">
-          Al eliminar tu cuenta no podrás recuperar tus datos guardados ni tus diamantes
+        <div
+          style={{ opacity: "0.3", width: "100%", maxWidth: "600px" }}
+          className="Divider"
+        ></div>
+        <p className="CodeText" onClick={handleDeleteAccountSubPage}>
+          Eliminar cuenta
         </p>
-        
-        
+        <p style={{ color: "black" }} className="CodeText">
+          Al eliminar tu cuenta no podrás recuperar tus datos guardados ni tus
+          diamantes
+        </p>
       </div>
     </>
   );
 }
-
 
 export default Config;

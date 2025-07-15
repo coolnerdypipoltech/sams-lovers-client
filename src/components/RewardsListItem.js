@@ -1,10 +1,29 @@
 import testImage from "../assets/Grupo 560@2x.png";
 import diamond from "../assets/diamond.svg";
 
+
+const truncateByScreenWidth = (str) => {
+  const width = window.innerWidth;
+  let maxLength = str.length;
+
+  if (width <= 350) maxLength = 13;
+  else if (width <= 400) maxLength = 19;
+  else if (width <= 450) maxLength = 22;
+  else if (width <= 500) maxLength = 26;
+  else if (width <= 600) maxLength = 50;
+  else if (width <= 800) maxLength = 100;
+
+  return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+}
+
+
 function ListItem({ reward }) {
+
+
+  
   return (
     <>
-      <div className="listItem">
+      <div className="listItem" style={{gap: "0px"}}>
         <div>
           <img
             className="imageContainer"
@@ -16,12 +35,12 @@ function ListItem({ reward }) {
             alt="Challenge illustrative reference"
           />
         </div>
-        <div style={{width: "100%"}} className="listItemContainer">
+        <div style={{width: "100%", paddingLeft: "10px"}} className="listItemContainer">
           <div>
-            <p style={{width: "90%"}}  className="listItemTitle">{reward.name}</p>
+            <p style={{width: "90%"}}  className="listItemTitle">{truncateByScreenWidth(reward.name)}</p>
           </div>
           <div style={{justifyContent: "space-between", width: "100%"}} className="rowAlign">
-            <div className="rowAlign">
+            <div  className="rowAlign">
               <img
                 src={diamond}
                 style={{ height: "17px" }}
@@ -29,7 +48,7 @@ function ListItem({ reward }) {
               ></img>
               <p className="listItemSubtitle">{`${reward.price} Diamantes`}</p>
             </div>
-            <p style={{paddingRight: "15px"}} className="listItemTitle">
+            <p style={{paddingRight: "15px", paddingLeft: "5px"}} className="listItemTitle">
               {reward.stock > 0 ? "Disponible" : "No disponible"}
             </p>
           </div>
