@@ -6,10 +6,12 @@ const truncateByScreenWidth = (str) => {
   const width = window.innerWidth;
   let maxLength = str.length;
 
-  if (width <= 350) maxLength = 13;
-  else if (width <= 400) maxLength = 28;
-  else if (width <= 450) maxLength = 32;
-  else if (width <= 500) maxLength = 36;
+  if (width <= 350) maxLength = 22;
+  else if (width <= 370) maxLength = 27;
+  else if (width <= 390) maxLength = 29;
+  else if (width <= 410) maxLength = 32;
+  else if (width <= 450) maxLength = 34;
+  else if (width <= 500) maxLength = 38;
   else if (width <= 600) maxLength = 56;
   else if (width <= 800) maxLength = 100;
 
