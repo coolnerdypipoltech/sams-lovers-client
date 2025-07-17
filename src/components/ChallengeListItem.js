@@ -22,13 +22,21 @@ const truncateByScreenWidth = (str) => {
   let maxLength = str.length;
 
   if (width <= 350) maxLength = 13;
-  else if (width <= 400) maxLength = 32;
-  else if (width <= 450) maxLength = 36;
-  else if (width <= 500) maxLength = 40;
+  else if (width <= 400) maxLength = 30;
+  else if (width <= 450) maxLength = 33;
+  else if (width <= 500) maxLength = 36;
   else if (width <= 600) maxLength = 56;
   else if (width <= 800) maxLength = 100;
 
-  return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+  if (str.length > maxLength) {
+    let sliced = str.slice(0, maxLength);
+    if (sliced.endsWith(' ')) {
+      sliced = sliced.slice(0, -1);
+    }
+    return sliced + '...';
+  }
+
+  return str;
 }
 
 function ChallengeListItem({challenge}){
