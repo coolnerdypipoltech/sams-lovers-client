@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_262" data-name="Rectángulo 262" width="20.997" height="17.18" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Inicio" transform="translate(13434 -9247)">
+    <g id="Grupo_805" data-name="Grupo 805" transform="translate(-13432 9251.41)">
+      <rect id="Rectángulo_261" data-name="Rectángulo 261" width="1.908" height="2.864" transform="translate(9.544 14.316)" fill="#fff"/>
+      <g id="Grupo_804" data-name="Grupo 804">
+        <g id="Grupo_803" data-name="Grupo 803" clip-path="url(#clip-path)">
+          <path id="Trazado_946" data-name="Trazado 946" d="M18.134,17.18a.955.955,0,0,0,.955-.955v-9l.463.278a.955.955,0,1,0,.982-1.638L10.991.136a.956.956,0,0,0-.982,0L.464,5.863A.955.955,0,0,0,1.446,7.5l.463-.278v9a.955.955,0,0,0,.955.955H7.636V13.363a.954.954,0,0,1,.954-.955h3.818a.954.954,0,0,1,.955.955V17.18Z" transform="translate(0 0)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <rect id="Rectángulo_272" data-name="Rectángulo 272" width="26" height="26" transform="translate(-13434 9247)" fill="none"/>
+  </g>
+</svg>

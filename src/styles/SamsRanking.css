@@ -1,0 +1,143 @@
+.RankingItemContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+.RankingNumberContainer{
+    width: 45px;
+    height: 45px;
+    position: relative;
+    z-index: 10;
+}
+.RankingNumberImg{
+    width: 45px;
+    position: relative;
+   
+}
+
+.RankingNumberText{
+    position: relative;
+    margin: 0px;
+    top: -37px;
+    color: rgb(255, 255, 255);
+}
+
+.RankingUserText{
+    margin-left: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: left;
+        font-family: "Poppins", sans-serif;
+}
+
+.SamsLoversRankingListContainer{
+    width: 100%;
+    position: relative;
+    z-index: 3;
+
+    height: 100%;
+}
+
+.backgroundRankingList{
+      background: linear-gradient(0deg,#5b9aff 0%, #0095ff 100%);width: 100%;
+    position: relative;
+    z-index: 2;
+
+    height: 100%;
+}
+
+.RankingHeader{
+    margin: 0px;
+    color: #ffffff;
+    font-size: 26px;
+    text-align: left;
+    font-family:"canada-type-gibson";
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-top: 60px;
+}
+
+.RankingTitle{
+    margin: 0px;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: left;
+        font-family:"canada-type-gibson";
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.RankingSubTitle{
+    margin: 0px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: left;
+        font-family:"canada-type-gibson";
+text-align: center;
+}
+
+.deco1{
+    position: relative;
+    z-index: 2;
+    top: -250px;
+    left: 66%;
+    width: 80px;
+}
+
+.deco2{
+    position: relative;
+    z-index: 2;
+    top: -300px;
+    right: 43%;
+}
+
+.deco3{
+    position: relative;
+    z-index: 2;
+    top: -550px;
+    left: 43%;
+
+}
+
+.deco4{
+    position: relative;
+    z-index: 2;
+    top: -550px;
+    right: 63%;
+}
+
+
+@media (max-width: 700px) {
+  .deco4 {
+    right: 67%;
+  }
+  .deco3 {
+    left: 43%;
+  }
+  .deco2 {
+    left: -38%;
+  }
+  .deco1 {
+    left: 56%;
+  }
+}
+
+@media (max-width: 450px) {
+  .deco4 {
+    right: 30%;
+    top: -670px;
+  }
+  .deco3 {
+    left: 25%;
+  }
+  .deco2 {
+    left: -48%;
+  }
+  .deco1 {
+    left: 60%;
+  }
+}

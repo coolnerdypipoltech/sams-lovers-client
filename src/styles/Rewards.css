@@ -1,0 +1,122 @@
+.RewardsContainer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    background-color: #F2F4FF;
+    height: 100%;
+}
+
+.ParticipateText{
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.rewardsSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.RewardButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.confirmationSubpageContainer{
+    width: 80%;
+    height: 100%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.informationRewardPageContainer{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.infoText {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: start;
+  margin: 0px;
+  margin-bottom: 2px;
+  color: #0b1432;
+  width: 80%;
+  margin-left: 5px;
+}
+
+/* Media query para pantallas de menos de 400px */
+@media (max-width: 400px) {
+  .infoText {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 350px) {
+  .infoText {
+    font-size: 9px;
+  }
+}
+
+.RewardsPopUpText{
+    font-size: 14px;
+    text-align: start;
+    color: #0B204F;
+    font-weight: 500;
+    font-family:"canada-type-gibson"
+}
+
+.popUpOutline{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F2F4FF;
+    border-radius: 9px;
+    padding: 10px;
+    padding-left: 15px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    -ms-border-radius: 9px;
+    -o-border-radius: 9px;
+}
+
+.subTitlePopUpReward{
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.RewardsDisclaimerText{
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: #868787;
+    text-align: left;
+    background-color: #F2F4FF;
+    padding: 10px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-bottom: 0px;
+}
+
+
+
+  .overFlowChat{
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 150%;
+    bottom: -50%;
+    
+  }

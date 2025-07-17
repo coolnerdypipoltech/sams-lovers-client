@@ -1,0 +1,386 @@
+.App {
+  text-align: center;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 100dvh;
+      background: #F2F4FF;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.subPageContainer{
+  background-color: #f2f4f7;
+  width: 100vw;
+  height: 100dvh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  flex-direction: column;
+  z-index: 10;
+}
+
+
+.Title{
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.GeneralInput{
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    height: 40px !important;
+    background-color: white;
+    border-color: #C6CACC;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    padding-left: 15px;
+    padding-right: 35px;
+}
+
+.eyePassword{
+    position: absolute;
+    right: 10px;
+    padding-top: 10px;
+}
+
+.clearCross{
+    padding-top: 15px;
+}
+
+.headerSpacer{
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+}
+
+.underlineText{
+  text-decoration: underline;
+}
+
+.GeneralButtonContainer{
+  width: 80%;
+}
+
+.errorText{
+      font-size: 14px;
+    font-weight: 400;
+     font-family: "Poppins", sans-serif;
+    color:rgb(238, 255, 0);
+    text-align: start;
+    margin: 0px;
+    padding-top: 8px;
+}
+
+.GeneralButton{
+  background-color: white;
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-color: white;
+  border-width: 0px;
+  color: #0066A1;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  padding: 0px;
+}
+
+.GeneralButton-Inactive{
+  background-color: rgba(255, 255, 255, 0.496);
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-color: white;
+  border-width: 0px;
+  color: #0066A1;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  padding: 0px;
+}
+
+.GeneralButton1{
+  background-color: white;
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-style: solid;
+  border-color: #08a4ff;
+  border-width: 2px;
+  color: #0066A1;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  padding: 0px;
+}
+
+.GeneralButton3{
+  background-color: #0066A1;
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-color: #0066A1;
+  border-width: 0px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  padding: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+
+.GeneralButton4{
+  background: linear-gradient(90deg,#0063ff 0%, #0095ff 100%);
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-color: #008eff;
+  border-width: 0px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 23px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  padding: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.GeneralButton4-Inactive{
+  background: linear-gradient(90deg,#0062ff7f 0%, #0095ff78 100%);
+  width: calc(100% + 2px);
+  height: 44px;
+  min-height: 44px;
+  border-color: #008eff;
+  border-width: 0px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 23px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  padding: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.GeneralButton2{
+    background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  text-align:center;
+  line-height: 45px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 23px;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  padding: 0px;
+}
+
+.GeneralInputContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.GeneralInputSubContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.Divider{
+    background-color: rgba(128, 128, 128, 0.445);
+    height: 1px;
+    width: 75%;
+}
+
+.PopUp{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  
+  height: 100vh;
+  position: absolute;
+  z-index: 100;
+  box-shadow: 10px;
+  flex-flow: column;
+  background-color: rgba(0, 0, 0, 0.144);
+}
+
+.rowAlign{
+  display: flex;
+  flex-direction: row;
+}
+
+.PopUpDialog{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 90%;
+  max-width: 600px;
+  height: 200px;
+  box-shadow: 10px;
+  flex-flow: column;
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.PopUpText{
+  font-size: 14px;
+  
+  font-family: "Poppins", sans-serif;
+}
+
+.PopUpTitle{
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.rowAlign{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.loading{
+  color: #535353;
+  padding-bottom: 20px;
+}
+
+.loadingGif{
+  width: 100px;
+  height: 100px;
+}
+
+.loadingGifContainer{
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+
+
+.backButtonConfig{
+  margin: 0px;
+  padding: 0px;
+  width: 90%;
+  text-align: left;
+  color: #3C74F3;
+  font-family:"canada-type-gibson"
+}

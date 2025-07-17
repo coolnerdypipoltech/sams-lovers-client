@@ -1,0 +1,367 @@
+import { useState } from "react";
+import logo from "../assets/Brand_SamsLovers.svg";
+import facebook from "../assets/Icon_Facebook.svg";
+import instagram from "../assets/Icon_Instagram.svg";
+import tiktok from "../assets/Icon_Tiktok.svg";
+import X from "../assets/Icon_X.svg";
+import youtube from "../assets/Icon_Youtube.svg";
+import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
+import InfoTooltip from "../components/InfoTooltip";
+import BackgroundSams from "../components/BackgroundSams";
+import cross from "../assets/clear_input.svg";
+
+function SocialMedia({
+  onReturn,
+  handleSignIn,
+  inputCreateUserFacebook,
+  setInputCreateUserFacebook,
+  inputCreateUserInstagram,
+  setInputCreateUserInstagram,
+  inputCreateUserTiktok,
+  setInputCreateUserTiktok,
+  inputCreateUserX,
+  setInputCreateUserX,
+  inputCreateUserYoutube,
+  setInputCreateUserYoutube,
+}) {
+  const [errorInputFacebook, SetErrorInputFacebook] = useState(true);
+  const [errorInputInstagram, SetErrorInputInstagram] = useState(true);
+  const [errorInputTiktok, SetErrorInputTiktok] = useState(true);
+  const [errorInputX, SetErrorInputX] = useState(true);
+  const [errorInputYoutube, SetErrorInputYoutube] = useState(true);
+
+  const handleContine = async () => {
+    if (inputValidation()) {
+      handleSignIn(false);
+    }
+  };
+
+  const handleOmit = async () => {
+    handleSignIn(true);
+  };
+
+  const inputValidation = () => {
+    const responseF = validateFacebook(inputCreateUserFacebook);
+    const responseI = validateUser(inputCreateUserInstagram);
+    const responseT = validateUser(inputCreateUserTiktok);
+    const responseX = validateUser(inputCreateUserX);
+    const responseY = validateUser(inputCreateUserYoutube);
+
+    SetErrorInputFacebook(responseF);
+    SetErrorInputInstagram(responseI);
+    SetErrorInputTiktok(responseT);
+    SetErrorInputX(responseX);
+    SetErrorInputYoutube(responseY);
+    if (responseY && responseX && responseT && responseI && responseF) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const validateUser = (_userToTest) => {
+    if (_userToTest.length === 0) {
+      return true;
+    }
+    const userRegex = /^@.+$/;
+    return userRegex.test(_userToTest);
+  };
+
+  const validateFacebook = (_userToTest) => {
+    if (_userToTest.length === 0) {
+      return true;
+    }
+    const regexFacebook = /^https:\/\/www\.facebook\.com\/.+$/;
+    return regexFacebook.test(_userToTest);
+  };
+
+  return (
+    <>
+      <div className="subPageContainer">
+        <div className="LoginContainer">
+          <BackgroundSams></BackgroundSams>
+          <div
+            style={{
+              overflowY: "scroll",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+
+            <div style={{ width: "80%" }} className="loginHeaderContainer">
+              <p onClick={onReturn} className="loginHeaderText">
+                Volver
+              </p>
+              <img src={samsLogo} alt="Logo" className="LoginLogoHeader"></img>
+            </div>
+            <div  className="logoContainer" >
+              <img src={logo} alt="Logo" className="LoginLogo"></img>
+            </div>
+
+            <div style={{paddingTop: "20px", maxWidth: "800px"}} className="createUserContainer">
+              <p className="loginTitle">¡Bienvenido a Sam’s Lovers!</p>
+              <p className="loginBottomText">
+                Compártenos tus redes sociales para obtener grandiosos premios,
+                recuerda que tu cuenta debe estar publica para que podamos
+                validar las dinámicas.
+              </p>
+              <div className="GeneralInputContainer">
+                <div className="GeneralInputSubContainer">
+                  <img
+                    src={tiktok}
+                    alt="tiktokLogo"
+                    className="socialMediaIcon"
+                  ></img>
+                  <input
+                    placeholder="@usuario"
+                    className="GeneralInput"
+                    value={inputCreateUserTiktok}
+                    onChange={(e) => setInputCreateUserTiktok(e.target.value)}
+                  ></input>
+                  <div
+                    style={{ position: "relative", left: "-30px", }}
+                    onClick={() => {
+                      setInputCreateUserTiktok("");
+                    }}
+                  >
+                    {inputCreateUserTiktok !== "" ? (<img
+                  alt="eye"
+                  style={{paddingTop: "13px"}}
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
+                  </div>
+                  <div
+                    style={{ position: "relative", left: "-10px", top: "10px" }}
+                  >
+                    <InfoTooltip
+                      text={`Escribe tu nombre de usuario, \npor ejemplo: \ncashi o Walmart.245`}
+                    ></InfoTooltip>
+                  </div>
+                </div>
+                {errorInputTiktok === false ? (
+                  <span className="errorText">
+                    El usuario debe comenzar con @
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="GeneralInputContainer">
+                <div className="GeneralInputSubContainer">
+                  <img
+                    src={instagram}
+                    alt="InstagramLogo"
+                    className="socialMediaIcon"
+                  ></img>
+                  <input
+                    placeholder="@usuario"
+                    className="GeneralInput"
+                    value={inputCreateUserInstagram}
+                    onChange={(e) =>
+                      setInputCreateUserInstagram(e.target.value)
+                    }
+                  ></input>
+                  <div
+                    style={{ position: "relative", left: "-30px" }}
+                    onClick={() => {
+                      setInputCreateUserInstagram("");
+                    }}
+                  >
+                    {inputCreateUserInstagram !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
+                  </div>
+                  <div
+                    style={{ position: "relative", left: "-10px", top: "10px" }}
+                  >
+                    <InfoTooltip
+                      text={`Escribe tu nombre de usuario, \npor ejemplo: \ncashi o Walmart.245`}
+                    ></InfoTooltip>
+                  </div>
+                </div>
+
+                {errorInputInstagram === false ? (
+                  <span className="errorText">
+                    El usuario debe comenzar con @
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="GeneralInputContainer">
+                <div className="GeneralInputSubContainer">
+                  <img
+                    src={facebook}
+                    alt="FacebookLogo"
+                    className="socialMediaIcon"
+                  ></img>
+                  <input
+                    placeholder={"https://www.facebook.com/samslovers"}
+                    className="GeneralInput"
+                    value={inputCreateUserFacebook}
+                    onChange={(e) => setInputCreateUserFacebook(e.target.value)}
+                  ></input>
+                  <div
+                    style={{ position: "relative", left: "-30px" }}
+                    onClick={() => {
+                      setInputCreateUserFacebook("");
+                    }}
+                  >
+                    {inputCreateUserFacebook !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>): (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
+                  </div>
+                  <div
+                    style={{ position: "relative", left: "-10px", top: "10px" }}
+                  >
+                    <InfoTooltip
+                      text={"Pon el link de tu \nperfil de facebook"}
+                    ></InfoTooltip>
+                  </div>
+                </div>
+                {errorInputFacebook === false ? (
+                  <span className="errorText">
+                    Porfavor verifique su usuario
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="GeneralInputContainer">
+                <div className="GeneralInputSubContainer">
+                  <img
+                    src={youtube}
+                    alt="YTLogo"
+                    className="socialMediaIcon"
+                  ></img>
+                  <input
+                    placeholder="@usuario"
+                    className="GeneralInput"
+                    value={inputCreateUserYoutube}
+                    onChange={(e) => setInputCreateUserYoutube(e.target.value)}
+                  ></input>
+                  <div
+                    style={{ position: "relative", left: "-30px" }}
+                    onClick={() => {
+                      setInputCreateUserYoutube("");
+                    }}
+                  >
+                    {inputCreateUserYoutube !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
+                  </div>
+                  <div
+                    style={{ position: "relative", left: "-10px", top: "10px" }}
+                  >
+                    <InfoTooltip
+                      text={`Escribe tu nombre de usuario, \npor ejemplo: \ncashi o Walmart.245`}
+                    ></InfoTooltip>
+                  </div>
+                </div>
+                {errorInputYoutube === false ? (
+                  <span className="errorText">
+                    El usuario debe comenzar con @
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="GeneralInputContainer">
+                <div className="GeneralInputSubContainer">
+                  <img src={X} alt="XLogo" className="socialMediaIcon"></img>
+                  <input
+                    placeholder="@usuario"
+                    className="GeneralInput"
+                    value={inputCreateUserX}
+                    onChange={(e) => setInputCreateUserX(e.target.value)}
+                  ></input>
+                  <div
+                    style={{ position: "relative", left: "-30px" }}
+                    onClick={() => {
+                      setInputCreateUserX("");
+                    }}
+                  >
+                    {inputCreateUserX !== "" ? (<img
+                  alt="eye"
+                  className="clearCross"
+                  src={cross}
+                ></img>) : (<img
+                  alt="eye2"
+                  className="clearCross"
+                  style={{opacity:"0"}}
+                  src={cross}
+                ></img>)}
+                  </div>
+                  <div
+                    style={{ position: "relative", left: "-10px", top: "10px" }}
+                  >
+                    <InfoTooltip
+                      text={`Escribe tu nombre de usuario, \npor ejemplo: \ncashi o Walmart.245`}
+                    ></InfoTooltip>
+                  </div>
+                </div>
+                {errorInputX === false ? (
+                  <span className="errorText">
+                    El usuario debe comenzar con @
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <p className="loginBottomText">
+                Estos campos no son obligatorios
+              </p>
+              <button className="GeneralButton" onClick={handleContine}>
+                Continuar y crear cuenta
+              </button>
+              <div className="GeneralButton2" onClick={handleOmit}>
+                Omitir y crear cuenta
+              </div>
+              <div>
+                <a
+                  className="loginBottomText"
+                  style={{ paddingBottom: "10px" }}
+                  hvalue="https://www.google.com"
+                >
+                  Términos de uso y Políticas
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default SocialMedia;

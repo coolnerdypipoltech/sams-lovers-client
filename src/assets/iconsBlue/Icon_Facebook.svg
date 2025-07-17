@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0262ad"/>
+      <stop offset="1" stop-color="#0141ae"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_40" data-name="Rectángulo 40" width="23.408" height="23.322" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Facebook" transform="translate(1291 -918)">
+    <rect id="Rectángulo_48" data-name="Rectángulo 48" width="33" height="33" transform="translate(-1291 918)" fill="none"/>
+    <g id="Grupo_292" data-name="Grupo 292" transform="translate(-1286 923)">
+      <g id="Grupo_291" data-name="Grupo 291" clip-path="url(#clip-path)">
+        <path id="Trazado_735" data-name="Trazado 735" d="M23.408,11.7A11.7,11.7,0,1,0,8.877,23.063V15.281H6.463V11.7H8.877V10.163c0-3.984,1.8-5.83,5.714-5.83a12.9,12.9,0,0,1,2.544.291V7.866c-.276-.029-.756-.044-1.352-.044-1.919,0-2.661.727-2.661,2.617V11.7h3.823l-.657,3.577H13.122v8.042A11.706,11.706,0,0,0,23.408,11.7" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

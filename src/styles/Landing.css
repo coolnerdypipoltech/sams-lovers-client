@@ -1,0 +1,49 @@
+.landingPageContainer{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #F2F4FF;
+    z-index: 2;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.LoginLandingButton{
+    width: 200px;
+    padding-right: 5%;
+}
+
+@media (max-width: 400px)  {
+  .LoginLandingButton {
+    width: 150px;
+    font-size: 11px;
+  }
+}
+
+.bannerImage{
+
+    height: auto;
+    padding-top: 25px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.LandingPageText{
+    font-family: "Poppins", sans-serif;
+    color: #868787;
+    font-size: 14px;
+    width: 80%;
+    max-width: 350px;
+    margin-bottom: 30px;
+}
+
+.LandingPageTitle{
+    color: #003087;
+    font-size: 26px;
+    font-weight: 600;
+    font-family:"canada-type-gibson";
+    margin-top: 45px;
+    margin-bottom: 16px;
+}

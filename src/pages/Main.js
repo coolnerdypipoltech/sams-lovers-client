@@ -1,0 +1,66 @@
+import { useEffect, useContext } from "react";
+import "../styles/Main.css";
+import { ElementContextData } from "../context/DataContext";
+import { ElementContextRoute } from "../context/RouteContext";
+import logo from "../assets/Imagen_Perfil.png";
+import SamsLoversMonth from "../components/SamsLoversMonth";
+import logoLetters from "../assets/Brand_SamsLovers.svg";
+import SamsFooter from "../components/SamsFooter";
+import SamsLoversRankingList from "../components/SamsLoversRankingList";
+
+import chevronUp from "../assets/Icon_Subir.svg"
+function Main() {
+  const { changeRoute } = useContext(ElementContextRoute);
+  const { UserData, initMainPage, mainPageData } = useContext(ElementContextData);
+
+  useEffect(() => {
+    initMainPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSeeChallengesAction = () => {
+    changeRoute("Challenges");
+    }
+
+  const handleGoUp = () => {
+    window.scrollTo({
+    top: 0,
+    behavior: "smooth" // puedes usar "auto" si no quieres animación
+  });
+  }
+
+  return (
+    <>
+      <div className="landingPageContainer">
+        <div style={{zIndex: 2}}>
+          <div className="headerSpacer"></div>
+        <div style={{height: "75px"}} className="headerSpacer"></div>
+        <img src={logo} alt="logoSL" style={{width: "220px"}} className="DiamondImage"></img>
+        <p style={{marginBottom: "05px", marginTop: "5px"}} className="LandingPageTitle">Bienvenido</p>
+        <span style={{marginTop: "0px", marginBottom: "05px"}} className="LandingPageTitle">a Sam's Lovers</span>
+        </div>
+        <div  className="backgroundLogoLetters">
+          <img className="LogoLettersFade" src={logoLetters} alt="backgroundLogo"></img>
+        </div>
+        <p style={{margin: "0px"}} className="UserNameText">{`¡Hola, ${UserData.current.user.name}!`}</p>
+        {(mainPageData !== null && <img src={mainPageData.home_banner.absolute_url} style={{paddingTop: "45px"}} className="bannerImage" alt="banner"></img>)}
+        <div style={{width: "70%", maxWidth: "300px", paddingTop: "35px"}}>
+        <button className="GeneralButton4" onClick={handleSeeChallengesAction}>Conoce los retos del mes</button>
+        </div>
+        <p style={{marginTop: "25px", width: "90%", marginBottom: "0px"}} className="LandingPageTitle">Tú puedes ser nuestro próximo </p>
+        <p style={{marginTop: "0px", width: "90%"}} className="LandingPageTitle"> Sam's Lover del mes</p>
+        <p className="LandingPageText" style={{marginBottom: "0px"}}>Súmate al reto, muestra lo mejor de ti y llévate premios únicos. ¿Tienes lo necesario para ser</p>
+        <p className="LandingPageText" style={{marginBottom: "30px", marginTop: "0px"}}>el próximo Sam's Lovers del mes? </p>
+        <SamsLoversMonth sams_lover={mainPageData?.sams_lover}></SamsLoversMonth>
+        <div style={{height: "30px"}} className="headerSpacer"></div>
+        <SamsLoversRankingList></SamsLoversRankingList>
+      </div>
+      <SamsFooter></SamsFooter>
+      <div onClick={handleGoUp} className="overlayMenuUp">
+        <img src={chevronUp} alt="up"></img>
+      </div>
+    </>
+  );
+}
+
+export default Main;

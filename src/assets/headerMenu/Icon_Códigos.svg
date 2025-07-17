@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_266" data-name="Rectángulo 266" width="10.818" height="18.03" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_Códigos" transform="translate(13339 -9269)">
+    <g id="Grupo_813" data-name="Grupo 813" transform="translate(-13331.507 9272)">
+      <g id="Grupo_812" data-name="Grupo 812" clip-path="url(#clip-path)">
+        <path id="Trazado_952" data-name="Trazado 952" d="M7.057,2.21l.181.1V.36a.361.361,0,0,0-.721,0V2.315l.181-.1a.376.376,0,0,1,.36,0" transform="translate(-1.468 0)" fill="#fff"/>
+        <path id="Trazado_953" data-name="Trazado 953" d="M10.274,5.563,5.77,2.988V4.7a1.082,1.082,0,1,1-.721,0V2.988L.545,5.563A1.083,1.083,0,0,0,0,6.5V16.9H10.818V6.5a1.083,1.083,0,0,0-.545-.937" transform="translate(0 -0.673)" fill="#fff"/>
+        <path id="Trazado_954" data-name="Trazado 954" d="M6.876,6.771a.361.361,0,1,0-.36-.36.361.361,0,0,0,.36.36" transform="translate(-1.468 -1.363)" fill="#fff"/>
+        <path id="Trazado_955" data-name="Trazado 955" d="M1.082,22.957H9.736a1.083,1.083,0,0,0,1.082-1.082H0a1.083,1.083,0,0,0,1.082,1.082" transform="translate(0 -4.927)" fill="#fff"/>
+      </g>
+    </g>
+    <rect id="Rectángulo_280" data-name="Rectángulo 280" width="26" height="26" transform="translate(-13339 9269)" fill="none"/>
+  </g>
+</svg>
