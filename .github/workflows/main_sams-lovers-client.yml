@@ -25,7 +25,7 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
+          npm install --force
           npm run build --if-present
           npm run test --if-present
 
@@ -53,7 +53,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -68,4 +68,3 @@ jobs:
           app-name: 'sams-lovers-client'
           slot-name: 'Production'
           package: .
-          
