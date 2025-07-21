@@ -1,7 +1,7 @@
 import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg"
 import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg"
 import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg"
-import timeout from "../assets/challenge-rewards-Icons/Icon_Rechazado (1).svg"
+import timeout from "../assets/challenge-rewards-Icons/Icon_Rechazado_1.svg"
 import diamond from "../assets/diamond.svg";
 const getStatusIcon = (status) => {
   switch(status) {
@@ -43,7 +43,7 @@ function ChallengeListItem({challenge}){
 
   return (
     <>
-      
+
       <div className="listItem" style={{gap: "0px"}}>
         {(challenge.image_url === "") ? (
           <div className="imageContainer"/>
@@ -56,7 +56,7 @@ function ChallengeListItem({challenge}){
             <img src={diamond} className="diamondLogo" alt="diamonds"></img>
             <p className="listItemSubtitle">{challenge.diamonds} Diamantes</p>
           </div>
-          
+
         </div>
         {(getStatusIcon(challenge.transaction?.status) !== null) ?
           (
@@ -68,9 +68,9 @@ function ChallengeListItem({challenge}){
               {<img src={timeout} alt="Transaction status icon"/>}
             </div>
 
-           
 
-            
+
+
         }
       </div>
     </>
