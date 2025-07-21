@@ -18,11 +18,6 @@ function FilterMenu({
     return options[index] || "";
   };
 
-  const getKeyFromLabel = (label) => {
-    const index = options.indexOf(label);
-    return optionKey[index] || "";
-  };
-
   const handleSelect = (currentKey) => {
     onValueChange(currentKey);
     setOpen(false);

@@ -3,7 +3,6 @@ import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import { useContext, useRef, useState } from "react";
 import "../styles/Codes.css";
-import diamond from "../assets/diamond.svg";
 import SamsConfetti from "../components/SamsConfetti";
 import { ElementContextPopUp } from "../context/PopUpContext";
 function Codes() {

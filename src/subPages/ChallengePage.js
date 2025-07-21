@@ -1,6 +1,5 @@
 import diamond from "../assets/diamond.svg";
 import chevronRight from "../assets/chevronRightBlack.svg";
-import RewardInfoBox from "../components/RewardInfoBox";
 import completedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Aceptado.svg";
 import inReviewStatusLogo from "../assets/challenge-rewards-Icons/Icon_Espera.svg";
 import rejectedStatusLogo from "../assets/challenge-rewards-Icons/Icon_Rechazado.svg";

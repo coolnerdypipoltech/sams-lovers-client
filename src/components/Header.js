@@ -2,7 +2,7 @@ import "../styles/Components.css";
 import logo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
 import iconMenu from "../assets/Icon_menu.svg";
 import diamond from "../assets/diamond.svg";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextData } from "../context/DataContext";

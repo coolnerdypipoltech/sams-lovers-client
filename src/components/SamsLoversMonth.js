@@ -1,4 +1,4 @@
-import Image from "../assets/test/MonthLover.png"
+
 function SamsLoversMonth({ sams_lover, doClick }) {
 
   const handleMeetSamsLover = () => {

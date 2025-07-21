@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from "react";
 import { LogInWithToken } from "../hooks/apicalls";
 import useIndexedDB from "../hooks/useIndexedDB";
-const ElementContextRoute = createContext();
+const ElementContextRoute = createContext("");
 
 const ElementProviderRoute= ({ children }) => {
   const [route, setRoute] = useState("");

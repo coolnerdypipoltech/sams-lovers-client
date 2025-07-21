@@ -9,13 +9,9 @@ function DeleteUserPage({
   handleWarningPopUp,
 }) {
   const [eyeHelper, setEyeHelper] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [errorPassword, setErrorPassword] = useState(false);
   const [typeHelper, setTypeHelper] = useState("password");
-  let helper = "70%";
-
-  if (window.innerWidth > 800) {
-    helper = "50%";
-  }
 
   return (
     <>

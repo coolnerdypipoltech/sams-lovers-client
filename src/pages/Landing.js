@@ -10,7 +10,6 @@ import { ElementContextPopUp } from "../context/PopUpContext";
 import useIndexedDB from "../hooks/useIndexedDB";
 function Landing() {
   const {
-    setLoginToken,
     changeRoute,
     registerFlow,
     persistLogin,
@@ -104,6 +103,10 @@ function Landing() {
     registerFlow.current = true;
   };
 
+    const handlePopUpClose = () => {
+    setPopUpResponse(null);
+  };
+
   if (popUpResponse === "Error") {
     popUpContent = (
       <div className="PopUp">
@@ -131,9 +134,7 @@ function Landing() {
     );
   }
 
-  const handlePopUpClose = () => {
-    setPopUpResponse(null);
-  };
+
 
   return (
     <>

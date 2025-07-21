@@ -1,6 +1,5 @@
 import topThreeDiamond from "../assets/diamond.svg";
 import obscureDiamond from "../assets/Numero.png";
-import profileCircle from "../assets/Foto_perfil.png";
 import "../styles/SamsRanking.css"
 function SamsLoversRankingItem({topUser, rank}) {
     const TOP_THREE_INDEX_LIMITER = 3;

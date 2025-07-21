@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef, use } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import ChallengeList from "../components/ChallengeList";
 import "../styles/Challenges.css";
 import filter from "../assets/Icon_Filtro.svg"

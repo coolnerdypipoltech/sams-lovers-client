@@ -49,10 +49,6 @@ function Rewards() {
     setSubPage("");
   };
 
-  const handleConfirm = () => {
-    setSubPage("ConfirmationPage");
-  };
-
   const openNoDiamondsPopUp = () => {
     rewardErrorPopUpTitle.current =
       "Lo sentimos, no tienes los suficientes diamantes.";

@@ -1,4 +1,4 @@
-import banner from "../assets/test/Banners_Sams_Banner1131x669_Blog@2x.png";
+
 function AcademyItem({ article, doClick }) {
   const handleClick = () => {
     doClick();
