@@ -80,6 +80,9 @@ function RewardsList({ changeToSubPage }) {
   }
 
   const Initialize = async () => {
+    if(!getCurrentToken){
+      return
+    }
     const token = await getCurrentToken();
 
     if(token === null || token === "") {

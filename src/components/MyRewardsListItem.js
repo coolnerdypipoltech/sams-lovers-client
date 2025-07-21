@@ -1,5 +1,4 @@
 import testImage from "../assets/Grupo_560@2x.png";
-import diamond from "../assets/diamond.svg";
 import { formatOneDate } from "../hooks/dateHandler";
 
 const truncateByScreenWidth = (str) => {

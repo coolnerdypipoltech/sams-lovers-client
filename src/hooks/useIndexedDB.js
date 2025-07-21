@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const DB_NAME = 'Sams Lovers';
@@ -46,10 +46,11 @@ const useIndexedDB = () => {
     const fetchItems = async () => {
       if (db) {
         setIsInitialize(true)
-        const items = await getItems();
+        await getItems();
       }
     };
     fetchItems();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db]); 
 
   const saveItem = async (item) => {
