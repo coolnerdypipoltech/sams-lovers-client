@@ -5,7 +5,7 @@ import instagram from "../assets/Icon_Instagram.svg";
 import tiktok from "../assets/Icon_Tiktok.svg";
 import X from "../assets/Icon_X.svg";
 import youtube from "../assets/Icon_Youtube.svg";
-import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
+import samsLogo from "../assets/Sams_Club_Logo_2020.svg@2x.png";
 import InfoTooltip from "../components/InfoTooltip";
 import BackgroundSams from "../components/BackgroundSams";
 import cross from "../assets/clear_input.svg";

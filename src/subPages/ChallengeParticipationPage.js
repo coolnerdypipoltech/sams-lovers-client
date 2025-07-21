@@ -1,4 +1,4 @@
-import bell from "../assets/Trazado 905.svg";
+import bell from "../assets/Trazado_905.svg";
 import InfoTooltip from "../components/InfoTooltip";
 
 function ChallengeParticipationPage({
@@ -104,10 +104,10 @@ function ChallengeParticipationPage({
           <p className="challenge-text-title">Estatus</p>
           <p className="challenge-text">{challenge.transaction?.status}</p>
         </div>*/}
-            
-           
+
+
         </div>
-        
+
       </div>
 
       {((challenge.transaction === null &&
@@ -124,7 +124,7 @@ function ChallengeParticipationPage({
           </button>
         </div>
       )}
-      
+
     </>
   );
 }

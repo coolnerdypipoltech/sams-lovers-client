@@ -1,5 +1,5 @@
-import trazado767 from ".././assets/Trazado 767.svg";
-import trazado767Dark from ".././assets/Trazado 767 dark.svg";
+import trazado767 from ".././assets/Trazado_767.svg";
+import trazado767Dark from ".././assets/Trazado_767_dark.svg";
 
 function InfoTooltip({text, dark}) {
   let imgHelper = trazado767

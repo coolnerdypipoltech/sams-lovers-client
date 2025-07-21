@@ -1,5 +1,5 @@
 import logo from "../assets/Brand_SamsLovers.svg";
-import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png"
+import samsLogo from "../assets/Sams_Club_Logo_2020.svg@2x.png"
 import { useState, useRef, useContext, useEffect } from "react"
 import { ResetPassword } from "../hooks/apicalls";
 import BackgroundSams from "../components/BackgroundSams";

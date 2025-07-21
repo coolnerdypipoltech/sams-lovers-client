@@ -1,7 +1,7 @@
 import "../styles/checkbox.css";
 import { useState } from "react";
 import logo from "../assets/Brand_SamsLovers.svg";
-import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
+import samsLogo from "../assets/Sams_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
 import eyeclosed from "../assets/Visibility2.svg";
 import BackgroundSams from "../components/BackgroundSams";
@@ -299,7 +299,7 @@ function CreatePage({
             <div style={{paddingBottom: "15px", width: "90%"}}>
             <button
               className="GeneralButton"
-              
+
               onClick={handleOntoSocialMedia}
             >
               Continuar

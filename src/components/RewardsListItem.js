@@ -1,4 +1,4 @@
-import testImage from "../assets/Grupo 560@2x.png";
+import testImage from "../assets/Grupo_560@2x.png";
 import diamond from "../assets/diamond.svg";
 
 
@@ -31,7 +31,7 @@ const truncateByScreenWidth = (str) => {
 function ListItem({ reward }) {
 
 
-  
+
   return (
     <>
       <div className="listItem" style={{gap: "0px"}}>

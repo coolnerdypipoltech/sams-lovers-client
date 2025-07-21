@@ -2,11 +2,11 @@
 import iconHome from "../assets/headerMenu/Icon_Inicio.svg";
 import iconProfile from "../assets/headerMenu/Icon_Perfil.svg";
 import iconChallenges from "../assets/headerMenu/Icon_Retos.svg"
-import iconCode from "../assets/headerMenu/Icon_Códigos.svg"
+import iconCode from "../assets/headerMenu/Icon_Codigos.svg"
 import iconRewards from "../assets/headerMenu/Icon_Recompensas.svg"
-import iconAcademy from "../assets/headerMenu/Icon_Sam's Lovers Academy.svg"
-import iconConfig from "../assets/headerMenu/Icon_Configuración.svg"
-import iconClose from "../assets/headerMenu/Icon_Cerrar sesión.svg"
+import iconAcademy from "../assets/headerMenu/Icon_Sams_Lovers_Academy.svg"
+import iconConfig from "../assets/headerMenu/Icon_Configuracion.svg"
+import iconClose from "../assets/headerMenu/Icon_Cerrar_sesion.svg"
 import "../styles/headerMenu.css";
 import BackgroundSams from "./BackgroundSams";
 import { useEffect } from "react";

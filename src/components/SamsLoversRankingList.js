@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import backgroundImage from "../assets/headerMenu/Gradient.png";
-import deco from "../assets/Rectángulo 238.svg";
+import deco from "../assets/Rectangulo_238.svg";
 
 function SamsLoversRankingList() {
   const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
@@ -86,7 +86,7 @@ function SamsLoversRankingList() {
                   height: "300px",
                   paddingTop: "10px",
                   borderRadius: "12px",
-                  maxWidth: "600px", 
+                  maxWidth: "600px",
                   backgroundColor: "rgba(70, 178, 255, 0.34)",
                   width: "100%",
                   paddingBottom: "10px"
@@ -105,11 +105,11 @@ function SamsLoversRankingList() {
                   (<p style={{textAlign: "center", fontSize: "12px"}} className="RankingSubTitle">No hay artículos disponibles...</p>)
                 }
                 {isLoading && <div style={{paddingBottom: "20px", color: "white"}} className="loading">Cargando...</div>}
-                
+
               </div>
             </div>
           </div>
-          
+
           <img className="deco1" alt="deco" src={deco}></img>
           <img className="deco2" alt="deco" src={deco}></img>
           <img className="deco3" alt="deco" src={deco}></img>

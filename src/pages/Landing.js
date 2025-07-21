@@ -1,6 +1,6 @@
 import "../styles/Landing.css";
-import logo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
-import shimmer from "../assets/Rectángulo 302.gif";
+import logo from "../assets/Sams_Club_Logo_2020.svg@2x.png";
+import shimmer from "../assets/Rectangulo_302.gif";
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { ElementContextRoute } from "../context/RouteContext";
@@ -28,7 +28,7 @@ function Landing() {
   let popUpContent = <></>;
   useEffect( () => {
     Init()
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInitialize]);
 
@@ -41,13 +41,13 @@ function Landing() {
     if (loadingPersistanceLogIn.current) return;
 
     loadingPersistanceLogIn.current = true;
-    
+
     const result = await hasSavedData();
     if (!result) {
       loadingPersistanceLogIn.current = false;
       return;
     }
-    
+
     changePopUpLoading(true);
 
     const response = await persistLogin();

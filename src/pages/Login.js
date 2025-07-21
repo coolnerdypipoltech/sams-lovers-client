@@ -1,6 +1,6 @@
 import "../styles/Login.css";
 import logo from "../assets/Brand_SamsLovers.svg";
-import samsLogo from "../assets/Sam's_Club_Logo_2020.svg@2x.png";
+import samsLogo from "../assets/Sams_Club_Logo_2020.svg@2x.png";
 import eye from "../assets/Visibility.svg";
 import eyeclosed from "../assets/Visibility2.svg";
 import { useState, useContext, useRef } from "react";
@@ -286,7 +286,7 @@ function Login() {
   const TryPersistLogIn = async () => {
 
     if (loadingPersistanceLogIn.current) return;
-    
+
     loadingPersistanceLogIn.current = true;
 
     const result = await hasSavedData();
@@ -295,7 +295,7 @@ function Login() {
       loadingPersistanceLogIn.current = false;
       return;
     }
-    
+
     changePopUpLoading(true);
 
     const response = await persistLogin();
@@ -499,7 +499,7 @@ function Login() {
                 alignItems: "center"
               }}
             >
-              
+
               <button
                 style={{ fontSize: "16px", width: "80%" }}
                 className="GeneralButton"
@@ -520,7 +520,7 @@ function Login() {
             <div>
               <p className="loginBottomText">
                 ¿Todavía no tienes una cuenta?{" "}
-                
+
               </p>
               <p onClick={onClickCreate} style={{color: "white"}} className="underlineText">
                   Créarla aquí
