@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { render } from "react-dom";
 import diamond from "../assets/diamond.svg";
 import gift from "../assets/Recompensa.svg"
 import SamsConfetti from "../components/SamsConfetti"
 import { ElementContextData } from "../context/DataContext";
 
 function RewardsPopUp({ closePopUp, handlePurchase}) {
+  // eslint-disable-next-line no-unused-vars
   const [popUpResponse, setPopUpResponse] = useState(null);
   const { UserData, currentReward } = useContext(ElementContextData);
 
@@ -13,10 +13,6 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
     //setPopUpResponse("Success");
     handlePurchase();
     closePopUp();
-  };
-
-  const handleCancel = () => {
-    setPopUpResponse("Fail");
   };
 
   const handleClose = () => {
