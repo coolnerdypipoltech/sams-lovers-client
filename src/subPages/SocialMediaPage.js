@@ -351,6 +351,7 @@ function SocialMedia({
                 <a
                   className="loginBottomText"
                   style={{ paddingBottom: "10px" }}
+                  href="https://www.google.com"
                   hvalue="https://www.google.com"
                 >
                   Términos de uso y Políticas

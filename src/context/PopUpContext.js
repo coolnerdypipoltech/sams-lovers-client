@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-const ElementContextPopUp = createContext();
+const ElementContextPopUp = createContext("");
 
 const ElementProviderPopUp= ({ children }) => {
   const [popUpText, setPopUpText] = useState("");

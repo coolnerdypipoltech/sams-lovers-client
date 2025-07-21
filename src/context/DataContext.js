@@ -1,6 +1,6 @@
 import React, { createContext, useRef, useState } from "react";
 import { GetArticles, GetRewards, GetPurchasedRewards, GetChallengesByUser, GetChallengesByUserWithURL, GetRewardsByUserWithURL, GetPurchasedRewardsWithURL, GetMainPageData, GetLandingPageData, GetTopUsers, GetTopUsersByURL, GetFooterLinks } from "../hooks/apicalls";
-const ElementContextData = createContext();
+const ElementContextData = createContext("");
 
 const ElementProviderData = ({ children }) => {
   const [rewardsData, setRewardsData] = useState(null);

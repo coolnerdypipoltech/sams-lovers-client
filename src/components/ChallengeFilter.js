@@ -1,4 +1,4 @@
-import { Picker } from "@react-native-picker/picker";
+
 import FilterMenu from "./FilterMenu"
 function ChallengeFilter({challengeStatusFilter, transactionStatusFilter, handleChallengeStatusFilter, handleTransactionStatusFilter}) {
     const options1 = ["Todos los retos", "Nuevos retos", "Retos por vencer"]

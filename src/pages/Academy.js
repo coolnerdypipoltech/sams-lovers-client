@@ -1,9 +1,8 @@
 
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import AcademyList from "../components/AcademyList";
 import "../styles/Academy.css";
 import AcademyPage from "../subPages/AcademyPage";
-import SamsFooter from "../components/SamsFooter";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextPopUp } from "../context/PopUpContext";
 import { ElementContextRoute } from "../context/RouteContext";

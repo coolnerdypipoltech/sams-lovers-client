@@ -2,7 +2,6 @@ import diamond from "../assets/diamond.svg";
 import gift from "../assets/Recompensa.svg";
 import canje from "../assets/Canje.svg";
 import chevronRight from "../assets/chevronRightBlack.svg";
-import InfoToolTip from "../components/InfoTooltip";
 import { useRef, useState, useContext } from "react";
 import testImage from "../assets/Grupo_560@2x.png";
 import RewardsPopUp from "../components/RewardsPopUp";

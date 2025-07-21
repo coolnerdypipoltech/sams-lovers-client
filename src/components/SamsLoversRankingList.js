@@ -2,8 +2,7 @@ import SamsLoversRankingItem from "./SamsLoverRankingItem";
 import { useState, useEffect, useRef, useContext } from "react";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
-import backgroundImage from "../assets/headerMenu/Gradient.png";
-import deco from "../assets/Rectangulo_238.svg";
+import deco from "../assets/Rectángulo 238.svg";
 
 function SamsLoversRankingList() {
   const { getCurrentToken, deleteSavedItems, changeRoute } = useContext(ElementContextRoute);
