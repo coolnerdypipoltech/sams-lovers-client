@@ -1,6 +1,6 @@
 {
   "name": "sams-lovers-client",
-  "homepage": "https://rck-games.github.io/sams-lovers-client/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
