@@ -9,6 +9,9 @@ on:
     branches:
       - main
 
+env:
+  NODE_VERSION: '22.x'
+
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -22,6 +25,11 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client --legacy-peer-deps
       - name: Get Id Token
