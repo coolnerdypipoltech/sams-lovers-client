@@ -15,7 +15,6 @@ const ElementProviderRoute= ({ children }) => {
   }, [isInitialize])
 
   const changeRoute = async (newValue) => {
-    console.log(newValue, route)
     if(newValue === route){
       setForceUpdate(forceUpdate + 1)
     }
