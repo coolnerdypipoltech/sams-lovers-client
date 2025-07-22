@@ -12,6 +12,7 @@ on:
 env:
   NODE_VERSION: '22.x'
   NPM_CONFIG_LEGACY_PEER_DEPS: true
+  REACT_APP_API_URL: https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api
 
 jobs:
   build_and_deploy_job:
