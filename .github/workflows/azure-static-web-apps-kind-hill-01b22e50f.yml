@@ -11,6 +11,8 @@ on:
 
 env:
   NODE_VERSION: '22.x'
+  NPM_CONFIG_FORCE: true
+  NPM_CONFIG_LEGACY_PEER_DEPS: true
 
 jobs:
   build_and_deploy_job:
@@ -31,7 +33,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: Install OIDC Client from Core Package
-        run: npm install --force @actions/core@1.6.0 @actions/http-client
+        run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
