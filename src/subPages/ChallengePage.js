@@ -80,7 +80,7 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 }}
               >
                 <div style={{ paddingTop: "1px" }}>
-                  <InfoTooltip dark={true}></InfoTooltip>
+                  <InfoTooltip text={"Tu reto esta \nen revisión, por favor espere\na que sea revisado"} dark={true}></InfoTooltip>
                 </div>
               </div>
               <div
@@ -170,7 +170,7 @@ function ChallengePage({ returnPage, challengeParticipationPage }) {
                 }}
               >
                 <div style={{ paddingTop: "1px" }}>
-                  <InfoTooltip dark={true}></InfoTooltip>
+                  <InfoTooltip text={"Tu reto esta \nha sido rechazado"}  dark={true}></InfoTooltip>
                 </div>
               </div>
               <div
