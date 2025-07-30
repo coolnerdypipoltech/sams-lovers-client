@@ -55,7 +55,7 @@ function RewardPage({ returnPage, handlePurchase, reward }) {
 
   const isButtonActive = () => {
     if (
-      UserData.current.user.related.diamonds - currentReward.price <= 0 ||
+      UserData.current.user.related.diamonds - currentReward.price < 0 ||
       currentReward.stock <= 0 ||
       currentReward.total_user_transactions_left <= 0 ||
       currentReward.status !== "ACTIVO"
