@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import diamond from "../assets/diamond.svg";
-import gift from "../assets/Recompensa.svg"
-import SamsConfetti from "../components/SamsConfetti"
+import gift from "../assets/Recompensa.svg";
+import SamsConfetti from "../components/SamsConfetti";
 import { ElementContextData } from "../context/DataContext";
 
 function RewardsPopUp({ closePopUp, handlePurchase}) {
@@ -97,97 +97,120 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
     <>
       {popUpResponse === null ? (
         <div className="PopUp">
-          <div style={{ height: "75%" }} className="PopUpDialog">
-            <div
-              style={{
+          <div style={{ height: "75%",
+                maxHeight: "700px" }} className="PopUpDialog">
+            <div style=
+              {{
                 height: "100%",
                 display: "flex",
                 justifyContent: "space-evenly",
                 flexDirection: "column",
-                overflowY: "scroll"
-              }}
-              className="GeneralButtonContainer"
-            >
-              <p
-                style={{
-                  padding: "0px",
-                  textAlign: "center",
-                  marginTop: "20px",
-                  marginBottom: "10px",
-                  color: "#0B204F",
-                }}
-                className="challengesPage-Title"
-              >
-                {currentReward.name}
-              </p>
-              <div>
-                <div className="popUpOutline" style={{borderBottomLeftRadius: "0px", borderBottomRightRadius: "0px"}}>
-                  <p className="RewardsPopUpText">
-                    {" "}
-                    Tus diamantes disponibles:
-                  </p>
-                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                    <img src={diamond} alt="diamondLogo"></img>
-                    <p
-                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                      className="challengesPage-Title"
-                    >
-                      {`${UserData.current.user.related.diamonds} DIAMANTES`}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="popUpOutline" style={{borderTopLeftRadius:" 0px",  borderTopRightRadius: "0px"}}>
-                  <p className="RewardsPopUpText"> Costo:</p>
-                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                    <img src={diamond} alt="diamondLogo"></img>
-                    <p
-                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                      className="challengesPage-Title"
-                    >
-                      {`${currentReward.price} DIAMANTES`}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="popUpOutline">
-                  <p className="RewardsPopUpText">
-                    {" "}
-                    Diamantes después de la compra:
-                  </p>
-                  <div style={{ paddingLeft: "5px" }} className="rowAlign">
-                    <img src={diamond} alt="diamondLogo"></img>
-                    <p
-                      style={{ marginBottom: "0px", paddingLeft: "10px" }}
-                      className="challengesPage-Title"
-                    >
-                      {`${((UserData.current.user.related.diamonds - currentReward.price) <= 0) ? 0 : UserData.current.user.related.diamonds - currentReward.price} DIAMANTES`}
-                    </p>
-                  </div>
-                  <p className="RewardsDisclaimerText">
-                    Se enviará un comprobante e instrucciones de canje al correo
-                    electrónico registrado.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{paddingBottom: "15px"}}>
-                <button
-                  style={{ width:"80%" }}
-                  className="GeneralButton4"
-                  onClick={handleExchange}
+                width: "100%",
+                alignItems: "center",
+                overflowY: "overlay"
+              }}>
+              
+              <div style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", height: "100%"}} className="GeneralButtonContainer">
+                <p
+                  style={{
+                    padding: "0px",
+                    textAlign: "center",
+                    marginTop: "20px",
+                    marginBottom: "10px",
+                    color: "#0B204F",
+                  }}
+                  className="challengesPage-Title"
                 >
-                  Canjear
-                </button>
-                <div style={{ height: "15px" }}></div>
+                  {currentReward.name}
+                </p>
+                <div>
+                  <div
+                    className="popUpOutline"
+                    style={{
+                      borderBottomLeftRadius: "0px",
+                      borderBottomRightRadius: "0px",
+                    }}
+                  >
+                    <p className="RewardsPopUpText">
+                      {" "}
+                      Tus diamantes disponibles:
+                    </p>
+                    <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                      <img src={diamond} alt="diamondLogo"></img>
+                      <p
+                        style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                        className="challengesPage-Title"
+                      >
+                        {`${UserData.current.user.related.diamonds} DIAMANTES`}
+                      </p>
+                    </div>
+                  </div>
 
-                <button
-                  style={{ width:"80%" }}
-                  className="GeneralButton1"
-                  onClick={handleClose}
-                >
-                  Cancelar
-                </button>
+                  <div
+                    className="popUpOutline"
+                    style={{
+                      borderTopLeftRadius: " 0px",
+                      borderTopRightRadius: "0px",
+                    }}
+                  >
+                    <p className="RewardsPopUpText"> Costo:</p>
+                    <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                      <img src={diamond} alt="diamondLogo"></img>
+                      <p
+                        style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                        className="challengesPage-Title"
+                      >
+                        {`${currentReward.price} DIAMANTES`}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="popUpOutline">
+                    <p className="RewardsPopUpText">
+                      {" "}
+                      Diamantes después de la compra:
+                    </p>
+                    <div style={{ paddingLeft: "5px" }} className="rowAlign">
+                      <img src={diamond} alt="diamondLogo"></img>
+                      <p
+                        style={{ marginBottom: "0px", paddingLeft: "10px" }}
+                        className="challengesPage-Title"
+                      >
+                        {`${
+                          UserData.current.user.related.diamonds -
+                            currentReward.price <=
+                          0
+                            ? 0
+                            : UserData.current.user.related.diamonds -
+                              currentReward.price
+                        } DIAMANTES`}
+                      </p>
+                    </div>
+                    <p className="RewardsDisclaimerText">
+                      Se enviará un comprobante e instrucciones de canje al
+                      correo electrónico registrado.
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ paddingBottom: "15px" }}>
+                  <button
+                    style={{ width: "80%" }}
+                    className="GeneralButton4"
+                    onClick={handleExchange}
+                  >
+                    Canjear
+                  </button>
+                  <div style={{ height: "15px" }}></div>
+
+                  <button
+                    style={{ width: "80%" }}
+                    className="GeneralButton1"
+                    onClick={handleClose}
+                  >
+                    Cancelar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
