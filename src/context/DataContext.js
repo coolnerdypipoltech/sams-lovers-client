@@ -384,6 +384,26 @@ const ElementProviderData = ({ children }) => {
     setChallengesData(tempArray);
   }
 
+  const setNewRewardTransaction = async (_transaction) => {
+    var tempReward = currentReward;
+    tempReward.transaction = _transaction;
+    tempReward.stock = tempReward.stock - 1;
+    if(tempReward.total_user_transactions_left > 0){
+      tempReward.total_user_transactions_left = tempReward.total_user_transactions_left - 1;
+      tempReward.total_user_transactions = tempReward.total_user_transactions + 1;
+      tempReward.total_transactions = tempReward.total_transactions + 1;
+    }
+    
+    setCurrentReward(tempReward);
+    let tempArray = rewardsData;
+    for (var i = 0; i < tempArray.length; i++) {
+      if(tempArray[i].id === tempReward.id) {
+        tempArray[i] = tempReward;
+      }
+    }
+    setRewardsData(tempArray);
+  }
+
   const setNewReward = async (_updatedReward) => {
     var tempReward = currentReward;
     tempReward = _updatedReward;
@@ -456,6 +476,7 @@ const ElementProviderData = ({ children }) => {
         initRequestTopUsers,
         setNewChallengeTransaction,
         setNewReward,
+        setNewRewardTransaction,
         setNewUserDiamonds,
         setTopUsersData,
         loadNextArticle,

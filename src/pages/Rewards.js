@@ -20,6 +20,7 @@ function Rewards() {
     currentReward,
     setNewReward,
     setNewUserDiamonds,
+    setNewRewardTransaction
   } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
@@ -116,6 +117,7 @@ function Rewards() {
     const data = await response.json();
     if (response.ok) {
       setNewReward(data.reward);
+      setNewRewardTransaction(data.transaction);
       setNewUserDiamonds(data.diamonds_left);
       setPopUpResponse("Success");
     } else {
