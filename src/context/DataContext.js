@@ -29,10 +29,11 @@ const ElementProviderData = ({ children }) => {
 
   const initRequestRewards = async (
     _token,
+    _status,
     _limit,
     _offset
   ) => {
-    const response = await GetRewards(`Bearer ${_token}`, _limit, _offset);
+    const response = await GetRewards(`Bearer ${_token}`, _status, _limit, _offset);
     const data = await response.json();
     if (response.ok) {
       setRewardsData(data.rewards);
@@ -139,13 +140,14 @@ const ElementProviderData = ({ children }) => {
     }
   };
 
-  const requestMoreRewards = async (_token, _limit, _offset) => {
+  const requestMoreRewards = async (_token, _status, _limit, _offset) => {
     if (nextRewards === null) {
       return;
     }
 
     const response = await GetRewards(
       `Bearer ${_token}`,
+      _status,
       _limit,
       _offset
     );
