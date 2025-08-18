@@ -59,7 +59,7 @@ function ListItem({ reward }) {
               ></img>
               <p className="listItemSubtitle">{`${reward.price} Diamantes`}</p>
             </div>
-            <p style={{paddingRight: "15px", paddingLeft: "5px"}} className="listItemTitle">
+            <p style={{paddingRight: "15px", paddingLeft: "5px", color: reward.stock > 0 ? "#3bcfb0" : "#f1568c"}} className="listItemTitle">
               {reward.stock > 0 ? "Disponible" : "No disponible"}
             </p>
           </div>
