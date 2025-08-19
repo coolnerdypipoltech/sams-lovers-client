@@ -1,7 +1,6 @@
 import testImage from "../assets/Grupo 560@2x.png";
 import diamond from "../assets/diamond.svg";
 
-
 const truncateByScreenWidth = (str) => {
   const width = window.innerWidth;
   let maxLength = str.length;
@@ -15,26 +14,32 @@ const truncateByScreenWidth = (str) => {
   else if (width <= 600) maxLength = 56;
   else if (width <= 800) maxLength = 100;
 
-
   if (str.length > maxLength) {
     let sliced = str.slice(0, maxLength);
-    if (sliced.endsWith(' ')) {
+    if (sliced.endsWith(" ")) {
       sliced = sliced.slice(0, -1);
     }
-    return sliced + '...';
+    return sliced + "...";
   }
 
   return str;
-}
-
+};
 
 function ListItem({ reward }) {
-
-
-  
+  const checkStatus = () => {
+    if (
+      reward.stock <= 0 ||
+      reward.total_user_transactions_left <= 0 ||
+      reward.status !== "ACTIVO"
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
   return (
     <>
-      <div className="listItem" style={{gap: "0px"}}>
+      <div className="listItem" style={{ gap: "0px" }}>
         <div>
           <img
             className="imageContainer"
@@ -46,12 +51,20 @@ function ListItem({ reward }) {
             alt="Challenge illustrative reference"
           />
         </div>
-        <div style={{width: "100%", paddingLeft: "10px"}} className="listItemContainer">
+        <div
+          style={{ width: "100%", paddingLeft: "10px" }}
+          className="listItemContainer"
+        >
           <div>
-            <p style={{width: "94%"}}  className="listItemTitle">{truncateByScreenWidth(reward.name)}</p>
+            <p style={{ width: "94%" }} className="listItemTitle">
+              {truncateByScreenWidth(reward.name)}
+            </p>
           </div>
-          <div style={{justifyContent: "space-between", width: "100%"}} className="rowAlign">
-            <div  className="rowAlign">
+          <div
+            style={{ justifyContent: "space-between", width: "100%" }}
+            className="rowAlign"
+          >
+            <div className="rowAlign">
               <img
                 src={diamond}
                 style={{ height: "17px" }}
@@ -59,8 +72,15 @@ function ListItem({ reward }) {
               ></img>
               <p className="listItemSubtitle">{`${reward.price} Diamantes`}</p>
             </div>
-            <p style={{paddingRight: "15px", paddingLeft: "5px", color: reward.stock > 0 ? "#3bcfb0" : "#f1568c"}} className="listItemTitle">
-              {reward.stock > 0 ? "Disponible" : "No disponible"}
+            <p
+              style={{
+                paddingRight: "15px",
+                paddingLeft: "5px",
+                color: checkStatus() ? "#3bcfb0" : "#f1568c",
+              }}
+              className="listItemTitle"
+            >
+              {checkStatus() ? "Disponible" : "No disponible"}
             </p>
           </div>
         </div>
