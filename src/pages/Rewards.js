@@ -8,6 +8,8 @@ import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 import { ElementContextPopUp } from "../context/PopUpContext";
 import gift from "../assets/Recompensa.svg";
+import filter from "../assets/Icon_Filtro.svg";
+import RewardsFilter from "../components/RewardsFilter";
 
 import SamsConfetti from "../components/SamsConfetti";
 
@@ -20,16 +22,25 @@ function Rewards() {
     currentReward,
     setNewReward,
     setNewUserDiamonds,
-    setNewRewardTransaction
+    setNewRewardTransaction,
+    initRequestRewards,
   } = useContext(ElementContextData);
   const { changePopUpLoading } = useContext(ElementContextPopUp);
   const [subPage, setSubPage] = useState("");
   const [popUpResponse, setPopUpResponse] = useState("");
+  const [rewardsStatusFilter, setRewardsStatusFilter] = useState("TODO");
+  const [prevRewardsStatusFilter, setPrevRewardsStatusFilter] =
+    useState("TODO");
+  const [rewardsFilter, setRewardsFilter] = useState(false);
 
+  let filterHasBeenModified = useRef(null);
   let subPageContent = null;
   let rewardErrorPopUpTitle = useRef("");
   let rewardErrorPopUpContent = useRef("");
   let rewardPopUpContent = <></>;
+
+  const refresh_limit = 10;
+  const refresh_offset = 0;
 
   const handleSelectReward = () => {
     setSubPage("RewardPage");
@@ -49,6 +60,13 @@ function Rewards() {
     }
     setSubPage("");
   };
+
+  useEffect(() => {
+    if (prevRewardsStatusFilter !== rewardsStatusFilter) {
+      filterHasBeenModified.current = true;
+      setPrevRewardsStatusFilter(rewardsStatusFilter);
+    }
+  }, [rewardsStatusFilter, prevRewardsStatusFilter, filterHasBeenModified]);
 
   const openNoDiamondsPopUp = () => {
     rewardErrorPopUpTitle.current =
@@ -141,6 +159,29 @@ function Rewards() {
       }
     }
     changePopUpLoading(false);
+  };
+
+  const handleRefreshList = async () => {
+    filterHasBeenModified.current = false;
+
+    const token = await getCurrentToken();
+
+    if (token === null || token === "") {
+      await handleLogOut();
+      return;
+    }
+    console.log(rewardsStatusFilter)
+
+    await initRequestRewards(
+      token,
+      rewardsStatusFilter,
+      refresh_limit,
+      refresh_offset
+    );
+  };
+
+  const handleRewardsStatusFilter = (rewardsStatus) => {
+    setRewardsStatusFilter(rewardsStatus);
   };
 
   if (subPage === "RewardPage") {
@@ -243,6 +284,15 @@ function Rewards() {
     );
   }
 
+  function handleSetRewardsFilter(event, value) {
+    if (event.target.className === "challenges-filter-container") {
+      setRewardsFilter(value);
+      if (!value && filterHasBeenModified.current) {
+        handleRefreshList();
+      }
+    }
+  }
+
   return (
     <>
       <>{rewardPopUpContent}</>
@@ -277,15 +327,41 @@ function Rewards() {
             >
               Recompensas disponibles
             </p>
-
-            <p style={{ textAlign: "left" }} className="challenges-text">
-              {" "}
-              Redime tus diamantes por increibles premios.
-            </p>
+            <div style={{width: "100%", display: "flex", justifyContent: "space-between", flexDirection: "row"}}>
+              <p style={{ textAlign: "left" }} className="challenges-text">
+                {" "}
+                Redime tus diamantes por increibles premios.
+              </p>
+              <div
+                className="challenge-filter-button-container"
+                onClick={() => setRewardsFilter(true)}
+              >
+                <img
+                  className="challenge-filter-icon"
+                  src={filter}
+                  alt="filter icon"
+                />
+              </div>
+            </div>
           </div>
-          <RewardsList changeToSubPage={handleSelectReward}></RewardsList>
+          <RewardsList rewardsStatusFilter={rewardsStatusFilter} changeToSubPage={handleSelectReward}></RewardsList>
         </div>
       </div>
+      {rewardsFilter && (
+        <div>
+          <div
+            className="challenges-filter-container"
+            onClick={(e) => {
+              handleSetRewardsFilter(e, false);
+            }}
+          >
+            <RewardsFilter
+              rewardsStatusFilter={rewardsStatusFilter}
+              handleRewardsStatusFilter={handleRewardsStatusFilter}
+            ></RewardsFilter>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -178,9 +178,10 @@ export async function GetChallengesByUser (_token, _challenge_status, _transacti
     }
 }
 
-export async function GetRewards(_token, _limit, _offset) {
+export async function GetRewards(_token, _status, _limit, _offset) {
+    
     try{
-        const response = await fetch(ENDPOINT + `/v1/rewards/${_limit}/${_offset}`, {
+        const response = await fetch(ENDPOINT + `/v1/rewards/${_status}/${_limit}/${_offset}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

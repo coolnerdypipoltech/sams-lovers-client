@@ -50,7 +50,6 @@ function Challenges() {
       div.style.height = "84vh";
     }
     setSubPage("")
-    
   }, [forceUpdate])
 
   useEffect(() => {
@@ -100,7 +99,6 @@ function Challenges() {
   }
 
   const handleParticipation = async () => {
-     
     if(submissionURL === "") return;
 
     const token = await getCurrentToken();
@@ -136,7 +134,6 @@ function Challenges() {
             openGeneralErrorPopUp();
             break;
         }
-        
       }else{
         openGeneralErrorPopUp();
       }
@@ -155,7 +152,7 @@ function Challenges() {
         return;
       }
 
-    initRequestChallenges(challengeStatusFilter, transactionStatusFilter, token, refresh_limit, refresh_offset);
+    await initRequestChallenges(challengeStatusFilter, transactionStatusFilter, token, refresh_limit, refresh_offset);
   };
 
   const handleChallengeStatusFilter = (challengeStatus) => {

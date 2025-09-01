@@ -3,7 +3,7 @@ import RewardsListItem from "./RewardsListItem";
 import { ElementContextData } from "../context/DataContext";
 import { ElementContextRoute } from "../context/RouteContext";
 
-function RewardsList({ changeToSubPage }) {
+function RewardsList({ changeToSubPage, rewardsStatusFilter, }) {
 
   const { changeRoute, deleteSavedItems, getCurrentToken } = useContext(ElementContextRoute);
   const { SetUserData, initRequestRewards, setCurrentReward, rewardsData, requestMoreRewardsByURL, nextRewards } = useContext(ElementContextData);
@@ -87,7 +87,7 @@ function RewardsList({ changeToSubPage }) {
       return;
     }
 
-    const result = await initRequestRewards(token, limit, 0);
+    const result = await initRequestRewards(token, rewardsStatusFilter, limit, 0);
     if(!result.ok){
       switch (result.data.message) {
         case "api.error.unauthorized":
