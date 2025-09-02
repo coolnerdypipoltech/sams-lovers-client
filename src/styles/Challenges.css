@@ -326,9 +326,27 @@
   top: 0;
   z-index: 11;
 }
+.challenges-filter-PopUpContainer{
+  width: 100%;
+  position: absolute;
+  top: 135px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.challenges-filter-PopUpDisplay{
+
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
 
 .challenges-filter {
-  position: absolute;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -336,144 +354,14 @@
   height: auto;
   padding: 20px;
   background-color: white;
-  right: 5%;
   top: 135px;
+  margin-right: 10%;
   box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.452);
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
-}
-
-
-@media(min-width: 650px){
-  .challenges-filter {
-
-  right: 10%;
-
-  }
-}
-
-@media(min-width: 950px){
-  .challenges-filter {
-    right: 10%;
-  }
-}
-
-@media(min-width: 1000px){
-  .challenges-filter {
-    right: 11%;
-  }
-}
-
-@media(min-width: 1050px){
-  .challenges-filter {
-    right: 12%;
-  }
-}
-
-@media(min-width: 1100px){
-  .challenges-filter {
-    right: 13%;
-  }
-}
-
-@media(min-width: 1150px){
-  .challenges-filter {
-    right: 14%;
-  }
-}
-
-@media(min-width: 1200px){
-  .challenges-filter {
-    right: 15%;
-  }
-}
-
-@media(min-width: 1250px){
-  .challenges-filter {
-    right: 16%;
-  }
-}
-
-@media(min-width: 1300px){
-  .challenges-filter {
-    right: 17%;
-  }
-}
-
-@media(min-width: 1350px){
-  .challenges-filter {
-    right: 18%;
-  }
-}
-
-@media(min-width: 1400px){
-  .challenges-filter {
-    right: 19%;
-  }
-}
-
-@media(min-width: 1450px){
-  .challenges-filter {
-    right: 20%;
-  }
-}
-
-@media(min-width: 1500px){
-  .challenges-filter {
-    right: 21%;
-  }
-}
-
-@media(min-width: 1550px){
-  .challenges-filter {
-    right: 22%;
-  }
-}
-
-@media(min-width: 1600px){
-  .challenges-filter {
-    right: 23%;
-  }
-}
-
-@media(min-width: 1650px){
-  .challenges-filter {
-    right: 24%;
-  }
-}
-
-@media(min-width: 1700px){
-  .challenges-filter {
-    right: 25%;
-  }
-}
-
-
-@media(min-width: 1750px){
-  .challenges-filter {
-    right: 22%;
-  }
-}
-
-@media(min-width: 1800px){
-  .challenges-filter {
-    right: 23%;
-  }
-}
-
-@media(min-width: 1850px){
-  .challenges-filter {
-    right: 24%;
-  }
-}
-
-@media(min-width: 1900px){
-  .challenges-filter {
-    right: 25%;
-  }
 }
 
 
