@@ -15,6 +15,11 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
     closePopUp();
   };
 
+  // eslint-disable-next-line no-unused-vars
+  const handleCancel = () => {
+    setPopUpResponse("Fail");
+  };
+
   const handleClose = () => {
     closePopUp();
   };

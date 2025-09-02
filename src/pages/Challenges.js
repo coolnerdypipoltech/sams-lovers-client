@@ -219,7 +219,6 @@ function Challenges() {
   }
 
   function handleSetChallengeFilter(event, value) {
-    console.log(event.target.className)
     if (event.target.className === "challenges-filter-container" || event.target.className === "challenges-filter-PopUpDisplay") {
       setChallengeFilter(value);
       if(!value && filterHasBeenModified.current){
