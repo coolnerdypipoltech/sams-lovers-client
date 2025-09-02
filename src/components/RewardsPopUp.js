@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { render } from "react-dom";
 import diamond from "../assets/diamond.svg";
 import gift from "../assets/Recompensa.svg";
 import SamsConfetti from "../components/SamsConfetti";
@@ -15,6 +14,7 @@ function RewardsPopUp({ closePopUp, handlePurchase}) {
     closePopUp();
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleCancel = () => {
     setPopUpResponse("Fail");
   };

@@ -170,7 +170,6 @@ function Rewards() {
       await handleLogOut();
       return;
     }
-    console.log(rewardsStatusFilter)
 
     await initRequestRewards(
       token,
