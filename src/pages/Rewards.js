@@ -285,7 +285,7 @@ function Rewards() {
   }
 
   function handleSetRewardsFilter(event, value) {
-    if (event.target.className === "challenges-filter-container") {
+    if (event.target.className === "challenges-filter-container" || event.target.className === "challenges-filter-PopUpDisplay"){
       setRewardsFilter(value);
       if (!value && filterHasBeenModified.current) {
         handleRefreshList();
@@ -321,17 +321,15 @@ function Rewards() {
               width: "80%",
             }}
           >
-            <p
+            
+            
+            <div style={{width: "100%", display: "flex", justifyContent: "space-between", flexDirection: "row"}}>
+              <p
               style={{ textAlign: "left", width: "100%" }}
               className="challenges-Title"
             >
               Recompensas disponibles
             </p>
-            <div style={{width: "100%", display: "flex", justifyContent: "space-between", flexDirection: "row"}}>
-              <p style={{ textAlign: "left" }} className="challenges-text">
-                {" "}
-                Redime tus diamantes por increibles premios.
-              </p>
               <div
                 className="challenge-filter-button-container"
                 onClick={() => setRewardsFilter(true)}
@@ -343,6 +341,10 @@ function Rewards() {
                 />
               </div>
             </div>
+            <p style={{ textAlign: "left" }} className="challenges-text">
+                {" "}
+                Redime tus diamantes por increibles premios.
+              </p>
           </div>
           <RewardsList rewardsStatusFilter={rewardsStatusFilter} changeToSubPage={handleSelectReward}></RewardsList>
         </div>
