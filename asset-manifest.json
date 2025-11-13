@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.ec6246b4.css",
-    "main.js": "./static/js/main.82c2760a.js",
+    "main.js": "./static/js/main.e7a61875.js",
     "static/js/453.dc3d3acd.chunk.js": "./static/js/453.dc3d3acd.chunk.js",
     "static/media/Rectangulo_302.gif": "./static/media/Rectangulo_302.1fc72ce936df1fe0cbe1.gif",
     "static/media/Gradient.png": "./static/media/Gradient.daecda6d3eacebc6e5ff.png",
@@ -51,11 +51,11 @@
     "static/media/checkMark.svg": "./static/media/checkMark.14ef6b5f03f1276e855936235c6b5d58.svg",
     "static/media/chevronRightBlack.svg": "./static/media/chevronRightBlack.66d1679e8b7d7a2bba560fea21f88193.svg",
     "main.ec6246b4.css.map": "./static/css/main.ec6246b4.css.map",
-    "main.82c2760a.js.map": "./static/js/main.82c2760a.js.map",
+    "main.e7a61875.js.map": "./static/js/main.e7a61875.js.map",
     "453.dc3d3acd.chunk.js.map": "./static/js/453.dc3d3acd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ec6246b4.css",
-    "static/js/main.82c2760a.js"
+    "static/js/main.e7a61875.js"
   ]
 }
