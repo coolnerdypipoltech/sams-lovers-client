@@ -1,4 +1,4 @@
-const ENDPOINT = process.env.REACT_APP_API_URL;
+const ENDPOINT = "https://sams-lovers-admin-b4d0cvasfwgrhhds.canadacentral-01.azurewebsites.net/api";
 
 export async function SignIn(_name, _email, _password, _facebook_url, _instagram_url, _tiktok_url, _x_url, _youtube_url) {
     try {
