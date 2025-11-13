@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.958" height="23.958" viewBox="0 0 23.958 23.958">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#397efc"/>
+      <stop offset="1" stop-color="#234ffa"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="1.04" cy="0.876" r="1.241" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#aeb6fd"/>
+      <stop offset="0.318" stop-color="#a7b1fd" stop-opacity="0.69"/>
+      <stop offset="1" stop-color="#234ffa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="1.02" cy="0.132" r="1.241" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a1c8fe"/>
+      <stop offset="0.392" stop-color="#9bc2fe" stop-opacity="0.588"/>
+      <stop offset="1" stop-color="#234ffa" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Diamante" transform="translate(12645.49 -1945.838)">
+    <rect id="Rectángulo_258" data-name="Rectángulo 258" width="16.941" height="16.941" rx="3" transform="translate(-12633.512 1945.838) rotate(45)" fill="url(#linear-gradient)"/>
+    <rect id="Rectángulo_260" data-name="Rectángulo 260" width="16.941" height="16.941" rx="3" transform="translate(-12633.512 1945.838) rotate(45)" fill="url(#radial-gradient)"/>
+    <rect id="Rectángulo_259" data-name="Rectángulo 259" width="16.941" height="16.941" rx="3" transform="translate(-12633.512 1945.838) rotate(45)" fill="url(#radial-gradient-2)"/>
+  </g>
+</svg>
